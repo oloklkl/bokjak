@@ -7,29 +7,39 @@ import {
 } from 'react-router-dom';
 import Layout from './common/Layout';
 import { About, Login, Main, NotFiles } from './pages';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styled/theme';
 
 const App = () => {
     return (
         <>
             <BrowserRouter>
-                <GlobalStyle />
-                <Routes>
-                    <Route path="/" element={<Layout />}>
-                        <Route index element={<Main />} />
+                <ThemeProvider theme={theme}>
+                    <GlobalStyle />
+                    <Routes>
                         <Route
-                            path="/login"
-                            element={<Login />}
-                        />
+                            path="/"
+                            element={<Layout />}
+                        >
+                            <Route
+                                index
+                                element={<Main />}
+                            />
+                            <Route
+                                path="/login"
+                                element={<Login />}
+                            />
+                            <Route
+                                path="/about"
+                                element={<About />}
+                            />
+                        </Route>
                         <Route
-                            path="/about"
-                            element={<About />}
+                            path="*"
+                            element={<NotFiles />}
                         />
-                    </Route>
-                    <Route
-                        path="*"
-                        element={<NotFiles />}
-                    />
-                </Routes>
+                    </Routes>
+                </ThemeProvider>
             </BrowserRouter>
         </>
     );

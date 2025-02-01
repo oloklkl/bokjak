@@ -1,19 +1,21 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { color, font } from './theme';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
   /* other styles */
   
   body {
-    font-size: 17px;
+    font-size: ${font('body', 'md')};
     line-height: 1.5;
     font-family: 'Noto Sans KR', sans-serif;
-    color:#333;
+    color: ${color('gray', '0')};
+    background: ${color('gray', '90')};
   }
   a {
     text-decoration: none;
-    color:#333; 
+    color: ${color('gray', '0')}; 
   }
   li { list-style:none }
   img { vertical-align: top; }
@@ -27,8 +29,6 @@ const GlobalStyle = createGlobalStyle`
 
 .swiper-slide {
   text-align: center;
-  font-size: 18px;
-  background: #fff;
 
   /* Center slide text vertically */
   display: flex;
