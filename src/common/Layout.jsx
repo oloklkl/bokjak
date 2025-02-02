@@ -1,15 +1,19 @@
 import { Outlet } from 'react-router-dom';
 import Header from './header';
 import Footer from './footer';
-import { Detail } from '../components';
+import { Smiley } from '@phosphor-icons/react';
+import IconBtn from './iconbutton';
 
 const Layout = () => {
+    const [isActive]
     return (
-        <div className="wrap">
+        <div className="inner">
             <Header />
             {/* <Detail /> */}
-            <main className="main">
+            <main>
                 {/* Router 페이지 */}
+
+                <IconBtn icon={<Smiley />} text="smiley" />
                 <Outlet />
             </main>
             <Footer />

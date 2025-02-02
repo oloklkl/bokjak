@@ -74,10 +74,3 @@ export const color = (category, variant) => {
 export const font = (category, size) => {
     return ({ theme }) => theme.fontSize[category][size];
 };
-
-// 반응형 미디어 쿼리
-export const media = {
-    mobile: `@media (max-width: 600px)`,
-    tablet: `@media (max-width: 1024px)`,
-    desktop: `@media (min-width: 1025px)`,
-};

@@ -1,10 +1,21 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import { color, font } from './theme';
+import { media } from './media';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-  /* other styles */
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    width: 100%;
+    height: 100%;
+  }
   
   body {
     font-size: ${font('body', 'md')};
@@ -45,10 +56,30 @@ const GlobalStyle = createGlobalStyle`
 
 
   
-  .inner { width:1400px; margin:auto; box-sizing:border-box; position:relative; padding:120px 0; }
+  .inner { 
+  width:100%; 
+  box-sizing:border-box; 
+  position:relative;
+  margin: 0 auto; 
+  
+  ${media.desktop}{
+max-width: 1600px;
+padding: 0 30px;
+  }
+  
+  ${media.tablet}{
+  padding: 0 30px;
+  }
+
+  ${media.mobile}{
+    padding: 0 20px;
+    }
+  }
+
   .main { width: 100%; }
 
   button { border:none; cursor: pointer; }
+
   .hide{
      display: none;
      text-indent: 9999px;
