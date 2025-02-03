@@ -1,7 +1,9 @@
 import React from 'react';
 import { ButtonStyle } from './style';
 
-const IconBtn = ({ icon, text }) => {
+const IconBtn = (props) => {
+    const { icon, text } = props;
+
     return (
         <ButtonStyle>
             <button className="">
