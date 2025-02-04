@@ -20,7 +20,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-size: ${font('body', 'md')};
     line-height: 1.5;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 400;
     color: ${color('gray', '0')};
     background: ${color('gray', '90')};
   }

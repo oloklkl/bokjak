@@ -12,6 +12,16 @@ const BarBtnWrap = styled.button`
     height: ${(props) => props.height};
     background-color: ${color('primary', 'default')};
     color: ${color('gray', '0')};
+
+    &:hover {
+        background-color: ${color('primary', '50')};
+    }
+    &.share {
+        background-color: ${color('gray', '70')};
+        &:hover {
+            background-color: ${color('gray', '80')};
+        }
+    }
 `;
 
 const BarButton = (props) => {
