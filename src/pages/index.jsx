@@ -4,4 +4,7 @@ export { default as About } from './about';
 export { default as Login } from './login';
 export { default as Video } from './video';
 export { default as Membership } from './membership';
-export { default as Category } from './category';
+export { default as SubPage } from './subpage';
+export { default as Search } from './search';
+export { default as Notification } from './notification';
+export { default as MyPage } from './mypage';

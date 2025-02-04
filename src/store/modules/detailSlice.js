@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+// 상세페이지
 const initialState = {};
 
 export const detailSlice = createSlice({

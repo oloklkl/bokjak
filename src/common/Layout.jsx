@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Header from './header';
 import Footer from './footer';
 import { Smiley } from '@phosphor-icons/react';
-import IconBtn from '../ui/iconbutton';
+import IconBtn from '../ui/iconButton';
 
 const Layout = () => {
     return (
