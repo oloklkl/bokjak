@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Header from './header';
 import Footer from './footer';
 import { Smiley } from '@phosphor-icons/react';
-import IconBtn from '../ui/iconButton';
+import { BarButton, IconButton } from '../ui';
 
 const Layout = () => {
     return (
@@ -10,8 +10,8 @@ const Layout = () => {
             <Header />
             <main>
                 {/* Router 페이지 */}
-
-                <IconBtn icon={<Smiley />} text="smiley" />
+                <BarButton text="재생하기" width="300px" height="60px" />
+                <IconButton icon={<Smiley />} text="smiley" />
                 <Outlet />
             </main>
             <Footer />

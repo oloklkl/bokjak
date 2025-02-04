@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { media } from '../styled/media';
 import { color } from '../styled/theme';
 
-const ButtonStyle = styled.button`
+const IconBtnWrap = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,17 +29,49 @@ const ButtonStyle = styled.button`
     &:hover {
         background-color: ${color('gray', '80')};
     }
+    &.none {
+        background-color: #00000000;
+    }
+    &.b30 {
+        background-color: #00000030;
+    }
+    &.border {
+        background-color: #00000030;
+        border: 1px solid ${color('gray', '0')};
+    }
+    &.click {
+        background-color: ${color('gray', '0')};
+        svg {
+            fill: ${color('primary', 'default')};
+        }
+    }
+    &.small-icon {
+        width: 24px;
+        height: 24px;
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+        ${media.mobile} {
+            width: 18px;
+            height: 18px;
+            svg {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    }
 `;
 
-const IconBtn = (props) => {
+const IconButton = (props) => {
     const { icon, text } = props;
 
     return (
-        <ButtonStyle className="">
+        <IconBtnWrap className="click small-icon">
             {icon}
             <span className="hide">{text}</span>
-        </ButtonStyle>
+        </IconBtnWrap>
     );
 };
 
-export default IconBtn;
+export default IconButton;
