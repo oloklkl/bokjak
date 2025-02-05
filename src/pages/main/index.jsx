@@ -14,9 +14,7 @@ const Main = () => {
   return (
     <>
       <VisualWrap>
-        <div className="swiper">
-          <Intro />
-        </div>
+        <Intro />
       </VisualWrap>
       <MainWrap>
         <BokjakCont />

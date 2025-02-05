@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 // 상세페이지
-const initialState = {};
+const initialState = {}
 
 export const detailSlice = createSlice({
-    name: 'detail',
-    initialState,
-    reducers: {},
-});
+  name: 'detail',
+  initialState,
+  reducers: {},
+})
 
-export const detailActions = detailSlice.actions;
-export default detailSlice.reducer;
+export const detailActions = detailSlice.actions
+export default detailSlice.reducer
