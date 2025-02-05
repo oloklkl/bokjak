@@ -64,12 +64,10 @@ const IconBtnWrap = styled.button`
 `;
 
 const IconButton = (props) => {
-    const { icon, text } = props;
-
     return (
-        <IconBtnWrap className="click small-icon">
-            {icon}
-            <span className="hide">{text}</span>
+        <IconBtnWrap {...props}>
+            {props.icon}
+            <span className="hide">{props.text}</span>
         </IconBtnWrap>
     );
 };
