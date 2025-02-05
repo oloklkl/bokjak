@@ -1,1 +1,9 @@
-export { default as Detail } from './detail/Detail';
+export { default as Detail } from './detail/Detail'
+export { default as Intro } from './main/intro/Intro'
+export { default as BokjakCont } from './main/mainBokjak/BokjakCont'
+export { default as FlipBackCont } from './main/mainFlipBack/FlipBackCont'
+export { default as SeriesCont } from './main/mainSeries/SeriesCont'
+export { default as SoonCont } from './main/mainSoon/SoonCont'
+export { default as ThumbnailCont } from './main/mainThumbnail/ThumbnailCont'
+export { default as TopCont } from './main/mainTop/TopCont'
+export { default as ViewHistoryCont } from './main/mainViewHistory/ViewHistoryCont'
