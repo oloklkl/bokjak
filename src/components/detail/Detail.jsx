@@ -2,7 +2,7 @@ import React from 'react';
 import DetailPreview from './DetailPreview';
 import EpisodeList from './EpisodeList';
 import MoreLikeThisList from './MoreLikeThisList';
-import { DetailWrap } from './style';
+import { DetailContentWrap, DetailWrap } from './style';
 import Dimmed from '../../ui/Dimmed';
 import Description from './Description';
 
@@ -11,11 +11,11 @@ const Detail = () => {
         <>
             <DetailWrap className="detail">
                 <DetailPreview />
-                <div className="detail-inner">
+                <DetailContentWrap>
                     <Description />
                     <EpisodeList />
                     <MoreLikeThisList />
-                </div>
+                </DetailContentWrap>
             </DetailWrap>
             <Dimmed />
         </>

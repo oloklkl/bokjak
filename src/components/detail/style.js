@@ -17,11 +17,13 @@ export const DetailWrap = styled.div`
     background-color: ${color('gray', '80')};
 
     color: ${color('gray', '0')};
-    div {
-        &.detail-inner {
-            padding: 40px 40px;
-        }
-    }
+`;
+
+export const DetailContentWrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    padding: 40px 40px;
 `;
 
 export const DescriptionWrap = styled.div`
@@ -111,5 +113,27 @@ export const MoreDetailInfoWrap = styled.div`
 
 export const DetailSectionWrap = styled.div`
     h3 {
+        font-size: ${font('heading', 'md')};
+        font-weight: 600;
+        margin-bottom: 50px;
+    }
+    select {
+        width: 160px;
+        height: 44px;
+        padding: 0 20px;
+
+        border: 1px solid ${color('gray', '0')};
+        border-radius: 9999px;
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+
+        background-color: transparent;
+        color: ${color('gray', '0')};
+        font-size: ${font('body', 'md')};
+
+        option {
+            color: ${color('gray', '90')};
+        }
     }
 `;
