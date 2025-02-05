@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import introdata from '../../assets/api/mainIntro'
+import introdata from '../../assets/api/introdata'
 // 메인페이지
 const initialState = {
   introData: introdata,
