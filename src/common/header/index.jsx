@@ -4,14 +4,20 @@ import NavBar from './NavBar';
 import { HeaderWrap } from './style';
 
 const Header = () => {
-    const [logoSrc, setLogoSrc] = useState('/bokjak.svg');
+    const [logoSrc, setLogoSrc] = useState(
+        'https://raw.githubusercontent.com/lse-7660/bokjak-image/1cc1bc51d66246dcc6e27bc9ed887e2759fba6d1/images/common/bokjak.svg'
+    );
 
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth <= 1024) {
-                setLogoSrc('/bokjak-logo-only.svg');
+                setLogoSrc(
+                    'https://raw.githubusercontent.com/lse-7660/bokjak-image/1cc1bc51d66246dcc6e27bc9ed887e2759fba6d1/images/common/bokjak-logo-only.svg'
+                );
             } else {
-                setLogoSrc('/bokjak.svg');
+                setLogoSrc(
+                    'https://raw.githubusercontent.com/lse-7660/bokjak-image/1cc1bc51d66246dcc6e27bc9ed887e2759fba6d1/images/common/bokjak.svg'
+                );
             }
         };
 
