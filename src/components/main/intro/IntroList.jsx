@@ -7,13 +7,14 @@ const IntroList = () => {
   const { introData } = useSelector((state) => state.mainR)
   return (
     <Swiper
+      className="swiper"
       modules={[Autoplay]}
-      spaceBetween={30}
+      spaceBetween={0}
       slidesPerView={1}
-      // autoplay={{ delay: 5000, disableOnInteraction: false }}
+      autoplay={{ delay: 5000, disableOnInteraction: false }}
       loop={true}>
       {introData.map((item) => (
-        <SwiperSlide key={item.id}>
+        <SwiperSlide key={item.id} className="swiper-slide">
           <IntroItem {...item} />
         </SwiperSlide>
       ))}

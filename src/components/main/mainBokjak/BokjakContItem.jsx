@@ -1,5 +1,11 @@
 const BokjakContItem = () => {
-  return <div>BokjakContItem</div>
+  return (
+    <div className="quickView">
+      <div className="quickView__cont">
+        <img src="" alt="" />
+      </div>
+    </div>
+  )
 }
 
 export default BokjakContItem

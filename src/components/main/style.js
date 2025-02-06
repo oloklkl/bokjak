@@ -1,28 +1,21 @@
 import styled from 'styled-components'
 
-export const MultiBanner = styled.div`
+export const MultiBanner = styled.section`
   position: relative;
   width: 100%;
   height: 800px;
-  overflow: hidden;
-
-  .swiper {
-    width: 100%;
-    height: 100%;
-  }
 `
 
 export const BannerImg = styled.div`
-  position: relative;
   width: 100%;
-  height: 100%;
+  height: 800px;
 
   .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 800px;
     background: linear-gradient(
       to top,
       rgba(0, 0, 0, 0.8),
@@ -32,7 +25,7 @@ export const BannerImg = styled.div`
   }
   .bannerImg {
     width: 100%;
-    height: 100%;
+    height: 800px;
     border-radius: 12px;
     object-fit: cover;
   }

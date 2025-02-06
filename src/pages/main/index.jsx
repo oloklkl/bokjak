@@ -13,9 +13,7 @@ import { MainWrap, VisualWrap } from './style'
 const Main = () => {
   return (
     <>
-      <VisualWrap>
-        <Intro />
-      </VisualWrap>
+      <VisualWrap>{/* <Intro /> */}</VisualWrap>
       <MainWrap>
         <BokjakCont />
         <ViewHistoryCont />
