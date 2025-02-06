@@ -320,7 +320,7 @@ export const DetailModalCom = styled.div`
     transform: translate(-50%, -50%);
 
     border-radius: 10px;
-    background-color: ${color('gray', '70')};
+    background-color: ${color('gray', '80')};
     border: 1px solid ${color('gray', '70')};
 
     p {
@@ -333,6 +333,42 @@ export const DetailModalCom = styled.div`
             position: absolute;
             top: 20px;
             right: 20px;
+        }
+        &.bjmodal-close-button-left {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+    }
+
+    div {
+        &.bj-create-modal-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+    }
+
+    form {
+        &.bj-create-modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+
+    input {
+        &.bjmodal-input {
+            width: 340px;
+            background-color: transparent;
+            border-radius: 7px;
+            border: 1px solid ${color('gray', '60')};
+            padding: 12px;
+
+            &:focus {
+                outline: none;
+                border: 1px solid ${color('gray', '0')};
+            }
         }
     }
 `;

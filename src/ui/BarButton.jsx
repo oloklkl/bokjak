@@ -33,7 +33,11 @@ const BarBtnWrap = styled.button`
 const BarButton = (props) => {
     return (
         <BarBtnWrap {...props}>
-            {typeof props.icon === 'string' ? <img src={props.icon} alt={props.text} /> : <>{props.icon}</>}
+            {typeof props.icon === 'string' ? (
+                <img src={props.icon} alt={props.text} />
+            ) : (
+                <>{props.icon}</>
+            )}
             {props.text}
         </BarBtnWrap>
     );

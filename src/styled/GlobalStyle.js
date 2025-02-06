@@ -83,7 +83,10 @@ padding: 0 30px;
 
   .main { width: 100%; }
 
-  button { border:none; cursor: pointer; }
+  button { border:none; cursor: pointer; &:focus {
+outline:none !important;
+box-shadow:none !important;}}
+
 
   .hide{
      display: none;
