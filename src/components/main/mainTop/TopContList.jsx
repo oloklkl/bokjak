@@ -16,7 +16,7 @@ const TitleCont = styled.div`
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  gap: 1400px;
+  gap: 1540px;
 
   h2 {
     font-size: ${font('title', 'xxlg')};
@@ -36,11 +36,11 @@ const PageNation = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-71%, -50%);
+  transform: translate(-69%, -50%);
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 1500px;
+  gap: 1540px;
 `
 
 const TopContList = () => {
