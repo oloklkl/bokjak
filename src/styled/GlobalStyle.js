@@ -36,10 +36,14 @@ const GlobalStyle = createGlobalStyle`
   
 .swiper {
   width: 100%;
-  height: 100%;
+  height: auto;
+  
 }
 
+
+
 .swiper-slide {
+  height: auto;
   text-align: center;
 
   /* Center slide text vertically */
@@ -60,7 +64,7 @@ const GlobalStyle = createGlobalStyle`
   .inner { 
   width:100%; 
   box-sizing:border-box; 
-  position:relative;
+  /* position:relative; */
   margin: 0 auto; 
   
   ${media.desktop}{

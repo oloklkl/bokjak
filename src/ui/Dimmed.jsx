@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const DimmedWrap = styled.div`
@@ -9,11 +8,18 @@ const DimmedWrap = styled.div`
     bottom: 0;
     width: 100%;
     height: 100%;
-    background-color: #00000080;
+    background-color: #00000000;
+    z-index: ${(props) => props.zindex};
+    transition: all 0.2s ease;
+    pointer-events: none;
+
+    &.dimmed-active {
+        background-color: #00000080;
+    }
 `;
 
-const Dimmed = () => {
-    return <DimmedWrap></DimmedWrap>;
+const Dimmed = (props) => {
+    return <DimmedWrap {...props} className={`dimmed ${props.class}`}></DimmedWrap>;
 };
 
 export default Dimmed;

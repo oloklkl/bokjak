@@ -13,6 +13,12 @@ const BarBtnWrap = styled.button`
     background-color: ${color('primary', 'default')};
     color: ${color('gray', '0')};
 
+    svg,
+    img {
+        width: 24px;
+        height: 24px;
+    }
+
     &:hover {
         background-color: ${color('primary', '50')};
     }
@@ -27,7 +33,7 @@ const BarBtnWrap = styled.button`
 const BarButton = (props) => {
     return (
         <BarBtnWrap {...props}>
-            {props.icon}
+            {typeof props.icon === 'string' ? <img src={props.icon} alt={props.text} /> : <>{props.icon}</>}
             {props.text}
         </BarBtnWrap>
     );

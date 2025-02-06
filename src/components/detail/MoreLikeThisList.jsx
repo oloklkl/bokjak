@@ -1,7 +1,45 @@
-import React from 'react';
+import MoreLikeThisItem from './MoreLikeThisItem';
+import { DetailSectionWrap } from './style';
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+// import required modules
+import { FreeMode, Pagination } from 'swiper/modules';
 
 const MoreLikeThisList = () => {
-    return <div></div>;
+    return (
+        <DetailSectionWrap>
+            <h3>관련 콘텐츠</h3>
+            <Swiper
+                slidesPerView={3.2}
+                spaceBetween={24}
+                freeMode={true}
+                pagination={{
+                    clickable: true,
+                }}
+                modules={[FreeMode]}
+                className="moreLikeThisSwiper"
+            >
+                <SwiperSlide>
+                    <MoreLikeThisItem></MoreLikeThisItem>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <MoreLikeThisItem></MoreLikeThisItem>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <MoreLikeThisItem></MoreLikeThisItem>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <MoreLikeThisItem></MoreLikeThisItem>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <MoreLikeThisItem></MoreLikeThisItem>
+                </SwiperSlide>
+            </Swiper>
+        </DetailSectionWrap>
+    );
 };
 
 export default MoreLikeThisList;
