@@ -15,7 +15,7 @@ const NavBar = () => {
                     <Link to={'/'} className='category'>
                         카테고리
                         <IconButton
-                            className='none'
+                            className='gray40 none'
                             icon={<CaretUp size={24} />}
                             text='CaretUp'
                             aria-label='카테고리 열기'
@@ -92,17 +92,21 @@ const NavBar = () => {
             <NavRight className='nav-right'>
                 <li>
                     <Link to={'/search'}>
-                        <IconButton className='none' icon={<MagnifyingGlass size={24} />} text='MagnifyingGlass' />
+                        <IconButton
+                            className='gray40 none'
+                            icon={<MagnifyingGlass size={24} />}
+                            text='MagnifyingGlass'
+                        />
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/login'}>
-                        <IconButton className='none' icon={<BellSimple size={24} />} text='BellSimple' />
+                    <Link to={'/'}>
+                        <IconButton className='gray40 none' icon={<BellSimple size={24} />} text='BellSimple' />
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/login'}>
-                        <IconButton className='none' icon={<User size={24} />} text='User' />
+                    <Link to={'/mypage'}>
+                        <IconButton className='gray40 none' icon={<User size={24} />} text='User' />
                     </Link>
                 </li>
             </NavRight>

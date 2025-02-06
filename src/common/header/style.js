@@ -25,13 +25,22 @@ export const HeaderWrap = styled.header`
     }
 
     h1 {
+        ${media.mobile} {
+            height: 50px;
+        }
+
         img {
             width: 140px;
+            height: 40px;
+
             ${media.tablet} {
                 width: 37px;
+                height: 30px;
             }
             ${media.mobile} {
-                width: 49px;
+                width: 48px;
+                height: 30px;
+                margin-top: 10px;
             }
         }
     }
@@ -54,10 +63,11 @@ export const NavCenter = styled.ul`
     }
 
     ${media.tablet} {
-        margin-left: 40px;
+        margin-left: 30px;
         gap: 30px;
     }
     ${media.mobile} {
+        height: 50px;
         margin-left: 0;
         gap: 20px;
     }
@@ -68,9 +78,12 @@ export const NavCenter = styled.ul`
         a {
             text-decoration: none;
             font-size: 16px;
-
             color: ${color('gray', '40')};
             font-size: ${font('title', 'lg')};
+
+            &:hover {
+                color: ${color('gray', '0')};
+            }
 
             ${media.tablet} {
                 font-size: ${font('body', 'md')};
@@ -84,8 +97,11 @@ export const NavCenter = styled.ul`
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            /* width: 140px; */
             gap: 5px;
+
+            svg:hover {
+                fill: ${color('gray', '0')};
+            }
         }
     }
 `;
@@ -94,6 +110,10 @@ export const NavRight = styled.ul`
     display: flex;
     align-items: center;
     gap: 15px;
+
+    svg:hover {
+        fill: ${color('gray', '0')};
+    }
 
     ${media.tablet} {
         gap: 2px;

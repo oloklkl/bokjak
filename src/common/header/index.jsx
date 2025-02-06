@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
 import { HeaderWrap } from './style';
 
 const Header = () => {
+    const [logoSrc, setLogoSrc] = useState('/bokjak.svg');
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth <= 1024) {
+                setLogoSrc('/bokjak-logo-only.svg');
+            } else {
+                setLogoSrc('/bokjak.svg');
+            }
+        };
+
+        handleResize(); // 초기 실행
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
         <HeaderWrap>
             <div className='header_inner'>
                 <h1>
                     <Link to={'/'}>
-                        <img src='bokjak.svg' alt='logo' />
+                        <img src={logoSrc} alt='logo' />
                     </Link>
                 </h1>
                 <NavBar />
