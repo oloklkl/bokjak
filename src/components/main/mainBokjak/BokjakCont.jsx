@@ -13,11 +13,9 @@ const BokjakContWrap = styled.div`
 
 const BokjakCont = () => {
   return (
-    <div>
-      <BokjakContWrap>
-        <BokjakContList />
-      </BokjakContWrap>
-    </div>
+    <BokjakContWrap>
+      <BokjakContList />
+    </BokjakContWrap>
   )
 }
 

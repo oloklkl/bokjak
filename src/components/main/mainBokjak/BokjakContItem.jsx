@@ -7,36 +7,35 @@ const BokjakItemWrap = styled.div`
   justify-content: center;
   align-items: center;
   gap: 16px;
-
-  .bg {
-    width: 130px;
-    height: 130px;
-    background: ${color('gray', '80')};
-    border-radius: 999px;
+`
+const BokjakImg = styled.div`
+  width: 130px;
+  height: 130px;
+  background: ${color('gray', '80')};
+  border-radius: 999px;
+`
+const BokjakTitle = styled.div`
+  width: 130px;
+  text-align: center;
+  h3 {
+    font-size: ${font('body', 'lg')};
   }
-  .title {
-    width: 130px;
-    text-align: center;
-    h3 {
-      font-size: ${font('body', 'lg')};
-    }
-    h4 {
-      font-size: ${font('body', 'sm')};
-      color: ${color('gray', '40')};
-    }
+  h4 {
+    font-size: ${font('body', 'sm')};
+    color: ${color('gray', '40')};
   }
 `
 
 const BokjakContItem = () => {
   return (
     <BokjakItemWrap>
-      <div className="bkcont bg">
+      <BokjakImg>
         <img src="" alt="" />
-      </div>
-      <div className="bkcont  title">
+      </BokjakImg>
+      <BokjakTitle>
         <h3>title</h3>
         <h4>desc</h4>
-      </div>
+      </BokjakTitle>
     </BokjakItemWrap>
   )
 }

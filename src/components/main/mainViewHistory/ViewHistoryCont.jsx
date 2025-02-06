@@ -11,14 +11,12 @@ const ViewHistoryWrap = styled.div`
   padding: 40px 0;
 `
 
-const BokjakCont = () => {
+const ViewHistoryCont = () => {
   return (
-    <div>
-      <ViewHistoryWrap>
-        <ViewHistoryContList />
-      </ViewHistoryWrap>
-    </div>
+    <ViewHistoryWrap>
+      <ViewHistoryContList />
+    </ViewHistoryWrap>
   )
 }
 
-export default BokjakCont
+export default ViewHistoryCont

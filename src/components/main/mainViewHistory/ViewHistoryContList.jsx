@@ -6,29 +6,25 @@ const ViewHistoryTitle = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
-  .titleCont {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    gap: 1400px;
-  }
+`
+const TitleCont = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 1400px;
+
   h2 {
     font-size: ${font('title', 'xxlg')};
   }
   h3 {
     font-size: ${font('body', 'sm')};
   }
-
-  .border {
-    width: 24px;
-    height: 24px;
-  }
 `
 
 const ViewHistoryList = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   gap: 24px;
   justify-content: start;
 `
@@ -36,10 +32,10 @@ const ViewHistoryContList = () => {
   return (
     <>
       <ViewHistoryTitle>
-        <div className="titleCont">
+        <TitleCont>
           <h2>title</h2>
           <h3>more</h3>
-        </div>
+        </TitleCont>
       </ViewHistoryTitle>
       <ViewHistoryList>
         <ViewHistoryContItem />
