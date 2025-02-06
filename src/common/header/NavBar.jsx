@@ -105,7 +105,7 @@ const NavBar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/mypage'}>
+                    <Link to={'/login'}>
                         <IconButton className='gray40 none' icon={<User size={24} />} text='User' />
                     </Link>
                 </li>
