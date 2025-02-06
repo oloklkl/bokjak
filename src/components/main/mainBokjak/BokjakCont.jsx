@@ -1,19 +1,22 @@
 import styled from 'styled-components'
 import BokjakContList from './BokjakContList'
 
-const BokjakWrap = styled.div`
+const BokjakContWrap = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 40px 0;
 `
 
 const BokjakCont = () => {
   return (
     <div>
-      <BokjakWrap>
+      <BokjakContWrap>
         <BokjakContList />
-      </BokjakWrap>
+      </BokjakContWrap>
     </div>
   )
 }
