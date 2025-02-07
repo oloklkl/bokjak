@@ -23,7 +23,7 @@ const Detail = () => {
                     <MoreLikeThisList />
                 </DetailContentWrap>
             </DetailWrap>
-            <Dimmed className="dimmed-active" />
+            <Dimmed zindex={10} className="dimmed-active" />
             <Dimmed
                 onClick={() => dispatch(detailActions.closeAllModal())}
                 zindex={150}

@@ -11,6 +11,7 @@ const BarBtnWrap = styled.button`
     width: ${(props) => props.width};
     min-width: ${(props) => props.minWidth};
     height: ${(props) => props.height};
+    border-radius: 7px;
     background-color: ${color('primary', 'default')};
     color: ${color('gray', '0')};
 
