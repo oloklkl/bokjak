@@ -1,9 +1,20 @@
 import styled from 'styled-components'
 
 export const MultiBanner = styled.section`
-  position: relative;
+  display: flex;
+  flex-direction: row;
   width: 100%;
   height: 800px;
+`
+export const Slide = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+`
+export const IntroBanner = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 `
 
 export const BannerImg = styled.div`

@@ -3,12 +3,12 @@ import { font } from '../../../styled/theme'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import ThumbnailCard from '../../../common/main/card/thumbnail/ThumbnailCard'
+import { media } from '../../../styled/media'
 
 const ThumbnailText = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
 `
 
 const TitleCont = styled.div`
@@ -17,9 +17,21 @@ const TitleCont = styled.div`
   align-items: center;
   text-align: center;
   gap: 1540px;
+  ${media.tablet} {
+    gap: 620px;
+  }
+  ${media.mobile} {
+    gap: 320px;
+  }
 
   h2 {
     font-size: ${font('title', 'xxlg')};
+    ${media.tablet} {
+      font-size: ${font('title', 'xlg')};
+    }
+    ${media.mobile} {
+      font-size: ${font('title', 'lg')};
+    }
   }
   h3 {
     font-size: ${font('body', 'sm')};

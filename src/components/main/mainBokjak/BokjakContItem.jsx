@@ -1,28 +1,58 @@
 import styled from 'styled-components'
 import { color, font } from '../../../styled/theme'
+import { media } from '../../../styled/media'
 
 const BokjakItemWrap = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 16px;
+  ${media.mobile} {
+    gap: 10px;
+  }
 `
 const BokjakImg = styled.div`
-  width: 130px;
-  height: 130px;
+  width: 160px;
+  height: 160px;
   background: ${color('gray', '80')};
   border-radius: 999px;
+  ${media.tablet} {
+    width: 120px;
+    height: 120px;
+  }
+  ${media.mobile} {
+    width: 90px;
+    height: 90px;
+  }
 `
 const BokjakTitle = styled.div`
-  width: 130px;
+  width: 160px;
+  ${media.tablet} {
+    width: 120px;
+  }
+  ${media.mobile} {
+    width: 90px;
+  }
   text-align: center;
   h3 {
-    font-size: ${font('body', 'lg')};
+    font-size: ${font('title', 'xlg')};
+    ${media.tablet} {
+      font-size: ${font('title', 'lg')};
+    }
+    ${media.mobile} {
+      font-size: ${font('title', 'md')};
+    }
   }
   h4 {
-    font-size: ${font('body', 'sm')};
+    font-size: ${font('title', 'lg')};
     color: ${color('gray', '40')};
+    ${media.tablet} {
+      font-size: ${font('title', 'md')};
+    }
+    ${media.mobile} {
+      font-size: ${font('body', 'sm')};
+    }
   }
 `
 

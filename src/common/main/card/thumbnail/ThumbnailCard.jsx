@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { color } from '../../../../styled/theme'
+import { media } from '../../../../styled/media'
 
 const TopItemBox = styled.div`
   display: flex;
@@ -16,6 +17,14 @@ const TopThumbCont = styled.div`
   flex-shrink: 0;
   width: 234px;
   height: 340px;
+  ${media.tablet} {
+    width: 160px;
+    height: 230px;
+  }
+  ${media.mobile} {
+    width: 110px;
+    height: 160px;
+  }
 `
 
 const Thumbnail = styled.div`

@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { color } from '../../../styled/theme'
 import { IconButton } from '../../../ui'
 import { Play } from '@phosphor-icons/react'
+import { media } from '../../../styled/media'
 
 const ViewHistoryItemBox = styled.div`
   display: flex;
@@ -25,12 +26,23 @@ const ThumbnailBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 300px;
-  height: 180px;
+  height: 200px;
+  ${media.tablet} {
+    width: 220px;
+    height: 150px;
+  }
+  ${media.mobile} {
+    width: 160px;
+    height: 100px;
+  }
   img {
     width: 100%;
     height: 100%;
     border-radius: 7px;
     background: ${color('gray', '70')};
+    ${media.mobile} {
+      border-radius: 5px;
+    }
   }
 `
 const Icon = styled.div`
@@ -38,6 +50,11 @@ const Icon = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  ${media.mobile} {
+    width: 24px;
+    height: 24px;
+    size: 18px;
+  }
 `
 
 const StateBar = styled.div`
@@ -50,6 +67,10 @@ const StateBar = styled.div`
   background: ${color('gray', '50')};
   z-index: 1;
   border-radius: 0 0 7px 7px;
+  ${media.mobile} {
+    height: 3px;
+    border-radius: 0 0 5px 5px;
+  }
   .progress {
     height: 100%;
     background: ${color('gray', '50')};

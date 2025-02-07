@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { color } from '../../../styled/theme'
+import { media } from '../../../styled/media'
 
 const TopItemBox = styled.div`
   display: flex;
@@ -16,11 +17,25 @@ const TopThumbCont = styled.div`
   flex-shrink: 0;
   width: 295px;
   height: 295px;
+  ${media.tablet} {
+    width: 210px;
+    height: 210px;
+  }
+  ${media.mobile} {
+    width: 140px;
+    height: 130px;
+  }
 `
 
 const Number = styled.div`
   width: 80px;
   height: 100%;
+  ${media.tablet} {
+    width: 70px;
+  }
+  ${media.mobile} {
+    width: 50px;
+  }
   .numberBox {
     background: ${color('gray', '30')};
     width: 100%;
@@ -40,6 +55,12 @@ const Thumbnail = styled.div`
   align-items: center;
   width: 216px;
   height: 100%;
+  ${media.tablet} {
+    width: 140px;
+  }
+  ${media.mobile} {
+    width: 90px;
+  }
 
   .imgBox {
     background: ${color('gray', '70')};
@@ -54,6 +75,9 @@ const Thumbnail = styled.div`
     height: 100%;
     border-radius: 7px;
     object-fit: cover;
+    ${media.mobile} {
+      border-radius: 5px;
+    }
   }
 `
 
