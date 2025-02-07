@@ -1,14 +1,16 @@
 import { useSelector } from 'react-redux';
 import BokjakChat from './BokjakChat';
 import VideoPlayer from './VideoPlayer';
+import { VideoWrapCom } from './style';
 
-const VideoWrap = () => {
+const VideoWrap = (props) => {
     const { isChatOpen } = useSelector((state) => state.videoR);
     return (
-        <>
+        <VideoWrapCom {...props}>
             <VideoPlayer />
-            {isChatOpen && <BokjakChat />}
-        </>
+            <BokjakChat />
+            {/* {isChatOpen && <BokjakChat />} */}
+        </VideoWrapCom>
     );
 };
 
