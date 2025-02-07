@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
-import { color, font } from './theme';
-import { media } from './media';
+import { createGlobalStyle } from 'styled-components'
+import reset from 'styled-reset'
+import { color, font } from './theme'
+import { media } from './media'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     color: ${color('gray', '0')};
     background: ${color('gray', '90')};
+    
   }
   a {
     text-decoration: none;
@@ -36,10 +37,14 @@ const GlobalStyle = createGlobalStyle`
   
 .swiper {
   width: 100%;
-  height: 100%;
+  height: auto;
+  
 }
 
+
+
 .swiper-slide {
+  height: auto;
   text-align: center;
 
   /* Center slide text vertically */
@@ -60,7 +65,7 @@ const GlobalStyle = createGlobalStyle`
   .inner { 
   width:100%; 
   box-sizing:border-box; 
-  position:relative;
+  /* position:relative; */
   margin: 0 auto; 
   
   ${media.desktop}{
@@ -79,7 +84,10 @@ padding: 0 30px;
 
   .main { width: 100%; }
 
-  button { border:none; cursor: pointer; }
+  button { border:none; cursor: pointer; &:focus {
+outline:none !important;
+box-shadow:none !important;}}
+
 
   .hide{
      display: none;
@@ -88,6 +96,6 @@ padding: 0 30px;
      height: 0;
      line-height: 0;
   }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle

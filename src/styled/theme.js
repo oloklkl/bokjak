@@ -21,6 +21,7 @@ export const theme = {
             30: '#c6c6c6',
             40: '#8e8e8e',
             50: '#717171',
+            60: '#555555',
             70: '#2d2d2d',
             80: '#1d1d1d',
             90: '#111',
@@ -47,7 +48,7 @@ export const theme = {
         },
         body: {
             lg: '19px',
-            md: '17px',
+            md: '17px',     
             sm: '15px',
             xsm: '13px',
         },
