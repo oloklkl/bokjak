@@ -1,11 +1,11 @@
-import { MultiBanner } from '../style'
-import IntroList from './IntroList'
+import { MultiIntro } from '../style'
+import IntroList from './introList'
 
 const Intro = () => {
   return (
-    <MultiBanner>
+    <MultiIntro>
       <IntroList />
-    </MultiBanner>
+    </MultiIntro>
   )
 }
 

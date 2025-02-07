@@ -79,9 +79,9 @@ const StateBar = styled.div`
   }
 `
 
-const ViewHistoryContItem = () => {
+const ViewHistoryContItem = (props) => {
   return (
-    <ViewHistoryItemBox>
+    <ViewHistoryItemBox {...props}>
       <ThumbnailCont>
         <ThumbnailBox>
           {/* <video>

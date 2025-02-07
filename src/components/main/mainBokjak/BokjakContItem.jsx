@@ -17,6 +17,7 @@ const BokjakImg = styled.div`
   height: 160px;
   background: ${color('gray', '80')};
   border-radius: 999px;
+  border: none;
   ${media.tablet} {
     width: 120px;
     height: 120px;
@@ -24,6 +25,13 @@ const BokjakImg = styled.div`
   ${media.mobile} {
     width: 90px;
     height: 90px;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    border-radius: 999px;
   }
 `
 const BokjakTitle = styled.div`

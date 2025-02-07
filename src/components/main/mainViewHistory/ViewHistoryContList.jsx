@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import ViewHistoryContItem from './ViewHistoryContItem'
 import { font } from '../../../styled/theme'
 import { media } from '../../../styled/media'
+import { useDispatch } from 'react-redux'
+import { detailActions } from '../../../store/modules/detailSlice'
 const ViewHistoryTitle = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,6 +53,7 @@ const ViewHistoryList = styled.div`
   }
 `
 const ViewHistoryContList = () => {
+  const dispatch = useDispatch()
   return (
     <>
       <ViewHistoryTitle>
@@ -60,7 +63,9 @@ const ViewHistoryContList = () => {
         </TitleCont>
       </ViewHistoryTitle>
       <ViewHistoryList>
-        <ViewHistoryContItem />
+        <ViewHistoryContItem
+          onClick={() => dispatch(detailActions.openDetailModal())}
+        />
         <ViewHistoryContItem />
         <ViewHistoryContItem />
         <ViewHistoryContItem />

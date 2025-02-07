@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const VisualWrap = styled.section`
   width: 100%;
-  height: 800px;
+  height: 830px;
   position: relative;
 `
 export const MainWrap = styled.div`

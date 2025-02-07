@@ -1,15 +1,17 @@
 import styled from 'styled-components'
+import { color, font } from '../../styled/theme'
 
-export const MultiBanner = styled.section`
+export const MultiIntro = styled.section`
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 800px;
+  height: 830px;
 `
 export const Slide = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: row;
+  .swiper {
+    border-radius: 12px;
+  }
 `
 export const IntroBanner = styled.div`
   width: 100%;
@@ -19,14 +21,14 @@ export const IntroBanner = styled.div`
 
 export const BannerImg = styled.div`
   width: 100%;
-  height: 800px;
+  height: 830px;
 
   .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 800px;
+    height: 830px;
     background: linear-gradient(
       to top,
       rgba(0, 0, 0, 0.8),
@@ -34,9 +36,9 @@ export const BannerImg = styled.div`
     );
     border-radius: 12px;
   }
-  .bannerImg {
+  .bigImg {
     width: 100%;
-    height: 800px;
+    height: 830px;
     border-radius: 12px;
     object-fit: cover;
   }
@@ -49,6 +51,7 @@ export const BannerTit = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  white-space: pre-line;
 
   .bannerLogo {
     width: 300px;
@@ -57,8 +60,13 @@ export const BannerTit = styled.div`
   }
 
   span {
-    color: white;
-    font-size: 24px;
+    color: ${color('gray', '0')};
+    font-size: ${font('title', 'lg')};
     line-height: 1.5;
+  }
+  .btn {
+    color: ${color('gray', '0')};
+    font-size: ${font('title', 'md')};
+    font-weight: bold;
   }
 `
