@@ -7,16 +7,17 @@ export const FooterWrap = styled.footer`
         height: 260px;
         box-sizing: border-box;
         position: relative;
-        margin-top: auto;
         color: ${color('gray', '40')};
         font-size: ${font('body', 'xsm')};
-        margin: 25px 0;
+        margin: 45px 0;
 
         ${media.tablet} {
+            margin: 35px 0;
             height: 255px;
         }
         ${media.mobile} {
-            height: 340px;
+            margin: 30px 0;
+            height: 360px;
         }
     }
 `;
@@ -81,7 +82,6 @@ export const FooterInfo = styled.div`
         display: flex;
         align-items: center;
         margin: 0;
-        text-align: center;
 
         &::before {
             content: '';
