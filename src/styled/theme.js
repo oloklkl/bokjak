@@ -48,7 +48,7 @@ export const theme = {
         },
         body: {
             lg: '19px',
-            md: '17px',
+            md: '17px',     
             sm: '15px',
             xsm: '13px',
         },

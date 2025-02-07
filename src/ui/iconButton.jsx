@@ -39,6 +39,12 @@ const IconBtnWrap = styled.button`
         background-color: #00000030;
         border: 1px solid ${color('gray', '0')};
     }
+
+    &.gray40 {
+        svg {
+            fill: ${color('gray', '40')};
+        }
+    }
     &.click {
         background-color: ${color('gray', '0')};
         svg,
@@ -72,9 +78,11 @@ const IconBtnWrap = styled.button`
 const IconButton = (props) => {
     return (
         <IconBtnWrap {...props}>
+
             {typeof props.icon === 'string' ? <img src={props.icon} alt={props.text} /> : <>{props.icon}</>}
 
             <span className="hide">{props.text}</span>
+
         </IconBtnWrap>
     );
 };

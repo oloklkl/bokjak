@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 // 상세페이지
+
 const initialState = {
     isDetailOpen: true,
     isUrlModalOpen: false,
@@ -39,5 +40,6 @@ export const detailSlice = createSlice({
     },
 });
 
-export const detailActions = detailSlice.actions;
-export default detailSlice.reducer;
+
+export const detailActions = detailSlice.actions
+export default detailSlice.reducer

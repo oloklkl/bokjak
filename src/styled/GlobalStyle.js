@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
-import { color, font } from './theme';
-import { media } from './media';
+import { createGlobalStyle } from 'styled-components'
+import reset from 'styled-reset'
+import { color, font } from './theme'
+import { media } from './media'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -96,6 +96,6 @@ box-shadow:none !important;}}
      height: 0;
      line-height: 0;
   }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle

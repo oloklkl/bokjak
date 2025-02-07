@@ -1,7 +1,30 @@
-import React from 'react';
+import {
+  Intro,
+  BokjakCont,
+  FlipBackCont,
+  SeriesCont,
+  SoonCont,
+  ThumbnailCont,
+  TopCont,
+  ViewHistoryCont,
+} from '../../components'
+import { MainWrap, VisualWrap } from './style'
 
 const Main = () => {
-    return <div>Main page</div>;
-};
+  return (
+    <>
+      <VisualWrap>{/* <Intro /> */}</VisualWrap>
+      <MainWrap>
+        <BokjakCont />
+        <ViewHistoryCont />
+        <TopCont />
+        <ThumbnailCont />
+        <SoonCont />
+        <FlipBackCont />
+        <SeriesCont />
+      </MainWrap>
+    </>
+  )
+}
 
-export default Main;
+export default Main
