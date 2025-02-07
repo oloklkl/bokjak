@@ -20,20 +20,20 @@ export const AboutWrap = styled.div`
   }
 
   h1 {
-    font-size: xx-large; /* 기본 크기 (데스크톱) */
+    font-size: 55px; /* 기본 크기 (데스크톱) */
   }
 
   @media (max-width: 768px) {
     /* 태블릿 크기 */
     h1 {
-      font-size: large;
+      font-size: 50px;
     }
   }
 
   @media (max-width: 390px) {
     /* 모바일 크기 */
     h1 {
-      font-size: medium;
+      font-size: large;
     }
   }
 

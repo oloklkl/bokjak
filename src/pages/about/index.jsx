@@ -16,26 +16,41 @@ const HomePage = () => {
       <section>
         <div
           style={{
+            position: 'relative', // 자식 요소가 배치될 기준
             backgroundImage:
-              "url('https://i.namu.wiki/i/LU83hYWtTa90DITA-Ukrr-joZ4n2WuZjOuv9tVrJuBxVxCKSUuYz3TBisXS5b7dvNgzrg6een1GHEPKSqPRbpcqDOHWmbYeFqA4L3C-VT8ZkGTmR-DfXJkCKV7oUVYLGT6SQk5Z4eJXJr2ooVAj3tQ.webp')",
+              "url('https://raw.githubusercontent.com/lse-7660/bokjak-image/ea1decc22540a6f97e470d430f20a256bd37a994/images/about/headerimgg.jpg')",
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             width: '100vw',
             height: '800px',
             overflow: 'hidden',
-            fontSize: {},
           }}
         >
+          {/* 투명한 검정 배경 레이어 */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'rgba(0, 0, 0, 0.25)', // 투명도 25% 검정
+              zIndex: 1,
+            }}
+          ></div>
+
+          {/* 텍스트 */}
           <h1
             style={{
+              position: 'relative', // zIndex로 투명 배경 위에 텍스트 배치
               textAlign: 'left',
-              paddingLeft: '15%',
-              paddingTop: '200px',
-              fontSize: 'lg',
+              paddingLeft: '10%',
+              paddingTop: '300px',
               fontWeight: 'bold',
+              zIndex: 2, // 텍스트가 투명 배경 위에 보이도록 설정
             }}
           >
-            이 모든 이야기가 여기에 <br /> 지금 스트리밍중
+            이 모든 이야기가 여기에 <br /> 지금 스트리밍 중
           </h1>
         </div>
       </section>
@@ -89,10 +104,24 @@ const HomePage = () => {
         <div
           style={{
             textAlign: 'center',
-            paddingTop: '25px',
+            paddingTop: '80px',
+            backgroundImage:
+              'url("https://raw.githubusercontent.com/lse-7660/bokjak-image/1286b3e9b4bc81032aa62c7ce3fb68c7d9c0a610/images/about/MultiDevice-bg.png")',
+            backgroundSize: 'cover', // 배경 이미지를 전체 영역에 맞게 조정
+            backgroundPosition: 'center', // 배경 이미지를 가운데로 정렬
+            backgroundRepeat: 'no-repeat', // 배경 반복 방지
+            height: '500px', // 전체 화면 높이
+            width: '100vw', // 전체 화면 너비
           }}
         >
-          <img src="" alt="기기사진" />
+          <img
+            src="https://raw.githubusercontent.com/lse-7660/bokjak-image/ea1decc22540a6f97e470d430f20a256bd37a994/images/about/MultiDevice-1.png"
+            alt="기기사진"
+            style={{
+              maxWidth: '500px', // 이미지 크기 조정
+              height: 'auto', // 비율 유지
+            }}
+          />
         </div>
       </section>
 
@@ -101,7 +130,7 @@ const HomePage = () => {
           style={{
             textAlign: 'center',
             fontWeight: 'bold',
-            paddingTop: '200px',
+            paddingTop: '300px',
           }}
         >
           좋아하는 콘텐츠를 친구들과 함께 <br /> 감상하며 줄거움을 나눠보세요!
@@ -109,10 +138,17 @@ const HomePage = () => {
         <div
           style={{
             textAlign: 'center',
-            paddingTop: '25px',
+            paddingTop: '80px',
           }}
         >
-          <img src="" alt="복작화면" />
+          <img
+            src="https://raw.githubusercontent.com/lse-7660/bokjak-image/ea1decc22540a6f97e470d430f20a256bd37a994/images/about/watchparty-2.png"
+            alt="복작화면"
+            style={{
+              maxWidth: '500px', // 이미지 크기 조정
+              height: 'auto', // 비율 유지
+            }}
+          />
         </div>
       </section>
 
@@ -122,7 +158,7 @@ const HomePage = () => {
           style={{
             textAlign: 'center',
             fontWeight: 'bold',
-            paddingTop: '200px',
+            paddingTop: '300px',
           }}
         >
           원하는 멤버십을 선택하세요
