@@ -61,31 +61,37 @@ const TitleCont = styled.div`
 const BokjakList = styled.div`
   display: flex;
   justify-content: flex-start;
-  ${media.tablet} {
-    gap: 16px;
-  }
-  ${media.mobile} {
-    gap: 10px;
-  }
+
   .swiper-slide {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     gap: 24px;
+    ${media.tablet} {
+      gap: 16px;
+    }
+    ${media.mobile} {
+      gap: 10px;
+    }
   }
 `
 const MsgBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: center;
-  width: 550px;
-  height: 65px;
+  width: 530px;
+  height: 70px;
   background: ${color('gray', '70')};
   border-radius: 7px;
-  font-size: ${font('body', 'sm')};
+  font-size: ${font('body', 'md')};
   color: ${color('gray', '30')};
   text-align: start;
-  padding: 10px;
+  line-height: 1.5;
+  padding: 10px 20px;
+  ${media.mobile} {
+    width: 380px;
+    height: 70px;
+  }
 `
 
 const BokjakContList = () => {
@@ -100,9 +106,8 @@ const BokjakContList = () => {
             text="smiley"
           />
           <MsgBox className="on">
-            &quot;모여봐요 복작!&quot;은 다른 시청자들과 실시간으로 영상을 함께
-            보며 채팅으로 소통하는 <br /> 서비스입니다. 마치 한 공간에서 같이
-            영화를 보는 듯한 경험을 제공합니다.
+            &quot;모여봐요 복작!&quot;은 시청자들이 실시간으로 영상을 함께
+            시청하고 <br /> 채팅으로 소통하는 공동 시청 서비스입니다.
           </MsgBox>
         </TitleCont>
       </BokjakTitle>
