@@ -111,6 +111,11 @@ export const FooterIink = styled.ul`
     display: flex;
     align-items: flex-end;
     gap: 20px;
+
+    svg:hover {
+        fill: ${color('gray', '0')};
+    }
+
     ${media.mobile} {
         margin-top: 40px;
     }
