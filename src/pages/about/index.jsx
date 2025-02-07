@@ -3,7 +3,6 @@ import { AboutWrap } from './style';
 
 const HomePage = () => {
   useEffect(() => {
-    // 페이지가 로드될 때 가로 스크롤을 막음
     document.body.style.overflowX = 'hidden';
 
     return () => {
@@ -16,21 +15,18 @@ const HomePage = () => {
       {/* Hero Section */}
       <section>
         <div
-          className="fixed inset-0 bg-cover bg-center bg-no-repeat py-12 px-8"
           style={{
             backgroundImage:
               "url('https://i.namu.wiki/i/LU83hYWtTa90DITA-Ukrr-joZ4n2WuZjOuv9tVrJuBxVxCKSUuYz3TBisXS5b7dvNgzrg6een1GHEPKSqPRbpcqDOHWmbYeFqA4L3C-VT8ZkGTmR-DfXJkCKV7oUVYLGT6SQk5Z4eJXJr2ooVAj3tQ.webp')",
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-
             width: '100vw',
-            height: '600px',
+            height: '800px',
             overflow: 'hidden',
             fontSize: {},
           }}
         >
           <h1
-            className="fontSize-display text-white text-left lg:text-left lg:pl-[150px] lg:pt-[150px] text-center p-4"
             style={{
               textAlign: 'left',
               paddingLeft: '15%',
@@ -140,23 +136,16 @@ const HomePage = () => {
         >
           멤버십은 언제나 변경, 취소할 수 있습니다.
         </h3>
-        <p className="mt-8 mx-auto max-w-4xl bg-gray-800 rounded-lg overflow-hidden">
-          <table className="w-full text-left text-white border-separate border-spacing-y-2">
+        <p>
+          <table>
             <thead>
               <tr>
-                <th className="py-4 px-6 bg-gray-700 text-center text-lg font-bold rounded-tl-lg">베이직</th>
-                <th className="py-4 px-6 bg-gray-700 text-center text-lg font-bold rounded-tr-lg">프리미엄</th>
+                <th>베이직</th>
+                <th>프리미엄</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="py-4 px-6 text-center">
-                  <div className="bg-purple-500 py-2 px-4 text-white rounded-md">월 9,900원</div>
-                </td>
-                <td className="py-4 px-6 text-center">
-                  <div className="bg-purple-500 py-2 px-4 text-white rounded-md">월 13,900원</div>
-                </td>
-              </tr>
+              <tr></tr>
               <tr>
                 <td className="py-4 px-6 text-center">연간 99,000원</td>
                 <td className="py-4 px-6 text-center">연간 139,000원</td>
@@ -189,9 +178,11 @@ const HomePage = () => {
           </table>
         </p>
         <h4
-          className="text-gray-50"
+          className="co
+          "
           style={{
             paddingTop: '10px',
+            color: 'gr',
           }}
         >
           맴버십 구독이 필요합니다.
@@ -215,18 +206,20 @@ const HomePage = () => {
         >
           자주묻는질문
         </h2>
-        <div className="mt-8 max-w-4xl mx-auto">
-          {[
-            '복작은 무엇인가요?',
-            '복작에서 어떤 콘텐츠를 시청할 수 있나요?',
-            '복작을 어디에서 시청할수있나요?',
-            '복작을 얼마에 이용할 수 있나요?',
-          ].map((question, index) => (
-            <div key={index} className="py-4 border-b border-gray-700">
-              <h3 className="text-lg font-semibold text-white">{question}</h3>
-            </div>
-          ))}
-        </div>
+        <h5>
+          <div>
+            {[
+              '복작은 무엇인가요?',
+              '복작에서 어떤 콘텐츠를 시청할 수 있나요?',
+              '복작을 어디에서 시청할수있나요?',
+              '복작을 얼마에 이용할 수 있나요?',
+            ].map((question, index) => (
+              <div key={index} className="py-4 border-b border-gray-700">
+                <h3 className="text-lg text-white">{question}</h3>
+              </div>
+            ))}
+          </div>
+        </h5>
       </section>
     </AboutWrap>
   );

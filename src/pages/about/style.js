@@ -16,14 +16,41 @@ export const AboutWrap = styled.div`
     width: 100vw;
     overflow-x: hidden;
     margin: 0 auto;
+    display: block;
   }
 
   h1 {
-    font-size: xx-large;
+    font-size: xx-large; /* 기본 크기 (데스크톱) */
+  }
+
+  @media (max-width: 768px) {
+    /* 태블릿 크기 */
+    h1 {
+      font-size: large;
+    }
+  }
+
+  @media (max-width: 390px) {
+    /* 모바일 크기 */
+    h1 {
+      font-size: medium;
+    }
   }
 
   h2 {
     font-size: xx-large;
+  }
+
+  @media (max-width: 768px) {
+    h2 {
+      font-size: large;
+    }
+  }
+
+  @media (max-width: 390px) {
+    h2 {
+      font-size: large;
+    }
   }
 
   h3 {
@@ -32,6 +59,8 @@ export const AboutWrap = styled.div`
 
   h4 {
     font-size: xx-small;
-    fon
+  }
+  h5 {
+    font-size: large;
   }
 `;
