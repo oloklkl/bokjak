@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { media } from '../styled/media';
 import { color } from '../styled/theme';
+import React from 'react';
 
 const IconBtnWrap = styled.button`
     display: flex;
@@ -11,7 +12,8 @@ const IconBtnWrap = styled.button`
     background-color: ${color('gray', '70')};
     border-radius: 9999px;
 
-    svg {
+    svg,
+    img {
         width: 24px;
         height: 24px;
         fill: ${color('gray', '0')};
@@ -20,15 +22,13 @@ const IconBtnWrap = styled.button`
     ${media.mobile} {
         width: 33px;
         height: 33px;
-        svg {
+        svg,
+        img {
             width: 18px;
             height: 18px;
         }
     }
 
-    &:hover {
-        background-color: ${color('gray', '80')};
-    }
     &.none {
         background-color: #00000000;
     }
@@ -47,33 +47,42 @@ const IconBtnWrap = styled.button`
     }
     &.click {
         background-color: ${color('gray', '0')};
-        svg {
+        svg,
+        img {
             fill: ${color('primary', 'default')};
         }
     }
     &.small-icon {
         width: 24px;
         height: 24px;
-        svg {
+        svg,
+        img {
             width: 18px;
             height: 18px;
         }
         ${media.mobile} {
             width: 18px;
             height: 18px;
-            svg {
+            svg,
+            img {
                 width: 14px;
                 height: 14px;
             }
         }
+    }
+    &:hover {
+        background-color: ${color('gray', '80')};
     }
 `;
 
 const IconButton = (props) => {
     return (
         <IconBtnWrap {...props}>
-            {props.icon}
-            <span className='hide'>{props.text}</span>
+
+            {typeof props.icon === 'string' ? <img src={props.icon} alt={props.text} /> : <>{props.icon}</>}
+
+            <span className="hide">{props.text}</span>
+
         </IconBtnWrap>
     );
 };
