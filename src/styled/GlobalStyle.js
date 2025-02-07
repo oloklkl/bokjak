@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     color: ${color('gray', '0')};
     background: ${color('gray', '90')};
+    
   }
   a {
     text-decoration: none;

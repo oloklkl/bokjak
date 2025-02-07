@@ -3,15 +3,23 @@ import { BarButton, IconButton } from '../../ui';
 import { DetailPreviewWrap } from './style';
 import { useDispatch } from 'react-redux';
 import { detailActions } from '../../store/modules/detailSlice';
+import { Link } from 'react-router-dom';
 
 const DetailPreview = () => {
     const dispatch = useDispatch();
     return (
         <DetailPreviewWrap className="detail-preview">
             <div className="detailpreview-wrap">
-                <IconButton className="b30" icon={<X />} />
+                <IconButton onClick={() => dispatch(detailActions.closeDetailModal())} className="b30" icon={<X />} />
                 <div className="detailpreview-util-wrap">
-                    <BarButton text="재생하기" width="240px" height="42px" />
+                    <BarButton
+                        onClick={() => dispatch(detailActions.closeDetailModal())}
+                        text="재생하기"
+                        width="240px"
+                        height="42px"
+                    >
+                        <Link to="/video" />
+                    </BarButton>
                     <IconButton className="b30" icon={<Heart />} />
                     <IconButton className="b30" icon={<BookmarkSimple />} />
                     <IconButton

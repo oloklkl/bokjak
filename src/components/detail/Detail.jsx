@@ -4,12 +4,15 @@ import MoreLikeThisList from './MoreLikeThisList';
 import { DetailContentWrap, DetailWrap } from './style';
 import Dimmed from '../../ui/Dimmed';
 import Description from './Description';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import BokjakUrlModal from './BokjakUrlModal';
 import CreateRoomModal from './CreateRoomModal';
+import { detailActions } from '../../store/modules/detailSlice';
+import RoomCreatedModal from './RoomCreatedModal';
 
 const Detail = () => {
-    const { isUrlModalOpen, isCreateOpen } = useSelector((state) => state.detailR);
+    const { isUrlModalOpen, isCreateOpen, isRoomCreated } = useSelector((state) => state.detailR);
+    const dispatch = useDispatch();
     return (
         <>
             <DetailWrap className="detail">
@@ -20,10 +23,15 @@ const Detail = () => {
                     <MoreLikeThisList />
                 </DetailContentWrap>
             </DetailWrap>
-            <Dimmed class="dimmed-active" />
-            <Dimmed zindex={150} class={isUrlModalOpen && 'dimmed-active'} />
+            <Dimmed className="dimmed-active" />
+            <Dimmed
+                onClick={() => dispatch(detailActions.closeAllModal())}
+                zindex={150}
+                className={`${isUrlModalOpen ? 'dimmed-active' : ''}`}
+            />
             {isUrlModalOpen && <BokjakUrlModal />}
             {isCreateOpen && <CreateRoomModal />}
+            {isRoomCreated && <RoomCreatedModal />}
         </>
     );
 };

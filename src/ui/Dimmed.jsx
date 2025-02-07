@@ -11,7 +11,7 @@ const DimmedWrap = styled.div`
     background-color: #00000000;
     z-index: ${(props) => props.zindex};
     transition: all 0.2s ease;
-    pointer-events: none;
+    pointer-events: ${(props) => (props.className?.includes('dimmed-active') ? 'auto' : 'none')};
 
     &.dimmed-active {
         background-color: #00000080;
@@ -19,7 +19,7 @@ const DimmedWrap = styled.div`
 `;
 
 const Dimmed = (props) => {
-    return <DimmedWrap {...props} className={`dimmed ${props.class}`}></DimmedWrap>;
+    return <DimmedWrap {...props} className={`dimmed ${props.className}`}></DimmedWrap>;
 };
 
 export default Dimmed;

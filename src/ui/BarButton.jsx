@@ -9,6 +9,7 @@ const BarBtnWrap = styled.button`
     gap: 10px;
 
     width: ${(props) => props.width};
+    min-width: ${(props) => props.minWidth};
     height: ${(props) => props.height};
     background-color: ${color('primary', 'default')};
     color: ${color('gray', '0')};
@@ -17,6 +18,12 @@ const BarBtnWrap = styled.button`
     img {
         width: 24px;
         height: 24px;
+    }
+
+    a {
+        position: absolute;
+        width: ${(props) => props.width};
+        height: ${(props) => props.height};
     }
 
     &:hover {
@@ -30,14 +37,11 @@ const BarBtnWrap = styled.button`
     }
 `;
 
-const BarButton = (props) => {
+const BarButton = ({ children, ...props }) => {
     return (
         <BarBtnWrap {...props}>
-            {typeof props.icon === 'string' ? (
-                <img src={props.icon} alt={props.text} />
-            ) : (
-                <>{props.icon}</>
-            )}
+            {typeof props.icon === 'string' ? <img src={props.icon} alt={props.text} /> : <>{props.icon}</>}
+            {children}
             {props.text}
         </BarBtnWrap>
     );

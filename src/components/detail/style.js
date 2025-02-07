@@ -2,8 +2,15 @@ import styled from 'styled-components';
 import { color, font } from '../../styled/theme';
 
 export const DetailWrap = styled.div`
+    /* -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    } */
+
     position: absolute;
     width: 100%;
+    /* max-height: calc(100vh - 40px); */
 
     overflow-x: hidden;
 
@@ -309,15 +316,13 @@ export const MoreLikeThisItemWrap = styled.div`
 `;
 
 export const DetailModalCom = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-
-    position: absolute;
+    position: fixed;
     z-index: 200;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    /* padding: 64px 0; */
 
     border-radius: 10px;
     background-color: ${color('gray', '80')};
