@@ -4,12 +4,11 @@ import { media } from '../../styled/media';
 
 export const LoginWrap = styled.div`
     position: relative;
-    background-color: ${color('gray', '50')};
-    margin: 80px 0;
+    background-color: ${color('gray', '90')};
     display: flex;
     justify-content: center;
     align-items: center;
-    /* min-height: 100vh; */
+    min-height: 100vh;
     ${media.tablet} {
     }
     ${media.mobile} {
@@ -40,6 +39,8 @@ export const LoginContent = styled.div`
     height: 600px;
 
     ${media.tablet} {
+        background-color: ${color('gray', '90')};
+        padding: 10px 0;
         width: 470px;
         height: 596px;
     }
@@ -100,12 +101,44 @@ export const LoginButtons = styled.div`
         ${media.mobile} {
             width: 345px;
             height: 60px;
+            gap: 80px;
         }
     }
 
-    img {
-        width: 24px;
-        height: 24px;
+    .kakao {
+        width: 30px;
+        height: auto;
+
+        ${media.mobile} {
+            width: 25px;
+        }
+    }
+
+    .naver {
+        width: 25px;
+        height: auto;
+
+        ${media.mobile} {
+            width: 22px;
+        }
+    }
+
+    .apple {
+        width: 25px;
+        height: auto;
+
+        ${media.mobile} {
+            width: 22px;
+        }
+    }
+
+    .google {
+        width: 27px;
+        height: auto;
+
+        ${media.mobile} {
+            width: 24px;
+        }
     }
 
     span {

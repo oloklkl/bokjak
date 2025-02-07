@@ -19,6 +19,7 @@ const Login = () => {
                 <LoginButtons>
                     <button>
                         <img
+                            className='kakao'
                             src='https://raw.githubusercontent.com/lse-7660/bokjak-image/61105440a091e532b03925524f6d2b5296cd750b/images/login/kakao.svg'
                             alt='kakao'
                         />
@@ -26,13 +27,15 @@ const Login = () => {
                     </button>
                     <button>
                         <img
-                            src='https://raw.githubusercontent.com/lse-7660/bokjak-image/18cb6ec19defe09b46ec12917c88c31e962632b7/images/login/%EB%84%A4%EC%9D%B4%EB%B2%84.svg'
+                            className='naver'
+                            src='https://raw.githubusercontent.com/lse-7660/bokjak-image/c29adbc54b8bd12cf848cf80178e1b52dc94dd89/images/login/naver.svg'
                             alt='apple'
                         />
                         <span>네이버로 시작하기</span>
                     </button>
                     <button>
                         <img
+                            className='apple'
                             src='https://raw.githubusercontent.com/lse-7660/bokjak-image/61105440a091e532b03925524f6d2b5296cd750b/images/login/apple.svg'
                             alt='naver'
                         />
@@ -40,13 +43,14 @@ const Login = () => {
                     </button>
                     <button>
                         <img
+                            className='google'
                             src='https://raw.githubusercontent.com/lse-7660/bokjak-image/61105440a091e532b03925524f6d2b5296cd750b/images/login/google.svg'
                             alt='google'
                         />
                         <span>구글로 시작하기</span>
                     </button>
                 </LoginButtons>
-                <LoginNotice>SNS계정으로 간편하게 가입하여 서비스를 이용하실 수 있습니다.</LoginNotice>
+                <LoginNotice>SNS계정으로 간편하게 이용해보세요.</LoginNotice>
             </LoginContent>
         </LoginWrap>
     );
