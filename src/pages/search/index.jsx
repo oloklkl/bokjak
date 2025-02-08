@@ -1,6 +1,6 @@
 import { MagnifyingGlass } from '@phosphor-icons/react';
-import { CategoryButton, IconButton } from '../../ui';
-import { Container, PopularList, SearchBar } from './style';
+import { CategoryButton, IconButton, RecentSearchButton } from '../../ui';
+import { Container, Nav, PopularList, PopularListContainer, RecentKeywords, SearchBar, Section } from './style';
 import { useState } from 'react';
 
 const Search = () => {
@@ -16,34 +16,60 @@ const Search = () => {
         '유 퀴즈 온 더 블럭',
         '커플팰리스',
     ]);
+
+    const firstHalf = popularSearches.slice(0, 5);
+    const secondHalf = popularSearches.slice(5);
+
     return (
         <Container>
             <SearchBar>
-                <input type='text' placeholder='제목, 장르, 배우로 검색해보세요.' />
-                <IconButton className='gray40 none' icon={<MagnifyingGlass size={24} />} text='MagnifyingGlass' />
+                <div className='input-container'>
+                    <input type='text' placeholder='제목, 장르, 배우로 검색해보세요.' />
+                    <IconButton
+                        className='search-icon gray40 none'
+                        icon={<MagnifyingGlass size={24} />}
+                        text='MagnifyingGlass'
+                    />
+                </div>
             </SearchBar>
 
-            <nav aria-label='최근 검색어'>
+            <Nav aria-label='최근 검색어'>
                 <h2>최근 검색어</h2>
-                <CategoryButton text='또 오해영' />
-                <CategoryButton text='나 혼자 산다' />
-                <CategoryButton text='런닝맨' />
-                <CategoryButton text='위키드' />
-                <CategoryButton text='너의 이름은' />
-                <CategoryButton text='환승연애' />
-            </nav>
+                <RecentKeywords>
+                    <RecentSearchButton text='또 오해영' />
+                    <RecentSearchButton text='나 혼자 산다' />
+                    <RecentSearchButton text='런닝맨' />
+                    <RecentSearchButton text='위키드' />
+                    <RecentSearchButton text='너의 이름은' />
+                    <RecentSearchButton text='환승연애' />
+                </RecentKeywords>
+            </Nav>
 
-            <div aria-labelledby='popular-searches'>
+            <Section aria-labelledby='popular-searches'>
                 <h2 id='popular-searches'>실시간 인기 검색어</h2>
-                <PopularList as='ol'>
-                    {popularSearches.map((item, index) => (
-                        <li key={index}>
-                            <span>{index + 1}</span>
-                            {item}
-                        </li>
-                    ))}
-                </PopularList>
-            </div>
+
+                {/* 왼쪽 정렬 */}
+                <PopularListContainer>
+                    <PopularList as='ol'>
+                        {firstHalf.map((item, index) => (
+                            <li key={index} className='left'>
+                                <span>{index + 1}</span>
+                                {item}
+                            </li>
+                        ))}
+                    </PopularList>
+
+                    {/* 오른쪽 정렬 */}
+                    <PopularList as='ol'>
+                        {secondHalf.map((item, index) => (
+                            <li key={index} className='right'>
+                                <span>{index + 6}</span>
+                                {item}
+                            </li>
+                        ))}
+                    </PopularList>
+                </PopularListContainer>
+            </Section>
         </Container>
     );
 };
