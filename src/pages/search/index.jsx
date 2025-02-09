@@ -4,7 +4,7 @@ import { Container, Nav, PopularList, PopularListContainer, RecentKeywords, Sear
 import { useState } from 'react';
 
 const Search = () => {
-    const [popularSearches, setPopularSearches] = useState([
+    const popularSearches = [
         '이혼숙려캠프',
         '원경',
         '명탐정 코난 2025(자막)',
@@ -15,7 +15,7 @@ const Search = () => {
         '선재 업고 튀어',
         '유 퀴즈 온 더 블럭',
         '커플팰리스',
-    ]);
+    ];
 
     const firstHalf = popularSearches.slice(0, 5);
     const secondHalf = popularSearches.slice(5);
