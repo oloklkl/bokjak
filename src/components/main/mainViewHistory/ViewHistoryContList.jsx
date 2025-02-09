@@ -1,16 +1,15 @@
 import styled from 'styled-components'
 import { font } from '../../../styled/theme'
 import { media } from '../../../styled/media'
-
 import { useDispatch } from 'react-redux'
-
 import { detailActions } from '../../../store/modules/detailSlice'
 import ViewHistoryContItem from './ViewHistoryContItem'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import { Autoplay } from 'swiper/modules'
+import { Navigation } from 'swiper/modules'
+import { IconButton } from '../../../ui'
+import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 
 const ViewHistoryContBox = styled.div`
   width: 100%;
@@ -60,6 +59,10 @@ const ViewHistoryList = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
+  overflow: visible;
+  .swiper {
+    overflow: visible;
+  }
 
   .swiper-slide {
     display: flex;
@@ -74,31 +77,17 @@ const ViewHistoryList = styled.div`
       gap: 10px;
     }
   }
-
-  .swiper-button-prev,
-  .swiper-button-next {
-    position: absolute;
-    top: 50%;
-    z-index: 10;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    cursor: pointer;
-    color: #fff;
-  }
-
-  .swiper-button-prev {
-    left: 10px;
-  }
-
-  .swiper-button-next {
-    right: 10px;
-  }
+`
+const NavigationButton = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(0%, -50%);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1540px;
 `
 
 const ViewHistoryContList = () => {
@@ -115,29 +104,52 @@ const ViewHistoryContList = () => {
       <ViewHistoryList>
         <Swiper
           className="swiper"
-          modules={[Autoplay]}
+          modules={[Navigation]}
           pagination={{ clickable: true }}
-          spaceBetween={24}
-          slidesPerView={1}
-          navigation={{
-            prevEl: '.swiper-button-prev',
-            nextEl: '.swiper-button-next',
-          }}>
-          <SwiperSlide className="swiper-slide">
+          spaceBetween={0}
+          slidesPerView={4.5}>
+          <SwiperSlide>
             <ViewHistoryContItem
               onClick={() => dispatch(detailActions.openDetailModal())}
             />
-            <ViewHistoryContItem />
-            <ViewHistoryContItem />
-            <ViewHistoryContItem />
-            <ViewHistoryContItem />
-            <ViewHistoryContItem />
-            <ViewHistoryContItem />
-            <ViewHistoryContItem />
+          </SwiperSlide>
+          <SwiperSlide>
             <ViewHistoryContItem />
           </SwiperSlide>
+          <SwiperSlide>
+            <ViewHistoryContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <ViewHistoryContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <ViewHistoryContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <ViewHistoryContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <ViewHistoryContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <ViewHistoryContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <ViewHistoryContItem />
+          </SwiperSlide>
+          <NavigationButton>
+            <IconButton
+              className="b30"
+              icon={<CaretLeft size={24} />}
+              text="caretLeft"
+            />
+            <IconButton
+              className="b30"
+              icon={<CaretRight size={24} />}
+              text="caretRight"
+            />
+          </NavigationButton>
         </Swiper>
-        {/* 내비게이션 버튼은 이제 ViewHistoryList 내부에 위치 */}
       </ViewHistoryList>
     </ViewHistoryContBox>
   )

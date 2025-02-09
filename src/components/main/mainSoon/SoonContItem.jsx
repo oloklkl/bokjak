@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { media } from '../../../styled/media'
 import { color } from '../../../styled/theme'
-import { IconButton } from '../../../ui'
-import { Play } from '@phosphor-icons/react'
+import { BarButton, IconButton } from '../../../ui'
+import { Play, Textbox } from '@phosphor-icons/react'
 
 const SoonItemBox = styled.div`
   display: flex;
@@ -56,6 +56,23 @@ const Icon = styled.div`
     size: 18px;
   }
 `
+const SoonTextBox = styled.div`
+  display: flex;
+  .soonLogo {
+    width: 100%;
+  }
+`
+const Label = styled.div`
+  display: flex;
+  .labelAge {
+    width: 100%;
+  }
+`
+const StateBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 const SoonContItem = () => {
   return (
@@ -63,6 +80,35 @@ const SoonContItem = () => {
       <SoonCont>
         <SoonBox>
           <img src="" alt="" />
+          <SoonTextBox>
+            <div className="soonLogo">
+              <img src="" alt="" />
+            </div>
+            <h2>title</h2>
+            <Label>
+              <div className="labelAge">
+                <img src="" alt="" />
+              </div>
+              <span>genre</span>
+            </Label>
+            <p>desc</p>
+          </SoonTextBox>
+          <StateBtn>
+            <BarButton
+              className="share"
+              text="재생하기"
+              x
+              width="300px"
+              height="60px"
+            />
+            <Icon>
+              <IconButton
+                className="border"
+                icon={<Play size={24} weight="fill" />}
+                text="Play"
+              />
+            </Icon>
+          </StateBtn>
           <Icon>
             <IconButton
               className="border"
