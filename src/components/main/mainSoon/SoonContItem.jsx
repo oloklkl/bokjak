@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { media } from '../../../styled/media'
-import { color } from '../../../styled/theme'
+import { color, font } from '../../../styled/theme'
 import { BarButton, IconButton } from '../../../ui'
 import { Play, Textbox } from '@phosphor-icons/react'
 
@@ -10,30 +10,32 @@ const SoonItemBox = styled.div`
   justify-content: center;
   align-items: center;
   overflow: visible;
-  gap: 16px;
+  gap: 24px;
 `
 const SoonCont = styled.div`
-  width: 100%;
+  width: 1294px;
+  height: 484px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 16px;
+  position: relative;
 `
 const SoonBox = styled.div`
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
+
   ${media.tablet} {
-    width: 220px;
-    height: 150px;
+    width: 550px;
+    height: 456px;
   }
   ${media.mobile} {
-    width: 160px;
-    height: 100px;
+    width: 310px;
+    height: 404px;
   }
   img {
     width: 100%;
@@ -45,33 +47,51 @@ const SoonBox = styled.div`
     }
   }
 `
-const Icon = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  ${media.mobile} {
-    width: 24px;
-    height: 24px;
-    size: 18px;
-  }
-`
+
 const SoonTextBox = styled.div`
+  width: 432px;
+  height: 396px;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  margin-left: 30px;
+  margin-top: 50px;
   .soonLogo {
     width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 133px;
+    }
+  }
+  p {
+    font-size: ${font('body', 'sm')};
   }
 `
 const Label = styled.div`
   display: flex;
+  justify-content: center;
+  align-content: center;
+  gap: 10px;
   .labelAge {
-    width: 100%;
+    width: 46px;
+    height: 20px;
+  }
+  span {
+    font-size: ${font('body', 'sm')};
   }
 `
 const StateBtn = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 24px;
 `
 
 const SoonContItem = () => {
@@ -91,31 +111,20 @@ const SoonContItem = () => {
               </div>
               <span>genre</span>
             </Label>
-            <p>desc</p>
-          </SoonTextBox>
-          <StateBtn>
-            <BarButton
-              className="share"
-              text="재생하기"
-              x
-              width="300px"
-              height="60px"
-            />
-            <Icon>
+            <p>
+              시빌 워 당시 토니 스타크에게 발탁되어 대단한 활약을 펼친
+              스파이더맨 피터 파커. 허세와 정의감으로 똘똘 뭉친 그는 세상을
+              위협하는 강력한 적 벌처에 맞서려 한다.
+            </p>
+            <StateBtn>
+              <BarButton text="재생하기" x width="366px" height="42px" />
               <IconButton
                 className="border"
                 icon={<Play size={24} weight="fill" />}
                 text="Play"
               />
-            </Icon>
-          </StateBtn>
-          <Icon>
-            <IconButton
-              className="border"
-              icon={<Play size={24} weight="fill" />}
-              text="Play"
-            />
-          </Icon>
+            </StateBtn>
+          </SoonTextBox>
         </SoonBox>
       </SoonCont>
     </SoonItemBox>
