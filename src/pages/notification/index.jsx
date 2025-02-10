@@ -13,6 +13,7 @@ import {
     UserInfo,
     UserProfile,
 } from './style';
+import BottomNavigation from '../../common/bottomnavigation';
 
 const Notification = () => {
     return (
@@ -58,6 +59,7 @@ const Notification = () => {
                     {/* 공개예정 내용 */}
                 </NotificationSection>
             </ContentWrapper>
+            <BottomNavigation />
         </Container>
     );
 };

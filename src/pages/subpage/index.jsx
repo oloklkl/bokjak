@@ -1,3 +1,4 @@
+import BottomNavigation from '../../common/bottomnavigation';
 import { Intro, ThumbnailCont, TopCont } from '../../components';
 import { CategoryButton } from '../../ui';
 import { VisualWrap } from '../main/style';
@@ -33,6 +34,7 @@ const SubPage = () => {
                 <ThumbnailCont />
                 <ThumbnailCont />
             </ContentWrap>
+            <BottomNavigation />
         </SubWrap>
     );
 };
