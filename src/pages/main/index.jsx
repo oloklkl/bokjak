@@ -8,6 +8,7 @@ import {
   TopCont,
   ViewHistoryCont,
 } from '../../components'
+import BookMarkLabel from '../../ui/BookMarkLabel'
 import { MainWrap, VisualWrap } from './style'
 
 const Main = () => {
@@ -17,6 +18,7 @@ const Main = () => {
         <Intro />
       </VisualWrap>
       <MainWrap>
+        <BookMarkLabel text="더빙" className="dubbing" />
         <BokjakCont />
         <ViewHistoryCont />
         <TopCont />
