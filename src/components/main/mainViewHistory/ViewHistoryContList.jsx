@@ -12,14 +12,14 @@ import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import { useRef } from 'react'
 
-const ViewHistoryContBox = styled.div`
+const ViewHistoryListWrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 40px;
 `
 
-const ViewHistoryTitle = styled.div`
+const ViewHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -100,13 +100,13 @@ const ViewHistoryContList = () => {
   }
 
   return (
-    <ViewHistoryContBox>
-      <ViewHistoryTitle>
+    <ViewHistoryListWrap>
+      <ViewHeader>
         <TitleCont>
           <h2>title</h2>
           <h3>more</h3>
         </TitleCont>
-      </ViewHistoryTitle>
+      </ViewHeader>
       <ViewHistoryList>
         <Swiper
           className="swiper"
@@ -162,7 +162,7 @@ const ViewHistoryContList = () => {
           </NavigationButton>
         </Swiper>
       </ViewHistoryList>
-    </ViewHistoryContBox>
+    </ViewHistoryListWrap>
   )
 }
 

@@ -11,14 +11,14 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 
-const SoonContBox = styled.div`
+const SoonListWrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 40px;
 `
 
-const SoonTitle = styled.div`
+const SoonHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -102,13 +102,13 @@ const SoonContList = () => {
     }
   }
   return (
-    <SoonContBox>
-      <SoonTitle>
+    <SoonListWrap>
+      <SoonHeader>
         <TitleCont>
           <h2>title</h2>
           <h3>more</h3>
         </TitleCont>
-      </SoonTitle>
+      </SoonHeader>
       <SoonList>
         <Swiper
           className="swiper"
@@ -149,7 +149,7 @@ const SoonContList = () => {
           </NavigationButton>
         </Swiper>
       </SoonList>
-    </SoonContBox>
+    </SoonListWrap>
   )
 }
 

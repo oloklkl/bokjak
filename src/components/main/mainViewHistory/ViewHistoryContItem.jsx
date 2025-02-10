@@ -4,7 +4,7 @@ import { IconButton } from '../../../ui'
 import { Play } from '@phosphor-icons/react'
 import { media } from '../../../styled/media'
 
-const ViewHistoryItemBox = styled.div`
+const ViewHistoryItemWrap = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -12,14 +12,14 @@ const ViewHistoryItemBox = styled.div`
   overflow: visible;
   gap: 16px;
 `
-const ThumbnailCont = styled.div`
+const ViewThumbnailCont = styled.div`
   width: auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 `
-const ThumbnailBox = styled.div`
+const ViewThumbnailBox = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
@@ -70,19 +70,13 @@ const StateBar = styled.div`
     height: 3px;
     border-radius: 0 0 5px 5px;
   }
-  .progress {
-    height: 100%;
-    background: ${color('gray', '50')};
-    width: 0%;
-    transition: width 0.2s ease;
-  }
 `
 
-const ViewHistoryContItem = (props) => {
+const ViewHistoryContItem = () => {
   return (
-    <ViewHistoryItemBox {...props}>
-      <ThumbnailCont>
-        <ThumbnailBox>
+    <ViewHistoryItemWrap>
+      <ViewThumbnailCont>
+        <ViewThumbnailBox>
           <img
             src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
             alt=""
@@ -97,9 +91,9 @@ const ViewHistoryContItem = (props) => {
           <StateBar>
             <div className="progress"></div>
           </StateBar>
-        </ThumbnailBox>
-      </ThumbnailCont>
-    </ViewHistoryItemBox>
+        </ViewThumbnailBox>
+      </ViewThumbnailCont>
+    </ViewHistoryItemWrap>
   )
 }
 

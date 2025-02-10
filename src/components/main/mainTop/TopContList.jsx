@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { color, font } from '../../../styled/theme'
+import { font } from '../../../styled/theme'
 import TopContItem from './TopContItem'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
@@ -11,14 +11,14 @@ import { Navigation } from 'swiper/modules'
 import { useRef } from 'react'
 // import { useDispatch } from 'react-redux'
 
-const TopContBox = styled.div`
+const TopListWrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 40px;
 `
 
-const TopTitle = styled.div`
+const TopHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -98,13 +98,13 @@ const TopContList = () => {
     }
   }
   return (
-    <TopContBox>
-      <TopTitle>
+    <TopListWrap>
+      <TopHeader>
         <TitleCont>
           <h2>title</h2>
           <h3>more</h3>
         </TitleCont>
-      </TopTitle>
+      </TopHeader>
       <TopList>
         <Swiper
           className="swiper"
@@ -161,7 +161,7 @@ const TopContList = () => {
           </NavigationButton>
         </Swiper>
       </TopList>
-    </TopContBox>
+    </TopListWrap>
   )
 }
 

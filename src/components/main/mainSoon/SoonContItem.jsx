@@ -4,36 +4,35 @@ import { color, font } from '../../../styled/theme'
 import { BarButton, IconButton } from '../../../ui'
 import { BellSimple } from '@phosphor-icons/react'
 
-const SoonItemBox = styled.div`
+const SoonItemWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   overflow: visible;
 `
-const SoonCont = styled.div`
-  width: 1294px;
-  height: 484px;
+
+const SoonContainer = styled.div`
+  width: auto;
+  height: 300px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  position: relative;
-`
-const SoonBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  ${media.tablet} {
+  /* ${media.tablet} {
     width: 550px;
     height: 456px;
   }
   ${media.mobile} {
     width: 310px;
     height: 404px;
-  }
+  } */
+`
+
+const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   img {
     width: 100%;
     height: 100%;
@@ -45,7 +44,7 @@ const SoonBox = styled.div`
   }
 `
 
-const SoonTextBox = styled.div`
+const TextWrapper = styled.div`
   width: 432px;
   height: 396px;
   position: absolute;
@@ -65,12 +64,16 @@ const SoonTextBox = styled.div`
       width: 100%;
       height: 133px;
     }
+    .overlay {
+      background: linear-gradient(to top, black, rgba(0, 0, 0, 1));
+    }
   }
   p {
     font-size: ${font('body', 'sm')};
   }
 `
-const Label = styled.div`
+
+const LabelWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
@@ -83,7 +86,8 @@ const Label = styled.div`
     font-size: ${font('body', 'sm')};
   }
 `
-const StateBtn = styled.div`
+
+const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -93,38 +97,42 @@ const StateBtn = styled.div`
 
 const SoonContItem = () => {
   return (
-    <SoonItemBox>
-      <SoonCont>
-        <SoonBox>
-          <img src="" alt="" />
-          <SoonTextBox>
-            <div className="soonLogo">
+    <SoonItemWrapper>
+      <SoonContainer>
+        <ImageWrapper>
+          <div className="overlay"></div>
+          <img
+            src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
+            alt=""
+          />
+        </ImageWrapper>
+        <TextWrapper>
+          <div className="soonLogo">
+            <img src="" alt="" />
+          </div>
+          <h2>title</h2>
+          <LabelWrapper>
+            <div className="labelAge">
               <img src="" alt="" />
             </div>
-            <h2>title</h2>
-            <Label>
-              <div className="labelAge">
-                <img src="" alt="" />
-              </div>
-              <span>genre</span>
-            </Label>
-            <p>
-              시빌 워 당시 토니 스타크에게 발탁되어 대단한 활약을 펼친
-              스파이더맨 피터 파커. 허세와 정의감으로 똘똘 뭉친 그는 세상을
-              위협하는 강력한 적 벌처에 맞서려 한다.
-            </p>
-            <StateBtn>
-              <BarButton text="미리보기" x width="366px" height="42px" />
-              <IconButton
-                className="none"
-                icon={<BellSimple size={24} />}
-                text="Play"
-              />
-            </StateBtn>
-          </SoonTextBox>
-        </SoonBox>
-      </SoonCont>
-    </SoonItemBox>
+            <span>genre</span>
+          </LabelWrapper>
+          <p>
+            시빌 워 당시 토니 스타크에게 발탁되어 대단한 활약을 펼친 스파이더맨
+            피터 파커. 허세와 정의감으로 똘똘 뭉친 그는 세상을 위협하는 강력한
+            적 벌처에 맞서려 한다.
+          </p>
+          <ButtonGroup>
+            <BarButton text="미리보기" x width="366px" height="42px" />
+            <IconButton
+              className="none"
+              icon={<BellSimple size={24} />}
+              text="Play"
+            />
+          </ButtonGroup>
+        </TextWrapper>
+      </SoonContainer>
+    </SoonItemWrapper>
   )
 }
 

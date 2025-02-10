@@ -11,14 +11,14 @@ import { Navigation } from 'swiper/modules'
 // import { useDispatch } from 'react-redux'
 import { useRef } from 'react'
 
-const ThumbnailContBox = styled.div`
+const ThumbnailListWrap = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 40px;
 `
 
-const ThumbnailText = styled.div`
+const ThumbnailHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -86,13 +86,13 @@ const ThumbnailContList = () => {
     }
   }
   return (
-    <ThumbnailContBox>
-      <ThumbnailText>
+    <ThumbnailListWrap>
+      <ThumbnailHeader>
         <TitleCont>
           <h2>title</h2>
           <h3>more</h3>
         </TitleCont>
-      </ThumbnailText>
+      </ThumbnailHeader>
       <ThumbnailList>
         <Swiper
           className="swiper"
@@ -147,7 +147,7 @@ const ThumbnailContList = () => {
           />
         </NavigationButton>
       </ThumbnailList>
-    </ThumbnailContBox>
+    </ThumbnailListWrap>
   )
 }
 

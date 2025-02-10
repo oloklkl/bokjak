@@ -7,7 +7,7 @@ import { media } from '../../../styled/media'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 
-const BokjakContBox = styled.div`
+const BokjakListWrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@ const BokjakContBox = styled.div`
   gap: 40px;
 `
 
-const BokjakTitle = styled.div`
+const BokjakHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -96,8 +96,8 @@ const MsgBox = styled.div`
 
 const BokjakContList = () => {
   return (
-    <BokjakContBox>
-      <BokjakTitle>
+    <BokjakListWrap>
+      <BokjakHeader>
         <TitleCont>
           <h2>title</h2>
           <IconButton
@@ -105,29 +105,37 @@ const BokjakContList = () => {
             icon={<QuestionMark size={18} />}
             text="smiley"
           />
-          <MsgBox className="on">
+          <MsgBox>
             &quot;모여봐요 복작!&quot;은 시청자들이 실시간으로 영상을 함께
             시청하고 <br /> 채팅으로 소통하는 공동 시청 서비스입니다.
           </MsgBox>
         </TitleCont>
-      </BokjakTitle>
+      </BokjakHeader>
 
       <BokjakList>
         <Swiper
           className="swiper"
           modules={[Autoplay]}
           spaceBetween={24}
-          slidesPerView={1}>
-          <SwiperSlide className="swiper-slide">
+          slidesPerView={3}>
+          <SwiperSlide>
             <BokjakContItem />
+          </SwiperSlide>
+          <SwiperSlide>
             <BokjakContItem />
+          </SwiperSlide>
+          <SwiperSlide>
             <BokjakContItem />
+          </SwiperSlide>
+          <SwiperSlide>
             <BokjakContItem />
+          </SwiperSlide>
+          <SwiperSlide>
             <BokjakContItem />
           </SwiperSlide>
         </Swiper>
       </BokjakList>
-    </BokjakContBox>
+    </BokjakListWrap>
   )
 }
 

@@ -23,9 +23,7 @@ const TopWrap = styled.div`
 const TopCont = () => {
   return (
     <TopWrap>
-      <div className="inner">
-        <TopContList />
-      </div>
+      <TopContList />
     </TopWrap>
   )
 }

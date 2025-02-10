@@ -2,14 +2,14 @@ import styled from 'styled-components'
 import { color } from '../../../styled/theme'
 import { media } from '../../../styled/media'
 
-const TopItemBox = styled.div`
+const TopItemWrap = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 24px;
 `
 
-const TopThumbCont = styled.div`
+const TopContBox = styled.div`
   width: auto;
   display: flex;
   justify-content: flex-start;
@@ -47,7 +47,7 @@ const Number = styled.div`
   }
 `
 
-const Thumbnail = styled.div`
+const TopThumbnail = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
@@ -82,8 +82,8 @@ const Thumbnail = styled.div`
 
 const TopContItem = () => {
   return (
-    <TopItemBox>
-      <TopThumbCont>
+    <TopItemWrap>
+      <TopContBox>
         <Number>
           <div className="numberBox">
             <img
@@ -92,16 +92,16 @@ const TopContItem = () => {
             />
           </div>
         </Number>
-        <Thumbnail>
+        <TopThumbnail>
           <div className="imgBox">
             <img
               src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
               alt=""
             />
           </div>
-        </Thumbnail>
-      </TopThumbCont>
-    </TopItemBox>
+        </TopThumbnail>
+      </TopContBox>
+    </TopItemWrap>
   )
 }
 

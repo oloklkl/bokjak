@@ -35,13 +35,13 @@ const BokjakImg = styled.div`
 `
 const BokjakTitle = styled.div`
   width: 160px;
+  text-align: center;
   ${media.tablet} {
     width: 120px;
   }
   ${media.mobile} {
     width: 90px;
   }
-  text-align: center;
   h3 {
     font-size: ${font('title', 'xlg')};
     ${media.tablet} {
