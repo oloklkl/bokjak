@@ -15,7 +15,7 @@ const TopThumbCont = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-shrink: 0;
-  width: 295px;
+  width: 100%;
   height: 295px;
   ${media.tablet} {
     width: 210px;
@@ -28,7 +28,7 @@ const TopThumbCont = styled.div`
 `
 
 const Number = styled.div`
-  width: 80px;
+  width: auto;
   height: 100%;
   ${media.tablet} {
     width: 70px;
@@ -37,13 +37,12 @@ const Number = styled.div`
     width: 50px;
   }
   .numberBox {
-    background: ${color('gray', '30')};
+    /* background: ${color('gray', '30')}; */
     width: 100%;
     height: 100%;
     img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 80px;
+      height: 150px;
     }
   }
 `
@@ -53,7 +52,7 @@ const Thumbnail = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 216px;
+  width: auto;
   height: 100%;
   ${media.tablet} {
     width: 140px;
@@ -87,12 +86,18 @@ const TopContItem = () => {
       <TopThumbCont>
         <Number>
           <div className="numberBox">
-            <img src="" alt="" />
+            <img
+              src="https://raw.githubusercontent.com/lse-7660/bokjak-image/c9ff4c8cc09bdda334eb731251f0ec9a55642779/images/main/top/numberImg/pc/pc_number1.svg"
+              alt=""
+            />
           </div>
         </Number>
         <Thumbnail>
           <div className="imgBox">
-            <img src="" alt="" />
+            <img
+              src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
+              alt=""
+            />
           </div>
         </Thumbnail>
       </TopThumbCont>

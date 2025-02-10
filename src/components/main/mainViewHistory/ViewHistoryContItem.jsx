@@ -13,19 +13,18 @@ const ViewHistoryItemBox = styled.div`
   gap: 16px;
 `
 const ThumbnailCont = styled.div`
-  width: 100%;
+  width: auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 16px;
 `
 const ThumbnailBox = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 100%;
   height: 200px;
   ${media.tablet} {
     width: 220px;
@@ -84,10 +83,10 @@ const ViewHistoryContItem = (props) => {
     <ViewHistoryItemBox {...props}>
       <ThumbnailCont>
         <ThumbnailBox>
-          {/* <video>
-            <source src="movie.mp4" type="video/mp4" />
-          </video> */}
-          <img src="" alt="" />
+          <img
+            src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
+            alt=""
+          />
           <Icon>
             <IconButton
               className="border"

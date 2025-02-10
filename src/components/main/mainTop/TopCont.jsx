@@ -4,14 +4,13 @@ import { media } from '../../../styled/media'
 import { color } from '../../../styled/theme'
 
 const TopWrap = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   background: ${color('gray', '80')};
-  gap: 40px;
   padding: 100px 0;
+
   ${media.tablet} {
     padding: 80px 0;
   }
@@ -24,7 +23,9 @@ const TopWrap = styled.div`
 const TopCont = () => {
   return (
     <TopWrap>
-      <TopContList />
+      <div className="inner">
+        <TopContList />
+      </div>
     </TopWrap>
   )
 }

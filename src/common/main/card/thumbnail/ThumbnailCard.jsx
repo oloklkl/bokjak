@@ -15,7 +15,7 @@ const TopThumbCont = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-shrink: 0;
-  width: 234px;
+  width: 100%;
   height: 340px;
   ${media.tablet} {
     width: 160px;
@@ -58,7 +58,10 @@ const ThumbnailCard = () => {
         <TopThumbCont>
           <Thumbnail>
             <div className="imgBox">
-              <img src="" alt="" />
+              <img
+                src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
+                alt=""
+              />
             </div>
           </Thumbnail>
         </TopThumbCont>

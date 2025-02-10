@@ -1,9 +1,22 @@
 import styled from 'styled-components'
-import { font } from '../../../styled/theme'
+import { color, font } from '../../../styled/theme'
 import TopContItem from './TopContItem'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import { media } from '../../../styled/media'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Navigation } from 'swiper/modules'
+import { useRef } from 'react'
+// import { useDispatch } from 'react-redux'
+
+const TopContBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+`
 
 const TopTitle = styled.div`
   display: flex;
@@ -17,10 +30,10 @@ const TopTitle = styled.div`
 
 const TitleCont = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 1540px;
+  gap: 1400px;
   ${media.tablet} {
     gap: 620px;
   }
@@ -45,29 +58,47 @@ const TopList = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
-  gap: 24px;
-  justify-content: start;
-  ${media.tablet} {
-    gap: 16px;
+  overflow: visible;
+  .swiper {
+    overflow: visible;
   }
-  ${media.mobile} {
-    gap: 10px;
+
+  .swiper-slide {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
   }
 `
-const PageNation = styled.div`
+
+const NavigationButton = styled.div`
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-69%, -50%);
+  width: 100%;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1540px;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 3;
 `
 
 const TopContList = () => {
+  // const dispatch = useDispatch()
+  const swiperRef = useRef()
+
+  const goNext = () => {
+    // **추가됨: goNext 함수**
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext()
+    }
+  }
+
+  const goPrev = () => {
+    // **추가됨: goPrev 함수**
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev()
+    }
+  }
   return (
-    <>
+    <TopContBox>
       <TopTitle>
         <TitleCont>
           <h2>title</h2>
@@ -75,27 +106,62 @@ const TopContList = () => {
         </TitleCont>
       </TopTitle>
       <TopList>
-        <TopContItem />
-        <TopContItem />
-        <TopContItem />
-        <TopContItem />
-        <TopContItem />
-        <TopContItem />
-        <TopContItem />
-        <PageNation>
-          <IconButton
-            className="b30"
-            icon={<CaretLeft size={24} />}
-            text="caretLeft"
-          />
-          <IconButton
-            className="b30"
-            icon={<CaretRight size={24} />}
-            text="caretRight"
-          />
-        </PageNation>
+        <Swiper
+          className="swiper"
+          ref={swiperRef}
+          modules={[Navigation]}
+          pagination={{ clickable: true }}
+          spaceBetween={24}
+          slidesPerGroup={4.5}
+          slidesPerView={4.5}
+          navigation={false}>
+          <SwiperSlide>
+            <TopContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <TopContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <TopContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <TopContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <TopContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <TopContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <TopContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <TopContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <TopContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <TopContItem />
+          </SwiperSlide>
+          <NavigationButton>
+            <IconButton
+              onClick={goPrev}
+              className="b30"
+              icon={<CaretLeft size={24} />}
+              text="caretLeft"
+            />
+            <IconButton
+              onClick={goNext}
+              className="b30"
+              icon={<CaretRight size={24} />}
+              text="caretRight"
+            />
+          </NavigationButton>
+        </Swiper>
       </TopList>
-    </>
+    </TopContBox>
   )
 }
 

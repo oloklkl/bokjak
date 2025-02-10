@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { media } from '../../../styled/media'
 import { color, font } from '../../../styled/theme'
 import { BarButton, IconButton } from '../../../ui'
-import { Play, Textbox } from '@phosphor-icons/react'
+import { BellSimple } from '@phosphor-icons/react'
 
 const SoonItemBox = styled.div`
   display: flex;
@@ -10,7 +10,6 @@ const SoonItemBox = styled.div`
   justify-content: center;
   align-items: center;
   overflow: visible;
-  gap: 24px;
 `
 const SoonCont = styled.div`
   width: 1294px;
@@ -19,7 +18,6 @@ const SoonCont = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 16px;
   position: relative;
 `
 const SoonBox = styled.div`
@@ -28,7 +26,6 @@ const SoonBox = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-
   ${media.tablet} {
     width: 550px;
     height: 456px;
@@ -41,7 +38,7 @@ const SoonBox = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 7px;
-    background: ${color('gray', '70')};
+    background: ${color('gray', '80')};
     ${media.mobile} {
       border-radius: 5px;
     }
@@ -117,10 +114,10 @@ const SoonContItem = () => {
               위협하는 강력한 적 벌처에 맞서려 한다.
             </p>
             <StateBtn>
-              <BarButton text="재생하기" x width="366px" height="42px" />
+              <BarButton text="미리보기" x width="366px" height="42px" />
               <IconButton
-                className="border"
-                icon={<Play size={24} weight="fill" />}
+                className="none"
+                icon={<BellSimple size={24} />}
                 text="Play"
               />
             </StateBtn>

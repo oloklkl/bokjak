@@ -10,6 +10,7 @@ import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
+import { useRef } from 'react'
 
 const ViewHistoryContBox = styled.div`
   width: 100%;
@@ -68,30 +69,35 @@ const ViewHistoryList = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    overflow: visible;
-    gap: 24px;
-    ${media.tablet} {
-      gap: 16px;
-    }
-    ${media.mobile} {
-      gap: 10px;
-    }
   }
 `
 const NavigationButton = styled.div`
   position: absolute;
   top: 50%;
-  left: 0%;
-  transform: translate(0%, -50%);
-  z-index: 2;
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1540px;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 3;
 `
 
 const ViewHistoryContList = () => {
   const dispatch = useDispatch()
+  const swiperRef = useRef()
+
+  const goNext = () => {
+    // **추가됨: goNext 함수**
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext()
+    }
+  }
+
+  const goPrev = () => {
+    // **추가됨: goPrev 함수**
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev()
+    }
+  }
 
   return (
     <ViewHistoryContBox>
@@ -104,10 +110,13 @@ const ViewHistoryContList = () => {
       <ViewHistoryList>
         <Swiper
           className="swiper"
+          ref={swiperRef}
           modules={[Navigation]}
           pagination={{ clickable: true }}
-          spaceBetween={0}
-          slidesPerView={4.5}>
+          spaceBetween={24}
+          slidesPerGroup={4.5}
+          slidesPerView={4.5}
+          navigation={false}>
           <SwiperSlide>
             <ViewHistoryContItem
               onClick={() => dispatch(detailActions.openDetailModal())}
@@ -139,11 +148,13 @@ const ViewHistoryContList = () => {
           </SwiperSlide>
           <NavigationButton>
             <IconButton
+              onClick={goPrev}
               className="b30"
               icon={<CaretLeft size={24} />}
               text="caretLeft"
             />
             <IconButton
+              onClick={goNext}
               className="b30"
               icon={<CaretRight size={24} />}
               text="caretRight"
