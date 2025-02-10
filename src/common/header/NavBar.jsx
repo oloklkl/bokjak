@@ -70,7 +70,7 @@ const NavBar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/'}>
+                    <Link to={'/notification'}>
                         <IconButton className='gray40 none' icon={<BellSimple size={24} />} text='BellSimple' />
                     </Link>
                 </li>
