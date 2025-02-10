@@ -9,7 +9,6 @@ const VideoWrap = (props) => {
         <VideoWrapCom {...props}>
             <VideoPlayer />
             <BokjakChat />
-            {/* {isChatOpen && <BokjakChat />} */}
         </VideoWrapCom>
     );
 };

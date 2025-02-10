@@ -1,10 +1,10 @@
 import { ChatItemWrap } from './style';
 
-const ChatItem = (props) => {
+const ChatItem = ({ item }) => {
     return (
-        <ChatItemWrap {...props}>
-            <span>{props.username}</span>
-            <span>{props.text}</span>
+        <ChatItemWrap>
+            <span className="chat-username">{item.username}</span>
+            <span className="chat-text">{item.text}</span>
         </ChatItemWrap>
     );
 };
