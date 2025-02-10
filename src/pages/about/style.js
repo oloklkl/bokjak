@@ -39,11 +39,12 @@ export const AboutWrap = styled.div`
 
   h2 {
     font-size: xx-large;
+    font-weight: bold;
   }
 
   @media (max-width: 768px) {
     h2 {
-      font-size: large;
+      font-size: x-large;
     }
   }
 
@@ -62,5 +63,20 @@ export const AboutWrap = styled.div`
   }
   h5 {
     font-size: large;
+  }
+  h6 {
+    text-align: center;
+    font-size: medium;
+  }
+  @media (max-width: 768px) {
+    h6 {
+      text-align: center;
+      font-size: medium;
+    }
+  }
+  @media (max-width: 390px) {
+    h6 {
+      font-size: xx-small;
+    }
   }
 `;

@@ -1,14 +1,71 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { AboutWrap } from './style';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const HomePage = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
   useEffect(() => {
     document.body.style.overflowX = 'hidden';
+
+    gsap.fromTo(
+      '.floating-animation',
+      {
+        y: 300,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.5,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.floating-animation',
+          start: 'top 80%',
+          end: 'top 60%',
+          toggleActions: 'play none none none',
+          once: false,
+          onComplete: () => {
+            gsap.set('.floating-animation', { clearProps: 'all' });
+          },
+        },
+      }
+    );
 
     return () => {
       document.body.style.overflowX = '';
     };
   }, []);
+
+  const toggleQuestion = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const questions = [
+    {
+      question: '복작은 무엇인가요?',
+      answer:
+        '복작은 사용자들에게 다양한 콘텐츠를 제공하는 스트리밍 플랫폼입니다.    저렴한 월 요금으로 원하는 시간에 원하는 만큼 즐길 수 있습니다. 무궁무진한 콘텐츠가 준비되어 있으며 매주 새로운 시리즈와 영화가 제공됩니다.',
+    },
+    {
+      question: '복작에서 어떤 콘텐츠를 시청할 수 있나요?',
+      answer:
+        '복작에서는 는 장편 영화, 다큐멘터리, 시리즈, 애니메이션, 등 수많은 콘텐츠를 확보하고 있습니다. 마음에 드는 콘텐츠를 원하는 시간에 원하는 만큼 시청하실 수 있습니다.',
+    },
+    {
+      question: '복작을 어디에서 시청할 수 있나요?',
+      answer:
+        '언제 어디서나 시청할 수 있습니다. 로그인하면 PC에서 bokjak.com을 통해 바로 시청할 수 있으며, 인터넷이 연결되어 있고 넷플릭스 앱을 지원하는 디바이스(스마트 TV, 스마트폰, 태블릿, 스트리밍 미디어 플레이어, 게임 콘솔 등)에서도 언제든지 시청할 수 있습니다.',
+    },
+    {
+      question: '복작을 얼마에 이용할 수 있나요?',
+      answer:
+        '스마트폰, 태블릿, 스마트 TV, 노트북, 스트리밍 디바이스 등 다양한 디바이스에서 월정액 요금 하나로 복작을 시청하세요. 멤버십 요금은 월 9,900원부터 15,600원까지 다양합니다. 추가 비용이나 약정이 없습니다',
+    },
+  ];
 
   return (
     <AboutWrap>
@@ -16,7 +73,7 @@ const HomePage = () => {
       <section>
         <div
           style={{
-            position: 'relative', // 자식 요소가 배치될 기준
+            position: 'relative',
             backgroundImage:
               "url('https://raw.githubusercontent.com/lse-7660/bokjak-image/ea1decc22540a6f97e470d430f20a256bd37a994/images/about/headerimgg.jpg')",
             backgroundSize: 'cover',
@@ -26,7 +83,6 @@ const HomePage = () => {
             overflow: 'hidden',
           }}
         >
-          {/* 투명한 검정 배경 레이어 */}
           <div
             style={{
               position: 'absolute',
@@ -34,20 +90,18 @@ const HomePage = () => {
               left: 0,
               width: '100%',
               height: '100%',
-              backgroundColor: 'rgba(0, 0, 0, 0.25)', // 투명도 25% 검정
+              backgroundColor: 'rgba(0, 0, 0, 0.25)',
               zIndex: 1,
             }}
           ></div>
-
-          {/* 텍스트 */}
           <h1
             style={{
-              position: 'relative', // zIndex로 투명 배경 위에 텍스트 배치
-              textAlign: 'left',
-              paddingLeft: '10%',
-              paddingTop: '300px',
+              position: 'absolute',
+              top: '300px',
+              left: '10%',
               fontWeight: 'bold',
-              zIndex: 2, // 텍스트가 투명 배경 위에 보이도록 설정
+              zIndex: 2,
+              color: 'white',
             }}
           >
             이 모든 이야기가 여기에 <br /> 지금 스트리밍 중
@@ -57,39 +111,37 @@ const HomePage = () => {
 
       {/* Content Sections */}
       <section className="flex-grow text-center">
-        <h2
-          className="text-4xl"
-          style={{
-            paddingTop: '100px',
-            textAlign: 'center',
-            fontWeight: 'bold',
-            fontSize: 'lg',
-          }}
-        >
-          BOKJAK의 영화, 애니메이션
-        </h2>
-        <h3
-          className="text-lg mt-2"
-          style={{
-            textAlign: 'center',
-            paddingTop: '10px',
-          }}
-        >
-          다른 어디에서도 볼 수 없는 복작을 만나보세요. <br />
-          영화, 드라마, 애니메이션
-        </h3>
+        <div className="max-w-screen-lg mx-auto">
+          <h2
+            style={{
+              textAlign: 'center',
+              paddingTop: '200px',
+            }}
+          >
+            BOKJAK의 영화, 애니메이션
+          </h2>
+          <h3
+            style={{
+              textAlign: 'center',
+              paddingTop: '10px',
+            }}
+          >
+            다른 어디에서도 볼 수 없는 복작을 만나보세요. <br />
+            영화, 드라마, 애니메이션
+          </h3>
+        </div>
       </section>
 
-      <section
+      <h6
         style={{
           textAlign: 'center',
           paddingTop: '50px',
         }}
       >
         1,200편 이상의 영화 | 20,000편 이상의 에피소드 | 신규 및 단독 콘텐츠
-      </section>
+      </h6>
 
-      {/* Devices Section */}
+      {/* Floating Animation Section */}
       <section className="py-12">
         <h2
           style={{
@@ -98,42 +150,7 @@ const HomePage = () => {
             paddingTop: '200px',
           }}
         >
-          원하는 기기로 다 같이 감상 <br /> 스마트폰, 태블릿, PC, TV까지!
-        </h2>
-
-        <div
-          style={{
-            textAlign: 'center',
-            paddingTop: '80px',
-            backgroundImage:
-              'url("https://raw.githubusercontent.com/lse-7660/bokjak-image/1286b3e9b4bc81032aa62c7ce3fb68c7d9c0a610/images/about/MultiDevice-bg.png")',
-            backgroundSize: 'cover', // 배경 이미지를 전체 영역에 맞게 조정
-            backgroundPosition: 'center', // 배경 이미지를 가운데로 정렬
-            backgroundRepeat: 'no-repeat', // 배경 반복 방지
-            height: '500px', // 전체 화면 높이
-            width: '100vw', // 전체 화면 너비
-          }}
-        >
-          <img
-            src="https://raw.githubusercontent.com/lse-7660/bokjak-image/ea1decc22540a6f97e470d430f20a256bd37a994/images/about/MultiDevice-1.png"
-            alt="기기사진"
-            style={{
-              maxWidth: '500px', // 이미지 크기 조정
-              height: 'auto', // 비율 유지
-            }}
-          />
-        </div>
-      </section>
-
-      <section>
-        <h2
-          style={{
-            textAlign: 'center',
-            fontWeight: 'bold',
-            paddingTop: '300px',
-          }}
-        >
-          좋아하는 콘텐츠를 친구들과 함께 <br /> 감상하며 줄거움을 나눠보세요!
+          좋아하는 콘텐츠를 친구들과 함께 <br /> 감상하며 즐거움을 나눠보세요!
         </h2>
         <div
           style={{
@@ -144,9 +161,10 @@ const HomePage = () => {
           <img
             src="https://raw.githubusercontent.com/lse-7660/bokjak-image/ea1decc22540a6f97e470d430f20a256bd37a994/images/about/watchparty-2.png"
             alt="복작화면"
+            className="floating-animation"
             style={{
-              maxWidth: '500px', // 이미지 크기 조정
-              height: 'auto', // 비율 유지
+              maxWidth: '500px',
+              height: 'auto',
             }}
           />
         </div>
@@ -214,48 +232,100 @@ const HomePage = () => {
           </table>
         </p>
         <h4
-          className="co
-          "
           style={{
             paddingTop: '10px',
-            color: 'gr',
+            color: 'gray',
           }}
         >
-          맴버십 구독이 필요합니다.
-          <br /> 결제 주기 종료시 취소 처리됩니다.
-          <br /> 월간 멤버십 12개월 구독료 대비 할인된가격 입니다. 추가 약관 적용
-          <br />
-          영상 화질/오디오 및 저장 기능은 인터넷 서비스, 기기 성능, 멤버십 유형 및 각 콘텐츠에 따라 달라질 수 있습니다.
-          <br /> 각 콘텐츠별 다양한 기능 표시가 있을 수 있으나, 해당 멤버십 유형에서 사용 가능한 최대 사양까지만 이용할
-          수 있습니다. 더 알아보기.
+          멤버십 구독이 필요합니다.
+          <br /> 결제 주기 종료 시 취소 처리됩니다.
+          <br /> 월간 멤버십 12개월 구독료 대비 할인된 가격입니다. 추가 약관 적용.
         </h4>
       </section>
 
+      {/* FAQ Section */}
       <section className="py-12 bg-black">
         <h2
           style={{
             textAlign: 'center',
-            paddingTop: '100px',
+            paddingTop: '200px',
             fontWeight: 'bold',
             paddingBottom: '20px',
           }}
         >
-          자주묻는질문
+          자주 묻는질문
         </h2>
-        <h5>
-          <div>
-            {[
-              '복작은 무엇인가요?',
-              '복작에서 어떤 콘텐츠를 시청할 수 있나요?',
-              '복작을 어디에서 시청할수있나요?',
-              '복작을 얼마에 이용할 수 있나요?',
-            ].map((question, index) => (
-              <div key={index} className="py-4 border-b border-gray-700">
-                <h3 className="text-lg text-white">{question}</h3>
+        <div
+          style={{
+            paddingBottom: '100px',
+            width: '80%',
+            maxWidth: 'auto',
+            margin: '0 auto',
+          }}
+        >
+          {questions.map((item, index) => (
+            <div
+              key={index}
+              style={{
+                marginBottom: '20px',
+                backgroundColor: '#1D1D1D',
+                borderRadius: '5px',
+                position: 'relative',
+                overflow: 'hidden', // Ensure smooth clipping
+                transition: 'background-color 0.3s ease', // Add transition for smooth hover effect
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#2d2d2d')} // Hover color
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#1d1d1d')} // Reset color on leave
+            >
+              <div
+                style={{
+                  padding: '20px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  height: '70px',
+                  cursor: 'pointer',
+                }}
+                onClick={() => toggleQuestion(index)}
+              >
+                <span
+                  style={{
+                    fontSize: '16px',
+                    color: 'white',
+                    flex: 1,
+                  }}
+                >
+                  {item.question}
+                </span>
+                <span
+                  style={{
+                    fontSize: '30px',
+                    fontWeight: 'normal',
+                    color: 'white',
+                    transform: openIndex === index ? 'rotate(45deg)' : 'none',
+                    transition: 'transform 0.3s ease',
+                  }}
+                >
+                  +
+                </span>
               </div>
-            ))}
-          </div>
-        </h5>
+
+              {openIndex === index && (
+                <div
+                  style={{
+                    padding: '20px',
+                    fontSize: '14px',
+                    backgroundColor: '#1d1d1d',
+                    borderRadius: '0 0 5px 5px',
+                    color: 'white',
+                    animation: 'fadeIn 0.5s ease', // Smooth transition
+                  }}
+                >
+                  {item.answer}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </section>
     </AboutWrap>
   );
