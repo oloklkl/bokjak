@@ -6,19 +6,26 @@ import { BellSimple } from '@phosphor-icons/react'
 
 const SoonItemWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  overflow: visible;
+  overflow: hidden;
+  border-radius: 7px;
+  width: 1294px; // 적절한 너비 설정
+  height: 300px;
+  ${media.mobile} {
+    width: 300px;
+    height: 400px;
+  }
 `
 
 const SoonContainer = styled.div`
   width: auto;
-  height: 300px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+
   /* ${media.tablet} {
     width: 550px;
     height: 456px;
@@ -54,6 +61,7 @@ const TextWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  text-align: left;
   gap: 16px;
   margin-left: 30px;
   margin-top: 50px;
@@ -68,8 +76,10 @@ const TextWrapper = styled.div`
       background: linear-gradient(to top, black, rgba(0, 0, 0, 1));
     }
   }
+
   p {
     font-size: ${font('body', 'sm')};
+    text-align: left;
   }
 `
 
@@ -101,14 +111,19 @@ const SoonContItem = () => {
       <SoonContainer>
         <ImageWrapper>
           <div className="overlay"></div>
-          <img
-            src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
-            alt=""
-          />
+          <div className="imbBox">
+            <img
+              src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
+              alt=""
+            />
+          </div>
         </ImageWrapper>
         <TextWrapper>
           <div className="soonLogo">
-            <img src="" alt="" />
+            <img
+              src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introLogoSlide1.png?raw=true"
+              alt=""
+            />
           </div>
           <h2>title</h2>
           <LabelWrapper>

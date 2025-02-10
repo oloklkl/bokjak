@@ -58,21 +58,15 @@ const SoonList = styled.div`
   display: flex;
   flex-direction: row;
   overflow: visible;
+  position: relative;
   .swiper {
-    display: flex;
+    width: 100%;
     overflow: visible;
   }
   .swiper-slide {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    /* gap: 100px; */
-    ${media.tablet} {
-      gap: 16px;
-    }
-    ${media.mobile} {
-      gap: 10px;
-    }
   }
 `
 
@@ -84,6 +78,7 @@ const NavigationButton = styled.div`
   justify-content: space-between;
   transform: translateY(-50%);
   z-index: 3;
+  padding: 0 10px; // 버튼이 너무 붙어있지 않도록 패딩 추가
 `
 
 const SoonContList = () => {
@@ -91,15 +86,11 @@ const SoonContList = () => {
   const swiperRef = useRef()
 
   const goNext = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext()
-    }
+    swiperRef.current?.swiper.slideNext()
   }
 
   const goPrev = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev()
-    }
+    swiperRef.current?.swiper.slidePrev()
   }
   return (
     <SoonListWrap>
@@ -116,8 +107,19 @@ const SoonContList = () => {
           modules={[Navigation]}
           spaceBetween={24}
           pagination={{ clickable: true }}
-          slidesPerView={1.1}
-          navigation={false}>
+          slidesPerView={'auto'} // 변경: slidesPerView를 'auto'로 설정
+          navigation={false}
+          breakpoints={{
+            320: {
+              slidesPerView: 1.1,
+            },
+            768: {
+              slidesPerView: 2.1,
+            },
+            1200: {
+              slidesPerView: 3.1,
+            },
+          }}>
           <SwiperSlide className="swiper-slide">
             <SoonContItem />
           </SwiperSlide>
