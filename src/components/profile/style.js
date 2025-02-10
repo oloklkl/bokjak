@@ -2,14 +2,11 @@ import styled from 'styled-components';
 import { color, font } from '../../styled/theme';
 import { media } from '../../styled/media';
 
-export const Container = styled.div`
-    width: 100%;
-`;
-
 export const Section = styled.section`
     position: relative;
     left: 50%;
     right: 50%;
+    margin-top: 20px;
     margin-left: -50vw;
     margin-right: -50vw;
     display: flex;
