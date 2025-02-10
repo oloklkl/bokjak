@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from '../../styled/theme';
+import { color, font } from '../../styled/theme';
 import { media } from '../../styled/media';
 
 export const BottomNavList = styled.ul`
@@ -28,6 +28,7 @@ export const BottomNavList = styled.ul`
         color: ${color('gray', '40')};
         justify-content: center;
         text-align: center;
+        font-size: ${font('detail', 'sm')};
 
         &:hover {
             color: ${color('gray', '0')};
