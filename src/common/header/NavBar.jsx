@@ -5,6 +5,28 @@ import { BellSimple, CaretUp, MagnifyingGlass, User } from '@phosphor-icons/reac
 import { NavCenter, NavRight, NavWrap } from './style';
 
 const NavBar = () => {
+    // const categories = [
+    //     '코미디',
+    //     '공포',
+    //     '판타지',
+    //     '무협',
+    //     'SF',
+    //     '예능',
+    //     '다큐멘터리',
+    //     '가족',
+    //     '키즈',
+    //     '액션',
+    //     '로맨스',
+    //     '스릴러',
+    //     '어드벤처',
+    //     '성인',
+    //     '미스터리',
+    //     '범죄',
+    //     '애니메이션',
+    //     '한국 TV 프로그램',
+    //     '외국 TV 프로그램',
+    // ];
+
     return (
         <NavWrap className='nav'>
             <NavCenter className='nav-center'>
@@ -22,63 +44,11 @@ const NavBar = () => {
                         />
                     </Link>
                     {/* <ul>
-                        <li>
-                            <Link to={'/'}>코미디</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>공포</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>판타지</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>무협</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>SF</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>예능</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>다큐멘터리</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>가족</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>키즈</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>액션</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>로맨스</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>스릴러</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>어드벤처</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>성인</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>미스터리</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>범죄</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>애니메이션</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>한국 TV 프로그램</Link>
-                        </li>
-                        <li>
-                            <Link to={'/'}>외국 TV 프로그램</Link>
-                        </li>
+                        {categories.map((category) => (
+                            <li key={category}>
+                                <Link to={'/'}>{category}</Link>
+                            </li>
+                        ))}
                     </ul> */}
                 </li>
 
