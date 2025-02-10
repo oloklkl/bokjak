@@ -100,7 +100,7 @@ export const PopularListContainer = styled.div`
     justify-content: space-between;
 
     ${media.mobile} {
-        flex-wrap: wrap;
+        flex-direction: column;
     }
 `;
 
