@@ -9,10 +9,18 @@ import BokjakUrlModal from './BokjakUrlModal';
 import CreateRoomModal from './CreateRoomModal';
 import { detailActions } from '../../store/modules/detailSlice';
 import RoomCreatedModal from './RoomCreatedModal';
+import { useEffect } from 'react';
+import { getMovie, getTv } from '../../store/modules/getThunk';
 
 const Detail = () => {
     const { isUrlModalOpen, isCreateOpen, isRoomCreated } = useSelector((state) => state.detailR);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getMovie());
+        dispatch(getTv());
+    }, []);
+
     return (
         <>
             <DetailWrap className="detail">

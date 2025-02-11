@@ -1,7 +1,7 @@
 import GlobalStyle from './styled/GlobalStyle';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './common/Layout';
-import { About, Login, Main, Membership, NotFiles, Notification, Search, SubPage, Video } from './pages';
+import { About, FilmoPage, Login, Main, Membership, NotFiles, Notification, Search, SubPage, Video } from './pages';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styled/theme';
 import SubLayout from './common/SubLayout';
@@ -20,6 +20,7 @@ const App = () => {
                             <Route path="/about" element={<About />} />
                             <Route path="/membership" element={<Membership />} />
                             <Route path="/subpage" element={<SubPage />} />
+                            <Route path="/filmo" element={<FilmoPage />} />
                         </Route>
                         <Route element={<SubLayout />}>
                             <Route path="/login" element={<Login />} />

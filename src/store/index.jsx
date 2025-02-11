@@ -8,7 +8,8 @@ import videoR from './modules/videoSlice';
 import movieR from './modules/movieSlice';
 import userR from './modules/userSlice';
 import chatR from './modules/chatSlice';
+import tvR from './modules/tvSlice';
 
 export const store = configureStore({
-    reducer: { authR, categoryR, detailR, filmoR, mainR, videoR, movieR, userR, chatR },
+    reducer: { authR, categoryR, detailR, filmoR, mainR, videoR, movieR, userR, chatR, tvR },
 });
