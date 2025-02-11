@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getMovie } from './getThunk';
+import { getTvShows } from './getThunk';
 
 const initialState = {
     seriesData: [],
@@ -13,16 +13,16 @@ export const tvSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getMovie.pending, (state, action) => {
+            .addCase(getTvShows.pending, (state, action) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(getMovie.fulfilled, (state, action) => {
+            .addCase(getTvShows.fulfilled, (state, action) => {
                 state.loading = false;
                 state.seriesData = action.payload;
                 state.error = null;
             })
-            .addCase(getMovie.rejected, (state, action) => {
+            .addCase(getTvShows.rejected, (state, action) => {
                 state.loading = false;
             });
     },

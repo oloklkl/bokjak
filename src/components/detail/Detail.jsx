@@ -1,3 +1,5 @@
+// Detail.jsx
+
 import DetailPreview from './DetailPreview';
 import EpisodeList from './EpisodeList';
 import MoreLikeThisList from './MoreLikeThisList';
@@ -9,18 +11,13 @@ import BokjakUrlModal from './BokjakUrlModal';
 import CreateRoomModal from './CreateRoomModal';
 import { detailActions } from '../../store/modules/detailSlice';
 import RoomCreatedModal from './RoomCreatedModal';
-import { useEffect } from 'react';
-import { getMovie, getTv } from '../../store/modules/getThunk';
 
 const Detail = () => {
     const { isUrlModalOpen, isCreateOpen, isRoomCreated } = useSelector((state) => state.detailR);
     const dispatch = useDispatch();
+    const { currentContent } = useSelector((state) => state.detailR);
 
-    useEffect(() => {
-        dispatch(getMovie());
-        dispatch(getTv());
-    }, []);
-
+    if (!currentContent) return <div>Loading...</div>;
     return (
         <>
             <DetailWrap className="detail">
@@ -31,7 +28,7 @@ const Detail = () => {
                     <MoreLikeThisList />
                 </DetailContentWrap>
             </DetailWrap>
-            <Dimmed zindex={10} className="dimmed-active" />
+            <Dimmed onClick={() => dispatch(detailActions.closeDetailModal())} zindex={10} className="dimmed-active" />
             <Dimmed
                 onClick={() => dispatch(detailActions.closeAllModal())}
                 zindex={150}

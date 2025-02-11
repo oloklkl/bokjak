@@ -1,9 +1,16 @@
+// ThumbnailContList copy.jsx
+
 import styled from 'styled-components';
 import { font } from '../../../styled/theme';
 import { IconButton } from '../../../ui';
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import ThumbnailCard from '../../../common/main/card/thumbnail/ThumbnailCard';
 import { media } from '../../../styled/media';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getContentDetail, getMovies, getTvShows } from '../../../store/modules/getThunk';
+import ThumbnailCard2 from '../../../common/main/card/thumbnail/ThumbnailCard copy';
+import { detailActions } from '../../../store/modules/detailSlice';
 
 const ThumbnailText = styled.div`
     display: flex;
@@ -55,7 +62,19 @@ const PageNation = styled.div`
     gap: 1540px;
 `;
 
-const ThumbnailContList = () => {
+const ThumbnailContList2 = () => {
+    const { movies } = useSelector((state) => state.contentR);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getMovies());
+    }, [dispatch]);
+
+    const showDetailModal = (type, id) => {
+        dispatch(getContentDetail({ type, id }));
+        dispatch(detailActions.openDetailModal({}));
+    };
+
     return (
         <>
             <ThumbnailText>
@@ -65,14 +84,16 @@ const ThumbnailContList = () => {
                 </TitleCont>
             </ThumbnailText>
             <ThumbnailList>
-                <ThumbnailCard />
-                <ThumbnailCard />
-                <ThumbnailCard />
-                <ThumbnailCard />
-                <ThumbnailCard />
-                <ThumbnailCard />
-                <ThumbnailCard />
-                <ThumbnailCard />
+                {movies.map((movie) => (
+                    <ThumbnailCard2
+                        key={movie.id}
+                        movie={movie}
+                        onClick={() => {
+                            showDetailModal('movie', movie.id);
+                        }}
+                    />
+                ))}
+
                 <PageNation>
                     <IconButton className="b30" icon={<CaretLeft size={24} />} text="caretLeft" />
                     <IconButton className="b30" icon={<CaretRight size={24} />} text="caretRight" />
@@ -82,4 +103,4 @@ const ThumbnailContList = () => {
     );
 };
 
-export default ThumbnailContList;
+export default ThumbnailContList2;

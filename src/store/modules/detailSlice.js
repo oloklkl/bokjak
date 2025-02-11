@@ -1,8 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
+// detailSlice.js
+
+import { createSlice } from '@reduxjs/toolkit';
+import { getContentDetail } from './getThunk';
 // 상세페이지
 
 const initialState = {
-    isDetailOpen: true,
+    loading: false,
+    error: null,
+    isDetailOpen: false,
+    currentContent: null,
     isUrlModalOpen: false,
     isCreateOpen: false,
     isRoomCreated: false,
@@ -14,6 +20,10 @@ export const detailSlice = createSlice({
     reducers: {
         closeDetailModal: (state, action) => {
             state.isDetailOpen = false;
+            state.currentContent = null;
+        },
+        openDetailModal: (state, action) => {
+            state.isDetailOpen = true;
         },
         openUrlModal: (state, action) => {
             state.isUrlModalOpen = true;
@@ -38,8 +48,22 @@ export const detailSlice = createSlice({
             state.isRoomCreated = true;
         },
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getContentDetail.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(getContentDetail.fulfilled, (state, action) => {
+                state.loading = false;
+                state.currentContent = action.payload;
+            })
+            .addCase(getContentDetail.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            });
+    },
 });
 
-
-export const detailActions = detailSlice.actions
-export default detailSlice.reducer
+export const detailActions = detailSlice.actions;
+export default detailSlice.reducer;

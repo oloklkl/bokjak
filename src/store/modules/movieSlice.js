@@ -1,5 +1,7 @@
+// movieSlice.js
+
 import { createSlice } from '@reduxjs/toolkit';
-import { getMovie } from './getThunk';
+import { getMovies } from './getThunk';
 
 const initialState = {
     movieData: [],
@@ -13,16 +15,16 @@ export const movieSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getMovie.pending, (state, action) => {
+            .addCase(getMovies.pending, (state, action) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(getMovie.fulfilled, (state, action) => {
+            .addCase(getMovies.fulfilled, (state, action) => {
                 state.loading = false;
                 state.movieData = action.payload;
                 state.error = null;
             })
-            .addCase(getMovie.rejected, (state, action) => {
+            .addCase(getMovies.rejected, (state, action) => {
                 state.loading = false;
             });
     },
