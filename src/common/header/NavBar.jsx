@@ -1,31 +1,23 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { IconButton } from '../../ui';
-import { BellSimple, CaretUp, MagnifyingGlass, User } from '@phosphor-icons/react';
-import { NavCenter, NavRight, NavWrap } from './style';
+import { BellSimple, CaretDown, CaretUp, MagnifyingGlass, User, X } from '@phosphor-icons/react';
+import { CategoryDropdown, CloseButton, NavCenter, NavRight, NavWrap } from './style';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCategory, toggleCategory } from '../../store/modules/categorySlice';
 
 const NavBar = () => {
-    // const categories = [
-    //     '코미디',
-    //     '공포',
-    //     '판타지',
-    //     '무협',
-    //     'SF',
-    //     '예능',
-    //     '다큐멘터리',
-    //     '가족',
-    //     '키즈',
-    //     '액션',
-    //     '로맨스',
-    //     '스릴러',
-    //     '어드벤처',
-    //     '성인',
-    //     '미스터리',
-    //     '범죄',
-    //     '애니메이션',
-    //     '한국 TV 프로그램',
-    //     '외국 TV 프로그램',
-    // ];
+    const dispatch = useDispatch();
+    const { categories, isOpen } = useSelector((state) => state.categoryR);
+
+    const handleToggle = (e) => {
+        e.preventDefault();
+        dispatch(toggleCategory());
+    };
+
+    const handleCategorySelect = (category) => {
+        dispatch(selectCategory(category));
+        dispatch(toggleCategory());
+    };
 
     return (
         <NavWrap className='nav'>
@@ -33,30 +25,41 @@ const NavBar = () => {
                 <li>
                     <Link to={'/about'}>About</Link>
                 </li>
-                <li>
-                    <Link to={'/'} className='category'>
+                <li className='category'>
+                    <Link to='#' className='category-link' onClick={handleToggle}>
                         카테고리
                         <IconButton
                             className='gray40 none'
-                            icon={<CaretUp size={24} />}
-                            text='CaretUp'
-                            aria-label='카테고리 열기'
+                            icon={isOpen ? <CaretUp size={24} /> : <CaretDown size={24} />}
+                            text={isOpen ? 'Close' : 'Open'}
+                            aria-label='카테고리 열기/닫기'
                         />
                     </Link>
-                    {/* <ul>
-                        {categories.map((category) => (
-                            <li key={category}>
-                                <Link to={'/'}>{category}</Link>
-                            </li>
-                        ))}
-                    </ul> */}
+                    {isOpen && (
+                        <CategoryDropdown>
+                            {categories.map((category) => (
+                                <li key={category}>
+                                    <Link to={`/category/${category}`} onClick={() => handleCategorySelect(category)}>
+                                        <span>{category}</span>
+                                    </Link>
+                                </li>
+                            ))}
+                            <CloseButton
+                                className=''
+                                icon={<X size={24} />}
+                                text='Close'
+                                aria-label='카테고리 닫기'
+                                onClick={handleToggle}
+                            />
+                        </CategoryDropdown>
+                    )}
                 </li>
 
                 <li>
-                    <Link to={'/subpage'}>영화</Link>
+                    <Link to={'/subpage/movie'}>영화</Link>
                 </li>
                 <li>
-                    <Link to={'/subpage'}>드라마</Link>
+                    <Link to={'/subpage/drama'}>드라마</Link>
                 </li>
             </NavCenter>
             <NavRight className='nav-right'>
