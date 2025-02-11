@@ -15,23 +15,16 @@ const SoonListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-`
-
-const SoonHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 40px;
   ${media.mobile} {
     gap: 20px;
   }
 `
-const TitleCont = styled.div`
+
+const SoonHeader = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: center;
   h2 {
     font-size: ${font('title', 'xxlg')};
     ${media.tablet} {
@@ -89,10 +82,8 @@ const SoonContList = () => {
   return (
     <SoonListContainer>
       <SoonHeader>
-        <TitleCont>
-          <h2>title</h2>
-          <h3>more</h3>
-        </TitleCont>
+        <h2>title</h2>
+        <h3>more</h3>
       </SoonHeader>
       <SoonList>
         <Swiper
@@ -101,7 +92,7 @@ const SoonContList = () => {
           modules={[Navigation]}
           spaceBetween={24}
           pagination={{ clickable: true }}
-          slidesPerView={'auto'} // 변경: slidesPerView를 'auto'로 설정
+          slidesPerView={'auto'}
           navigation={false}>
           <SwiperSlide className="swiper-slide">
             <SoonContItem />

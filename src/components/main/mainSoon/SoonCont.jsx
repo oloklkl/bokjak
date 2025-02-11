@@ -10,7 +10,6 @@ const SoonSection = styled.div`
   justify-content: center;
   align-items: flex-start;
   background: ${color('gray', '80')};
-  gap: 40px;
   padding: 100px 0;
   ${media.tablet} {
     padding: 80px 0;
