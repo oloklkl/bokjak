@@ -84,6 +84,9 @@ export const NavCenter = styled.ul`
 
             &:hover {
                 color: ${color('gray', '0')};
+                svg {
+                    fill: ${color('gray', '0')};
+                }
             }
 
             ${media.tablet} {
@@ -100,9 +103,6 @@ export const NavCenter = styled.ul`
             justify-content: center;
             gap: 5px;
 
-            svg:hover {
-                fill: ${color('gray', '0')};
-            }
             ${media.tablet} {
                 gap: 2px;
             }
