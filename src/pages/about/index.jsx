@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { AboutWrap } from './style';
+import { BarButton } from '../../ui';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,16 +23,6 @@ const HomePage = () => {
         opacity: 1,
         duration: 1.5,
         ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.floating-animation',
-          start: 'top 80%',
-          end: 'top 60%',
-          toggleActions: 'play none none none',
-          once: false,
-          onComplete: () => {
-            gsap.set('.floating-animation', { clearProps: 'all' });
-          },
-        },
       }
     );
 
@@ -48,12 +39,12 @@ const HomePage = () => {
     {
       question: '복작은 무엇인가요?',
       answer:
-        '복작은 사용자들에게 다양한 콘텐츠를 제공하는 스트리밍 플랫폼입니다.    저렴한 월 요금으로 원하는 시간에 원하는 만큼 즐길 수 있습니다. 무궁무진한 콘텐츠가 준비되어 있으며 매주 새로운 시리즈와 영화가 제공됩니다.',
+        '복작은 사용자들에게 다양한 콘텐츠를 제공하는 스트리밍 플랫폼입니다. 저렴한 월 요금으로 원하는 시간에 원하는 만큼 즐길 수 있습니다. 무궁무진한 콘텐츠가 준비되어 있으며 매주 새로운 시리즈와 영화가 제공됩니다.',
     },
     {
       question: '복작에서 어떤 콘텐츠를 시청할 수 있나요?',
       answer:
-        '복작에서는 는 장편 영화, 다큐멘터리, 시리즈, 애니메이션, 등 수많은 콘텐츠를 확보하고 있습니다. 마음에 드는 콘텐츠를 원하는 시간에 원하는 만큼 시청하실 수 있습니다.',
+        '복작에서는 장편 영화, 다큐멘터리, 시리즈, 애니메이션, 등 수많은 콘텐츠를 확보하고 있습니다. 마음에 드는 콘텐츠를 원하는 시간에 원하는 만큼 시청하실 수 있습니다.',
     },
     {
       question: '복작을 어디에서 시청할 수 있나요?',
@@ -63,7 +54,7 @@ const HomePage = () => {
     {
       question: '복작을 얼마에 이용할 수 있나요?',
       answer:
-        '스마트폰, 태블릿, 스마트 TV, 노트북, 스트리밍 디바이스 등 다양한 디바이스에서 월정액 요금 하나로 복작을 시청하세요. 멤버십 요금은 월 9,900원부터 15,600원까지 다양합니다. 추가 비용이나 약정이 없습니다',
+        '스마트폰, 태블릿, 스마트 TV, 노트북, 스트리밍 디바이스 등 다양한 디바이스에서 월정액 요금 하나로 복작을 시청하세요. 멤버십 요금은 월 9,900원부터 15,600원까지 다양합니다. 추가 비용이나 약정이 없습니다.',
     },
   ];
 
@@ -132,14 +123,15 @@ const HomePage = () => {
         </div>
       </section>
 
-      <h6
-        style={{
-          textAlign: 'center',
-          paddingTop: '50px',
-        }}
-      >
-        1,200편 이상의 영화 | 20,000편 이상의 에피소드 | 신규 및 단독 콘텐츠
-      </h6>
+      <section>
+        <h6
+          style={{
+            paddingTop: '50px',
+          }}
+        >
+          1,200편 이상의 영화 | 20,000편 이상의 에피소드 | 신규 및 단독 콘텐츠
+        </h6>
+      </section>
 
       {/* Floating Animation Section */}
       <section className="py-12">
@@ -148,6 +140,8 @@ const HomePage = () => {
             textAlign: 'center',
             fontWeight: 'bold',
             paddingTop: '200px',
+            zIndex: 2, // 텍스트가 맨 위에 오도록
+            position: 'relative',
           }}
         >
           좋아하는 콘텐츠를 친구들과 함께 <br /> 감상하며 즐거움을 나눠보세요!
@@ -156,6 +150,8 @@ const HomePage = () => {
           style={{
             textAlign: 'center',
             paddingTop: '80px',
+            position: 'relative', // 애니메이션 이미지와 배경 이미지가 겹칠 수 있도록 설정
+            zIndex: 1, // 애니메이션 이미지는 배경 이미지 위에 오게 설정
           }}
         >
           <img
@@ -190,16 +186,27 @@ const HomePage = () => {
         >
           멤버십은 언제나 변경, 취소할 수 있습니다.
         </h3>
-        <p>
-          <table>
+
+        <div
+          style={{
+            textAlign: 'center',
+            display: 'inline-block',
+            padding: '20px',
+
+            borderRadius: '5px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            width: '80%',
+            maxWidth: '800px',
+          }}
+        >
+          <table style={{ width: '100%', backgroundColor: '#1d1d1d', color: 'white' }}>
             <thead>
               <tr>
-                <th>베이직</th>
-                <th>프리미엄</th>
+                <th style={{ padding: '10px', textAlign: 'center' }}>베이직</th>
+                <th style={{ padding: '10px', textAlign: 'center' }}>프리미엄</th>
               </tr>
             </thead>
             <tbody>
-              <tr></tr>
               <tr>
                 <td className="py-4 px-6 text-center">연간 99,000원</td>
                 <td className="py-4 px-6 text-center">연간 139,000원</td>
@@ -230,30 +237,33 @@ const HomePage = () => {
               </tr>
             </tbody>
           </table>
-        </p>
+        </div>
+
         <h4
           style={{
-            paddingTop: '10px',
-            color: 'gray',
+            paddingTop: '5px',
           }}
         >
           멤버십 구독이 필요합니다.
           <br /> 결제 주기 종료 시 취소 처리됩니다.
           <br /> 월간 멤버십 12개월 구독료 대비 할인된 가격입니다. 추가 약관 적용.
+          <br /> 영상 화질/오디오 및 저장 기능은 인터넷 서비스, 기기 성능, 멤버십 유형 및 각 콘텐츠에 따라 달라질 수
+          있습니다.
         </h4>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-12 bg-black">
+      <section>
         <h2
           style={{
             textAlign: 'center',
             paddingTop: '200px',
             fontWeight: 'bold',
             paddingBottom: '20px',
+            color: 'white',
           }}
         >
-          자주 묻는질문
+          자주 묻는 질문
         </h2>
         <div
           style={{
@@ -271,11 +281,11 @@ const HomePage = () => {
                 backgroundColor: '#1D1D1D',
                 borderRadius: '5px',
                 position: 'relative',
-                overflow: 'hidden', // Ensure smooth clipping
-                transition: 'background-color 0.3s ease', // Add transition for smooth hover effect
+                overflow: 'hidden',
+                transition: 'background-color 0.3s ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#2d2d2d')} // Hover color
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#1d1d1d')} // Reset color on leave
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#2d2d2d')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#1d1d1d')}
             >
               <div
                 style={{
@@ -309,20 +319,27 @@ const HomePage = () => {
                 </span>
               </div>
 
-              {openIndex === index && (
+              {/* 열림/닫힘 애니메이션 */}
+              <div
+                style={{
+                  maxHeight: openIndex === index ? '300px' : '0px',
+                  overflow: 'hidden',
+                  transition:
+                    openIndex === index ? 'max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'max-height 0.3s ease', // 닫힐 때 더 빠르게
+                  backgroundColor: '#1d1d1d',
+                  borderRadius: openIndex === index ? '0 0 5px 5px' : '5px',
+                }}
+              >
                 <div
                   style={{
                     padding: '20px',
                     fontSize: '14px',
-                    backgroundColor: '#1d1d1d',
-                    borderRadius: '0 0 5px 5px',
                     color: 'white',
-                    animation: 'fadeIn 0.5s ease', // Smooth transition
                   }}
                 >
                   {item.answer}
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>
