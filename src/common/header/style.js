@@ -52,6 +52,33 @@ export const NavWrap = styled.nav`
     align-items: center;
     justify-content: space-between;
     width: 100%;
+
+    li {
+        a {
+            color: ${color('gray', '40')};
+
+            &:hover {
+                color: ${color('gray', '0')};
+                svg {
+                    fill: ${color('gray', '0')};
+                }
+            }
+        }
+        a.active {
+            color: ${color('gray', '0')};
+            svg {
+                fill: ${color('gray', '0')};
+            }
+        }
+    }
+    li:nth-of-type(2) {
+        a.active {
+            color: ${color('gray', '0')};
+            svg {
+                fill: ${color('gray', '0')};
+            }
+        }
+    }
 `;
 
 export const NavCenter = styled.ul`
@@ -79,15 +106,7 @@ export const NavCenter = styled.ul`
         a {
             text-decoration: none;
             font-size: 16px;
-            color: ${color('gray', '40')};
             font-size: ${font('title', 'lg')};
-
-            &:hover {
-                color: ${color('gray', '0')};
-                svg {
-                    fill: ${color('gray', '0')};
-                }
-            }
 
             ${media.tablet} {
                 font-size: ${font('body', 'md')};
@@ -96,17 +115,23 @@ export const NavCenter = styled.ul`
                 font-size: ${font('body', 'sm')};
             }
         }
-        .category-link {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
+    }
+`;
 
-            ${media.tablet} {
-                gap: 2px;
-            }
-        }
+export const CategoryTitleWrap = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: ${color('gray', '40')};
+
+    svg {
+        fill: ${color('gray', '40')};
+    }
+
+    ${media.tablet} {
+        gap: 2px;
     }
 `;
 
