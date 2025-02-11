@@ -3,56 +3,62 @@ import { media } from '../../../styled/media'
 import { color, font } from '../../../styled/theme'
 import { BarButton, IconButton } from '../../../ui'
 import { BellSimple } from '@phosphor-icons/react'
+import AgeLabel from '../../../ui/AgeLabel'
 
-const SoonItemWrapper = styled.div`
+const SoonItemCont = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   overflow: hidden;
   border-radius: 7px;
-  width: 100%;
-  max-width: 1294px;
   height: auto;
+  max-width: 1294px;
+  max-height: 484px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  ${media.tablet} {
+    max-width: 100%;
+    height: auto;
+    max-height: 459px;
+  }
   ${media.mobile} {
     max-width: 100%;
     height: auto;
+    max-height: 404px;
   }
 `
 
-const SoonContainer = styled.div`
-  width: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+const ImageCont = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 
-  /* ${media.tablet} {
-    width: 550px;
-    height: 456px;
-  }
-  ${media.mobile} {
-    width: 310px;
-    height: 404px;
-  } */
-`
-
-const ImageWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   img {
     width: 100%;
     height: 100%;
     border-radius: 7px;
+    object-fit: cover;
     background: ${color('gray', '80')};
+    display: block;
+
     ${media.mobile} {
       border-radius: 5px;
     }
   }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  }
 `
 
-const TextWrapper = styled.div`
+const TextCont = styled.div`
   width: 432px;
   height: 396px;
   position: absolute;
@@ -60,44 +66,58 @@ const TextWrapper = styled.div`
   left: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  text-align: left;
-  gap: 16px;
-  margin-left: 30px;
-  margin-top: 50px;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 40px;
+  gap: 24px;
   .soonLogo {
-    width: 100%;
-    height: 100%;
+    width: 432px;
+    height: 133px;
     img {
-      width: 100%;
-      height: 133px;
-    }
-    .overlay {
-      background: linear-gradient(to top, black, rgba(0, 0, 0, 1));
+      width: auto;
+      height: 100%;
+      object-fit: contain;
     }
   }
 
-  p {
-    font-size: ${font('body', 'sm')};
+  h2,
+  p,
+  .soonLogo,
+  .LabelWrapper,
+  .ButtonGroup {
     text-align: left;
+    align-self: flex-start;
   }
+  .textarea {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    text-align: left;
+    gap: 10px;
+    p {
+      font-size: ${font('body', 'sm')};
+      font-weight: lighter;
+    }
+  }
+  /* 반응형 추가 */
 `
 
 const LabelWrapper = styled.div`
   display: flex;
-  justify-content: center;
-  align-content: center;
-  gap: 10px;
-  .labelAge {
-    width: 46px;
-    height: 20px;
+  align-items: center;
+
+  em {
+    font-style: normal;
+    color: ${color('gray', '30')};
+    font-size: ${font('body', 'sm')};
+    margin: 0 5px;
   }
+
   span {
     font-size: ${font('body', 'sm')};
+    color: ${color('gray', '30')};
   }
 `
-
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
@@ -108,47 +128,45 @@ const ButtonGroup = styled.div`
 
 const SoonContItem = () => {
   return (
-    <SoonItemWrapper>
-      <SoonContainer>
-        <ImageWrapper>
-          <div className="overlay"></div>
-          <div className="imbBox">
-            <img
-              src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
-              alt=""
-            />
-          </div>
-        </ImageWrapper>
-        <TextWrapper>
-          <div className="soonLogo">
-            <img
-              src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introLogoSlide1.png?raw=true"
-              alt=""
-            />
-          </div>
-          <h2>title</h2>
+    <SoonItemCont>
+      <ImageCont>
+        <img
+          src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
+          alt="위키드"
+        />
+      </ImageCont>
+      <TextCont>
+        <div className="soonLogo">
+          <img
+            src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introLogoSlide1.png?raw=true"
+            alt="위키드"
+          />
+        </div>
+        <div className="textarea">
+          <h2>3월 6일 공개</h2>
           <LabelWrapper>
-            <div className="labelAge">
-              <img src="" alt="" />
-            </div>
-            <span>genre</span>
+            <AgeLabel text="ALL" />
+            <em>·</em>
+            <span>2017</span>
+            <em>·</em>
+            <span>액션</span>
+            <em>·</em>
+            <span>SF</span>
+            <em>·</em>
+            <span>해외영화</span>
           </LabelWrapper>
           <p>
             시빌 워 당시 토니 스타크에게 발탁되어 대단한 활약을 펼친 스파이더맨
             피터 파커. 허세와 정의감으로 똘똘 뭉친 그는 세상을 위협하는 강력한
             적 벌처에 맞서려 한다.
           </p>
-          <ButtonGroup>
-            <BarButton text="미리보기" x width="366px" height="42px" />
-            <IconButton
-              className="none"
-              icon={<BellSimple size={24} />}
-              text="Play"
-            />
-          </ButtonGroup>
-        </TextWrapper>
-      </SoonContainer>
-    </SoonItemWrapper>
+        </div>
+        <ButtonGroup>
+          <BarButton text="미리보기" width="366px" height="42px" />
+          <IconButton icon={<BellSimple size={24} />} text="BellSimple" />
+        </ButtonGroup>
+      </TextCont>
+    </SoonItemCont>
   )
 }
 

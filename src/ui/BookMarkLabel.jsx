@@ -20,34 +20,15 @@ const BookMarkLabelWrap = styled.button`
     border-radius: 0 0 5px 5px;
     font-size: ${font('label', 'xsm')};
   }
-  // NEW 디테일(서브창)
-  &.detail {
-    width: 60px;
-    height: 50px;
-    padding: 30px 4px 6px 6px;
-  }
 
   // 더빙 (썸네일)
   &.dubbing {
     background-color: ${color('gray', '80')};
   }
-
-  // 더빙 디테일(서브창)
-  &.detailDub {
-    background-color: ${color('gray', '80')};
-    width: 60px;
-    height: 50px;
-    padding: 30px 4px 6px 6px;
-  }
 `
 
-const BookMarkLabel = ({ children, ...props }) => {
-  return (
-    <BookMarkLabelWrap {...props}>
-      {children}
-      {props.text}
-    </BookMarkLabelWrap>
-  )
+const BookMarkLabel = (props) => {
+  return <BookMarkLabelWrap {...props}>{props.text}</BookMarkLabelWrap>
 }
 
 export default BookMarkLabel

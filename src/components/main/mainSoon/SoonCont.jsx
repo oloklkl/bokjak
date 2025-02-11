@@ -1,13 +1,15 @@
 import styled from 'styled-components'
 import SoonContList from './SoonContList'
 import { media } from '../../../styled/media'
+import { color } from '../../../styled/theme'
 
-const SoonWrap = styled.div`
+const SoonSection = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  background: ${color('gray', '80')};
   gap: 40px;
   padding: 100px 0;
   ${media.tablet} {
@@ -20,9 +22,9 @@ const SoonWrap = styled.div`
 `
 const SoonCont = () => {
   return (
-    <SoonWrap>
+    <SoonSection>
       <SoonContList />
-    </SoonWrap>
+    </SoonSection>
   )
 }
 

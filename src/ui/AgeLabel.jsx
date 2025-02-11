@@ -7,7 +7,7 @@ const AgeLabelWrap = styled.button`
   align-items: center;
   justify-content: center;
   width: 46px;
-  height: 20px;
+  height: 22.5px;
   font-size: ${font('detail', 'sm')};
   background-color: ${color('gray', '70')};
   color: ${color('gray', '0')};
@@ -26,13 +26,8 @@ const AgeLabelWrap = styled.button`
   }
 `
 
-const AgeLabel = ({ children, ...props }) => {
-  return (
-    <AgeLabelWrap {...props}>
-      {children}
-      {props.text}
-    </AgeLabelWrap>
-  )
+const AgeLabel = (props) => {
+  return <AgeLabelWrap {...props}>{props.text}</AgeLabelWrap>
 }
 
 export default AgeLabel

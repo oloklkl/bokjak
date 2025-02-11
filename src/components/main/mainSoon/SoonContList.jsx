@@ -4,14 +4,13 @@ import { font } from '../../../styled/theme'
 import SoonContItem from './SoonContItem'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
-// import { useDispatch } from 'react-redux'
 import { useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 
-const SoonListWrap = styled.div`
+const SoonListContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -28,18 +27,11 @@ const SoonHeader = styled.div`
   }
 `
 const TitleCont = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  gap: 1400px;
-  ${media.tablet} {
-    gap: 620px;
-  }
-  ${media.mobile} {
-    gap: 320px;
-  }
-
   h2 {
     font-size: ${font('title', 'xxlg')};
     ${media.tablet} {
@@ -59,6 +51,7 @@ const SoonList = styled.div`
   flex-direction: row;
   overflow: visible;
   position: relative;
+
   .swiper {
     width: 100%;
     overflow: visible;
@@ -67,6 +60,8 @@ const SoonList = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    width: auto;
+    height: auto;
   }
 `
 
@@ -78,11 +73,9 @@ const NavigationButton = styled.div`
   justify-content: space-between;
   transform: translateY(-50%);
   z-index: 3;
-  padding: 0 10px; // 버튼이 너무 붙어있지 않도록 패딩 추가
 `
 
 const SoonContList = () => {
-  // const dispatch = useDispatch()
   const swiperRef = useRef()
 
   const goNext = () => {
@@ -92,8 +85,9 @@ const SoonContList = () => {
   const goPrev = () => {
     swiperRef.current?.swiper.slidePrev()
   }
+
   return (
-    <SoonListWrap>
+    <SoonListContainer>
       <SoonHeader>
         <TitleCont>
           <h2>title</h2>
@@ -108,18 +102,7 @@ const SoonContList = () => {
           spaceBetween={24}
           pagination={{ clickable: true }}
           slidesPerView={'auto'} // 변경: slidesPerView를 'auto'로 설정
-          navigation={false}
-          breakpoints={{
-            320: {
-              slidesPerView: 1.1,
-            },
-            768: {
-              slidesPerView: 2.1,
-            },
-            1200: {
-              slidesPerView: 3.1,
-            },
-          }}>
+          navigation={false}>
           <SwiperSlide className="swiper-slide">
             <SoonContItem />
           </SwiperSlide>
@@ -151,7 +134,7 @@ const SoonContList = () => {
           </NavigationButton>
         </Swiper>
       </SoonList>
-    </SoonListWrap>
+    </SoonListContainer>
   )
 }
 

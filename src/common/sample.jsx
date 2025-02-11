@@ -9,6 +9,8 @@ import {
   RecentSearchButton,
   SlidePrev,
 } from '../ui'
+import BookMarkLabel from '../ui/BookMarkLabel'
+import AgeLabel from '../ui/AgeLabel'
 
 const Layout = () => {
   return (
@@ -29,6 +31,9 @@ const Layout = () => {
           icon={<Smiley weight="fill" />}
           text="smiley"
         />
+        <BookMarkLabel text="NEW" />
+        <BookMarkLabel text="더빙" className="dubbing" />
+        <AgeLabel text="ALL" className="detail" />
         <SlidePrev />
         <Outlet />
       </main>
