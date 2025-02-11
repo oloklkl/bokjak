@@ -11,11 +11,12 @@ const SoonItemWrapper = styled.div`
   align-items: center;
   overflow: hidden;
   border-radius: 7px;
-  width: 1294px; // 적절한 너비 설정
-  height: 300px;
+  width: 100%;
+  max-width: 1294px;
+  height: auto;
   ${media.mobile} {
-    width: 300px;
-    height: 400px;
+    max-width: 100%;
+    height: auto;
   }
 `
 
