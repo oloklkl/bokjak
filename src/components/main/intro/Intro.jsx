@@ -1,11 +1,11 @@
-import { MultiIntro } from '../style'
+import { IntroSection } from '../style'
 import IntroList from './introList'
 
 const Intro = () => {
   return (
-    <MultiIntro>
+    <IntroSection>
       <IntroList />
-    </MultiIntro>
+    </IntroSection>
   )
 }
 

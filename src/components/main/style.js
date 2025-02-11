@@ -1,34 +1,36 @@
 import styled from 'styled-components'
 import { color, font } from '../../styled/theme'
 
-export const MultiIntro = styled.section`
+export const IntroSection = styled.section`
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 830px;
+  min-height: 830px;
 `
-export const Slide = styled.div`
+export const IntroSliderCont = styled.div`
   width: 100%;
   .swiper {
     border-radius: 12px;
   }
 `
-export const IntroBanner = styled.div`
+export const IntroBannerCont = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
 `
 
-export const BannerImg = styled.div`
+export const IntroImgCont = styled.div`
+  position: relative;
   width: 100%;
   height: 830px;
+  /* 반응형 조절 */
 
   .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 830px;
+    height: 100%;
     background: linear-gradient(
       to top,
       rgba(0, 0, 0, 0.8),
@@ -36,15 +38,15 @@ export const BannerImg = styled.div`
     );
     border-radius: 12px;
   }
-  .bigImg {
+  .introSlideImg {
     width: 100%;
-    height: 830px;
+    height: 100%;
     border-radius: 12px;
     object-fit: cover;
   }
 `
 
-export const BannerTit = styled.div`
+export const IntroTextCont = styled.div`
   position: absolute;
   bottom: 40px;
   left: 40px;
@@ -53,7 +55,7 @@ export const BannerTit = styled.div`
   gap: 16px;
   white-space: pre-line;
 
-  .bannerLogo {
+  .introSlideLogo {
     width: 300px;
     height: 157px;
     object-fit: contain;
@@ -70,3 +72,5 @@ export const BannerTit = styled.div`
     font-weight: bold;
   }
 `
+
+/////////////////////////////
