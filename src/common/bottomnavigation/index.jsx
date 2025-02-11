@@ -1,34 +1,77 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { IconButton } from '../../ui';
-import { BellSimple, House, MagnifyingGlass, User } from '@phosphor-icons/react';
+import { BellSimple, BellSimpleRinging, House, MagnifyingGlass, User } from '@phosphor-icons/react';
 import { BottomNavList } from './style';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveLink } from '../../store/modules/navSlice';
 
 const BottomNavigation = () => {
+    const dispatch = useDispatch();
+    const activeLink = useSelector((state) => state.navR.activeLink);
+
+    const handleNavClick = (link) => {
+        dispatch(setActiveLink(link));
+    };
+
     return (
         <BottomNavList>
             <li>
-                <Link to={'/'}>
-                    <IconButton className='gray40 none' icon={<House size={24} />} text='BellSimple' />
-                </Link>
-                홈
+                <NavLink
+                    to={'/'}
+                    className={({ isActive }) => (isActive ? 'active' : '')}
+                    onClick={() => handleNavClick('home')}
+                >
+                    <IconButton
+                        className='gray40 none'
+                        icon={activeLink === 'home' ? <House size={24} weight='fill' /> : <House size={24} />}
+                        text='홈'
+                    />
+                    홈
+                </NavLink>
             </li>
             <li>
-                <Link to={'/notification'}>
-                    <IconButton className='gray40 none' icon={<BellSimple size={24} />} text='BellSimple' />
-                </Link>
-                알람
+                <NavLink
+                    to={'/notification'}
+                    className={({ isActive }) => (isActive ? 'active' : '')}
+                    onClick={() => handleNavClick('notification')}
+                >
+                    <IconButton
+                        className='gray40 none'
+                        icon={
+                            activeLink === 'notification' ? (
+                                <BellSimpleRinging size={24} weight='fill' />
+                            ) : (
+                                <BellSimple size={24} />
+                            )
+                        }
+                        text='알람'
+                    />
+                    알람
+                </NavLink>
             </li>
             <li>
-                <Link to={'/search'}>
-                    <IconButton className='gray40 none' icon={<MagnifyingGlass size={24} />} text='BellSimple' />
-                </Link>
-                검색
+                <NavLink
+                    to={'/search'}
+                    className={({ isActive }) => (isActive ? 'active' : '')}
+                    onClick={() => handleNavClick('search')}
+                >
+                    <IconButton className='gray40 none' icon={<MagnifyingGlass size={24} />} text='검색' />
+                    검색
+                </NavLink>
             </li>
             <li>
-                <Link to={'/mypage'}>
-                    <IconButton className='gray40 none' icon={<User size={24} />} text='BellSimple' />
-                </Link>
-                MY
+                <NavLink
+                    to={'/mypage'}
+                    className={({ isActive }) => (isActive ? 'active' : '')}
+                    onClick={() => handleNavClick('mypage')}
+                >
+                    <IconButton
+                        className='gray40 none'
+                        icon={activeLink === 'mypage' ? <User size={24} weight='fill' /> : <User size={24} />}
+                        text='MY'
+                    />
+                    MY
+                </NavLink>
             </li>
         </BottomNavList>
     );

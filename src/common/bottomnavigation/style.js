@@ -25,12 +25,22 @@ export const BottomNavList = styled.ul`
     }
 
     li {
-        color: ${color('gray', '40')};
         justify-content: center;
         text-align: center;
         font-size: ${font('detail', 'sm')};
 
-        &:hover {
+        a {
+            color: ${color('gray', '40')};
+
+            &:hover {
+                color: ${color('gray', '0')};
+                svg {
+                    fill: ${color('gray', '0')};
+                }
+            }
+        }
+
+        a.active {
             color: ${color('gray', '0')};
             svg {
                 fill: ${color('gray', '0')};
