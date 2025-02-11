@@ -66,13 +66,6 @@ const BokjakList = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    gap: 24px;
-    ${media.tablet} {
-      gap: 16px;
-    }
-    ${media.mobile} {
-      gap: 10px;
-    }
   }
 `
 const MsgBox = styled.div`
@@ -117,7 +110,13 @@ const BokjakContList = () => {
           className="swiper"
           modules={[Autoplay]}
           spaceBetween={24}
-          slidesPerView={3}>
+          slidesPerView={5}>
+          <SwiperSlide>
+            <BokjakContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <BokjakContItem />
+          </SwiperSlide>
           <SwiperSlide>
             <BokjakContItem />
           </SwiperSlide>
