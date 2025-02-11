@@ -15,7 +15,6 @@ const SoonSection = styled.div`
     padding: 80px 0;
   }
   ${media.mobile} {
-    gap: 20px;
     padding: 40px 0;
   }
 `

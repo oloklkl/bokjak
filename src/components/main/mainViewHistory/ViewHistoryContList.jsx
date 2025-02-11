@@ -12,63 +12,49 @@ import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import { useRef } from 'react'
 
-const ViewHistoryListWrap = styled.div`
+const ViewHistoryContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 40px;
-`
-
-const ViewHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 40px;
   ${media.mobile} {
     gap: 20px;
   }
-`
-
-const TitleCont = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  gap: 1400px;
-  ${media.tablet} {
-    gap: 620px;
-  }
-  ${media.mobile} {
-    gap: 320px;
-  }
-
-  h2 {
-    font-size: ${font('heading', 'sm')};
-    ${media.tablet} {
-      font-size: ${font('heading', 'xs')};
+  .viewHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h2 {
+      font-size: ${font('title', 'xxlg')};
+      ${media.tablet} {
+        font-size: ${font('title', 'xlg')};
+      }
+      ${media.mobile} {
+        font-size: ${font('title', 'lg')};
+      }
     }
-    ${media.mobile} {
-      font-size: ${font('title', 'lg')};
+    h3 {
+      font-size: ${font('body', 'sm')};
     }
   }
-  h3 {
-    font-size: ${font('body', 'sm')};
-  }
-`
-
-const ViewHistoryList = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  overflow: visible;
-  .swiper {
-    overflow: visible;
-  }
-
-  .swiper-slide {
+  .viewList {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    overflow: visible;
+    position: relative;
+
+    .swiper {
+      width: 100%;
+      overflow: visible;
+    }
+    .swiper-slide {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: auto;
+      height: auto;
+    }
   }
 `
 const NavigationButton = styled.div`
@@ -80,7 +66,6 @@ const NavigationButton = styled.div`
   transform: translateY(-50%);
   z-index: 3;
 `
-
 const ViewHistoryContList = () => {
   const dispatch = useDispatch()
   const swiperRef = useRef()
@@ -100,14 +85,13 @@ const ViewHistoryContList = () => {
   }
 
   return (
-    <ViewHistoryListWrap>
-      <ViewHeader>
-        <TitleCont>
-          <h2>title</h2>
-          <h3>more</h3>
-        </TitleCont>
-      </ViewHeader>
-      <ViewHistoryList>
+    <ViewHistoryContainer>
+      <div className="viewHeader">
+        <h2>title</h2>
+        <h3>more</h3>
+      </div>
+
+      <div className="viewList">
         <Swiper
           className="swiper"
           ref={swiperRef}
@@ -161,8 +145,8 @@ const ViewHistoryContList = () => {
             />
           </NavigationButton>
         </Swiper>
-      </ViewHistoryList>
-    </ViewHistoryListWrap>
+      </div>
+    </ViewHistoryContainer>
   )
 }
 
