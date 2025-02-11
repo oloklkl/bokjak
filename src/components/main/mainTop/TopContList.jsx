@@ -16,57 +16,44 @@ const TopListWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-`
-
-const TopHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 40px;
   ${media.mobile} {
     gap: 20px;
   }
-`
-
-const TitleCont = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 1400px;
-  ${media.tablet} {
-    gap: 620px;
-  }
-  ${media.mobile} {
-    gap: 320px;
-  }
-
-  h2 {
-    font-size: ${font('title', 'xxlg')};
-    ${media.tablet} {
-      font-size: ${font('title', 'xlg')};
+  .topHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h2 {
+      font-size: ${font('title', 'xxlg')};
+      ${media.tablet} {
+        font-size: ${font('title', 'xlg')};
+      }
+      ${media.mobile} {
+        font-size: ${font('title', 'lg')};
+      }
     }
-    ${media.mobile} {
-      font-size: ${font('title', 'lg')};
+    h3 {
+      font-size: ${font('body', 'sm')};
     }
   }
-  h3 {
-    font-size: ${font('body', 'sm')};
-  }
-`
-const TopList = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  overflow: visible;
-  .swiper {
-    overflow: visible;
-  }
-
-  .swiper-slide {
+  .topList {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    overflow: visible;
+    position: relative;
+
+    .swiper {
+      width: 100%;
+      overflow: visible;
+    }
+    .swiper-slide {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: auto;
+      height: 100%;
+    }
   }
 `
 
@@ -81,39 +68,31 @@ const NavigationButton = styled.div`
 `
 
 const TopContList = () => {
-  // const dispatch = useDispatch()
   const swiperRef = useRef()
 
   const goNext = () => {
-    // **추가됨: goNext 함수**
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext()
-    }
+    swiperRef.current?.swiper.slideNext()
   }
 
   const goPrev = () => {
-    // **추가됨: goPrev 함수**
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev()
-    }
+    swiperRef.current?.swiper.slidePrev()
   }
+
   return (
     <TopListWrap>
-      <TopHeader>
-        <TitleCont>
-          <h2>title</h2>
-          <h3>more</h3>
-        </TitleCont>
-      </TopHeader>
-      <TopList>
+      <div className="topHeader">
+        <h2>title</h2>
+        <h3>more</h3>
+      </div>
+      <div className="topList">
         <Swiper
           className="swiper"
           ref={swiperRef}
           modules={[Navigation]}
           pagination={{ clickable: true }}
           spaceBetween={24}
-          slidesPerGroup={4.5}
-          slidesPerView={4.5}
+          slidesPerGroup={5}
+          slidesPerView={'auto'}
           navigation={false}>
           <SwiperSlide>
             <TopContItem />
@@ -160,7 +139,7 @@ const TopContList = () => {
             />
           </NavigationButton>
         </Swiper>
-      </TopList>
+      </div>
     </TopListWrap>
   )
 }

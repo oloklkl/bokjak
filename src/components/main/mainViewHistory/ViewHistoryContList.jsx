@@ -71,17 +71,10 @@ const ViewHistoryContList = () => {
   const swiperRef = useRef()
 
   const goNext = () => {
-    // **추가됨: goNext 함수**
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext()
-    }
+    swiperRef.current?.swiper.slideNext()
   }
-
   const goPrev = () => {
-    // **추가됨: goPrev 함수**
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev()
-    }
+    swiperRef.current?.swiper.slidePrev()
   }
 
   return (

@@ -21,7 +21,6 @@ const Main = () => {
         <ViewHistoryCont />
         <TopCont />
         <ThumbnailCont />
-        <ThumbnailCont />
         <SoonCont />
         <FlipBackCont />
         <SeriesCont />

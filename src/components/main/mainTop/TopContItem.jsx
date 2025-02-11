@@ -2,21 +2,14 @@ import styled from 'styled-components'
 import { color } from '../../../styled/theme'
 import { media } from '../../../styled/media'
 
-const TopItemWrap = styled.div`
+const TopItemCont = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 24px;
-`
+  flex-direction: row;
+  height: auto;
+  min-width: 295px;
+  min-height: 295px;
+  overflow: hidden;
 
-const TopContBox = styled.div`
-  width: auto;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-shrink: 0;
-  width: 100%;
-  height: 295px;
   ${media.tablet} {
     width: 210px;
     height: 210px;
@@ -27,46 +20,34 @@ const TopContBox = styled.div`
   }
 `
 
-const Number = styled.div`
-  width: auto;
-  height: 100%;
+const TopNumberImg = styled.div`
+  padding-top: 140px;
+  max-width: 80px;
   ${media.tablet} {
-    width: 70px;
+    max-width: 70px;
   }
   ${media.mobile} {
-    width: 50px;
+    max-width: 50px;
   }
-  .numberBox {
-    /* background: ${color('gray', '30')}; */
+  img {
     width: 100%;
     height: 100%;
-    img {
-      width: 80px;
-      height: 150px;
-    }
   }
 `
 
-const TopThumbnail = styled.div`
+const TopThumbnailImg = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto;
-  height: 100%;
+  background: ${color('gray', '70')};
+  border-radius: 7px;
+  max-width: 216px;
   ${media.tablet} {
-    width: 140px;
+    max-width: 140px;
   }
   ${media.mobile} {
-    width: 90px;
-  }
-
-  .imgBox {
-    background: ${color('gray', '70')};
-    border-radius: 7px;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
+    max-width: 90px;
   }
 
   img {
@@ -82,26 +63,22 @@ const TopThumbnail = styled.div`
 
 const TopContItem = () => {
   return (
-    <TopItemWrap>
-      <TopContBox>
-        <Number>
-          <div className="numberBox">
-            <img
-              src="https://raw.githubusercontent.com/lse-7660/bokjak-image/c9ff4c8cc09bdda334eb731251f0ec9a55642779/images/main/top/numberImg/pc/pc_number1.svg"
-              alt=""
-            />
-          </div>
-        </Number>
-        <TopThumbnail>
-          <div className="imgBox">
-            <img
-              src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
-              alt=""
-            />
-          </div>
-        </TopThumbnail>
-      </TopContBox>
-    </TopItemWrap>
+    <TopItemCont>
+      {/* <div className="topItemImg"> */}
+      <TopNumberImg>
+        <img
+          src="https://raw.githubusercontent.com/lse-7660/bokjak-image/c9ff4c8cc09bdda334eb731251f0ec9a55642779/images/main/top/numberImg/pc/pc_number1.svg"
+          alt=""
+        />
+      </TopNumberImg>
+      <TopThumbnailImg>
+        <img
+          src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
+          alt=""
+        />
+      </TopThumbnailImg>
+      {/* </div> */}
+    </TopItemCont>
   )
 }
 
