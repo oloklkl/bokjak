@@ -67,4 +67,3 @@ export const detailSlice = createSlice({
 
 export const detailActions = detailSlice.actions;
 export default detailSlice.reducer;
-
