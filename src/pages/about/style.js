@@ -20,30 +20,31 @@ export const AboutWrap = styled.div`
   }
 
   h1 {
-    font-size: xx-large; /* 기본 크기 (데스크톱) */
+    font-size: 55px; /* 기본 크기 (데스크톱) */
   }
 
   @media (max-width: 768px) {
     /* 태블릿 크기 */
     h1 {
-      font-size: large;
+      font-size: 50px;
     }
   }
 
   @media (max-width: 390px) {
     /* 모바일 크기 */
     h1 {
-      font-size: medium;
+      font-size: large;
     }
   }
 
   h2 {
     font-size: xx-large;
+    font-weight: bold;
   }
 
   @media (max-width: 768px) {
     h2 {
-      font-size: large;
+      font-size: x-large;
     }
   }
 
@@ -62,5 +63,20 @@ export const AboutWrap = styled.div`
   }
   h5 {
     font-size: large;
+  }
+  h6 {
+    text-align: center;
+    font-size: medium;
+  }
+  @media (max-width: 768px) {
+    h6 {
+      text-align: center;
+      font-size: medium;
+    }
+  }
+  @media (max-width: 390px) {
+    h6 {
+      font-size: xx-small;
+    }
   }
 `;
