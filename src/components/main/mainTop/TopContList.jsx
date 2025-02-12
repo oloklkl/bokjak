@@ -40,7 +40,7 @@ const TopListWrap = styled.div`
   .topList {
     display: flex;
     flex-direction: row;
-    overflow: visible;
+    overflow: hidden;
     position: relative;
 
     .swiper {
@@ -48,11 +48,9 @@ const TopListWrap = styled.div`
       overflow: visible;
     }
     .swiper-slide {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      width: auto;
-      height: 100%;
+      overflow: hidden;
+      width: clamp(140px, 50vw, 295px);
+      height: clamp(130px, 30vw, 295px);
     }
   }
 `
@@ -90,10 +88,12 @@ const TopContList = () => {
           ref={swiperRef}
           modules={[Navigation]}
           pagination={{ clickable: true }}
-          spaceBetween={24}
-          slidesPerGroup={5}
-          slidesPerView={'auto'}
-          navigation={false}>
+          navigation={false}
+          breakpoints={{
+            390: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 10 },
+            768: { slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 16 },
+            1024: { slidesPerView: 5, slidesPerGroup: 5, spaceBetween: 24 },
+          }}>
           <SwiperSlide>
             <TopContItem />
           </SwiperSlide>

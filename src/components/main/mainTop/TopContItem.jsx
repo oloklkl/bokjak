@@ -5,30 +5,20 @@ import { media } from '../../../styled/media'
 const TopItemCont = styled.div`
   display: flex;
   flex-direction: row;
-  height: auto;
-  min-width: 295px;
-  min-height: 295px;
-  overflow: hidden;
+  justify-content: center;
+  align-items: center;
 
-  ${media.tablet} {
-    width: 210px;
-    height: 210px;
-  }
-  ${media.mobile} {
-    width: 140px;
-    height: 130px;
-  }
+  overflow: hidden;
+  width: 100%;
+  height: auto;
 `
 
 const TopNumberImg = styled.div`
   padding-top: 140px;
-  max-width: 80px;
-  ${media.tablet} {
-    max-width: 70px;
-  }
-  ${media.mobile} {
-    max-width: 50px;
-  }
+  display: flex;
+  flex-shrink: 0;
+  width: clamp(50px, 50vw, 80px);
+  height: clamp(130px, 50vw, 295px);
   img {
     width: 100%;
     height: 100%;
@@ -42,13 +32,8 @@ const TopThumbnailImg = styled.div`
   align-items: center;
   background: ${color('gray', '70')};
   border-radius: 7px;
-  max-width: 216px;
-  ${media.tablet} {
-    max-width: 140px;
-  }
-  ${media.mobile} {
-    max-width: 90px;
-  }
+  width: clamp(90px, 50vw, 215px);
+  height: clamp(130px, 50vw, 295px);
 
   img {
     width: 100%;

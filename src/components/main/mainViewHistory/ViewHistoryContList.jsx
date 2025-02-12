@@ -39,28 +39,21 @@ const ViewHistoryContainer = styled.div`
     }
   }
   .viewList {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    overflow: visible;
+    overflow: hidden;
     position: relative;
 
     .swiper {
       width: 100%;
-      height: 100%;
       overflow: visible;
     }
     .swiper-slide {
-      flex: 0 0 auto;
-      min-width: 180px;
-      max-width: 200px;
-      ${media.tablet} {
-        min-width: 220px;
-        max-width: 250px;
-      }
-      ${media.desktop} {
-        min-width: 300px;
-        max-width: 320px;
-      }
+      width: clamp(180px, 50vw, 300px);
+      height: auto;
+      overflow: hidden;
+      border-radius: 7px;
     }
   }
 `
@@ -72,6 +65,12 @@ const NavigationButton = styled.div`
   justify-content: space-between;
   transform: translateY(-50%);
   z-index: 3;
+  ${media.tablet} {
+    display: none;
+  }
+  ${media.mobile} {
+    display: none;
+  }
 `
 const ViewHistoryContList = () => {
   const dispatch = useDispatch()
@@ -97,13 +96,11 @@ const ViewHistoryContList = () => {
           ref={swiperRef}
           modules={[Navigation]}
           pagination={{ clickable: true }}
-          slidesPerView="auto"
-          slidesPerGroup={4.5}
           navigation={false}
           breakpoints={{
-            320: { slidesPerView: 2.5, spaceBetween: 10 },
-            600: { slidesPerView: 3.5, spaceBetween: 16 },
-            1024: { slidesPerView: 4.5, spaceBetween: 24 },
+            390: { slidesPerView: 2.2, slidesPerGroup: 2.2, spaceBetween: 10 },
+            768: { slidesPerView: 3.2, slidesPerGroup: 3.2, spaceBetween: 16 },
+            1024: { slidesPerView: 4.2, slidesPerGroup: 4.2, spaceBetween: 24 },
           }}>
           <SwiperSlide>
             <ViewHistoryContItem

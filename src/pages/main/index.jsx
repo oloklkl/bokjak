@@ -15,14 +15,13 @@ import { VisualWrap } from './style'
 const Main = () => {
   return (
     <>
-      <div className="inner">
-        <VisualWrap>
-          <Intro />
-        </VisualWrap>
-        <BokjakCont />
-        {/* <ViewHistoryCont /> */}
-      </div>
-      {/* <TopCont /> */}
+      <VisualWrap>
+        <Intro />
+      </VisualWrap>
+      {/* <div className="inner"> */}
+      {/* <BokjakCont /> */}
+      {/* <ViewHistoryCont /> */}
+      <TopCont />
       <div className="inner">{/* <ThumbnailCont /> */}</div>
       {/* <SoonCont /> */}
       <div className="inner">

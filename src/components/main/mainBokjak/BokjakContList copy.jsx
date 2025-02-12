@@ -56,29 +56,19 @@ const BokjakHeader = styled.div`
 `
 
 const BokjakList = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  overflow-x: hidden;
-  .swiper {
-    overflow: visible;
-  }
-  .swiper-slide {
-    width: auto;
-    height: auto;
-  }
+  width: 100%;
 `
 const MsgBox = styled.div`
   display: flex;
   justify-content: flex-start;
   align-content: center;
-  width: 300px;
+  width: 270px;
   height: 40px;
   background: ${color('gray', '70')};
   border-radius: 7px;
   padding: 10px;
   .textarea {
-    width: 280px;
+    width: 460px;
     display: flex;
     text-align: left;
     font-size: ${font('body', 'sm')};
@@ -138,29 +128,7 @@ const BokjakContList = () => {
       </BokjakHeader>
 
       <BokjakList>
-        <Swiper
-          className="swiper"
-          ref={swiperRef}
-          modules={[Navigation]}
-          slidesPerView={'auto'}
-          spaceBetween={10}
-          breakpoints={{
-            390: {
-              slidesPerView: 'auto',
-              slidesPerGroup: 3,
-              spaceBetween: 10,
-            },
-            768: {
-              slidesPerView: 'auto',
-              slidesPerGroup: 5,
-              spaceBetween: 16,
-            },
-            1024: {
-              slidesPerView: 'auto',
-              slidesPerGroup: 7,
-              spaceBetween: 24,
-            },
-          }}>
+        <Swiper className="swiper" ref={swiperRef} modules={[Navigation]}>
           <SwiperSlide>
             <BokjakContItem />
           </SwiperSlide>

@@ -18,6 +18,12 @@ const ImgCont = styled.div`
   background: ${color('gray', '80')};
   border-radius: 999px;
   border: none;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
   ${media.tablet} {
     width: 120px;
     height: 120px;
@@ -26,16 +32,11 @@ const ImgCont = styled.div`
     width: 90px;
     height: 90px;
   }
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-  }
 `
 
 const TextCont = styled.div`
   text-align: center;
+  width: 100%;
   ${media.tablet} {
     width: 120px;
   }

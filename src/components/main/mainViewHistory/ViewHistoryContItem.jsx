@@ -12,7 +12,8 @@ const ViewHistoryItemCont = styled.div`
   overflow: visible;
   gap: 16px;
   .thumbnailCont {
-    width: auto;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -23,8 +24,8 @@ const ViewHistoryItemCont = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 300px;
-    min-height: 200px;
+    width: 300px;
+    height: 200px;
     border-radius: 7px;
 
     img {
