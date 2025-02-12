@@ -35,9 +35,36 @@ export const DetailWrap = styled.div`
 export const DetailPreviewWrap = styled.div`
     width: 100%;
     aspect-ratio: 16/9;
-    background-color: white;
+    /* background-color: white; */
+    overflow: hidden;
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16/9;
+        transform: scale(1.2);
+    }
+
+    img {
+        &.detail-preview-introimg {
+            width: 100%;
+        }
+    }
 
     div {
+        &.detail-preview-intro-gradient {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+        }
+
+        &.detailpreview-buttons-wrap {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            aspect-ratio: 16/9;
+        }
+
         &.detailpreview-wrap {
             display: flex;
             flex-direction: column;
