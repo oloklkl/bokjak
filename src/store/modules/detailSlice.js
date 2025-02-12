@@ -9,6 +9,7 @@ const initialState = {
     error: null,
     isDetailOpen: false,
     currentContent: null,
+    currentGenre: null,
     isUrlModalOpen: false,
     isCreateOpen: false,
     isRoomCreated: false,

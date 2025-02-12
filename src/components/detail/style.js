@@ -28,6 +28,7 @@ export const DetailWrap = styled.div`
 
     border-radius: 24px;
     background-color: ${color('gray', '80')};
+    border: 1px solid ${color('gray', '70')};
 
     color: ${color('gray', '0')};
 `;
@@ -42,7 +43,7 @@ export const DetailPreviewWrap = styled.div`
         width: 100%;
         height: 100%;
         aspect-ratio: 16/9;
-        transform: scale(1.2);
+        /* transform: scale(1.15); */
     }
 
     img {
@@ -63,6 +64,7 @@ export const DetailPreviewWrap = styled.div`
             top: 0;
             width: 100%;
             aspect-ratio: 16/9;
+            background: linear-gradient(#00000000, #00000080);
         }
 
         &.detailpreview-wrap {

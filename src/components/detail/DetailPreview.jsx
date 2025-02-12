@@ -21,7 +21,8 @@ const DetailPreview = () => {
                     type="text/html"
                     width="640"
                     height="390"
-                    src={`http://www.youtube.com/embed/${currentContent.videos.results[0].key}?autoplay=1&mute=1?enablejsapi=1`}
+                    src={`http://www.youtube.com/embed/${currentContent.videos.results[0].key}?autoplay=1&mute=1&controls=0&enablejsapi=1&loop=1&playlist=${currentContent.videos.results[0].key}`}
+                    allow="autoplay"
                 ></iframe>
             ) : (
                 <img src={`${bgurl}${currentContent.backdrop_path}`} alt="" className="detail-preview-introimg" />
@@ -43,11 +44,11 @@ const DetailPreview = () => {
                         >
                             <Link to="/video" />
                         </BarButton>
-                        <IconButton className="b30" icon={<Heart />} text="좋아요" />
-                        <IconButton className="b30" icon={<BookmarkSimple />} text="북마크" />
+                        <IconButton className="" icon={<Heart />} text="좋아요" />
+                        <IconButton className="" icon={<BookmarkSimple />} text="북마크" />
                         <IconButton
                             onClick={() => dispatch(detailActions.openUrlModal())}
-                            className="b30"
+                            className=""
                             icon="https://raw.githubusercontent.com/lse-7660/bokjak-image/f7683cb4e88d31d422118d70c20dcdccb0ad102e/images/icon/bokjak-icon.svg"
                             text="모여보기"
                         />
