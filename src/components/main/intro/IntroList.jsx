@@ -2,16 +2,16 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import { useSelector } from 'react-redux'
 import IntroItem from './IntroItem'
-import { Slide } from '../style'
+import { IntroSliderCont } from '../style'
 
 const IntroList = () => {
   const { introData } = useSelector((state) => state.mainR)
   return (
-    <Slide>
+    <IntroSliderCont>
       <Swiper
         className="swiper"
         modules={[Autoplay]}
-        spaceBetween={0}
+        spaceBetween={30}
         slidesPerView={1}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         loop={true}>
@@ -21,7 +21,7 @@ const IntroList = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </Slide>
+    </IntroSliderCont>
   )
 }
 
