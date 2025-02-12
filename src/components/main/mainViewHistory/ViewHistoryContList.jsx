@@ -46,14 +46,21 @@ const ViewHistoryContainer = styled.div`
 
     .swiper {
       width: 100%;
+      height: 100%;
       overflow: visible;
     }
     .swiper-slide {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      width: auto;
-      height: auto;
+      flex: 0 0 auto;
+      min-width: 180px;
+      max-width: 200px;
+      ${media.tablet} {
+        min-width: 220px;
+        max-width: 250px;
+      }
+      ${media.desktop} {
+        min-width: 300px;
+        max-width: 320px;
+      }
     }
   }
 `
@@ -90,10 +97,14 @@ const ViewHistoryContList = () => {
           ref={swiperRef}
           modules={[Navigation]}
           pagination={{ clickable: true }}
-          spaceBetween={24}
+          slidesPerView="auto"
           slidesPerGroup={4.5}
-          slidesPerView={4.5}
-          navigation={false}>
+          navigation={false}
+          breakpoints={{
+            320: { slidesPerView: 2.5, spaceBetween: 10 },
+            600: { slidesPerView: 3.5, spaceBetween: 16 },
+            1024: { slidesPerView: 4.5, spaceBetween: 24 },
+          }}>
           <SwiperSlide>
             <ViewHistoryContItem
               onClick={() => dispatch(detailActions.openDetailModal())}

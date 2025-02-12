@@ -1,3 +1,5 @@
+import styled from 'styled-components'
+import BottomNavigation from '../../common/bottomnavigation'
 import {
   Intro,
   BokjakCont,
@@ -8,23 +10,26 @@ import {
   TopCont,
   ViewHistoryCont,
 } from '../../components'
-import { MainWrap, VisualWrap } from './style'
+import { VisualWrap } from './style'
 
 const Main = () => {
   return (
     <>
-      <VisualWrap>
-        <Intro />
-      </VisualWrap>
-      <MainWrap>
+      <div className="inner">
+        <VisualWrap>
+          <Intro />
+        </VisualWrap>
         <BokjakCont />
-        <ViewHistoryCont />
-        <TopCont />
-        <ThumbnailCont />
-        <SoonCont />
-        <FlipBackCont />
-        <SeriesCont />
-      </MainWrap>
+        {/* <ViewHistoryCont /> */}
+      </div>
+      {/* <TopCont /> */}
+      <div className="inner">{/* <ThumbnailCont /> */}</div>
+      {/* <SoonCont /> */}
+      <div className="inner">
+        {/* <FlipBackCont /> */}
+        {/* <SeriesCont /> */}
+      </div>
+      {/* <BottomNavigation /> */}
     </>
   )
 }
