@@ -3,7 +3,7 @@
 import DetailPreview from './DetailPreview';
 import EpisodeList from './EpisodeList';
 import MoreLikeThisList from './MoreLikeThisList';
-import { DetailContentWrap, DetailWrap } from './style';
+import { DetailContentWrap, DetailWindow, DetailWrap } from './style';
 import Dimmed from '../../ui/Dimmed';
 import Description from './Description';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,7 +19,7 @@ const Detail = () => {
 
     if (!currentContent) return <div>Loading...</div>;
     return (
-        <>
+        <DetailWindow className="detail-window">
             <DetailWrap className="detail">
                 <DetailPreview />
                 <DetailContentWrap className="detail-content">
@@ -37,7 +37,7 @@ const Detail = () => {
             {isUrlModalOpen && <BokjakUrlModal />}
             {isCreateOpen && <CreateRoomModal />}
             {isRoomCreated && <RoomCreatedModal />}
-        </>
+        </DetailWindow>
     );
 };
 

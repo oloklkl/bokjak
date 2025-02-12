@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 import { color, font } from '../../styled/theme';
 
+export const DetailWindow = styled.div`
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    z-index: 100;
+`;
+
 export const DetailWrap = styled.div`
-    /* -ms-overflow-style: none;
-
-    &::-webkit-scrollbar {
-        display: none;
-    } */
-
     position: absolute;
     width: 100%;
-    /* max-height: calc(100vh - 40px); */
 
     overflow-x: hidden;
 
