@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { color } from '../../../../styled/theme'
 import { media } from '../../../../styled/media'
 
-const TopItemBox = styled.div`
+const TopItemWrap = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -15,7 +15,7 @@ const TopThumbCont = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-shrink: 0;
-  width: 234px;
+  width: 100%;
   height: 340px;
   ${media.tablet} {
     width: 160px;
@@ -27,7 +27,7 @@ const TopThumbCont = styled.div`
   }
 `
 
-const Thumbnail = styled.div`
+const TopThumbnailBox = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
@@ -54,15 +54,18 @@ const Thumbnail = styled.div`
 const ThumbnailCard = () => {
   return (
     <>
-      <TopItemBox>
+      <TopItemWrap>
         <TopThumbCont>
-          <Thumbnail>
+          <TopThumbnailBox>
             <div className="imgBox">
-              <img src="" alt="" />
+              <img
+                src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
+                alt=""
+              />
             </div>
-          </Thumbnail>
+          </TopThumbnailBox>
         </TopThumbCont>
-      </TopItemBox>
+      </TopItemWrap>
     </>
   )
 }
