@@ -1,4 +1,3 @@
-import MoreLikeThisItem from './MoreLikeThisItem';
 import { DetailSectionWrap } from './style';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -6,7 +5,8 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 // import required modules
-import { FreeMode, Pagination } from 'swiper/modules';
+import { FreeMode } from 'swiper/modules';
+import ContentFlipCard from '../../ui/ContentFlipCard';
 
 const MoreLikeThisList = () => {
     return (
@@ -23,19 +23,19 @@ const MoreLikeThisList = () => {
                 className="moreLikeThisSwiper"
             >
                 <SwiperSlide>
-                    <MoreLikeThisItem></MoreLikeThisItem>
+                    <ContentFlipCard />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <MoreLikeThisItem></MoreLikeThisItem>
+                    <ContentFlipCard />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <MoreLikeThisItem></MoreLikeThisItem>
+                    <ContentFlipCard />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <MoreLikeThisItem></MoreLikeThisItem>
+                    <ContentFlipCard />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <MoreLikeThisItem></MoreLikeThisItem>
+                    <ContentFlipCard />
                 </SwiperSlide>
             </Swiper>
         </DetailSectionWrap>

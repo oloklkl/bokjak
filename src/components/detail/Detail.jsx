@@ -1,3 +1,5 @@
+// Detail.jsx
+
 import DetailPreview from './DetailPreview';
 import EpisodeList from './EpisodeList';
 import MoreLikeThisList from './MoreLikeThisList';
@@ -13,6 +15,9 @@ import RoomCreatedModal from './RoomCreatedModal';
 const Detail = () => {
     const { isUrlModalOpen, isCreateOpen, isRoomCreated } = useSelector((state) => state.detailR);
     const dispatch = useDispatch();
+    const { currentContent } = useSelector((state) => state.detailR);
+
+    if (!currentContent) return <div>Loading...</div>;
     return (
         <>
             <DetailWrap className="detail">
@@ -23,7 +28,7 @@ const Detail = () => {
                     <MoreLikeThisList />
                 </DetailContentWrap>
             </DetailWrap>
-            <Dimmed zindex={10} className="dimmed-active" />
+            <Dimmed onClick={() => dispatch(detailActions.closeDetailModal())} zindex={10} className="dimmed-active" />
             <Dimmed
                 onClick={() => dispatch(detailActions.closeAllModal())}
                 zindex={150}

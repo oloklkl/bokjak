@@ -1,7 +1,7 @@
 import VideoWrap from '../../components/video/VideoWrap';
 
 const Video = () => {
-    return <VideoWrap></VideoWrap>;
+    return <VideoWrap className="video-player" />;
 };
 
 export default Video;

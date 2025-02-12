@@ -8,3 +8,4 @@ export { default as SubPage } from './subpage';
 export { default as Search } from './search';
 export { default as Notification } from './notification';
 export { default as MyPage } from './mypage';
+export { default as FilmoPage } from './filmo';

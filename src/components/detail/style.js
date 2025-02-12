@@ -272,49 +272,6 @@ export const EpisodeItemWrap = styled.div`
     }
 `;
 
-export const MoreLikeThisItemWrap = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    width: 100%;
-    height: auto;
-    aspect-ratio: 3/4;
-    padding: 40px 20px;
-
-    border-radius: 10px;
-    background-color: white;
-
-    transition: all 0.3s ease;
-
-    div {
-        &.morelikethis-card-tags {
-            display: flex;
-            gap: 10px;
-            span {
-                font-size: ${font('detail', 'md')};
-                color: ${color('gray', '30')};
-            }
-        }
-    }
-
-    p {
-        &.morelikethis-card-title {
-            font-size: ${font('title', 'xlg')};
-            font-weight: 600;
-            text-align: left;
-        }
-        &.morelikethis-card-desc {
-            text-align: left;
-        }
-    }
-
-    &:hover {
-        background-color: ${color('gray', '70')};
-        transform: translateY(-20px);
-    }
-`;
-
 export const DetailModalCom = styled.div`
     position: fixed;
     z-index: 200;

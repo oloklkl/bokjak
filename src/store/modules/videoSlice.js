@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 // 영상 재생 페이지
 const initialState = {
     isChatOpen: false,
+    isOptionOpen: false,
 };
 
 export const videoSlice = createSlice({
@@ -10,6 +11,9 @@ export const videoSlice = createSlice({
     reducers: {
         showChatWindow: (state, action) => {
             state.isChatOpen = !state.isChatOpen;
+        },
+        showOptions: (state, action) => {
+            state.isOptionOpen = !state.isOptionOpen;
         },
     },
 });

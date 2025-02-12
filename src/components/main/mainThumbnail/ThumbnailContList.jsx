@@ -1,3 +1,4 @@
+
 import styled from 'styled-components'
 import { font } from '../../../styled/theme'
 import { IconButton } from '../../../ui'
@@ -33,18 +34,29 @@ const TitleCont = styled.div`
 
   h2 {
     font-size: ${font('title', 'xxlg')};
+
     ${media.tablet} {
-      font-size: ${font('title', 'xlg')};
+        gap: 620px;
     }
     ${media.mobile} {
-      font-size: ${font('title', 'lg')};
+        gap: 320px;
     }
-  }
-  h3 {
-    font-size: ${font('body', 'sm')};
-  }
-`
+
+    h2 {
+        font-size: ${font('title', 'xxlg')};
+        ${media.tablet} {
+            font-size: ${font('title', 'xlg')};
+        }
+        ${media.mobile} {
+            font-size: ${font('title', 'lg')};
+        }
+    }
+    h3 {
+        font-size: ${font('body', 'sm')};
+    }
+`;
 const ThumbnailList = styled.div`
+
   position: relative;
   display: flex;
   .swiper {
@@ -151,4 +163,4 @@ const ThumbnailContList = () => {
   )
 }
 
-export default ThumbnailContList
+export default ThumbnailContList;

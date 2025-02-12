@@ -1,33 +1,31 @@
-// movieSlice.js
-
 import { createSlice } from '@reduxjs/toolkit';
-import { getMovies } from './getThunk';
+import { getTvShows } from './getThunk';
 
 const initialState = {
-    movieData: [],
+    seriesData: [],
     loading: true,
     error: null,
     currentData: null,
 };
-export const movieSlice = createSlice({
-    name: 'movie',
+export const tvSlice = createSlice({
+    name: 'tv',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getMovies.pending, (state, action) => {
+            .addCase(getTvShows.pending, (state, action) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(getMovies.fulfilled, (state, action) => {
+            .addCase(getTvShows.fulfilled, (state, action) => {
                 state.loading = false;
-                state.movieData = action.payload;
+                state.seriesData = action.payload;
                 state.error = null;
             })
-            .addCase(getMovies.rejected, (state, action) => {
+            .addCase(getTvShows.rejected, (state, action) => {
                 state.loading = false;
             });
     },
 });
-export const movieActions = movieSlice.actions;
-export default movieSlice.reducer;
+export const tvActions = tvSlice.actions;
+export default tvSlice.reducer;
