@@ -66,17 +66,21 @@ export const AboutWrap = styled.div`
   }
   h6 {
     text-align: center;
-    font-size: medium;
+
+    font-size: x-large;
   }
   @media (max-width: 768px) {
     h6 {
       text-align: center;
-      font-size: medium;
+      font-size: large;
     }
   }
   @media (max-width: 390px) {
     h6 {
       font-size: xx-small;
     }
+  }
+  section::-webkit-scrollbar {
+    display: none;
   }
 `;
