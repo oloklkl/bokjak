@@ -73,27 +73,27 @@ const BokjakList = styled.div`
 `
 const MsgBox = styled.div`
   display: flex;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
   align-content: center;
-  width: 270px;
+  width: 290px;
   height: 40px;
   background: ${color('gray', '70')};
   border-radius: 7px;
   padding: 10px;
   .textarea {
-    width: 260px;
+    width: 280px;
     display: flex;
     text-align: left;
     font-size: ${font('body', 'sm')};
     color: ${color('gray', '30')};
   }
   ${media.mobile} {
-    width: 235px;
+    width: 250px;
     height: 32px;
     border-radius: 5px;
-    padding: 6px 10px;
+    padding: 7px 10px;
     .textarea {
-      width: 2300px;
+      width: 240px;
       font-size: ${font('body', 'xsm')};
     }
   }

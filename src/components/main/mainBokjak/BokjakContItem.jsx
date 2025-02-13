@@ -7,16 +7,19 @@ const BokjakItemCont = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: clamp(100px, 20vw, 160px);
-  height: auto;
+  width: clamp(100px, 10vw, 160px);
+  height: 100%;
   gap: 16px;
+  ${media.tablet} {
+    gap: 10px;
+  }
   ${media.mobile} {
     gap: 10px;
   }
 `
 const ImgCont = styled.div`
   width: 100%;
-  height: clamp(100px, 20vw, 160px);
+  height: clamp(100px, 10vw, 160px);
   background: ${color('gray', '80')};
   border-radius: 999px;
   img {
@@ -33,17 +36,17 @@ const TextCont = styled.div`
   h3 {
     font-size: ${font('title', 'xlg')};
     ${media.tablet} {
-      font-size: ${font('title', 'lg')};
+      font-size: ${font('title', 'md')};
     }
     ${media.mobile} {
-      font-size: ${font('title', 'md')};
+      font-size: ${font('body', 'md')};
     }
   }
   h4 {
     font-size: ${font('title', 'lg')};
     color: ${color('gray', '40')};
     ${media.tablet} {
-      font-size: ${font('title', 'md')};
+      font-size: ${font('body', 'md')};
     }
     ${media.mobile} {
       font-size: ${font('body', 'sm')};

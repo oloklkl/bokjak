@@ -49,7 +49,8 @@ const ViewHistoryContainer = styled.div`
       overflow: visible;
     }
     .swiper-slide {
-      width: clamp(180px, 50vw, 300px);
+      /* width: clamp(180px, 20vw, 300px); */
+      width: auto;
       height: auto;
       overflow: hidden;
       border-radius: 7px;
@@ -97,10 +98,15 @@ const ViewHistoryContList = () => {
           pagination={{ clickable: true }}
           navigation={false}
           breakpoints={{
-            330: { slidesPerView: 2.5, spaceBetween: 10 },
-            390: { slidesPerView: 2.5, spaceBetween: 10 },
-            768: { slidesPerView: 3.5, spaceBetween: 16 },
-            1024: { slidesPerView: 4.5, spaceBetween: 24 },
+            320: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
+            390: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
+
+            768: { slidesPerView: 'auto', slidesPerGroup: 4, spaceBetween: 16 },
+            1024: {
+              slidesPerView: 'auto',
+              slidesPerGroup: 5,
+              spaceBetween: 24,
+            },
           }}>
           <SwiperSlide>
             <ViewHistoryContItem

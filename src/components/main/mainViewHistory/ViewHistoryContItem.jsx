@@ -11,8 +11,11 @@ const ViewHistoryItemCont = styled.div`
   align-items: center;
   overflow: visible;
   gap: 16px;
+  width: clamp(160px, 20vw, 300px);
+  height: clamp(100px, 12vw, 200px);
+
   .thumbnailCont {
-    width: 100%;
+    width: clamp(160px, 20vw, 300px);
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -24,8 +27,8 @@ const ViewHistoryItemCont = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 300px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     border-radius: 7px;
 
     img {
@@ -52,7 +55,6 @@ const ViewHistoryItemCont = styled.div`
 `
 
 const StateBar = styled.div`
-  display: block;
   position: absolute;
   bottom: 0;
   left: 0;

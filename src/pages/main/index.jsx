@@ -19,11 +19,11 @@ const Main = () => {
         <Intro />
       </VisualWrap>
       {/* <div className="inner"> */}
-      <BokjakCont />
-      <ViewHistoryCont />
-      <TopCont />
-      <ThumbnailCont />
-      {/* <SoonCont /> */}
+      {/* <BokjakCont /> */}
+      {/* <ViewHistoryCont /> */}
+      {/* <TopCont /> */}
+      {/* <ThumbnailCont /> */}
+      <SoonCont />
       <div className="inner">
         {/* <FlipBackCont /> */}
         {/* <SeriesCont /> */}

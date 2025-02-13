@@ -51,10 +51,10 @@ const SoonList = styled.div`
   }
   .swiper-slide {
     display: flex;
-    flex-direction: row;
     justify-content: flex-start;
-    width: auto;
+    width: 100%;
     height: auto;
+    overflow: hidden;
   }
 `
 
@@ -66,6 +66,9 @@ const NavigationButton = styled.div`
   justify-content: space-between;
   transform: translateY(-50%);
   z-index: 3;
+  ${media.tablet} {
+    display: none;
+  }
 `
 
 const SoonContList = () => {
@@ -90,10 +93,18 @@ const SoonContList = () => {
           className="swiper"
           ref={swiperRef}
           modules={[Navigation]}
-          spaceBetween={24}
-          pagination={{ clickable: true }}
-          slidesPerView={'auto'}
-          navigation={false}>
+          // spaceBetween={24}
+          // slidesPerView={'auto'}
+          navigation={false}
+          breakpoints={{
+            320: { slidesPerView: 1.1, spaceBetween: 10 },
+            390: { slidesPerView: 1.3, spaceBetween: 10 },
+            768: { slidesPerView: 2.2, spaceBetween: 16 },
+            1024: {
+              slidesPerView: 1.2,
+              spaceBetween: 24,
+            },
+          }}>
           <SwiperSlide className="swiper-slide">
             <SoonContItem />
           </SwiperSlide>
