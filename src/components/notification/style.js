@@ -27,18 +27,25 @@ export const GroupNotificationListWrap = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 40px;
 `;
 
 export const GroupNotificationItemWrap = styled.div``;
 
 export const UpcomingNotificationItemWrap = styled.div`
+    width: 1600px;
+    height: 186px;
     margin: 40px 0;
-`;
 
-export const GroupNotificationHeader = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    ${media.tablet} {
+        width: 708px;
+        height: 180px;
+    }
+
+    ${media.mobile} {
+        width: 350px;
+        height: 208px;
+    }
 `;
 
 export const GroupNotificationSlider = styled.div`
@@ -58,7 +65,7 @@ export const GroupNotificationSlider = styled.div`
 
 export const NavigationButton = styled.div`
     position: absolute;
-    top: 50%;
+    top: 42%;
     width: 100%;
     display: flex;
     justify-content: space-between;

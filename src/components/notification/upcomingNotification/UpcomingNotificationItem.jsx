@@ -8,30 +8,84 @@ import { media } from '../../../styled/media';
 const UpcomingContentWrap = styled.div`
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    ${media.mobile} {
+    }
+`;
+
+const HeaderTitle = styled.div`
+    width: 13%;
+
+    ${media.tablet} {
+        width: 40%;
+    }
+    ${media.mobile} {
+        width: 80%;
+    }
 
     h2 {
         font-size: ${font('title', 'lg')};
-        width: 10%;
         margin-left: 10px;
+
+        ${media.tablet} {
+            font-size: ${font('title', 'lg')};
+        }
+        ${media.mobile} {
+            font-size: ${font('title', 'md')};
+        }
     }
 `;
+
 const UpcomingImageWrap = styled.div`
     img {
         width: 130px;
         height: 160px;
+
+        ${media.tablet} {
+            width: 100px;
+            height: 140px;
+        }
+        ${media.mobile} {
+            width: 90px;
+            height: 115px;
+        }
     }
 `;
+
 const UpcomingInfoWrap = styled.div`
     margin-left: 40px;
     width: 17%;
+
+    ${media.tablet} {
+        width: 25%;
+    }
+    ${media.mobile} {
+        width: 80%;
+    }
+
     h3 {
         font-size: ${font('title', 'md')};
         margin-right: 5px;
+
+        ${media.tablet} {
+            font-size: ${font('title', 'lg')};
+        }
+        ${media.mobile} {
+            font-size: ${font('body', 'sm')};
+        }
     }
     em,
     span {
         font-size: ${font('detail', 'md')};
         color: ${color('gray', '30')};
+
+        ${media.tablet} {
+            font-size: ${font('detail', 'md')};
+        }
+        ${media.mobile} {
+            font-size: ${font('detail', 'sm')};
+        }
     }
     span {
         margin-right: 4px;
@@ -44,24 +98,38 @@ const UpcomingActionWrap = styled.div`
 `;
 
 const UpcomingDescription = styled.div`
+    width: 80%;
+
     p {
         color: ${color('gray', '30')};
-        width: 75%;
         margin-left: 50px;
     }
+
     ${media.tablet} {
         display: none;
     }
 `;
 const UpcomingIconWrap = styled.div`
-    margin-right: 100px;
+    width: 20%;
+    margin-left: 100px;
+    cursor: pointer;
+
+    ${media.tablet} {
+        margin-right: 50px;
+    }
+    ${media.mobile} {
+        margin-left: 10px;
+        margin-right: 0;
+    }
 `;
 
 const UpcomingNotificationItem = () => {
     return (
         <UpcomingNotificationItemWrap>
             <UpcomingContentWrap>
-                <h2>2월1일</h2>
+                <HeaderTitle>
+                    <h2>2월1일</h2>
+                </HeaderTitle>
                 <UpcomingImageWrap>
                     <img
                         src='https://github.com/oloklkl/bokjak-image/blob/main/images/main/flipback/flipcard1.png?raw=true'
