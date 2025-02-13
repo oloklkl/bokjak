@@ -77,6 +77,7 @@ const IconWrap = styled.div`
     position: absolute;
     top: 5%;
     right: 25%;
+    cursor: pointer;
 
     ${media.tablet} {
         right: 15%;
