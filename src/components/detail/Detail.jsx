@@ -11,11 +11,22 @@ import BokjakUrlModal from './BokjakUrlModal';
 import CreateRoomModal from './CreateRoomModal';
 import { detailActions } from '../../store/modules/detailSlice';
 import RoomCreatedModal from './RoomCreatedModal';
+import { useNavigate } from 'react-router-dom';
+// import { useEffect } from 'react';
 
 const Detail = () => {
     const { isUrlModalOpen, isCreateOpen, isRoomCreated } = useSelector((state) => state.detailR);
-    const dispatch = useDispatch();
     const { currentContent } = useSelector((state) => state.detailR);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    // useEffect(()=>{
+    //     dispatch(detailActions.updateGenre(currentContent))
+    // },[]);
+
+    const goPrevPage = () => {
+        navigate(-1);
+    };
 
     if (!currentContent) return <div>Loading...</div>;
     return (
@@ -28,7 +39,7 @@ const Detail = () => {
                     <MoreLikeThisList />
                 </DetailContentWrap>
             </DetailWrap>
-            <Dimmed onClick={() => dispatch(detailActions.closeDetailModal())} zindex={10} className="dimmed-active" />
+            <Dimmed onClick={goPrevPage} zindex={10} className="dimmed-active" />
             <Dimmed
                 onClick={() => dispatch(detailActions.closeAllModal())}
                 zindex={150}

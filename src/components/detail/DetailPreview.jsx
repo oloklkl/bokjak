@@ -3,12 +3,16 @@ import { BarButton, IconButton } from '../../ui';
 import { DetailPreviewWrap } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { detailActions } from '../../store/modules/detailSlice';
-import { Link } from 'react-router-dom';
-import { current } from '@reduxjs/toolkit';
+import { Link, useNavigate } from 'react-router-dom';
 
 const DetailPreview = () => {
-    const dispatch = useDispatch();
     const { currentContent } = useSelector((state) => state.detailR);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const goPrevPage = () => {
+        navigate(-1);
+    };
 
     const bgurl = `https://image.tmdb.org/t/p/w500`;
 
@@ -30,11 +34,7 @@ const DetailPreview = () => {
 
             <div className="detailpreview-buttons-wrap">
                 <div className="detailpreview-wrap">
-                    <IconButton
-                        onClick={() => dispatch(detailActions.closeDetailModal())}
-                        className="b30"
-                        icon={<X />}
-                    />
+                    <IconButton onClick={goPrevPage} className="b30" icon={<X />} />
                     <div className="detailpreview-util-wrap">
                         <BarButton
                             onClick={() => dispatch(detailActions.closeDetailModal())}

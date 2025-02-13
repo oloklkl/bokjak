@@ -51,7 +51,7 @@ const TopThumbnailBox = styled.div`
     }
 `;
 
-const ThumbnailCard = ({ movie, ...props }) => {
+const ThumbnailCard = ({ content, ...props }) => {
     const bgurl = `https://image.tmdb.org/t/p/w500`;
     return (
         <>
@@ -59,7 +59,7 @@ const ThumbnailCard = ({ movie, ...props }) => {
                 <TopThumbCont>
                     <TopThumbnailBox>
                         <div className="imgBox">
-                            <img src={`${bgurl}${movie.backdrop_path}`} alt="" />
+                            <img src={`${bgurl}${content.backdrop_path}`} alt="" />
                         </div>
                     </TopThumbnailBox>
                 </TopThumbCont>

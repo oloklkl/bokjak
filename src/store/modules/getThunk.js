@@ -24,7 +24,7 @@ export const getTvShows = createAsyncThunk('content/getTvShows', async () => {
 // 콘텐츠 상세 정보 가져오기
 export const getContentDetail = createAsyncThunk('detail/getContentDetail', async ({ type, id }) => {
     const res = await axios.get(`${BASE_URL}/${type}/${id}`, {
-        params: { api_key: API_KEY, language: 'ko-KR', append_to_response: 'credits,genres,videos, episode_number' },
+        params: { api_key: API_KEY, language: 'ko-KR', append_to_response: 'credits,videos' },
     });
     return res.data;
 });

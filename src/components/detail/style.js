@@ -10,6 +10,10 @@ export const DetailWindow = styled.div`
     height: 100%;
     overflow-y: scroll;
     z-index: 100;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 export const DetailWrap = styled.div`

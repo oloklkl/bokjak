@@ -7,7 +7,6 @@ import { getContentDetail } from './getThunk';
 const initialState = {
     loading: false,
     error: null,
-    isDetailOpen: false,
     currentContent: null,
     currentGenre: null,
     isUrlModalOpen: false,
@@ -19,12 +18,8 @@ export const detailSlice = createSlice({
     name: 'detail',
     initialState,
     reducers: {
-        closeDetailModal: (state, action) => {
-            state.isDetailOpen = false;
-            state.currentContent = null;
-        },
-        openDetailModal: (state, action) => {
-            state.isDetailOpen = true;
+        updateGenre: (state, action) => {
+            state.currentGenre = action.payload;
         },
         openUrlModal: (state, action) => {
             state.isUrlModalOpen = true;
@@ -58,6 +53,7 @@ export const detailSlice = createSlice({
             .addCase(getContentDetail.fulfilled, (state, action) => {
                 state.loading = false;
                 state.currentContent = action.payload;
+                state.currentGenre = state.currentContent.genres;
             })
             .addCase(getContentDetail.rejected, (state, action) => {
                 state.loading = false;

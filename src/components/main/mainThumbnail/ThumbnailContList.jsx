@@ -11,8 +11,9 @@ import { Navigation } from 'swiper/modules';
 // import { useDispatch } from 'react-redux'
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContentDetail, getMovies } from '../../../store/modules/getThunk';
+import { getContentDetail, getMovies, getTvShows } from '../../../store/modules/getThunk';
 import { detailActions } from '../../../store/modules/detailSlice';
+import { Link, useLocation } from 'react-router-dom';
 
 const ThumbnailListWrap = styled.div`
     display: flex;
@@ -83,16 +84,18 @@ const NavigationButton = styled.div`
 `;
 
 const ThumbnailContList = () => {
-    const { movies } = useSelector((state) => state.contentR);
+    const { movies, tvShows } = useSelector((state) => state.contentR);
     const dispatch = useDispatch();
+    const location = useLocation();
 
     useEffect(() => {
         dispatch(getMovies());
+        dispatch(getTvShows());
     }, [dispatch]);
 
     const showDetailModal = (type, id) => {
         dispatch(getContentDetail({ type, id }));
-        dispatch(detailActions.openDetailModal({}));
+        // dispatch(detailActions.openDetailModal({}));
     };
     // const dispatch = useDispatch()
     const swiperRef = useRef();
@@ -129,14 +132,16 @@ const ThumbnailContList = () => {
                     slidesPerView={6}
                     navigation={false}
                 >
-                    {movies.map((movie) => (
-                        <SwiperSlide key={movie.id}>
-                            <ThumbnailCard
-                                movie={movie}
-                                onClick={() => {
-                                    showDetailModal('movie', movie.id);
-                                }}
-                            />
+                    {tvShows.map((content) => (
+                        <SwiperSlide key={content.id}>
+                            <Link to={`/tv/${content.id}`} state={{ previousLocation: location }}>
+                                <ThumbnailCard
+                                    content={content}
+                                    onClick={() => {
+                                        showDetailModal('tv', content.id);
+                                    }}
+                                />
+                            </Link>
                         </SwiperSlide>
                     ))}
                     {/* <SwiperSlide>
