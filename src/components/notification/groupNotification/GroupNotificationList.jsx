@@ -1,10 +1,5 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
-import {
-    GroupNotificationHeader,
-    GroupNotificationListWrap,
-    GroupNotificationSlider,
-    NavigationButton,
-} from '../style';
+import { GroupNotificationListWrap, GroupNotificationSlider, NavigationButton } from '../style';
 import { IconButton } from '../../../ui';
 import { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,6 +10,12 @@ import GroupNotificationItem from './GroupNotificationItem';
 import styled from 'styled-components';
 import { font } from '../../../styled/theme';
 import { media } from '../../../styled/media';
+
+const GroupNotificationHeader = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`;
 
 const HeaderContent = styled.div`
     display: flex;
@@ -44,14 +45,12 @@ const GroupNotificationList = () => {
     const swiperRef = useRef();
 
     const goNext = () => {
-        // **추가됨: goNext 함수**
         if (swiperRef.current && swiperRef.current.swiper) {
             swiperRef.current.swiper.slideNext();
         }
     };
 
     const goPrev = () => {
-        // **추가됨: goPrev 함수**
         if (swiperRef.current && swiperRef.current.swiper) {
             swiperRef.current.swiper.slidePrev();
         }
@@ -73,9 +72,23 @@ const GroupNotificationList = () => {
                     pagination={{ clickable: true }}
                     spaceBetween={24}
                     slidesPerGroup={6}
-                    slidesPerView={6}
+                    slidesPerView={4.5}
+                    breakpoints={{
+                        1024: {
+                            slidesPerView: 4, // 테블릿
+                        },
+                        600: {
+                            slidesPerView: 3.5, // 모바일
+                        },
+                    }}
                     navigation={false}
                 >
+                    <SwiperSlide>
+                        <GroupNotificationItem />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <GroupNotificationItem />
+                    </SwiperSlide>
                     <SwiperSlide>
                         <GroupNotificationItem />
                     </SwiperSlide>
