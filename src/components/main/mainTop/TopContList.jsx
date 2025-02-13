@@ -40,17 +40,17 @@ const TopListWrap = styled.div`
   .topList {
     display: flex;
     flex-direction: row;
-    overflow: hidden;
     position: relative;
-
+    gap: 24px;
     .swiper {
       width: 100%;
       overflow: visible;
     }
     .swiper-slide {
-      overflow: hidden;
-      width: clamp(140px, 50vw, 295px);
-      height: clamp(130px, 30vw, 295px);
+      width: auto;
+      /* width: clamp(140px, 100%, 300px); */
+      height: auto;
+      /* height: clamp(130px, 30vw, 295px); */
     }
   }
 `
