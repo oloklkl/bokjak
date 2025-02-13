@@ -19,9 +19,9 @@ const Main = () => {
         <Intro />
       </VisualWrap>
       {/* <div className="inner"> */}
-      {/* <BokjakCont /> */}
+      <BokjakCont />
       {/* <ViewHistoryCont /> */}
-      <TopCont />
+      {/* <TopCont /> */}
       <div className="inner">{/* <ThumbnailCont /> */}</div>
       {/* <SoonCont /> */}
       <div className="inner">
