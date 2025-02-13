@@ -42,7 +42,6 @@ const ViewHistoryContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
-    overflow: hidden;
     position: relative;
 
     .swiper {
@@ -98,9 +97,10 @@ const ViewHistoryContList = () => {
           pagination={{ clickable: true }}
           navigation={false}
           breakpoints={{
-            390: { slidesPerView: 2.2, slidesPerGroup: 2.2, spaceBetween: 10 },
-            768: { slidesPerView: 3.2, slidesPerGroup: 3.2, spaceBetween: 16 },
-            1024: { slidesPerView: 4.2, slidesPerGroup: 4.2, spaceBetween: 24 },
+            330: { slidesPerView: 2.5, spaceBetween: 10 },
+            390: { slidesPerView: 2.5, spaceBetween: 10 },
+            768: { slidesPerView: 3.5, spaceBetween: 16 },
+            1024: { slidesPerView: 4.5, spaceBetween: 24 },
           }}>
           <SwiperSlide>
             <ViewHistoryContItem

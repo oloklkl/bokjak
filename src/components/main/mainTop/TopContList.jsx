@@ -38,19 +38,17 @@ const TopListWrap = styled.div`
     }
   }
   .topList {
+    width: 100%;
     display: flex;
     flex-direction: row;
     position: relative;
-    gap: 24px;
     .swiper {
       width: 100%;
       overflow: visible;
     }
     .swiper-slide {
       width: auto;
-      /* width: clamp(140px, 100%, 300px); */
       height: auto;
-      /* height: clamp(130px, 30vw, 295px); */
     }
   }
 `
@@ -87,12 +85,17 @@ const TopContList = () => {
           className="swiper"
           ref={swiperRef}
           modules={[Navigation]}
-          pagination={{ clickable: true }}
           navigation={false}
           breakpoints={{
-            390: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 10 },
-            768: { slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 16 },
-            1024: { slidesPerView: 5, slidesPerGroup: 5, spaceBetween: 24 },
+            320: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
+            390: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
+
+            768: { slidesPerView: 'auto', slidesPerGroup: 4, spaceBetween: 16 },
+            1024: {
+              slidesPerView: 'auto',
+              slidesPerGroup: 5,
+              spaceBetween: 24,
+            },
           }}>
           <SwiperSlide>
             <TopContItem />

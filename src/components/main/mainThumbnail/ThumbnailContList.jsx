@@ -8,13 +8,12 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
-// import { useDispatch } from 'react-redux'
 import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getContentDetail, getMovies } from '../../../store/modules/getThunk'
 import { detailActions } from '../../../store/modules/detailSlice'
 
-const ThumbnailListWrap = styled.div`
+const ThumbnailContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -25,23 +24,10 @@ const ThumbnailListWrap = styled.div`
 `
 
 const ThumbnailHeader = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: center;
-  gap: 1400px;
-
-  h2 {
-    font-size: ${font('title', 'xxlg')};
-
-    ${media.tablet} {
-      gap: 620px;
-    }
-    ${media.mobile} {
-      gap: 320px;
-    }
-  }
-
   h2 {
     font-size: ${font('title', 'xxlg')};
     ${media.tablet} {
@@ -57,16 +43,18 @@ const ThumbnailHeader = styled.div`
 `
 
 const ThumbnailList = styled.div`
-  position: relative;
+  width: 100%;
   display: flex;
+  flex-direction: row;
+  position: relative;
   .swiper {
+    width: 100%;
     overflow: visible;
   }
 
   .swiper-slide {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    width: auto;
+    height: auto;
   }
 `
 
@@ -92,24 +80,17 @@ const ThumbnailContList = () => {
     dispatch(getContentDetail({ type, id }))
     dispatch(detailActions.openDetailModal({}))
   }
-  // const dispatch = useDispatch()
   const swiperRef = useRef()
 
   const goNext = () => {
-    // **추가됨: goNext 함수**
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext()
-    }
+    swiperRef.current?.swiper.slideNext()
+  }
+  const goPrev = () => {
+    swiperRef.current?.swiper.slidePrev()
   }
 
-  const goPrev = () => {
-    // **추가됨: goPrev 함수**
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev()
-    }
-  }
   return (
-    <ThumbnailListWrap>
+    <ThumbnailContainer>
       <ThumbnailHeader>
         <h2>title</h2>
         <h3>more</h3>
@@ -120,10 +101,30 @@ const ThumbnailContList = () => {
           ref={swiperRef}
           modules={[Navigation]}
           pagination={{ clickable: true }}
-          spaceBetween={24}
-          slidesPerGroup={6}
-          slidesPerView={6}
-          navigation={false}>
+          navigation={false}
+          breakpoints={{
+            330: {
+              slidesPerView: 'auto',
+              slidesPerGroup: 3,
+              spaceBetween: 10,
+            },
+            390: {
+              slidesPerView: 'auto',
+              slidesPerGroup: 4,
+              spaceBetween: 10,
+            },
+
+            768: {
+              slidesPerView: 'auto',
+              slidesPerGroup: 5,
+              spaceBetween: 16,
+            },
+            1024: {
+              slidesPerView: 'auto',
+              slidesPerGroup: 6,
+              spaceBetween: 24,
+            },
+          }}>
           {movies.map((movie) => (
             <SwiperSlide key={movie.id}>
               <ThumbnailCard
@@ -134,33 +135,6 @@ const ThumbnailContList = () => {
               />
             </SwiperSlide>
           ))}
-          {/* <SwiperSlide>
-                        <ThumbnailCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ThumbnailCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ThumbnailCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ThumbnailCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ThumbnailCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ThumbnailCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ThumbnailCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ThumbnailCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ThumbnailCard />
-                    </SwiperSlide> */}
         </Swiper>
 
         <NavigationButton>
@@ -178,7 +152,7 @@ const ThumbnailContList = () => {
           />
         </NavigationButton>
       </ThumbnailList>
-    </ThumbnailListWrap>
+    </ThumbnailContainer>
   )
 }
 

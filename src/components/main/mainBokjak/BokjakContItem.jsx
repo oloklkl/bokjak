@@ -7,42 +7,29 @@ const BokjakItemCont = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  width: clamp(100px, 20vw, 160px);
+  height: auto;
   gap: 16px;
   ${media.mobile} {
     gap: 10px;
   }
 `
 const ImgCont = styled.div`
-  width: 160px;
-  height: 160px;
+  width: 100%;
+  height: clamp(100px, 20vw, 160px);
   background: ${color('gray', '80')};
   border-radius: 999px;
-  border: none;
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
   }
-  ${media.tablet} {
-    width: 120px;
-    height: 120px;
-  }
-  ${media.mobile} {
-    width: 90px;
-    height: 90px;
-  }
 `
 
 const TextCont = styled.div`
   text-align: center;
   width: 100%;
-  ${media.tablet} {
-    width: 120px;
-  }
-  ${media.mobile} {
-    width: 90px;
-  }
   h3 {
     font-size: ${font('title', 'xlg')};
     ${media.tablet} {

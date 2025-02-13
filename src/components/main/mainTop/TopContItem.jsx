@@ -8,13 +8,11 @@ const TopItemCont = styled.div`
   justify-content: center;
   align-items: flex-end;
 
-  width: clamp(140px, 20vw, 350px);
-  height: clamp(140px, 20vw, 295px);
+  width: clamp(140px, 20vw, 295px);
+  height: clamp(130px, 20vw, 295px);
 `
 
 const TopNumberImg = styled.div`
-  display: flex;
-  /* flex-shrink: 0; */
   width: clamp(50px, 20vw, 80px);
   height: auto;
   img {
@@ -30,8 +28,8 @@ const TopThumbnailImg = styled.div`
   align-items: center;
   background: ${color('gray', '70')};
   border-radius: 7px;
-  width: clamp(100px, 20vw, 216px);
-  height: clamp(140px, 20vw, 295px);
+  width: clamp(160px, 20vw, 210px);
+  height: 100%;
 
   img {
     width: 100%;

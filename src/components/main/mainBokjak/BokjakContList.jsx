@@ -21,6 +21,7 @@ const BokjakListWrap = styled.div`
 `
 
 const BokjakHeader = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -56,11 +57,13 @@ const BokjakHeader = styled.div`
 `
 
 const BokjakList = styled.div`
+  width: 100%;
   position: relative;
   display: flex;
   justify-content: flex-start;
-  overflow-x: hidden;
+
   .swiper {
+    width: 100%;
     overflow: visible;
   }
   .swiper-slide {
@@ -72,25 +75,25 @@ const MsgBox = styled.div`
   display: flex;
   justify-content: flex-start;
   align-content: center;
-  width: 300px;
+  width: 270px;
   height: 40px;
   background: ${color('gray', '70')};
   border-radius: 7px;
   padding: 10px;
   .textarea {
-    width: 280px;
+    width: 260px;
     display: flex;
     text-align: left;
     font-size: ${font('body', 'sm')};
     color: ${color('gray', '30')};
   }
   ${media.mobile} {
-    width: 250px;
+    width: 235px;
     height: 32px;
     border-radius: 5px;
     padding: 6px 10px;
     .textarea {
-      width: 240px;
+      width: 2300px;
       font-size: ${font('body', 'xsm')};
     }
   }
@@ -142,22 +145,23 @@ const BokjakContList = () => {
           className="swiper"
           ref={swiperRef}
           modules={[Navigation]}
-          slidesPerView={'auto'}
-          spaceBetween={10}
+          slidesPerGroupAuto
           breakpoints={{
+            330: {
+              slidesPerView: 'auto',
+              spaceBetween: 10,
+            },
             390: {
               slidesPerView: 'auto',
-              slidesPerGroup: 3,
               spaceBetween: 10,
             },
             768: {
               slidesPerView: 'auto',
-              slidesPerGroup: 5,
               spaceBetween: 16,
             },
+
             1024: {
               slidesPerView: 'auto',
-              slidesPerGroup: 7,
               spaceBetween: 24,
             },
           }}>
