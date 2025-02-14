@@ -26,6 +26,21 @@ const HomePage = () => {
       }
     );
 
+    const sections = gsap.utils.toArray('.scroll-section');
+    sections.forEach((section, i) => {
+      const width = section.scrollWidth;
+      gsap.to(section, {
+        x: -width,
+        ease: 'linear',
+        repeat: -1,
+        duration: 10,
+        delay: i, // Each section starts 1 second after the previous
+        modifiers: {
+          x: (x) => gsap.utils.wrap(-width, 0, parseFloat(x)) + 'px',
+        },
+      });
+    });
+
     return () => {
       document.body.style.overflowX = '';
     };
@@ -115,6 +130,7 @@ const HomePage = () => {
             style={{
               textAlign: 'center',
               paddingTop: '10px',
+              paddingBottom: '50px',
             }}
           >
             다른 어디에서도 볼 수 없는 복작을 만나보세요. <br />
@@ -123,10 +139,138 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* 추가된 이미지 그리드 섹션 */}
+      <section
+        className="scroll-section"
+        style={{
+          display: 'flex',
+          flexWrap: 'nowrap', // 한 줄 유지
+          justifyContent: 'flex-start', // 왼쪽 정렬
+          gap: '15px',
+          overflowX: 'auto', // 가로 스크롤 가능
+          whiteSpace: 'nowrap', // 줄 바꿈 방지
+          width: '100%',
+          boxSizing: 'border-box',
+        }}
+      >
+        {/* 이미지 리스트 */}
+        {[
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-1.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-10.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-2.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-4.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-3.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-5.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-6.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-8.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-7.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-9.png',
+        ].map((img, index) => (
+          <div
+            key={index}
+            style={{
+              width: '30%', // 크기 증가
+              minWidth: '250px', // 최소 크기 증가
+              aspectRatio: '16 / 9',
+              backgroundImage: `url(${img})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              borderRadius: '10px',
+              transition: 'transform 0.3s ease-in-out',
+            }}
+            className="hover:scale-105"
+          ></div>
+        ))}
+      </section>
+      <section
+        className="scroll-section"
+        style={{
+          display: 'flex',
+          flexWrap: 'nowrap', // 한 줄 유지
+          justifyContent: 'flex-start', // 왼쪽 정렬
+          gap: '15px',
+          paddingTop: '10px',
+          overflowX: 'auto', // 가로 스크롤 가능
+          whiteSpace: 'nowrap', // 줄 바꿈 방지
+          width: '100%',
+          boxSizing: 'border-box',
+        }}
+      >
+        {/* 이미지 리스트 */}
+        {[
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-9.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-6.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-5.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-4.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-3.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-2.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-10.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-8.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-1.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-7.png',
+        ].map((img, index) => (
+          <div
+            key={index}
+            style={{
+              width: '30%', // 크기 증가
+              minWidth: '250px', // 최소 크기 증가
+              aspectRatio: '16 / 9',
+              backgroundImage: `url(${img})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              borderRadius: '10px',
+              transition: 'transform 0.3s ease-in-out',
+            }}
+            className="hover:scale-105"
+          ></div>
+        ))}
+      </section>
+      <section
+        className="scroll-section"
+        style={{
+          display: 'flex',
+          flexWrap: 'nowrap', // 한 줄 유지
+          justifyContent: 'flex-start', // 왼쪽 정렬
+          gap: '15px',
+          paddingTop: '10px',
+          overflowX: 'auto', // 가로 스크롤 가능
+          whiteSpace: 'nowrap', // 줄 바꿈 방지
+        }}
+      >
+        {/* 이미지 리스트 */}
+        {[
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-10.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-2.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-3.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-4.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-6.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-4.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-5.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-8.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-9.png',
+          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-7.png',
+        ].map((img, index) => (
+          <div
+            key={index}
+            style={{
+              width: '30%',
+              minWidth: '250px', // 최소 크기 증가
+              aspectRatio: '16 / 9',
+              backgroundImage: `url(${img})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              borderRadius: '10px',
+              transition: 'transform 0.3s ease-in-out',
+            }}
+            className="hover:scale-105"
+          ></div>
+        ))}
+      </section>
+
       <section>
         <h6
           style={{
-            paddingTop: '50px',
+            paddingTop: '100px',
           }}
         >
           1,200편 이상의 영화 | 20,000편 이상의 에피소드 | 신규 및 단독 콘텐츠
@@ -139,7 +283,7 @@ const HomePage = () => {
           style={{
             textAlign: 'center',
             fontWeight: 'bold',
-            paddingTop: '200px',
+            paddingTop: '300px',
             zIndex: 2, // 텍스트가 맨 위에 오도록
             position: 'relative',
           }}
@@ -241,7 +385,12 @@ const HomePage = () => {
 
         <h4
           style={{
+            textAlign: 'left',
             paddingTop: '5px',
+            color: 'gray',
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',
           }}
         >
           멤버십 구독이 필요합니다.
