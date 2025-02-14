@@ -10,7 +10,7 @@ import {
   TopCont,
   ViewHistoryCont,
 } from '../../components'
-import { VisualWrap } from './style'
+import { MainWrap, VisualWrap } from './style'
 
 const Main = () => {
   return (
@@ -18,17 +18,16 @@ const Main = () => {
       <VisualWrap>
         <Intro />
       </VisualWrap>
-      {/* <div className="inner"> */}
-      {/* <BokjakCont /> */}
-      {/* <ViewHistoryCont /> */}
-      {/* <TopCont /> */}
-      {/* <ThumbnailCont /> */}
-      <SoonCont />
-      <div className="inner">
-        {/* <FlipBackCont /> */}
+      <MainWrap>
+        <BokjakCont />
+        <ViewHistoryCont />
+        <TopCont />
+        <ThumbnailCont />
+        <SoonCont />
+        <FlipBackCont />
         {/* <SeriesCont /> */}
-      </div>
-      {/* <BottomNavigation /> */}
+        {/* <BottomNavigation /> */}
+      </MainWrap>
     </>
   )
 }

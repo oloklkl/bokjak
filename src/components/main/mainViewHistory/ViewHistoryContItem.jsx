@@ -1,20 +1,22 @@
 import styled from 'styled-components'
-import { color } from '../../../styled/theme'
+import { color, font } from '../../../styled/theme'
 import { IconButton } from '../../../ui'
-import { Play } from '@phosphor-icons/react'
+import { Info, Play } from '@phosphor-icons/react'
 import { media } from '../../../styled/media'
 
 const ViewHistoryItemCont = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: visible;
   gap: 16px;
   width: clamp(160px, 20vw, 300px);
-  height: clamp(100px, 12vw, 200px);
+  /* height: clamp(100px, 12vw, 250px); */
+  height: auto;
 
   .thumbnailCont {
+    position: relative;
     width: clamp(160px, 20vw, 300px);
     height: 100%;
     display: flex;
@@ -68,6 +70,35 @@ const StateBar = styled.div`
     border-radius: 0 0 5px 5px;
   }
 `
+const InfoCont = styled.div`
+  width: 100%;
+  display: none;
+  /* display: flex; */
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  h2 {
+    font-size: ${font('body', 'lg')};
+    font-weight: bold;
+    ${media.tablet} {
+      font-size: ${font('body', 'md')};
+    }
+    ${media.mobile} {
+      font-size: ${font('body', 'sm')};
+    }
+  }
+  span {
+    font-size: ${font('body', 'md')};
+    color: ${color('gray', '40')};
+    ${media.tablet} {
+      font-size: ${font('body', 'sm')};
+    }
+    ${media.mobile} {
+      font-size: ${font('body', 'xsm')};
+    }
+  }
+`
 
 const ViewHistoryContItem = () => {
   return (
@@ -85,10 +116,15 @@ const ViewHistoryContItem = () => {
             text="Play"
           />
         </div>
-        <StateBar>
-          <div className="progress"></div>
-        </StateBar>
+        <StateBar></StateBar>
       </div>
+      <InfoCont>
+        <div className="textarea">
+          <h2>헝거게임 2: 부제목</h2>
+          <span>12분 13초 남음</span>
+        </div>
+        <IconButton className="none" icon={<Info size={24} />} text="Info" />
+      </InfoCont>
     </ViewHistoryItemCont>
   )
 }

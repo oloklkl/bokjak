@@ -30,11 +30,13 @@ const SoonItemCont = styled.div`
     }
   }
   ${media.tablet} {
-    width: 577px;
+    width: auto;
+    max-width: 577px;
     height: auto;
   }
   ${media.mobile} {
-    width: 310px;
+    width: auto;
+    max-width: 450px;
     height: auto;
   }
 `

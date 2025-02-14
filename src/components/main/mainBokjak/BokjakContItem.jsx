@@ -7,21 +7,26 @@ const BokjakItemCont = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: clamp(100px, 10vw, 160px);
-  height: 100%;
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  /* width: clamp(150px, 10vw, 250px); */
+  aspect-ratio: 1;
   gap: 16px;
   ${media.tablet} {
-    gap: 10px;
-  }
-  ${media.mobile} {
+    max-width: 200px;
     gap: 10px;
   }
 `
 const ImgCont = styled.div`
   width: 100%;
-  height: clamp(100px, 10vw, 160px);
+  height: 100%;
   background: ${color('gray', '80')};
   border-radius: 999px;
+  ${media.tablet} {
+    max-width: 200px;
+  }
+
   img {
     width: 100%;
     height: 100%;
@@ -57,7 +62,10 @@ const BokjakContItem = () => {
   return (
     <BokjakItemCont>
       <ImgCont>
-        <img src="" alt="" />
+        <img
+          src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
+          alt=""
+        />
       </ImgCont>
       <TextCont>
         <h3>title</h3>

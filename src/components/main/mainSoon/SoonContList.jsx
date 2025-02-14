@@ -52,7 +52,7 @@ const SoonList = styled.div`
   .swiper-slide {
     display: flex;
     justify-content: flex-start;
-    width: 100%;
+    width: auto;
     height: auto;
     overflow: hidden;
   }
@@ -96,10 +96,11 @@ const SoonContList = () => {
           // spaceBetween={24}
           // slidesPerView={'auto'}
           navigation={false}
+          // slidesPerGroupAuto
           breakpoints={{
-            320: { slidesPerView: 1.1, spaceBetween: 10 },
-            390: { slidesPerView: 1.3, spaceBetween: 10 },
-            768: { slidesPerView: 2.2, spaceBetween: 16 },
+            320: { slidesPerView: 1.2, spaceBetween: 10 },
+            // 390: { slidesPerView: 1.6, spaceBetween: 10 },
+            600: { slidesPerView: 1.7, spaceBetween: 16 },
             1024: {
               slidesPerView: 1.2,
               spaceBetween: 24,

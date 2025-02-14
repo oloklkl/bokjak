@@ -148,20 +148,17 @@ const BokjakContList = () => {
           slidesPerGroupAuto
           breakpoints={{
             330: {
-              slidesPerView: 'auto',
+              slidesPerView: 3,
               spaceBetween: 10,
             },
-            390: {
-              slidesPerView: 'auto',
-              spaceBetween: 10,
-            },
-            768: {
-              slidesPerView: 'auto',
+
+            600: {
+              slidesPerView: 4,
               spaceBetween: 16,
             },
 
             1024: {
-              slidesPerView: 'auto',
+              slidesPerView: 6,
               spaceBetween: 24,
             },
           }}>
