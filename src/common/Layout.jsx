@@ -1,4 +1,3 @@
-
 import { Outlet } from 'react-router-dom';
 import Header from './header';
 import Footer from './footer';
@@ -21,7 +20,7 @@ const Layout = () => {
     // }, [isDetailOpen]);
 
     return (
-        <div className="inner">
+        <div className="">
             <Header />
             <main>
                 {/* Router 페이지 */}
@@ -32,5 +31,4 @@ const Layout = () => {
     );
 };
 
-
-export default Layout
+export default Layout;

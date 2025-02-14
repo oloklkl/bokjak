@@ -8,10 +8,44 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 
 // 콘텐츠 목록 가져오기 (영화 & TV)
 export const getMovies = createAsyncThunk('content/getMovies', async () => {
-    const res = await axios.get(`${BASE_URL}/discover/movie`, {
-        params: { api_key: API_KEY, language: 'ko-KR' },
-    });
-    return res.data.results;
+    try {
+        // 영화 기본 목록 가져오기
+        const res = await axios.get(`${BASE_URL}/discover/movie`, {
+            params: { api_key: API_KEY, language: 'ko-KR' },
+        });
+
+        const movies = res.data.results;
+
+        // 각 영화에 대한 로고 이미지 요청
+        const moviesWithDetails = await Promise.all(
+            movies.map(async (movie) => {
+                try {
+                    const detailRes = await axios.get(`${BASE_URL}/movie/${movie.id}`, {
+                        params: {
+                            api_key: API_KEY,
+                            language: 'ko-KR',
+                            append_to_response: 'images',
+                            include_image_language: 'en,null',
+                        },
+                    });
+
+                    // 로고 이미지가 있으면 추가
+                    const logoImage =
+                        detailRes.data.images?.logos?.length > 0 ? detailRes.data.images.logos[0].file_path : null;
+
+                    return { ...movie, logoImage };
+                } catch (error) {
+                    console.error(`영화 ID ${movie.id}의 상세 정보를 가져오는 중 오류 발생:`, error);
+                    return { ...movie, logoImage: null }; // 오류 발생 시 기본값 반환
+                }
+            })
+        );
+
+        return moviesWithDetails;
+    } catch (error) {
+        console.error('getMovies 오류:', error);
+        throw error;
+    }
 });
 
 export const getTvShows = createAsyncThunk('content/getTvShows', async () => {
@@ -34,7 +68,8 @@ export const getContentDetail = createAsyncThunk('detail/getContentDetail', asyn
         params: {
             api_key: API_KEY,
             language: 'ko-KR',
-            append_to_response: 'credits,videos,genres,seasons',
+            append_to_response: 'credits,videos,genres,seasons,images',
+            include_image_language: 'en,null',
         },
     });
     if (type === 'tv' && res.data.seasons) {

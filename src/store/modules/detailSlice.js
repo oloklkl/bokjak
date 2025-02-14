@@ -44,6 +44,10 @@ export const detailSlice = createSlice({
             state.isUrlModalOpen = true;
             state.isRoomCreated = true;
         },
+        clearCurrentData: (state, action) => {
+            state.currentContent = null;
+            state.currentGenre = null;
+        },
     },
     extraReducers: (builder) => {
         builder

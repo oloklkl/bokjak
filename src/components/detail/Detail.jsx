@@ -20,9 +20,11 @@ const Detail = () => {
     const { currentContent } = useSelector((state) => state.detailR);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const bgurl = `https://image.tmdb.org/t/p/w500`;
 
     const goPrevPage = () => {
         navigate(-1);
+        dispatch(detailActions.clearCurrentData());
     };
 
     if (!currentContent) return <div>Loading...</div>;
@@ -30,6 +32,7 @@ const Detail = () => {
         <DetailWindow className="detail-window">
             <DetailWrap className="detail">
                 <DetailPreview />
+
                 <DetailContentWrap className="detail-content">
                     <Description />
                     {type === 'tv' && <EpisodeList />}
