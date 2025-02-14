@@ -11,10 +11,15 @@ const IntroList = () => {
       <Swiper
         className="swiper"
         modules={[Autoplay]}
-        spaceBetween={30}
+        spaceBetween={24}
         slidesPerView={1}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
-        loop={true}>
+        loop={true}
+        breakpoints={{
+          390: { spaceBetween: 12 },
+          768: { spaceBetween: 16 },
+          1024: { spaceBetween: 24 },
+        }}>
         {introData.map((item) => (
           <SwiperSlide key={item.id} className="swiper-slide">
             <IntroItem {...item} />
