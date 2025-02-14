@@ -5,8 +5,12 @@ import { color, font } from '../../../styled/theme';
 import { media } from '../../../styled/media';
 
 const UpcomingTitleWrap = styled.div`
+    font-weight: bold;
+    margin-bottom: 40px;
+
     h2 {
         font-size: ${font('title', 'exlg')};
+
         ${media.tablet} {
             font-size: ${font('title', 'xlg')};
         }

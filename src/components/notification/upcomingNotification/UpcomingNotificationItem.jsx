@@ -22,8 +22,10 @@ const UpcomingContentWrap = styled.div`
 
 const HeaderTitle = styled.div`
     h2 {
-        font-size: ${font('title', 'lg')};
-        width: 70px;
+        color: ${color('gray', '20')};
+        font-size: ${font('title', 'xlg')};
+        font-weight: bold;
+        width: 100px;
 
         ${media.tablet} {
             font-size: ${font('title', 'lg')};
@@ -39,6 +41,7 @@ const UpcomingImageWrap = styled.div`
     img {
         width: 130px;
         height: 160px;
+        border-radius: 7px;
 
         ${media.tablet} {
             width: 100px;
@@ -64,6 +67,7 @@ const UpcomingInfoWrap = styled.div`
 
     h3 {
         font-size: ${font('title', 'md')};
+        color: ${color('gray', '20')};
 
         ${media.desktop} {
             margin-right: 5px;
@@ -79,8 +83,8 @@ const UpcomingInfoWrap = styled.div`
     }
     em,
     span {
-        font-size: ${font('detail', 'md')};
-        color: ${color('gray', '30')};
+        font-size: ${font('detail', 'lg')};
+        color: ${color('gray', '40')};
 
         ${media.tablet} {
             font-size: ${font('detail', 'md')};
@@ -88,6 +92,9 @@ const UpcomingInfoWrap = styled.div`
         ${media.mobile} {
             font-size: ${font('detail', 'sm')};
         }
+    }
+    em {
+        margin: 0 5px;
     }
 `;
 
@@ -103,7 +110,7 @@ const UpcomingActionWrap = styled.div`
 
 const UpcomingDescription = styled.div`
     p {
-        color: ${color('gray', '30')};
+        color: ${color('gray', '40')};
         font-size: ${font('title', 'md')};
 
         ${media.tablet} {
@@ -161,7 +168,6 @@ const UpcomingNotificationItem = () => {
                             <h3>스파이더맨 : 파 프롬 홈</h3>
                             <AgeLabel text='ALL' />
                         </UpcomingActionWrap>
-                        <em>·</em>
                         <span>2017</span>
                         <em>·</em>
                         <span>액션</span>

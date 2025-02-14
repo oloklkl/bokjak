@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { media } from '../../styled/media';
+import { color } from '../../styled/theme';
 
 export const UpcomingNotificationWrap = styled.div``;
 
@@ -34,12 +35,15 @@ export const GroupNotificationItemWrap = styled.div``;
 
 export const UpcomingNotificationItemWrap = styled.div`
     width: 100%;
-    margin: 40px 0;
+    padding: 40px 0;
+    border-bottom: 1px solid ${color('gray', '60')};
 
     ${media.tablet} {
+        padding: 30px 0;
     }
 
     ${media.mobile} {
+        padding: 20px 0;
     }
 `;
 
