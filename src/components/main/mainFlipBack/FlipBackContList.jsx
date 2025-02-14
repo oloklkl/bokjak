@@ -49,11 +49,8 @@ const FlipBackList = styled.div`
     overflow: hidden;
   }
   .swiper-slide {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
     width: 100%;
-    height: 600px;
+    height: 100%;
   }
 `
 
@@ -89,11 +86,16 @@ const FlipBackContList = () => {
           className="swiper"
           ref={swiperRef}
           modules={[Navigation]}
-          spaceBetween={24}
+          pagination={{ clickable: true }}
           slidesPerGroup={4}
           slidesPerView={4}
-          pagination={{ clickable: true }}
-          navigation={false}>
+          navigation={false}
+          breakpoints={{
+            320: { spaceBetween: 10 },
+            390: { spaceBetween: 10 },
+            768: { spaceBetween: 16 },
+            1024: { spaceBetween: 24 },
+          }}>
           <SwiperSlide className="swiper-slide">
             <FlipBackContItem />
           </SwiperSlide>

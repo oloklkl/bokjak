@@ -5,33 +5,19 @@ import { media } from '../../../styled/media'
 const TopItemCont = styled.div`
   display: flex;
   flex-direction: row;
-  height: auto;
-  min-width: 295px;
-  min-height: 295px;
-  overflow: hidden;
+  justify-content: center;
+  align-items: flex-end;
 
-  ${media.tablet} {
-    width: 210px;
-    height: 210px;
-  }
-  ${media.mobile} {
-    width: 140px;
-    height: 130px;
-  }
+  width: clamp(140px, 20vw, 295px);
+  height: clamp(130px, 20vw, 295px);
 `
 
 const TopNumberImg = styled.div`
-  padding-top: 140px;
-  max-width: 80px;
-  ${media.tablet} {
-    max-width: 70px;
-  }
-  ${media.mobile} {
-    max-width: 50px;
-  }
+  width: clamp(50px, 20vw, 80px);
+  height: auto;
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 `
 
@@ -42,13 +28,8 @@ const TopThumbnailImg = styled.div`
   align-items: center;
   background: ${color('gray', '70')};
   border-radius: 7px;
-  max-width: 216px;
-  ${media.tablet} {
-    max-width: 140px;
-  }
-  ${media.mobile} {
-    max-width: 90px;
-  }
+  width: clamp(160px, 20vw, 210px);
+  height: 100%;
 
   img {
     width: 100%;
@@ -67,7 +48,7 @@ const TopContItem = () => {
       {/* <div className="topItemImg"> */}
       <TopNumberImg>
         <img
-          src="https://raw.githubusercontent.com/lse-7660/bokjak-image/c9ff4c8cc09bdda334eb731251f0ec9a55642779/images/main/top/numberImg/pc/pc_number1.svg"
+          src="https://raw.githubusercontent.com/lse-7660/bokjak-image/c9ff4c8cc09bdda334eb731251f0ec9a55642779/images/main/top/numberImg/pc/pc_number2.svg"
           alt=""
         />
       </TopNumberImg>
