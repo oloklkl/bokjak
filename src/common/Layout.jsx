@@ -5,6 +5,19 @@ import Footer from './footer';
 // import { useEffect } from 'react';
 
 const Layout = () => {
+    // const { isDetailOpen } = useSelector((state) => state.detailR);
+
+    // useEffect(() => {
+    //     if (isDetailOpen) {
+    //         document.body.style.overflow = 'hidden';
+    //     } else {
+    //         document.body.style.overflow = '';
+    //     }
+
+    //     return () => {
+    //         document.body.style.overflow = '';
+    //     };
+    // }, [isDetailOpen]);
 
     return (
         <div className="inner">
@@ -18,5 +31,4 @@ const Layout = () => {
     );
 };
 
-
-export default Layout
+export default Layout;

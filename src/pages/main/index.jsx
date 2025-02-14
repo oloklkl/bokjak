@@ -1,5 +1,3 @@
-import styled from 'styled-components'
-import BottomNavigation from '../../common/bottomnavigation'
 import {
   Intro,
   BokjakCont,
@@ -25,8 +23,7 @@ const Main = () => {
         <ThumbnailCont />
         <SoonCont />
         <FlipBackCont />
-        {/* <SeriesCont /> */}
-        {/* <BottomNavigation /> */}
+        <SeriesCont />
       </MainWrap>
     </>
   )

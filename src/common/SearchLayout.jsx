@@ -3,9 +3,9 @@ import Header from './header';
 
 const SearchLayout = () => {
     return (
-        <div className='inner'>
+        <div className="">
             <Header />
-            <section className=''>
+            <section className="">
                 {/* 서브영역들어오는곳 */}
                 <Outlet />
             </section>

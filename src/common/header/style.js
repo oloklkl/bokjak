@@ -52,6 +52,33 @@ export const NavWrap = styled.nav`
     align-items: center;
     justify-content: space-between;
     width: 100%;
+
+    li {
+        a {
+            color: ${color('gray', '40')};
+
+            &:hover {
+                color: ${color('gray', '0')};
+                svg {
+                    fill: ${color('gray', '0')};
+                }
+            }
+        }
+        a.active {
+            color: ${color('gray', '0')};
+            svg {
+                fill: ${color('gray', '0')};
+            }
+        }
+    }
+    li:nth-of-type(2) {
+        a.active {
+            color: ${color('gray', '0')};
+            svg {
+                fill: ${color('gray', '0')};
+            }
+        }
+    }
 `;
 
 export const NavCenter = styled.ul`
@@ -78,16 +105,8 @@ export const NavCenter = styled.ul`
 
         a {
             text-decoration: none;
+            font-size: 16px;
             font-size: ${font('title', 'lg')};
-            color: ${color('gray', '40')};
-
-            &:hover {
-                color: ${color('gray', '0')};
-            }
-
-            &.active {
-                color: ${color('gray', '0')};
-            }
 
             ${media.tablet} {
                 font-size: ${font('body', 'md')};
@@ -101,23 +120,18 @@ export const NavCenter = styled.ul`
 
 export const CategoryTitleWrap = styled.div`
     display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 5px;
     color: ${color('gray', '40')};
 
     svg {
         fill: ${color('gray', '40')};
     }
 
-    &:hover {
-        color: ${color('gray', '0')};
-        svg {
-            fill: ${color('gray', '0')};
-        }
-    }
-
     ${media.tablet} {
-        gap: 5px;
+        gap: 2px;
     }
 `;
 
@@ -145,13 +159,7 @@ export const CategoryDropdown = styled.ul`
         span {
             display: flex;
             text-align: left;
-            color: ${color('gray', '30')};
             font-size: ${font('body', 'md')};
-
-            &:hover {
-                color: ${color('gray', '0')};
-                font-weight: 700;
-            }
         }
     }
 
@@ -210,16 +218,10 @@ export const NavRight = styled.ul`
     display: flex;
     align-items: center;
     gap: 15px;
-    z-index: 50;
+    z-index: 9999;
 
     svg:hover {
         fill: ${color('gray', '0')};
-    }
-
-    a.active {
-        svg {
-            fill: ${color('gray', '0')};
-        }
     }
 
     ${media.tablet} {

@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 export const AboutWrap = styled.div`
-  .no-padding {
-    padding: 0 !important;
-  }
   width: 100%;
   .inner {
     padding: 100px 0;
@@ -69,44 +66,17 @@ export const AboutWrap = styled.div`
   }
   h6 {
     text-align: center;
-
-    font-size: x-large;
+    font-size: medium;
   }
   @media (max-width: 768px) {
     h6 {
       text-align: center;
-      font-size: large;
+      font-size: medium;
     }
   }
   @media (max-width: 390px) {
     h6 {
       font-size: xx-small;
     }
-  }
-  section::-webkit-scrollbar {
-    display: none;
-  }
-
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
-  .scroll-section {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    gap: 15px;
-    overflow-x: auto;
-    white-space: nowrap;
-    animation: scroll-left 10s linear infinite;
-  }
-
-  .hover\\:scale-105:hover {
-    transform: scale(1.05);
   }
 `;
