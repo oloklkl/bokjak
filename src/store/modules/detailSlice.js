@@ -1,14 +1,15 @@
 // detailSlice.js
 
 import { createSlice } from '@reduxjs/toolkit';
-import { getContentDetail } from './getThunk';
+import { getContentByGenre, getContentDetail } from './getThunk';
 // 상세페이지
 
 const initialState = {
     loading: false,
     error: null,
-    isDetailOpen: false,
     currentContent: null,
+    currentGenre: null,
+    moreLikeThisData: null,
     isUrlModalOpen: false,
     isCreateOpen: false,
     isRoomCreated: false,
@@ -18,12 +19,8 @@ export const detailSlice = createSlice({
     name: 'detail',
     initialState,
     reducers: {
-        closeDetailModal: (state, action) => {
-            state.isDetailOpen = false;
-            state.currentContent = null;
-        },
-        openDetailModal: (state, action) => {
-            state.isDetailOpen = true;
+        updateGenre: (state, action) => {
+            state.currentGenre = action.payload;
         },
         openUrlModal: (state, action) => {
             state.isUrlModalOpen = true;
@@ -57,8 +54,21 @@ export const detailSlice = createSlice({
             .addCase(getContentDetail.fulfilled, (state, action) => {
                 state.loading = false;
                 state.currentContent = action.payload;
+                state.currentGenre = state.currentContent.genres;
             })
             .addCase(getContentDetail.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(getContentByGenre.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(getContentByGenre.fulfilled, (state, action) => {
+                state.loading = false;
+                state.moreLikeThisData = action.payload.filter((item) => item.id !== state.currentContent.id);
+            })
+            .addCase(getContentByGenre.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             });

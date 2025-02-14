@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { DetailSectionWrap } from './style';
 import { CaretDown, CaretUp } from '@phosphor-icons/react';
 import EpisodeItem from './EpisodeItem';
+import { useSelector } from 'react-redux';
 
 const EpisodeList = () => {
+    const { currentContent } = useSelector((state) => state.detailR);
     const [isShow, setIsShow] = useState(false);
     const toggleDropdown = () => {
         setIsShow(!isShow);
@@ -18,13 +20,17 @@ const EpisodeList = () => {
                 </button>
                 {isShow && (
                     <ul className="season-dropdown-list">
-                        <li className="season-dropdown-item">시즌 1</li>
-                        <li className="season-dropdown-item">시즌 2</li>
-                        <li className="season-dropdown-item">시즌 3</li>
+                        {currentContent.seasonDetails.map((season) => (
+                            <li key={season.id} className="season-dropdown-item">
+                                {season.name}
+                            </li>
+                        ))}
                     </ul>
                 )}
             </div>
-            <EpisodeItem />
+            {currentContent.seasonDetails[0].episodes.map((episode) => (
+                <EpisodeItem key={episode.id} episode={episode} />
+            ))}
         </DetailSectionWrap>
     );
 };

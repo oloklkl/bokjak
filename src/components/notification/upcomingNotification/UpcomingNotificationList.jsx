@@ -1,15 +1,5 @@
-import { UpcomingNotificationListWrap } from '../style';
-import UpcomingNotificationItem from './UpcomingNotificationItem';
-
 const UpcomingNotificationList = () => {
-    return (
-        <UpcomingNotificationListWrap>
-            <UpcomingNotificationItem />
-            <UpcomingNotificationItem />
-            <UpcomingNotificationItem />
-            <UpcomingNotificationItem />
-        </UpcomingNotificationListWrap>
-    );
+    return <div></div>;
 };
 
 export default UpcomingNotificationList;

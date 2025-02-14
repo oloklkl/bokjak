@@ -5,6 +5,7 @@ import { CategoryDropdown, CategoryTitleWrap, CloseButton, NavCenter, NavRight, 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategory, toggleCategory } from '../../store/modules/categorySlice';
 import { setActiveLink } from '../../store/modules/navSlice';
+import { color } from '../../styled/theme';
 
 const NavBar = () => {
     const dispatch = useDispatch();
@@ -38,11 +39,17 @@ const NavBar = () => {
                         About
                     </NavLink>
                 </li>
-                <li>
+                <li className='category'>
                     <NavLink to='#' className={({ isActive }) => (isActive ? 'active' : '')} onClick={handleToggle}>
                         <CategoryTitleWrap>
                             카테고리
-                            {isOpen ? <CaretUp size={24} /> : <CaretDown size={24} />}
+                            <IconButton
+                                className='gray40 none'
+                                fillColor={isOpen ? color('gray', '0') : color('gray', '40')}
+                                icon={isOpen ? <CaretUp size={24} /> : <CaretDown size={24} />}
+                                text={isOpen ? 'Close' : 'Open'}
+                                aria-label='카테고리 열기/닫기'
+                            />
                         </CategoryTitleWrap>
                     </NavLink>
                     {isOpen && (
