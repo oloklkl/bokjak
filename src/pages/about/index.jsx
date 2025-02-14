@@ -26,6 +26,21 @@ const HomePage = () => {
       }
     );
 
+    const sections = gsap.utils.toArray('.scroll-section');
+    sections.forEach((section, i) => {
+      const width = section.scrollWidth;
+      gsap.to(section, {
+        x: -width,
+        ease: 'linear',
+        repeat: -1,
+        duration: 10,
+        delay: i, // Each section starts 1 second after the previous
+        modifiers: {
+          x: (x) => gsap.utils.wrap(-width, 0, parseFloat(x)) + 'px',
+        },
+      });
+    });
+
     return () => {
       document.body.style.overflowX = '';
     };
@@ -126,14 +141,16 @@ const HomePage = () => {
 
       {/* 추가된 이미지 그리드 섹션 */}
       <section
+        className="scroll-section"
         style={{
           display: 'flex',
           flexWrap: 'nowrap', // 한 줄 유지
           justifyContent: 'flex-start', // 왼쪽 정렬
           gap: '15px',
-
           overflowX: 'auto', // 가로 스크롤 가능
           whiteSpace: 'nowrap', // 줄 바꿈 방지
+          width: '100%',
+          boxSizing: 'border-box',
         }}
       >
         {/* 이미지 리스트 */}
@@ -166,6 +183,7 @@ const HomePage = () => {
         ))}
       </section>
       <section
+        className="scroll-section"
         style={{
           display: 'flex',
           flexWrap: 'nowrap', // 한 줄 유지
@@ -174,6 +192,8 @@ const HomePage = () => {
           paddingTop: '10px',
           overflowX: 'auto', // 가로 스크롤 가능
           whiteSpace: 'nowrap', // 줄 바꿈 방지
+          width: '100%',
+          boxSizing: 'border-box',
         }}
       >
         {/* 이미지 리스트 */}
@@ -206,6 +226,7 @@ const HomePage = () => {
         ))}
       </section>
       <section
+        className="scroll-section"
         style={{
           display: 'flex',
           flexWrap: 'nowrap', // 한 줄 유지
