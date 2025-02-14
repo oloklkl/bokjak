@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import { useSelector } from 'react-redux'
 import IntroItem from './IntroItem'
-import { IntroSliderCont } from '../style'
+import { IntroSliderCont } from './style'
 
 const IntroList = () => {
   const { introData } = useSelector((state) => state.mainR)

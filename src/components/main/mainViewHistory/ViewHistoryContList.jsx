@@ -1,6 +1,3 @@
-import styled from 'styled-components'
-import { font } from '../../../styled/theme'
-import { media } from '../../../styled/media'
 import { useDispatch } from 'react-redux'
 import { detailActions } from '../../../store/modules/detailSlice'
 import ViewHistoryContItem from './ViewHistoryContItem'
@@ -11,67 +8,9 @@ import { Navigation } from 'swiper/modules'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import { useRef } from 'react'
+import { ViewHistoryContainer } from './style'
+import { NavigationButton } from '../style'
 
-const ViewHistoryContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  ${media.mobile} {
-    gap: 20px;
-  }
-  .viewHeader {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    h2 {
-      font-size: ${font('title', 'xxlg')};
-      ${media.tablet} {
-        font-size: ${font('title', 'xlg')};
-      }
-      ${media.mobile} {
-        font-size: ${font('title', 'lg')};
-      }
-    }
-    h3 {
-      font-size: ${font('body', 'sm')};
-    }
-  }
-  .viewList {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-
-    .swiper {
-      width: 100%;
-      overflow: visible;
-    }
-    .swiper-slide {
-      /* width: clamp(180px, 20vw, 300px); */
-      width: auto;
-      height: auto;
-      overflow: hidden;
-      border-radius: 7px;
-    }
-  }
-`
-const NavigationButton = styled.div`
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  z-index: 3;
-  ${media.tablet} {
-    display: none;
-  }
-  ${media.mobile} {
-    display: none;
-  }
-`
 const ViewHistoryContList = () => {
   const dispatch = useDispatch()
   const swiperRef = useRef()

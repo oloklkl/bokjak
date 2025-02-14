@@ -1,9 +1,6 @@
-import styled from 'styled-components'
-import { font } from '../../../styled/theme'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import ThumbnailCard from '../../../common/main/card/thumbnail/ThumbnailCard'
-import { media } from '../../../styled/media'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -17,66 +14,14 @@ import {
   getMovies,
   getTvShows,
 } from '../../../store/modules/getThunk'
-import { detailActions } from '../../../store/modules/detailSlice'
+// import { detailActions } from '../../../store/modules/detailSlice'
 import { Link, useLocation } from 'react-router-dom'
-
-const ThumbnailContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 40px;
-  ${media.mobile} {
-    gap: 20px;
-  }
-`
-
-const ThumbnailHeader = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  h2 {
-    font-size: ${font('title', 'xxlg')};
-    ${media.tablet} {
-      font-size: ${font('title', 'xlg')};
-    }
-    ${media.mobile} {
-      font-size: ${font('title', 'lg')};
-    }
-  }
-  h3 {
-    font-size: ${font('body', 'sm')};
-  }
-`
-
-const ThumbnailList = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  .swiper {
-    width: 100%;
-    overflow: visible;
-  }
-
-  .swiper-slide {
-    width: auto;
-    height: auto;
-  }
-`
-
-const NavigationButton = styled.div`
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  z-index: 3;
-`
+import { ThumbnailContainer, ThumbnailHeader, ThumbnailList } from './style'
+import { NavigationButton } from '../style'
 
 const ThumbnailContList = () => {
-  const { movies, tvShows } = useSelector((state) => state.contentR)
+  const { movies } = useSelector((state) => state.contentR)
+  // const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
   const location = useLocation()
 

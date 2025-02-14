@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import BokjakContItem from './BokjakContItem'
+import styled from 'styled-components'
 import { color, font } from '../../../styled/theme'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight, QuestionMark } from '@phosphor-icons/react'

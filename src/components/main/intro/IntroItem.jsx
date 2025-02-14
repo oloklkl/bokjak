@@ -1,5 +1,5 @@
 import { BarButton } from '../../../ui'
-import { IntroImgCont, IntroTextCont, IntroBannerCont } from '../style'
+import { IntroBannerCont, IntroImgCont, IntroTextCont } from './style'
 
 const IntroItem = ({ imgUrl, logoUrl, imgTitle, title, btnText }) => {
   return (

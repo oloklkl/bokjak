@@ -1,9 +1,6 @@
-import styled from 'styled-components'
-import { font } from '../../../styled/theme'
 import TopContItem from './TopContItem'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
-import { media } from '../../../styled/media'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -11,60 +8,9 @@ import { Navigation } from 'swiper/modules'
 import { useEffect, useRef } from 'react'
 import { getTrending } from '../../../store/modules/getThunk'
 import { useDispatch } from 'react-redux'
+import { TopListWrap } from './style'
+import { NavigationButton } from '../style'
 // import { useDispatch } from 'react-redux'
-
-const TopListWrap = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  ${media.mobile} {
-    gap: 20px;
-  }
-  .topHeader {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    h2 {
-      font-size: ${font('title', 'xxlg')};
-      ${media.tablet} {
-        font-size: ${font('title', 'xlg')};
-      }
-      ${media.mobile} {
-        font-size: ${font('title', 'lg')};
-      }
-    }
-    h3 {
-      font-size: ${font('body', 'sm')};
-    }
-  }
-
-  .topList {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    .swiper {
-      width: 100%;
-      overflow: visible;
-    }
-    .swiper-slide {
-      width: auto;
-      height: auto;
-    }
-  }
-`
-
-const NavigationButton = styled.div`
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  z-index: 3;
-`
 
 const TopContList = () => {
   const swiperRef = useRef()

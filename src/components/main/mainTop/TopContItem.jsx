@@ -1,46 +1,4 @@
-import styled from 'styled-components'
-import { color } from '../../../styled/theme'
-import { media } from '../../../styled/media'
-
-const TopItemCont = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-end;
-
-  width: clamp(140px, 20vw, 295px);
-  height: clamp(130px, 20vw, 295px);
-`
-
-const TopNumberImg = styled.div`
-  width: clamp(50px, 20vw, 80px);
-  height: auto;
-  img {
-    width: 100%;
-    height: auto;
-  }
-`
-
-const TopThumbnailImg = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: ${color('gray', '70')};
-  border-radius: 7px;
-  width: clamp(160px, 20vw, 210px);
-  height: 100%;
-
-  img {
-    width: 100%;
-    height: 100%;
-    border-radius: 7px;
-    object-fit: cover;
-    ${media.mobile} {
-      border-radius: 5px;
-    }
-  }
-`
+import { TopItemCont, TopNumberImg, TopThumbnailImg } from './style'
 
 const TopContItem = () => {
   return (

@@ -4,65 +4,10 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 import { useRef } from 'react'
-import styled from 'styled-components'
-import { media } from '../../../styled/media'
-import { font } from '../../../styled/theme'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
-
-const FlipBackListContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  ${media.mobile} {
-    gap: 20px;
-  }
-`
-const FlipBackHeader = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  h2 {
-    font-size: ${font('title', 'xxlg')};
-    ${media.tablet} {
-      font-size: ${font('title', 'xlg')};
-    }
-    ${media.mobile} {
-      font-size: ${font('title', 'lg')};
-    }
-  }
-  h3 {
-    font-size: ${font('body', 'sm')};
-  }
-`
-
-const FlipBackList = styled.div`
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
-  position: relative;
-
-  .swiper {
-    width: 100%;
-    overflow: hidden;
-  }
-  .swiper-slide {
-    width: 100%;
-    height: 100%;
-  }
-`
-
-const NavigationButton = styled.div`
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  z-index: 3;
-`
+import { FlipBackHeader, FlipBackList, FlipBackListContainer } from './style'
+import { NavigationButton } from '../style'
 
 const FlipBackContList = () => {
   const swiperRef = useRef()
