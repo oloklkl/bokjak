@@ -16,7 +16,7 @@ export const IntroSliderCont = styled.div`
   }
   .swiper-slide {
     width: 100%;
-    height: auto;
+    height: 100%;
   }
 `
 export const IntroBannerCont = styled.div`
@@ -29,7 +29,6 @@ export const IntroBannerCont = styled.div`
 export const IntroImgCont = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
   &::before {
     content: '';
     position: absolute;

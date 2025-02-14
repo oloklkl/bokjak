@@ -2,6 +2,10 @@ import styled from 'styled-components'
 import BokjakContList from './BokjakContList'
 import { media } from '../../../styled/media'
 
+const BokjakWrap = styled.div`
+  width: 100%;
+`
+
 const BokjakSection = styled.div`
   width: 100%;
   display: flex;
@@ -19,9 +23,13 @@ const BokjakSection = styled.div`
 
 const BokjakCont = () => {
   return (
-    <BokjakSection>
-      <BokjakContList />
-    </BokjakSection>
+    <BokjakWrap>
+      <div className="inner">
+        <BokjakSection>
+          <BokjakContList />
+        </BokjakSection>
+      </div>
+    </BokjakWrap>
   )
 }
 

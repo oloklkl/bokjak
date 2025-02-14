@@ -38,23 +38,25 @@ const TopThumbnailBox = styled.div`
   }
 `
 
-
 const ThumbnailCard = ({ content, ...props }) => {
-    const bgurl = `https://image.tmdb.org/t/p/w500`;
-    return (
-        <>
-            <TopItemWrap {...props}>
-                <TopThumbCont>
-                    <TopThumbnailBox>
-                        <div className="imgBox">
-                            <img src={`${bgurl}${content.backdrop_path}`} alt="" />
-                        </div>
-                    </TopThumbnailBox>
-                </TopThumbCont>
-            </TopItemWrap>
-        </>
-    );
-};
-
+  const bgurl = `https://image.tmdb.org/t/p/w500`
+  const logoUrl = content.logoImage
+    ? `https://image.tmdb.org/t/p/w500${content.logoImage}`
+    : null
+  return (
+    <>
+      <TopItemWrap {...props}>
+        <TopThumbCont>
+          <TopThumbnailBox>
+            <div className="imgBox">
+              <img src={`${bgurl}${content.backdrop_path}`} alt="" />
+            </div>
+            {logoUrl && <img src={logoUrl} />}
+          </TopThumbnailBox>
+        </TopThumbCont>
+      </TopItemWrap>
+    </>
+  )
+}
 
 export default ThumbnailCard

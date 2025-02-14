@@ -1,21 +1,24 @@
-
-import styled from 'styled-components';
-import { font } from '../../../styled/theme';
-import { IconButton } from '../../../ui';
-import { CaretLeft, CaretRight } from '@phosphor-icons/react';
-import ThumbnailCard from '../../../common/main/card/thumbnail/ThumbnailCard';
-import { media } from '../../../styled/media';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
+import styled from 'styled-components'
+import { font } from '../../../styled/theme'
+import { IconButton } from '../../../ui'
+import { CaretLeft, CaretRight } from '@phosphor-icons/react'
+import ThumbnailCard from '../../../common/main/card/thumbnail/ThumbnailCard'
+import { media } from '../../../styled/media'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Navigation } from 'swiper/modules'
 // import { useDispatch } from 'react-redux'
-import { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContentByGenre, getContentDetail, getMovies, getTvShows } from '../../../store/modules/getThunk';
-import { detailActions } from '../../../store/modules/detailSlice';
-import { Link, useLocation } from 'react-router-dom';
-
+import { useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  getContentByGenre,
+  getContentDetail,
+  getMovies,
+  getTvShows,
+} from '../../../store/modules/getThunk'
+import { detailActions } from '../../../store/modules/detailSlice'
+import { Link, useLocation } from 'react-router-dom'
 
 const ThumbnailContainer = styled.div`
   display: flex;
@@ -73,23 +76,21 @@ const NavigationButton = styled.div`
 `
 
 const ThumbnailContList = () => {
+  const { movies, tvShows } = useSelector((state) => state.contentR)
+  const dispatch = useDispatch()
+  const location = useLocation()
 
-    const { movies, tvShows } = useSelector((state) => state.contentR);
-    const dispatch = useDispatch();
-    const location = useLocation();
+  useEffect(() => {
+    dispatch(getMovies())
+    dispatch(getTvShows())
+  }, [dispatch])
 
-    useEffect(() => {
-        dispatch(getMovies());
-        dispatch(getTvShows());
-    }, [dispatch]);
-
-    const showDetailModal = (type, id, genreId) => {
-        dispatch(getContentDetail({ type, id }));
-        dispatch(getContentByGenre({ type, genreId }));
-    };
-    // const dispatch = useDispatch()
-    const swiperRef = useRef();
-
+  const showDetailModal = (type, id, genreId) => {
+    dispatch(getContentDetail({ type, id }))
+    dispatch(getContentByGenre({ type, genreId }))
+  }
+  // const dispatch = useDispatch()
+  const swiperRef = useRef()
 
   const goNext = () => {
     swiperRef.current?.swiper.slideNext()
@@ -97,7 +98,6 @@ const ThumbnailContList = () => {
   const goPrev = () => {
     swiperRef.current?.swiper.slidePrev()
   }
-
 
   return (
     <ThumbnailContainer>
@@ -135,17 +135,19 @@ const ThumbnailContList = () => {
             },
           }}>
           {movies.map((content) => (
-                        <SwiperSlide key={content.id}>
-                            <Link to={`/movie/${content.id}`} state={{ previousLocation: location }}>
-                                <ThumbnailCard
-                                    content={content}
-                                    onClick={() => {
-                                        showDetailModal('movie', content.id, content.genre_ids);
-                                    }}
-                                />
-                            </Link>
-                        </SwiperSlide>
-                    ))}
+            <SwiperSlide key={content.id}>
+              <Link
+                to={`/movie/${content.id}`}
+                state={{ previousLocation: location }}>
+                <ThumbnailCard
+                  content={content}
+                  onClick={() => {
+                    showDetailModal('movie', content.id, content.genre_ids)
+                  }}
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
         </Swiper>
 
         <NavigationButton>
