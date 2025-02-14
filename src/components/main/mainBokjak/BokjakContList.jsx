@@ -2,30 +2,28 @@ import styled from 'styled-components'
 import BokjakContItem from './BokjakContItem'
 import { color, font } from '../../../styled/theme'
 import { IconButton } from '../../../ui'
-import { QuestionMark } from '@phosphor-icons/react'
+import { CaretLeft, CaretRight, QuestionMark } from '@phosphor-icons/react'
 import { media } from '../../../styled/media'
+import { useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Navigation } from 'swiper/modules'
 
 const BokjakListWrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  gap: 40px;
-`
-
-const BokjakHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   gap: 40px;
   ${media.mobile} {
     gap: 20px;
   }
 `
-const TitleCont = styled.div`
+
+const BokjakHeader = styled.div`
+  width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
@@ -59,58 +57,111 @@ const TitleCont = styled.div`
 `
 
 const BokjakList = styled.div`
+  width: 100%;
+  position: relative;
   display: flex;
   justify-content: flex-start;
 
+  .swiper {
+    width: 100%;
+    overflow: visible;
+  }
   .swiper-slide {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    width: auto;
+    height: auto;
   }
 `
 const MsgBox = styled.div`
   display: flex;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
   align-content: center;
-  width: 530px;
-  height: 70px;
+  width: 290px;
+  height: 40px;
   background: ${color('gray', '70')};
   border-radius: 7px;
-  font-size: ${font('body', 'md')};
-  color: ${color('gray', '30')};
-  text-align: start;
-  line-height: 1.5;
-  padding: 10px 20px;
+  padding: 10px;
+  .textarea {
+    width: 280px;
+    display: flex;
+    text-align: left;
+    font-size: ${font('body', 'sm')};
+    color: ${color('gray', '30')};
+  }
   ${media.mobile} {
-    width: 380px;
-    height: 70px;
+    width: 250px;
+    height: 32px;
+    border-radius: 5px;
+    padding: 7px 10px;
+    .textarea {
+      width: 240px;
+      font-size: ${font('body', 'xsm')};
+    }
+  }
+`
+
+const NavigationButton = styled.div`
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 3;
+
+  ${media.tablet} {
+    display: none;
+  }
+  ${media.mobile} {
+    display: none;
   }
 `
 
 const BokjakContList = () => {
+  const swiperRef = useRef()
+
+  const goNext = () => {
+    swiperRef.current?.swiper.slideNext()
+  }
+
+  const goPrev = () => {
+    swiperRef.current?.swiper.slidePrev()
+  }
   return (
     <BokjakListWrap>
       <BokjakHeader>
-        <TitleCont>
-          <h2>title</h2>
-          <IconButton
-            className="border"
-            icon={<QuestionMark size={18} />}
-            text="smiley"
-          />
-          <MsgBox>
-            &quot;모여봐요 복작!&quot;은 시청자들이 실시간으로 영상을 함께
-            시청하고 <br /> 채팅으로 소통하는 공동 시청 서비스입니다.
-          </MsgBox>
-        </TitleCont>
+        <h2>title</h2>
+        <IconButton
+          className="border"
+          icon={<QuestionMark size={18} />}
+          text="smiley"
+        />
+        <MsgBox>
+          <div className="textarea">실시간 영상 시청 및 채팅 서비스입니다.</div>
+        </MsgBox>
       </BokjakHeader>
 
       <BokjakList>
         <Swiper
           className="swiper"
-          modules={[Autoplay]}
-          spaceBetween={24}
-          slidesPerView={5}>
+          ref={swiperRef}
+          modules={[Navigation]}
+          slidesPerGroupAuto
+          breakpoints={{
+            330: {
+              slidesPerView: 3,
+              spaceBetween: 10,
+            },
+
+            600: {
+              slidesPerView: 4,
+              spaceBetween: 16,
+            },
+
+            1024: {
+              slidesPerView: 6,
+              spaceBetween: 24,
+            },
+          }}>
           <SwiperSlide>
             <BokjakContItem />
           </SwiperSlide>
@@ -132,6 +183,33 @@ const BokjakContList = () => {
           <SwiperSlide>
             <BokjakContItem />
           </SwiperSlide>
+          <SwiperSlide>
+            <BokjakContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <BokjakContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <BokjakContItem />
+          </SwiperSlide>
+          <SwiperSlide>
+            <BokjakContItem />
+          </SwiperSlide>
+
+          <NavigationButton>
+            <IconButton
+              onClick={goPrev}
+              className="b30"
+              icon={<CaretLeft size={24} />}
+              text="caretLeft"
+            />
+            <IconButton
+              onClick={goNext}
+              className="b30"
+              icon={<CaretRight size={24} />}
+              text="caretRight"
+            />
+          </NavigationButton>
         </Swiper>
       </BokjakList>
     </BokjakListWrap>
