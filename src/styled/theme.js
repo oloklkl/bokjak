@@ -42,13 +42,14 @@ export const theme = {
         },
         title: {
             xxlg: '32px',
+            exlg: '28px',
             xlg: '24px',
             lg: '21px',
             md: '19px',
         },
         body: {
             lg: '19px',
-            md: '17px',     
+            md: '17px',
             sm: '15px',
             xsm: '13px',
         },

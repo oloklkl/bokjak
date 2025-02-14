@@ -29,13 +29,15 @@ const Header = () => {
 
     return (
         <HeaderWrap>
-            <div className='header_inner'>
-                <h1>
-                    <Link to={'/'}>
-                        <img src={logoSrc} alt='logo' />
-                    </Link>
-                </h1>
-                <NavBar />
+            <div className='inner'>
+                <div className='header_inner'>
+                    <h1>
+                        <Link to={'/'}>
+                            <img src={logoSrc} alt='logo' />
+                        </Link>
+                    </h1>
+                    <NavBar />
+                </div>
             </div>
         </HeaderWrap>
     );

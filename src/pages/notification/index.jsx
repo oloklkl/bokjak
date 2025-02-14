@@ -1,7 +1,9 @@
-import { Container, ContentWrapper, NotificationSection, SectionTitle } from './style';
+import { Container, ContentWrapper, NotificationSection } from './style';
 
 import BottomNavigation from '../../common/bottomnavigation';
 import ProfileSection from '../../components/profile';
+import GroupNotification from '../../components/notification/groupNotification/GroupNotification';
+import UpcomingNotification from '../../components/notification/upcomingNotification/upcomingNotification';
 
 const Notification = () => {
     return (
@@ -9,15 +11,15 @@ const Notification = () => {
             <ProfileSection />
 
             <ContentWrapper>
-                <NotificationSection>
-                    <SectionTitle></SectionTitle>
-                    {/* 모아보기 알림 내용 */}
-                </NotificationSection>
+                <div className='inner'>
+                    <NotificationSection>
+                        <GroupNotification />
+                    </NotificationSection>
 
-                <NotificationSection>
-                    <SectionTitle></SectionTitle>
-                    {/* 공개예정 내용 */}
-                </NotificationSection>
+                    <NotificationSection>
+                        <UpcomingNotification />
+                    </NotificationSection>
+                </div>
             </ContentWrapper>
             <BottomNavigation />
         </Container>
