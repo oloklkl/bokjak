@@ -6,34 +6,28 @@ import { color, font } from '../../../styled/theme';
 import { media } from '../../../styled/media';
 
 const UpcomingContentWrap = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${media.desktop} {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 50px;
+    }
 
-    ${media.mobile} {
+    ${media.tablet} {
         display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
         align-items: flex-start;
     }
 `;
 
 const HeaderTitle = styled.div`
-    width: 13%;
-
-    ${media.tablet} {
-        width: 40%;
-    }
-    ${media.mobile} {
-        width: 100%;
-    }
-
     h2 {
         font-size: ${font('title', 'lg')};
-        margin-left: 10px;
+        width: 70px;
 
         ${media.tablet} {
             font-size: ${font('title', 'lg')};
+            margin-bottom: 10px;
         }
         ${media.mobile} {
             font-size: ${font('title', 'md')};
@@ -58,25 +52,28 @@ const UpcomingImageWrap = styled.div`
 `;
 
 const UpcomingInfoWrap = styled.div`
-    margin-left: 40px;
-    width: 17%;
-
+    ${media.desktop} {
+        margin-top: 15px;
+    }
     ${media.tablet} {
-        width: 50%;
+        margin-left: 30px;
+        margin-bottom: 15px;
     }
     ${media.mobile} {
-        width: 140%;
-        transform: translateY(20px);
     }
 
     h3 {
         font-size: ${font('title', 'md')};
-        margin-right: 5px;
+
+        ${media.desktop} {
+            margin-right: 5px;
+        }
 
         ${media.tablet} {
-            font-size: ${font('title', 'lg')};
+            font-size: ${font('body', 'md')};
         }
         ${media.mobile} {
+            margin-right: 10px;
             font-size: ${font('body', 'sm')};
         }
     }
@@ -92,50 +89,56 @@ const UpcomingInfoWrap = styled.div`
             font-size: ${font('detail', 'sm')};
         }
     }
-    span {
-        margin-right: 4px;
-    }
 `;
 
 const UpcomingActionWrap = styled.div`
     display: flex;
     align-items: center;
+    width: 250px;
+    margin-bottom: 10px;
+
+    ${media.tablet} {
+    }
 `;
 
 const UpcomingDescription = styled.div`
-    width: 80%;
-
     p {
         color: ${color('gray', '30')};
-        margin-left: 50px;
+        font-size: ${font('title', 'md')};
+
+        ${media.tablet} {
+            font-size: ${font('body', 'md')};
+            margin-top: 20px;
+        }
     }
 
-    ${media.tablet} {
+    ${media.mobile} {
         display: none;
     }
 `;
 const UpcomingIconWrap = styled.div`
-    width: 20%;
-    margin-left: 100px;
     cursor: pointer;
+    width: 60px;
 
     ${media.tablet} {
-        margin-right: 50px;
+        width: 40px;
+        transform: translateX(400px) translateY(-213px);
     }
     ${media.mobile} {
-        margin-left: 10px;
-        margin-right: 0;
+        transform: translateX(400px) translateY(-75px);
     }
 `;
 
 const FlexWrap = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    ${media.mobile} {
+    ${media.desktop} {
         display: flex;
-        align-items: baseline;
+        align-items: center;
+        gap: 50px;
+    }
+
+    ${media.tablet} {
+        display: flex;
+        align-items: center;
     }
 `;
 
@@ -167,16 +170,16 @@ const UpcomingNotificationItem = () => {
                         <em>·</em>
                         <span>해외영화</span>
                     </UpcomingInfoWrap>
-                    <UpcomingDescription>
-                        <p>
-                            시빌 워 당시 토니 스타크에게 발탁되어 대단한 활약을 펼친 스파이더맨 피터 파커. 허세와
-                            정의감으로 똘똘 뭉친 그는 세상을 위협하는 강력한 적 처벌에 맞서려 한다.
-                        </p>
-                    </UpcomingDescription>
-                    <UpcomingIconWrap>
-                        <BellSimpleRinging size={24} weight='fill' />
-                    </UpcomingIconWrap>
                 </FlexWrap>
+                <UpcomingDescription>
+                    <p>
+                        시빌 워 당시 토니 스타크에게 발탁되어 대단한 활약을 펼친 스파이더맨 피터 파커. 허세와 정의감으로
+                        똘똘 뭉친 그는 세상을 위협하는 강력한 적 처벌에 맞서려 한다.
+                    </p>
+                </UpcomingDescription>
+                <UpcomingIconWrap>
+                    <BellSimpleRinging size={24} weight='fill' />
+                </UpcomingIconWrap>
             </UpcomingContentWrap>
         </UpcomingNotificationItemWrap>
     );

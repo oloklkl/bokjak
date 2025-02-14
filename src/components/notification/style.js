@@ -33,18 +33,13 @@ export const GroupNotificationListWrap = styled.div`
 export const GroupNotificationItemWrap = styled.div``;
 
 export const UpcomingNotificationItemWrap = styled.div`
-    width: 1600px;
-    height: 186px;
+    width: 100%;
     margin: 40px 0;
 
     ${media.tablet} {
-        width: 708px;
-        height: 180px;
     }
 
     ${media.mobile} {
-        width: 350px;
-        height: 208px;
     }
 `;
 
