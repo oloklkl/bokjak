@@ -11,18 +11,15 @@ import BokjakUrlModal from './BokjakUrlModal';
 import CreateRoomModal from './CreateRoomModal';
 import { detailActions } from '../../store/modules/detailSlice';
 import RoomCreatedModal from './RoomCreatedModal';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 // import { useEffect } from 'react';
 
 const Detail = () => {
+    const { type } = useParams();
     const { isUrlModalOpen, isCreateOpen, isRoomCreated } = useSelector((state) => state.detailR);
     const { currentContent } = useSelector((state) => state.detailR);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    // useEffect(()=>{
-    //     dispatch(detailActions.updateGenre(currentContent))
-    // },[]);
 
     const goPrevPage = () => {
         navigate(-1);
@@ -35,7 +32,7 @@ const Detail = () => {
                 <DetailPreview />
                 <DetailContentWrap className="detail-content">
                     <Description />
-                    <EpisodeList />
+                    {type === 'tv' && <EpisodeList />}
                     <MoreLikeThisList />
                 </DetailContentWrap>
             </DetailWrap>

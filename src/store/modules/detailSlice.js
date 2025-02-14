@@ -1,7 +1,7 @@
 // detailSlice.js
 
 import { createSlice } from '@reduxjs/toolkit';
-import { getContentDetail } from './getThunk';
+import { getContentByGenre, getContentDetail } from './getThunk';
 // 상세페이지
 
 const initialState = {
@@ -9,6 +9,7 @@ const initialState = {
     error: null,
     currentContent: null,
     currentGenre: null,
+    moreLikeThisData: null,
     isUrlModalOpen: false,
     isCreateOpen: false,
     isRoomCreated: false,
@@ -56,6 +57,18 @@ export const detailSlice = createSlice({
                 state.currentGenre = state.currentContent.genres;
             })
             .addCase(getContentDetail.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(getContentByGenre.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(getContentByGenre.fulfilled, (state, action) => {
+                state.loading = false;
+                state.moreLikeThisData = action.payload.filter((item) => item.id !== state.currentContent.id);
+            })
+            .addCase(getContentByGenre.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             });

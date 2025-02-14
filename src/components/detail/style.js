@@ -266,8 +266,13 @@ export const EpisodeItemWrap = styled.div`
             width: 240px;
             aspect-ratio: 16/9;
             border-radius: 6px;
-            background-color: white;
+            /* background-color: white; */
+            overflow: hidden;
             transition: all 0.2s ease;
+
+            img {
+                width: 100%;
+            }
         }
         &.episode-info-wrap {
             display: flex;
@@ -295,6 +300,7 @@ export const EpisodeItemWrap = styled.div`
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 3;
+            overflow: hidden;
         }
     }
 

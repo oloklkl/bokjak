@@ -21,12 +21,48 @@ export const getTvShows = createAsyncThunk('content/getTvShows', async () => {
     return res.data.results;
 });
 
+export const getTrending = createAsyncThunk('content/getTrending', async () => {
+    const res = await axios.get(`${BASE_URL}/trending/all/week`, {
+        params: { api_key: API_KEY, language: 'ko-KR' },
+    });
+    return res.data.results;
+});
+
 // 콘텐츠 상세 정보 가져오기
 export const getContentDetail = createAsyncThunk('detail/getContentDetail', async ({ type, id }) => {
     const res = await axios.get(`${BASE_URL}/${type}/${id}`, {
-        params: { api_key: API_KEY, language: 'ko-KR', append_to_response: 'credits,videos' },
+        params: {
+            api_key: API_KEY,
+            language: 'ko-KR',
+            append_to_response: 'credits,videos,genres,seasons',
+        },
     });
+    if (type === 'tv' && res.data.seasons) {
+        const seasonDetails = await Promise.all(
+            res.data.seasons.map(async (season) => {
+                const seasonRes = await axios.get(`${BASE_URL}/tv/${id}/season/${season.season_number}`, {
+                    params: {
+                        api_key: API_KEY,
+                        language: 'ko-KR',
+                    },
+                });
+                return seasonRes.data;
+            })
+        );
+        res.data.seasonDetails = seasonDetails;
+    }
     return res.data;
+});
+
+export const getContentByGenre = createAsyncThunk('content/getContentByGenre', async ({ type, genreId }) => {
+    const res = await axios.get(`${BASE_URL}/discover/${type}`, {
+        params: {
+            api_key: API_KEY,
+            language: 'ko-KR',
+            with_genres: genreId,
+        },
+    });
+    return res.data.results;
 });
 
 // import { createAsyncThunk } from '@reduxjs/toolkit';

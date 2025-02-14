@@ -1,23 +1,23 @@
 import { Outlet } from 'react-router-dom';
 import Header from './header';
 import Footer from './footer';
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+// import { useSelector } from 'react-redux';
+// import { useEffect } from 'react';
 
 const Layout = () => {
-    const { isDetailOpen } = useSelector((state) => state.detailR);
+    // const { isDetailOpen } = useSelector((state) => state.detailR);
 
-    useEffect(() => {
-        if (isDetailOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
+    // useEffect(() => {
+    //     if (isDetailOpen) {
+    //         document.body.style.overflow = 'hidden';
+    //     } else {
+    //         document.body.style.overflow = '';
+    //     }
 
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, [isDetailOpen]);
+    //     return () => {
+    //         document.body.style.overflow = '';
+    //     };
+    // }, [isDetailOpen]);
 
     return (
         <div className="inner">

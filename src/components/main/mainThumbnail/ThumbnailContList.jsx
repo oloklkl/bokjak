@@ -11,7 +11,7 @@ import { Navigation } from 'swiper/modules';
 // import { useDispatch } from 'react-redux'
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContentDetail, getMovies, getTvShows } from '../../../store/modules/getThunk';
+import { getContentByGenre, getContentDetail, getMovies, getTvShows } from '../../../store/modules/getThunk';
 import { detailActions } from '../../../store/modules/detailSlice';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -93,9 +93,9 @@ const ThumbnailContList = () => {
         dispatch(getTvShows());
     }, [dispatch]);
 
-    const showDetailModal = (type, id) => {
+    const showDetailModal = (type, id, genreId) => {
         dispatch(getContentDetail({ type, id }));
-        // dispatch(detailActions.openDetailModal({}));
+        dispatch(getContentByGenre({ type, genreId }));
     };
     // const dispatch = useDispatch()
     const swiperRef = useRef();
@@ -132,13 +132,13 @@ const ThumbnailContList = () => {
                     slidesPerView={6}
                     navigation={false}
                 >
-                    {tvShows.map((content) => (
+                    {movies.map((content) => (
                         <SwiperSlide key={content.id}>
-                            <Link to={`/tv/${content.id}`} state={{ previousLocation: location }}>
+                            <Link to={`/movie/${content.id}`} state={{ previousLocation: location }}>
                                 <ThumbnailCard
                                     content={content}
                                     onClick={() => {
-                                        showDetailModal('tv', content.id);
+                                        showDetailModal('movie', content.id, content.genre_ids);
                                     }}
                                 />
                             </Link>
