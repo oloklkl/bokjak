@@ -1,7 +1,19 @@
 import GlobalStyle from './styled/GlobalStyle';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Layout from './common/Layout';
-import { About, FilmoPage, Login, Main, Membership, NotFiles, Notification, Search, SubPage, Video } from './pages';
+import {
+    About,
+    FilmoPage,
+    Login,
+    Main,
+    Membership,
+    MyPage,
+    NotFiles,
+    Notification,
+    Search,
+    SubPage,
+    Video,
+} from './pages';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styled/theme';
 import SubLayout from './common/SubLayout';

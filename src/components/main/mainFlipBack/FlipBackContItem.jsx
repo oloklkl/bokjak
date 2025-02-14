@@ -10,16 +10,6 @@ const FlipBackItemCont = styled.div`
   height: 100%;
   max-width: 388px;
   max-height: 600px;
-  ${media.tablet} {
-    max-width: 100%;
-    height: auto;
-    max-height: 260px;
-  }
-  ${media.mobile} {
-    max-width: 100%;
-    height: auto;
-    max-height: 170px;
-  }
 `
 const ImageCont = styled.div`
   position: relative;

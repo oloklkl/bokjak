@@ -10,7 +10,7 @@ const TopSection = styled.div`
   justify-content: center;
   align-items: flex-start;
   background: ${color('gray', '80')};
-  padding: 100px 0;
+  padding: 100px 0 50px;
   ${media.tablet} {
     padding: 80px 0;
   }

@@ -2,32 +2,59 @@ import styled from 'styled-components'
 import { media } from '../../../styled/media'
 import { color, font } from '../../../styled/theme'
 import { BarButton, IconButton } from '../../../ui'
-import { BellSimple } from '@phosphor-icons/react'
+import { BellSimple, Play } from '@phosphor-icons/react'
 import AgeLabel from '../../../ui/AgeLabel'
 
 const SoonItemCont = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   overflow: hidden;
-  border-radius: 7px;
+  width: 100%;
   height: auto;
   max-width: 1294px;
   max-height: 484px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  .soonDate {
+    width: 100%;
+    font-size: ${font('body', 'md')};
+    font-weight: bold;
+    display: flex;
+    margin-bottom: 10px;
+    ${media.mobile} {
+      font-size: ${font('body', 'sm')};
+    }
+    ${media.desktop} {
+      display: none;
+    }
+  }
   ${media.tablet} {
-    max-width: 100%;
+    width: auto;
+    max-width: 577px;
     height: auto;
-    max-height: 459px;
   }
   ${media.mobile} {
-    max-width: 100%;
+    width: auto;
+    max-width: 450px;
     height: auto;
-    max-height: 404px;
   }
 `
+const SooncardCont = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
 
+  ${media.tablet} {
+    display: flex;
+    flex-direction: column;
+  }
+  ${media.mobile} {
+    border-radius: 5px;
+  }
+`
 const ImageCont = styled.div`
   position: relative;
   width: 100%;
@@ -42,8 +69,9 @@ const ImageCont = styled.div`
     background: ${color('gray', '80')};
     display: block;
 
-    ${media.mobile} {
-      border-radius: 5px;
+    ${media.tablet} {
+      border-radius: 0px;
+      flex: 1;
     }
   }
   &::before {
@@ -55,6 +83,21 @@ const ImageCont = styled.div`
     height: 100%;
     border-radius: inherit;
     background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    ${media.tablet} {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+  .icon {
+    ${media.desktop} {
+      display: none;
+    }
+    ${media.tablet} {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 `
 
@@ -70,13 +113,39 @@ const TextCont = styled.div`
   align-items: flex-start;
   margin: 40px;
   gap: 24px;
+  ${media.tablet} {
+    background: ${color('gray', '100')};
+    width: 100%;
+    height: auto;
+    position: static;
+    flex: 1;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+  }
   .soonLogo {
     width: 432px;
     height: 133px;
+    ${media.tablet} {
+      width: 100%;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    ${media.mobile} {
+      height: 55px;
+    }
     img {
       width: auto;
       height: 100%;
       object-fit: contain;
+    }
+  }
+  .soonIconTop {
+    ${media.desktop} {
+      display: none;
     }
   }
 
@@ -94,15 +163,27 @@ const TextCont = styled.div`
     align-self: flex-start;
     text-align: left;
     gap: 10px;
+    ${media.tablet} {
+    }
+    h2 {
+      font-size: ${font('title', 'xlg')};
+      font-weight: bold;
+      ${media.tablet} {
+        display: none;
+      }
+    }
     p {
       font-size: ${font('body', 'sm')};
       font-weight: lighter;
+      ${media.mobile} {
+        font-size: ${font('body', 'xsm')};
+      }
     }
   }
-  /* 반응형 추가 */
 `
 
 const LabelWrapper = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
 
@@ -116,6 +197,9 @@ const LabelWrapper = styled.div`
   span {
     font-size: ${font('body', 'sm')};
     color: ${color('gray', '30')};
+    ${media.tablet} {
+      font-size: ${font('body', 'xsm')};
+    }
   }
 `
 const ButtonGroup = styled.div`
@@ -124,48 +208,66 @@ const ButtonGroup = styled.div`
   justify-content: center;
   align-items: center;
   gap: 24px;
+  ${media.tablet} {
+    display: none;
+  }
 `
 
 const SoonContItem = () => {
   return (
     <SoonItemCont>
-      <ImageCont>
-        <img
-          src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
-          alt="위키드"
-        />
-      </ImageCont>
-      <TextCont>
-        <div className="soonLogo">
+      <h2 className="soonDate">3월 6일 공개</h2>
+      <SooncardCont>
+        <ImageCont>
           <img
-            src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introLogoSlide1.png?raw=true"
+            src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
             alt="위키드"
           />
-        </div>
-        <div className="textarea">
-          <h2>3월 6일 공개</h2>
-          <LabelWrapper>
-            <AgeLabel text="ALL" />
-            <em>·</em>
-            <span>2017</span>
-            <em>·</em>
-            <span>액션</span>
-            <em>·</em>
-            <span>SF</span>
-            <em>·</em>
-            <span>해외영화</span>
-          </LabelWrapper>
-          <p>
-            시빌 워 당시 토니 스타크에게 발탁되어 대단한 활약을 펼친 스파이더맨
-            피터 파커. 허세와 정의감으로 똘똘 뭉친 그는 세상을 위협하는 강력한
-            적 벌처에 맞서려 한다.
-          </p>
-        </div>
-        <ButtonGroup>
-          <BarButton text="미리보기" width="366px" height="42px" />
-          <IconButton icon={<BellSimple size={24} />} text="BellSimple" />
-        </ButtonGroup>
-      </TextCont>
+          <div className="icon">
+            <IconButton
+              className="border"
+              icon={<Play size={24} weight="fill" />}
+              text="Play"
+            />
+          </div>
+        </ImageCont>
+        <TextCont>
+          <div className="soonLogo">
+            <img
+              src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introLogoSlide1.png?raw=true"
+              alt="위키드"
+            />
+            <IconButton
+              className="soonIconTop"
+              icon={<BellSimple size={24} />}
+              text="BellSimple"
+            />
+          </div>
+          <div className="textarea">
+            <h2>3월 6일 공개</h2>
+            <LabelWrapper>
+              <AgeLabel text="ALL" />
+              <em>·</em>
+              <span>2017</span>
+              <em>·</em>
+              <span>액션</span>
+              <em>·</em>
+              <span>SF</span>
+              <em>·</em>
+              <span>해외영화</span>
+            </LabelWrapper>
+            <p>
+              시빌 워 당시 토니 스타크에게 발탁되어 대단한 활약을 펼친
+              스파이더맨 피터 파커. 허세와 정의감으로 똘똘 뭉친 그는 세상을
+              위협하는 강력한 적 벌처에 맞서려 한다.
+            </p>
+          </div>
+          <ButtonGroup>
+            <BarButton text="미리보기" width="366px" height="42px" />
+            <IconButton icon={<BellSimple size={24} />} text="BellSimple" />
+          </ButtonGroup>
+        </TextCont>
+      </SooncardCont>
     </SoonItemCont>
   )
 }

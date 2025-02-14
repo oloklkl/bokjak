@@ -1,7 +1,6 @@
 import { MagnifyingGlass } from '@phosphor-icons/react';
-import { CategoryButton, IconButton, RecentSearchButton } from '../../ui';
+import { IconButton, RecentSearchButton } from '../../ui';
 import { Container, Nav, PopularList, PopularListContainer, RecentKeywords, SearchBar, Section } from './style';
-import { useState } from 'react';
 import BottomNavigation from '../../common/bottomnavigation';
 
 const Search = () => {
