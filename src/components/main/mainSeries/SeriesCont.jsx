@@ -1,5 +1,12 @@
+import SeriesContList from './SeriesContList'
+import { SeriesSection } from './style'
+
 const SeriesCont = () => {
-  return <div>SeriesCont</div>
+  return (
+    <SeriesSection>
+      <SeriesContList />
+    </SeriesSection>
+  )
 }
 
 export default SeriesCont
