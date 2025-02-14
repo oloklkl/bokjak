@@ -23,55 +23,57 @@ const Search = () => {
 
     return (
         <Container>
-            <SearchBar>
-                <div className='input-container'>
-                    <input type='text' placeholder='제목, 장르, 배우로 검색해보세요.' />
-                    <IconButton
-                        className='search-icon gray40 none'
-                        icon={<MagnifyingGlass size={24} />}
-                        text='MagnifyingGlass'
-                    />
-                </div>
-            </SearchBar>
+            <div className='inner'>
+                <SearchBar>
+                    <div className='input-container'>
+                        <input type='text' placeholder='제목, 장르, 배우로 검색해보세요.' />
+                        <IconButton
+                            className='search-icon gray40 none'
+                            icon={<MagnifyingGlass size={24} />}
+                            text='MagnifyingGlass'
+                        />
+                    </div>
+                </SearchBar>
 
-            <Nav aria-label='최근 검색어'>
-                <h2>최근 검색어</h2>
-                <RecentKeywords>
-                    <RecentSearchButton text='또 오해영' />
-                    <RecentSearchButton text='나 혼자 산다' />
-                    <RecentSearchButton text='런닝맨' />
-                    <RecentSearchButton text='위키드' />
-                    <RecentSearchButton text='너의 이름은' />
-                    <RecentSearchButton text='환승연애' />
-                </RecentKeywords>
-            </Nav>
+                <Nav aria-label='최근 검색어'>
+                    <h2>최근 검색어</h2>
+                    <RecentKeywords>
+                        <RecentSearchButton text='또 오해영' />
+                        <RecentSearchButton text='나 혼자 산다' />
+                        <RecentSearchButton text='런닝맨' />
+                        <RecentSearchButton text='위키드' />
+                        <RecentSearchButton text='너의 이름은' />
+                        <RecentSearchButton text='환승연애' />
+                    </RecentKeywords>
+                </Nav>
 
-            <Section aria-labelledby='popular-searches'>
-                <h2 id='popular-searches'>실시간 인기 검색어</h2>
+                <Section aria-labelledby='popular-searches'>
+                    <h2 id='popular-searches'>실시간 인기 검색어</h2>
 
-                {/* 왼쪽 정렬 */}
-                <PopularListContainer>
-                    <PopularList as='ol'>
-                        {firstHalf.map((item, index) => (
-                            <li key={index} className='left'>
-                                <span>{index + 1}</span>
-                                {item}
-                            </li>
-                        ))}
-                    </PopularList>
+                    {/* 왼쪽 정렬 */}
+                    <PopularListContainer>
+                        <PopularList as='ol'>
+                            {firstHalf.map((item, index) => (
+                                <li key={index} className='left'>
+                                    <span>{index + 1}</span>
+                                    {item}
+                                </li>
+                            ))}
+                        </PopularList>
 
-                    {/* 오른쪽 정렬 */}
-                    <PopularList as='ol'>
-                        {secondHalf.map((item, index) => (
-                            <li key={index} className='right'>
-                                <span>{index + 6}</span>
-                                {item}
-                            </li>
-                        ))}
-                    </PopularList>
-                </PopularListContainer>
-            </Section>
-            <BottomNavigation />
+                        {/* 오른쪽 정렬 */}
+                        <PopularList as='ol'>
+                            {secondHalf.map((item, index) => (
+                                <li key={index} className='right'>
+                                    <span>{index + 6}</span>
+                                    {item}
+                                </li>
+                            ))}
+                        </PopularList>
+                    </PopularListContainer>
+                </Section>
+                <BottomNavigation />
+            </div>
         </Container>
     );
 };
