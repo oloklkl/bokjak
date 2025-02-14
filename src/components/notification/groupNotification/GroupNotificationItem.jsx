@@ -76,14 +76,12 @@ const TextWrap = styled.div`
 const IconWrap = styled.div`
     position: absolute;
     top: 5%;
-    right: 25%;
+    left: 20px;
     cursor: pointer;
 
     ${media.tablet} {
-        right: 15%;
     }
     ${media.mobile} {
-        right: 5%;
     }
 `;
 
@@ -92,9 +90,15 @@ const ButtonWrap = styled.div`
     top: 78%;
     margin-top: auto;
 
-    ${media.tablet} {
-    }
-    ${media.mobile} {
+    .link {
+        ${media.tablet} {
+            width: 178px;
+            height: 30px;
+        }
+        ${media.mobile} {
+            width: 160px;
+            height: 20px;
+        }
     }
 `;
 
@@ -117,7 +121,7 @@ const GroupNotificationItem = () => {
                     <span>13:30</span>
                 </TextWrap>
                 <ButtonWrap>
-                    <BarButton icon={<Link />} text='공유' width='265px' height='42px' />
+                    <BarButton icon={<Link />} className='link' text='공유' width='265px' height='42px' />
                 </ButtonWrap>
             </GroupNotificationContent>
         </GroupNotificationItemWrap>

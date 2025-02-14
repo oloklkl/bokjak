@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import GroupNotificationItem from './GroupNotificationItem';
 import styled from 'styled-components';
-import { font } from '../../../styled/theme';
+import { color, font } from '../../../styled/theme';
 import { media } from '../../../styled/media';
 
 const GroupNotificationHeader = styled.div`
@@ -35,6 +35,9 @@ const HeaderContent = styled.div`
             gap: 320px;
             font-size: ${font('title', 'lg')};
         }
+        span {
+            color: ${color('primary', 'default')};
+        }
     }
     h3 {
         font-size: ${font('body', 'sm')};
@@ -60,7 +63,9 @@ const GroupNotificationList = () => {
         <GroupNotificationListWrap>
             <GroupNotificationHeader>
                 <HeaderContent>
-                    <h2>모여봐요! 알림</h2>
+                    <h2>
+                        <span>모여봐요!</span> 알림
+                    </h2>
                     <h3>more</h3>
                 </HeaderContent>
             </GroupNotificationHeader>
