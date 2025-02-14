@@ -6,4 +6,3 @@ export const Container = styled.div`
 
 export const ContentWrapper = styled.div``;
 export const NotificationSection = styled.div``;
-export const SectionTitle = styled.div``;
