@@ -2,11 +2,12 @@
 
 import { DescriptionWrap } from './style';
 import MoreDetailInfo from './MoreDetailInfo';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const Description = () => {
+    const { type } = useParams();
     const { currentContent } = useSelector((state) => state.detailR);
 
     const [isShow, setIsShow] = useState(false);
@@ -16,12 +17,20 @@ const Description = () => {
 
     return (
         <DescriptionWrap>
-            <h2>{currentContent.title}</h2>
+            <h2>{type === 'movie' ? currentContent.title : currentContent.name}</h2>
             <div className="desc-info-wrap">
                 <div className="desc-inner">
                     <div className="desc-info">
-                        <span>{currentContent.release_date.split('-')[0]}</span>
-                        <span>{currentContent.runtime}분</span>
+                        <span>
+                            {type === 'movie'
+                                ? currentContent.release_date.split('-')[0]
+                                : currentContent.first_air_date.split('-')[0]}
+                        </span>
+                        <span>
+                            {type === 'movie'
+                                ? `${currentContent.runtime}분`
+                                : `${currentContent.seasons[0].episode_count}개 에피소드`}
+                        </span>
                     </div>
                     <p>{currentContent.overview}</p>
                     <div className="detail-tags-list">

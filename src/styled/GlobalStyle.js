@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset'
-import { color, font } from './theme'
-import { media } from './media'
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
+import { color, font } from './theme';
+import { media } from './media';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   body {
+    overflow-x: hidden;
     font-size: ${font('body', 'md')};
     line-height: 1.5;
     font-family: 'Noto Sans', sans-serif;
@@ -96,6 +97,6 @@ box-shadow:none !important;}}
      height: 0;
      line-height: 0;
   }
-`
+`;
 
-export default GlobalStyle
+export default GlobalStyle;

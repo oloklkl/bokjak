@@ -7,10 +7,9 @@ export const ContentFlipCardWrap = styled.div`
     width: 100%;
     height: auto;
     aspect-ratio: 3/4;
-    padding: 40px 20px;
 
     border-radius: 10px;
-    background-color: white;
+    background-color: ${color('gray', '70')};
 
     transition: all 0.3s ease;
 
@@ -19,6 +18,7 @@ export const ContentFlipCardWrap = styled.div`
             display: flex;
             flex-direction: column;
             gap: 16px;
+            padding: 40px 20px;
         }
         &.content-flip-card-tags {
             display: flex;
@@ -29,6 +29,13 @@ export const ContentFlipCardWrap = styled.div`
                 color: ${color('gray', '30')};
             }
         }
+        &.content-flip-card-preview {
+            width: 100%;
+            height: 100%;
+            img {
+                border-radius: 10px;
+            }
+        }
     }
 
     p {
@@ -37,9 +44,18 @@ export const ContentFlipCardWrap = styled.div`
             font-weight: 600;
             text-align: left;
             word-wrap: break-word;
+
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
         }
         &.content-flip-card-desc {
             text-align: left;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 7;
+            overflow: hidden;
         }
     }
 
@@ -51,24 +67,28 @@ export const ContentFlipCardWrap = styled.div`
     }
 `;
 
-const ContentFlipCard = () => {
+const ContentFlipCard = ({ content }) => {
     const [isShow, setIsShow] = useState(false);
+    const bgurl = `https://image.tmdb.org/t/p/w500`;
 
     return (
         <ContentFlipCardWrap onMouseEnter={() => setIsShow(true)} onMouseLeave={() => setIsShow(false)}>
+            {!isShow && (
+                <div className="content-flip-card-preview">
+                    <img src={`${bgurl}${content.backdrop_path}`} alt="" />
+                </div>
+            )}
+
             {isShow && (
                 <div className="content-flip-card-wrap">
-                    <p className="content-flip-card-title">블라이저택의 유령</p>
+                    <p className="content-flip-card-title">{content.title}</p>
                     <div className="content-flip-card-tags">
-                        <span>2013</span>
-                        <span>액션</span>
+                        <span>{content.release_date.split('-')[0]}</span>
+                        {/* <span>액션</span>
                         <span>범죄</span>
-                        <span>스릴러</span>
+                        <span>스릴러</span> */}
                     </div>
-                    <p className="content-flip-card-desc">
-                        초호화 저택에서 일하게 된 가정 교사. 그녀가 이곳에 숨은 어두운 비밀을 파헤치기 시작한다. 고딕
-                        미스터리 시리즈.
-                    </p>
+                    <p className="content-flip-card-desc">{content.overview}</p>
                 </div>
             )}
         </ContentFlipCardWrap>

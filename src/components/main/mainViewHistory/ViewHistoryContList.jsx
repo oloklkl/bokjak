@@ -39,9 +39,9 @@ const ViewHistoryContainer = styled.div`
     }
   }
   .viewList {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    overflow: visible;
     position: relative;
 
     .swiper {
@@ -49,11 +49,11 @@ const ViewHistoryContainer = styled.div`
       overflow: visible;
     }
     .swiper-slide {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
+      /* width: clamp(180px, 20vw, 300px); */
       width: auto;
       height: auto;
+      overflow: hidden;
+      border-radius: 7px;
     }
   }
 `
@@ -65,6 +65,12 @@ const NavigationButton = styled.div`
   justify-content: space-between;
   transform: translateY(-50%);
   z-index: 3;
+  ${media.tablet} {
+    display: none;
+  }
+  ${media.mobile} {
+    display: none;
+  }
 `
 const ViewHistoryContList = () => {
   const dispatch = useDispatch()
@@ -90,10 +96,18 @@ const ViewHistoryContList = () => {
           ref={swiperRef}
           modules={[Navigation]}
           pagination={{ clickable: true }}
-          spaceBetween={24}
-          slidesPerGroup={4.5}
-          slidesPerView={4.5}
-          navigation={false}>
+          navigation={false}
+          breakpoints={{
+            320: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
+            390: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
+
+            768: { slidesPerView: 'auto', slidesPerGroup: 4, spaceBetween: 16 },
+            1024: {
+              slidesPerView: 'auto',
+              slidesPerGroup: 5,
+              spaceBetween: 24,
+            },
+          }}>
           <SwiperSlide>
             <ViewHistoryContItem
               onClick={() => dispatch(detailActions.openDetailModal())}

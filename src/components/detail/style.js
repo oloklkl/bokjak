@@ -1,16 +1,24 @@
 import styled from 'styled-components';
 import { color, font } from '../../styled/theme';
 
-export const DetailWrap = styled.div`
-    /* -ms-overflow-style: none;
+export const DetailWindow = styled.div`
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    z-index: 100;
 
     &::-webkit-scrollbar {
         display: none;
-    } */
+    }
+`;
 
+export const DetailWrap = styled.div`
     position: absolute;
     width: 100%;
-    /* max-height: calc(100vh - 40px); */
 
     overflow-x: hidden;
 
@@ -24,6 +32,7 @@ export const DetailWrap = styled.div`
 
     border-radius: 24px;
     background-color: ${color('gray', '80')};
+    border: 1px solid ${color('gray', '70')};
 
     color: ${color('gray', '0')};
 `;
@@ -31,9 +40,37 @@ export const DetailWrap = styled.div`
 export const DetailPreviewWrap = styled.div`
     width: 100%;
     aspect-ratio: 16/9;
-    background-color: white;
+    /* background-color: white; */
+    overflow: hidden;
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16/9;
+        /* transform: scale(1.15); */
+    }
+
+    img {
+        &.detail-preview-introimg {
+            width: 100%;
+        }
+    }
 
     div {
+        &.detail-preview-intro-gradient {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+        }
+
+        &.detailpreview-buttons-wrap {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(#00000000, #00000080);
+        }
+
         &.detailpreview-wrap {
             display: flex;
             flex-direction: column;
@@ -229,8 +266,13 @@ export const EpisodeItemWrap = styled.div`
             width: 240px;
             aspect-ratio: 16/9;
             border-radius: 6px;
-            background-color: white;
+            /* background-color: white; */
+            overflow: hidden;
             transition: all 0.2s ease;
+
+            img {
+                width: 100%;
+            }
         }
         &.episode-info-wrap {
             display: flex;
@@ -258,6 +300,7 @@ export const EpisodeItemWrap = styled.div`
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 3;
+            overflow: hidden;
         }
     }
 
