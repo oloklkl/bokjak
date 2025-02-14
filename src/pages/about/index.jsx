@@ -253,7 +253,7 @@ const HomePage = () => {
           <div
             key={index}
             style={{
-              width: '30%', // 크기 증가
+              width: '30%',
               minWidth: '250px', // 최소 크기 증가
               aspectRatio: '16 / 9',
               backgroundImage: `url(${img})`,
