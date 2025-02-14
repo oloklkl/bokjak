@@ -78,7 +78,7 @@ const UpcomingInfoWrap = styled.div`
         }
         ${media.mobile} {
             margin-right: 10px;
-            font-size: ${font('body', 'sm')};
+            font-size: ${font('body', 'md')};
         }
     }
     em,
@@ -90,7 +90,7 @@ const UpcomingInfoWrap = styled.div`
             font-size: ${font('detail', 'md')};
         }
         ${media.mobile} {
-            font-size: ${font('detail', 'sm')};
+            font-size: ${font('detail', 'md')};
         }
     }
     em {
@@ -117,23 +117,36 @@ const UpcomingDescription = styled.div`
             font-size: ${font('body', 'md')};
             margin-top: 20px;
         }
-    }
-
-    ${media.mobile} {
-        display: none;
+        ${media.mobile} {
+            font-size: ${font('body', 'xsm')};
+        }
     }
 `;
-const UpcomingIconWrap = styled.div`
+
+const UpcomingUpIconWrap = styled.div`
+    cursor: pointer;
+
+    ${media.desktop} {
+        display: none;
+    }
+    ${media.tablet} {
+        display: flex;
+    }
+`;
+
+const UpcomingDownIconWrap = styled.div`
     cursor: pointer;
     width: 60px;
 
     ${media.tablet} {
-        width: 40px;
-        transform: translateX(400px) translateY(-213px);
+        display: none;
     }
-    ${media.mobile} {
-        transform: translateX(400px) translateY(-75px);
-    }
+`;
+
+const UpcomingHeaderWrap = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 `;
 
 const FlexWrap = styled.div`
@@ -153,9 +166,14 @@ const UpcomingNotificationItem = () => {
     return (
         <UpcomingNotificationItemWrap>
             <UpcomingContentWrap>
-                <HeaderTitle>
-                    <h2>2월1일</h2>
-                </HeaderTitle>
+                <UpcomingHeaderWrap>
+                    <HeaderTitle>
+                        <h2>2월1일</h2>
+                    </HeaderTitle>
+                    <UpcomingUpIconWrap>
+                        <BellSimpleRinging size={24} weight='fill' />
+                    </UpcomingUpIconWrap>
+                </UpcomingHeaderWrap>
                 <FlexWrap>
                     <UpcomingImageWrap>
                         <img
@@ -183,9 +201,9 @@ const UpcomingNotificationItem = () => {
                         똘똘 뭉친 그는 세상을 위협하는 강력한 적 처벌에 맞서려 한다.
                     </p>
                 </UpcomingDescription>
-                <UpcomingIconWrap>
+                <UpcomingDownIconWrap>
                     <BellSimpleRinging size={24} weight='fill' />
-                </UpcomingIconWrap>
+                </UpcomingDownIconWrap>
             </UpcomingContentWrap>
         </UpcomingNotificationItemWrap>
     );
