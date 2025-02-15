@@ -1,4 +1,4 @@
-import { GroupNotificationWrap } from '../style';
+import { GroupNotificationWrap } from './style';
 import GroupNotificationList from './GroupNotificationList';
 
 const GroupNotification = () => {
