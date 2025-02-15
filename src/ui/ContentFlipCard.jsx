@@ -5,6 +5,7 @@ import { media } from '../styled/media';
 
 export const ContentFlipCardWrap = styled.div`
     width: 100%;
+    max-width: 313px;
     height: auto;
     aspect-ratio: 3/4;
 
@@ -34,7 +35,9 @@ export const ContentFlipCardWrap = styled.div`
         &.content-flip-card-preview {
             width: 100%;
             height: 100%;
+            overflow: hidden;
             img {
+                width: 100%;
                 border-radius: 10px;
             }
         }
@@ -82,7 +85,7 @@ const ContentFlipCard = ({ content }) => {
             {!isShow && (
                 <div className="content-flip-card-preview">
                     <img
-                        src={`${bgurl}${content.backdrop_path}`}
+                        src={`${bgurl}${content.poster_path}`}
                         alt=""
                     />
                 </div>

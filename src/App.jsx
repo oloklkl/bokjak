@@ -53,10 +53,12 @@ const App = () => {
                             path="/subpage"
                             element={<SubPage />}
                         />
-                        <Route
-                            path="/filmo"
-                            element={<FilmoPage />}
-                        />
+                        <Route path="/filmo">
+                            <Route
+                                path=":id"
+                                element={<FilmoPage />}
+                            />
+                        </Route>
                     </Route>
                     <Route element={<SubLayout />}>
                         <Route
