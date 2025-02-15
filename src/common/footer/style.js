@@ -3,6 +3,12 @@ import { media } from '../../styled/media';
 import { color, font } from '../../styled/theme';
 
 export const FooterWrap = styled.footer`
+    padding: 80px 0 0;
+
+    ${media.mobile} {
+        padding: 64px 0 0;
+    }
+
     .footer_inner {
         height: 260px;
         box-sizing: border-box;
