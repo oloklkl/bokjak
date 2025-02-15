@@ -16,6 +16,10 @@ export const VideoPlayerWrap = styled.div`
 
     overflow-y: hidden;
 
+    iframe {
+        pointer-events: none;
+    }
+
     div {
         &.video-util-wrap {
             pointer-events: none;
@@ -65,7 +69,10 @@ export const VideoPlayerWrap = styled.div`
                     min-width: 232px;
                     padding: 10px 20px;
                     border-radius: 7px;
-                    background-color: ${color('gray', '80')};
+                    background-color: ${color(
+                        'gray',
+                        '80'
+                    )};
                     li {
                         &.video-option-item {
                             padding: 15px 0;
