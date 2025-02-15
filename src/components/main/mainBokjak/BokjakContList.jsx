@@ -8,7 +8,6 @@ import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 import { BokjakHeader, BokjakList, BokjakListWrap, MsgBox } from './style'
 import { NavigationButton } from '../style'
-import BokjakModal from './BokjakModal'
 import { Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -61,21 +60,23 @@ const BokjakContList = () => {
           className="swiper"
           ref={swiperRef}
           modules={[Navigation]}
-          slidesPerGroupAuto
           breakpoints={{
             330: {
-              slidesPerView: 3,
+              slidesPerView: 2.8,
               spaceBetween: 10,
             },
-
-            600: {
-              slidesPerView: 4,
-              spaceBetween: 16,
+            390: {
+              slidesPerView: 2.8,
+              spaceBetween: 10,
             },
-
-            1024: {
-              slidesPerView: 6,
+            768: {
+              slidesPerView: 4.2,
               spaceBetween: 24,
+            },
+            1024: {
+              slidesPerView: 5.2,
+              slidesPerGroup: 5.2,
+              spaceBetween: 32,
             },
           }}>
           {movies.map((content) => (

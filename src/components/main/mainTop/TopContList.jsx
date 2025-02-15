@@ -10,6 +10,7 @@ import { getTrending } from '../../../store/modules/getThunk'
 import { useDispatch } from 'react-redux'
 import { TopListWrap } from './style'
 import { NavigationButton } from '../style'
+import { Link } from 'react-router-dom'
 // import { useDispatch } from 'react-redux'
 
 const TopContList = () => {
@@ -31,7 +32,9 @@ const TopContList = () => {
     <TopListWrap>
       <div className="topHeader">
         <h2>title</h2>
-        <h3>more</h3>
+        <Link>
+          <h3>more</h3>
+        </Link>
       </div>
       <div className="topList">
         <Swiper
@@ -40,13 +43,13 @@ const TopContList = () => {
           modules={[Navigation]}
           navigation={false}
           breakpoints={{
-            320: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
-            390: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
+            320: { slidesPerView: 1.8, spaceBetween: 10 },
+            390: { slidesPerView: 2.1, spaceBetween: 10 },
 
-            768: { slidesPerView: 'auto', slidesPerGroup: 4, spaceBetween: 16 },
+            768: { slidesPerView: 3.2, spaceBetween: 16 },
             1024: {
-              slidesPerView: 'auto',
-              slidesPerGroup: 5,
+              slidesPerView: 4.5,
+              slidesPerGroup: 4.5,
               spaceBetween: 24,
             },
           }}>

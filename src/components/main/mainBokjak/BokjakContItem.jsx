@@ -1,4 +1,3 @@
-import BokjakModal from './BokjakModal'
 import { BokjakItemCont, ImgCont, TextCont } from './style'
 
 const BokjakContItem = ({ content, ...props }) => {

@@ -15,16 +15,18 @@ import { MainWrap, VisualWrap } from './style'
 const Main = () => {
   return (
     <>
-      <BokjakModal />
-      <VisualWrap>{/* <Intro /> */}</VisualWrap>
+      {/* <BokjakModal /> */}
+      <VisualWrap>
+        <Intro />
+      </VisualWrap>
       <MainWrap>
-        {/* <BokjakCont />
+        <BokjakCont />
         <ViewHistoryCont />
         <TopCont />
         <ThumbnailCont />
         <SoonCont />
         <FlipBackCont />
-        <SeriesCont /> */}
+        <SeriesCont />
         {/* <BottomNavigation /> */}
       </MainWrap>
     </>

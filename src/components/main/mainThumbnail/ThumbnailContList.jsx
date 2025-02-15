@@ -48,7 +48,9 @@ const ThumbnailContList = () => {
     <ThumbnailContainer>
       <ThumbnailHeader>
         <h2>title</h2>
-        <h3>more</h3>
+        <Link>
+          <h3>more</h3>
+        </Link>
       </ThumbnailHeader>
       <ThumbnailList>
         <Swiper
@@ -60,17 +62,14 @@ const ThumbnailContList = () => {
           breakpoints={{
             330: {
               slidesPerView: 'auto',
-              slidesPerGroup: 3,
               spaceBetween: 10,
             },
             390: {
               slidesPerView: 'auto',
-              slidesPerGroup: 4,
               spaceBetween: 10,
             },
             768: {
               slidesPerView: 'auto',
-              slidesPerGroup: 5,
               spaceBetween: 16,
             },
             1024: {

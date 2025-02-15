@@ -8,6 +8,7 @@ import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import { FlipBackHeader, FlipBackList, FlipBackListContainer } from './style'
 import { NavigationButton } from '../style'
+import { Link } from 'react-router-dom'
 
 const FlipBackContList = () => {
   const swiperRef = useRef()
@@ -24,7 +25,9 @@ const FlipBackContList = () => {
     <FlipBackListContainer>
       <FlipBackHeader>
         <h2>title</h2>
-        <h3>more</h3>
+        <Link>
+          <h3>more</h3>
+        </Link>
       </FlipBackHeader>
       <FlipBackList>
         <Swiper
@@ -32,14 +35,12 @@ const FlipBackContList = () => {
           ref={swiperRef}
           modules={[Navigation]}
           pagination={{ clickable: true }}
-          slidesPerGroup={4}
-          slidesPerView={4}
           navigation={false}
           breakpoints={{
-            320: { spaceBetween: 10 },
-            390: { spaceBetween: 10 },
-            768: { spaceBetween: 16 },
-            1024: { spaceBetween: 24 },
+            320: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 10 },
+            390: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 10 },
+            768: { slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 16 },
+            1024: { slidesPerView: 5, slidesPerGroup: 5, spaceBetween: 24 },
           }}>
           <SwiperSlide className="swiper-slide">
             <FlipBackContItem />

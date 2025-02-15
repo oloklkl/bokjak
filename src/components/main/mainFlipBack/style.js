@@ -73,9 +73,8 @@ export const FlipBackItemCont = styled.div`
   align-items: center;
   overflow: hidden;
   border-radius: 7px;
-  height: 100%;
-  max-width: 388px;
-  max-height: 600px;
+  width: 100%;
+  aspect-ratio: 2 / 3;
 `
 export const ImageCont = styled.div`
   position: relative;

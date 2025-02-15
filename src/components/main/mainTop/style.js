@@ -25,9 +25,9 @@ export const TopListWrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 4rem;
   ${media.mobile} {
-    gap: 20px;
+    gap: 2rem;
   }
   .topHeader {
     width: 100%;
@@ -71,17 +71,20 @@ export const TopItemCont = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
+  width: 100%;
+  height: auto;
 
-  width: clamp(140px, 20vw, 295px);
-  height: clamp(130px, 20vw, 295px);
+  /* width: clamp(14rem, 20vw, 29.5rem);
+  height: clamp(13rem, 20vw, 29.5rem); */
 `
 
 export const TopNumberImg = styled.div`
-  width: clamp(50px, 20vw, 80px);
+  width: 30%;
+  /* width: clamp(5rem, 20vw, 8rem); */
   height: auto;
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
   }
 `
 
@@ -91,17 +94,21 @@ export const TopThumbnailImg = styled.div`
   justify-content: center;
   align-items: center;
   background: ${color('gray', '70')};
-  border-radius: 7px;
-  width: clamp(160px, 20vw, 210px);
-  height: 100%;
+  border-radius: 0.7rem;
+  width: 70%;
+  aspect-ratio: 3 / 4;
+  height: auto;
+  ${media.tablet} {
+    aspect-ratio: 2 / 3;
+  }
 
   img {
     width: 100%;
     height: 100%;
-    border-radius: 7px;
+    border-radius: 0.7rem;
     object-fit: cover;
     ${media.mobile} {
-      border-radius: 5px;
+      border-radius: 0.5rem;
     }
   }
 `

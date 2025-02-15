@@ -10,6 +10,7 @@ import { IconButton } from '../../../ui'
 import { detailActions } from '../../../store/modules/detailSlice'
 import SeriesContItem from './SeriesContItem'
 import { SeriesContainer } from './style'
+import { Link } from 'react-router-dom'
 
 const SeriesContList = () => {
   const dispatch = useDispatch()
@@ -25,7 +26,9 @@ const SeriesContList = () => {
     <SeriesContainer>
       <div className="seriesHeader">
         <h2>title</h2>
-        <h3>more</h3>
+        <Link>
+          <h3>more</h3>
+        </Link>
       </div>
       <div className="seriesList">
         <Swiper

@@ -54,10 +54,10 @@ export const ViewHistoryContainer = styled.div`
 
     .swiper {
       width: 100%;
+      height: 100%;
       overflow: visible;
     }
     .swiper-slide {
-      /* width: clamp(180px, 20vw, 300px); */
       width: auto;
       height: auto;
       overflow: hidden;
@@ -75,13 +75,12 @@ export const ViewHistoryItemCont = styled.div`
   align-items: center;
   overflow: visible;
   gap: 16px;
-  width: clamp(160px, 20vw, 300px);
-  /* height: clamp(100px, 12vw, 250px); */
-  height: auto;
+  width: 100%;
+  height: 100%;
 
   .thumbnailCont {
     position: relative;
-    width: clamp(160px, 20vw, 300px);
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;

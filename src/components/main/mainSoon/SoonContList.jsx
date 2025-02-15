@@ -8,6 +8,7 @@ import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 import { SoonHeader, SoonList, SoonListContainer } from './style'
 import { NavigationButton } from '../style'
+import { Link } from 'react-router-dom'
 
 const SoonContList = () => {
   const swiperRef = useRef()
@@ -24,21 +25,19 @@ const SoonContList = () => {
     <SoonListContainer>
       <SoonHeader>
         <h2>title</h2>
-        <h3>more</h3>
+        <Link>
+          <h3>more</h3>
+        </Link>
       </SoonHeader>
       <SoonList>
         <Swiper
           className="swiper"
           ref={swiperRef}
           modules={[Navigation]}
-          // spaceBetween={24}
-          // slidesPerView={'auto'}
           navigation={false}
-          // slidesPerGroupAuto
           breakpoints={{
             320: { slidesPerView: 1.2, spaceBetween: 10 },
-            // 390: { slidesPerView: 1.6, spaceBetween: 10 },
-            600: { slidesPerView: 1.7, spaceBetween: 16 },
+            768: { slidesPerView: 1.7, spaceBetween: 16 },
             1024: {
               slidesPerView: 1.2,
               spaceBetween: 24,

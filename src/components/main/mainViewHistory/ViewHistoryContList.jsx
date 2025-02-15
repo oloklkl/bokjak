@@ -10,6 +10,7 @@ import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import { useRef } from 'react'
 import { ViewHistoryContainer } from './style'
 import { NavigationButton } from '../style'
+import { Link } from 'react-router-dom'
 
 const ViewHistoryContList = () => {
   const dispatch = useDispatch()
@@ -26,7 +27,9 @@ const ViewHistoryContList = () => {
     <ViewHistoryContainer>
       <div className="viewHeader">
         <h2>title</h2>
-        <h3>more</h3>
+        <Link>
+          <h3>more</h3>
+        </Link>
       </div>
 
       <div className="viewList">
@@ -37,13 +40,12 @@ const ViewHistoryContList = () => {
           pagination={{ clickable: true }}
           navigation={false}
           breakpoints={{
-            320: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
-            390: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
+            390: { slidesPerView: 1.8, spaceBetween: 10 },
 
-            768: { slidesPerView: 'auto', slidesPerGroup: 4, spaceBetween: 16 },
+            768: { slidesPerView: 2.8, spaceBetween: 16 },
             1024: {
-              slidesPerView: 'auto',
-              slidesPerGroup: 5,
+              slidesPerView: 4.2,
+              slidesPerGroup: 4.2,
               spaceBetween: 24,
             },
           }}>

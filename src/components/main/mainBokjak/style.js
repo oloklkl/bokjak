@@ -122,12 +122,9 @@ export const BokjakItemCont = styled.div`
   align-items: center;
   width: 100%;
   height: auto;
-  max-width: 250px;
-  /* width: clamp(150px, 10vw, 250px); */
   aspect-ratio: 1;
   gap: 16px;
   ${media.tablet} {
-    max-width: 200px;
     gap: 10px;
   }
 `
@@ -180,7 +177,6 @@ export const BokjakModalCont = styled.div`
   height: 100%;
   display: flex;
   position: relative;
-  z-index: 6000;
 `
 export const BokjakDetailCont = styled.div`
   padding: 20px;
@@ -225,7 +221,6 @@ export const BokjakDetailCont = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
     gap: 24px;
     .imgBox {
       width: 100px;
