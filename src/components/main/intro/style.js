@@ -13,10 +13,18 @@ export const IntroSection = styled.section`
 //list
 export const IntroSliderCont = styled.div`
   width: 100%;
+
   .swiper {
     overflow: visible;
     width: 100%;
-    border-radius: 12px;
+    height: 620px;
+
+    ${media.tablet} {
+      height: 730px;
+    }
+    ${media.mobile} {
+      height: 450px;
+    }
   }
   .swiper-slide {
     width: 100%;
@@ -31,11 +39,13 @@ export const IntroBannerCont = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;
+  border-radius: 7px;
 `
 
 export const IntroImgCont = styled.div`
   position: relative;
   width: 100%;
+
   &::before {
     content: '';
     position: absolute;
@@ -48,13 +58,13 @@ export const IntroImgCont = styled.div`
       rgba(0, 0, 0, 0.8),
       rgba(0, 0, 0, 0) 54%
     );
-    border-radius: 12px;
+    border-radius: 7px;
   }
 
   .introSlideImg {
     width: 100%;
     height: 100%;
-    border-radius: 12px;
+    border-radius: 7px;
     object-fit: cover;
   }
 `
@@ -69,28 +79,39 @@ export const IntroTextCont = styled.div`
   text-align: left;
   gap: 16px;
   white-space: pre-line;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.7s ease;
+  .swiper-slide-active & {
+    opacity: 1;
+    transform: translateY(0);
+  }
   ${media.tablet} {
     width: 90%;
-    /* height: 100%; */
+    gap: 12px;
+    position: absolute;
+    bottom: 30px;
+    left: 5%;
+    transform: translateY(80px);
+  }
+  ${media.mobile} {
     gap: 10px;
     position: absolute;
-    bottom: 50%;
-    left: 50%;
-    transform: translate(-50%, 95%);
+    bottom: 15px;
+    left: 5%;
+    transform: translateY(60px);
   }
 
   .introSlideLogo {
-    width: 95%;
-    height: 160px;
+    width: 100%;
+    height: 150px;
     object-fit: contain;
     object-position: left center;
     ${media.tablet} {
-      width: 90%;
-      height: 90px;
+      height: 110px;
     }
     ${media.mobile} {
-      width: 80%;
-      height: 60px;
+      height: 70px;
     }
   }
 
@@ -102,7 +123,7 @@ export const IntroTextCont = styled.div`
       font-size: ${font('title', 'md')};
     }
     ${media.mobile} {
-      font-size: ${font('body', 'md')};
+      font-size: ${font('body', 'sm')};
     }
   }
   .introBtn {
@@ -110,16 +131,12 @@ export const IntroTextCont = styled.div`
     font-size: ${font('title', 'md')};
     font-weight: bold;
     ${media.tablet} {
-      width: 100%;
-      max-width: 600px;
-      height: 60px;
+      width: auto;
       font-size: ${font('title', 'md')};
     }
     ${media.mobile} {
-      width: 100%;
-      max-width: 310px;
-      height: 42px;
-      font-size: ${font('title', 'sm')};
+      height: 50px;
+      font-size: ${font('body', 'md')};
     }
   }
 `

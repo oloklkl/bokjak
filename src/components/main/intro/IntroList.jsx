@@ -13,7 +13,7 @@ const IntroList = () => {
         modules={[Autoplay]}
         spaceBetween={24}
         slidesPerView={1}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        autoplay={{ delay: 2000, disableOnInteraction: false }}
         loop={true}
         breakpoints={{
           390: { spaceBetween: 12 },
