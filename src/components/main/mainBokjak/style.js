@@ -173,3 +173,100 @@ export const TextCont = styled.div`
 `
 
 /////////////////////////////////////////////////////
+//modal
+export const BokjakModalCont = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  z-index: 6000;
+`
+export const BokjakDetailCont = styled.div`
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 390px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  background: ${color('gray', '80')};
+  border-radius: 7px;
+  .detailTop {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-start;
+    .titleTxt {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      h2 {
+        font-weight: bold;
+        font-size: ${font('title', 'xlg')};
+      }
+      .subTitle {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        color: ${color('gray', '40')};
+        font-size: ${font('body', 'sm')};
+      }
+    }
+  }
+  .detailMid {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    gap: 24px;
+    .imgBox {
+      width: 100px;
+      height: auto;
+      img {
+        border-radius: 5px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
+    .textarea {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-content: center;
+      gap: 10px;
+      h2 {
+        font-weight: bold;
+        font-size: ${font('body', 'md')};
+      }
+      .enterDate {
+        color: ${color('primary', 'default')};
+        font-size: ${font('body', 'md')};
+      }
+      .category {
+        display: flex;
+        align-items: center;
+        color: ${color('gray', '40')};
+        font-size: ${font('body', 'sm')};
+        em {
+          margin: 0 5px;
+        }
+      }
+    }
+  }
+  .detailBottom {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`

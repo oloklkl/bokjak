@@ -9,22 +9,22 @@ import {
   TopCont,
   ViewHistoryCont,
 } from '../../components'
+import BokjakModal from '../../components/main/mainBokjak/BokjakModal'
 import { MainWrap, VisualWrap } from './style'
 
 const Main = () => {
   return (
     <>
-      <VisualWrap>
-        <Intro />
-      </VisualWrap>
+      <BokjakModal />
+      <VisualWrap>{/* <Intro /> */}</VisualWrap>
       <MainWrap>
-        <BokjakCont />
+        {/* <BokjakCont />
         <ViewHistoryCont />
         <TopCont />
         <ThumbnailCont />
         <SoonCont />
         <FlipBackCont />
-        <SeriesCont />
+        <SeriesCont /> */}
         {/* <BottomNavigation /> */}
       </MainWrap>
     </>

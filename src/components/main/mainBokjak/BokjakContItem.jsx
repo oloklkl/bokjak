@@ -1,8 +1,9 @@
+import BokjakModal from './BokjakModal'
 import { BokjakItemCont, ImgCont, TextCont } from './style'
 
-const BokjakContItem = () => {
+const BokjakContItem = ({ content, ...props }) => {
   return (
-    <BokjakItemCont>
+    <BokjakItemCont {...props}>
       <ImgCont>
         <img
           src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
