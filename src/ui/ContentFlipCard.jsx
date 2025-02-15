@@ -18,6 +18,8 @@ export const ContentFlipCardWrap = styled.div`
             display: flex;
             flex-direction: column;
             gap: 16px;
+            width: 100%;
+            height: 100%;
             padding: 40px 20px;
         }
         &.content-flip-card-tags {
@@ -40,6 +42,7 @@ export const ContentFlipCardWrap = styled.div`
 
     p {
         &.content-flip-card-title {
+            width: auto;
             font-size: ${font('title', 'xlg')};
             font-weight: 600;
             text-align: left;
@@ -72,23 +75,39 @@ const ContentFlipCard = ({ content }) => {
     const bgurl = `https://image.tmdb.org/t/p/w500`;
 
     return (
-        <ContentFlipCardWrap onMouseEnter={() => setIsShow(true)} onMouseLeave={() => setIsShow(false)}>
+        <ContentFlipCardWrap
+            onMouseEnter={() => setIsShow(true)}
+            onMouseLeave={() => setIsShow(false)}
+        >
             {!isShow && (
                 <div className="content-flip-card-preview">
-                    <img src={`${bgurl}${content.backdrop_path}`} alt="" />
+                    <img
+                        src={`${bgurl}${content.backdrop_path}`}
+                        alt=""
+                    />
                 </div>
             )}
 
             {isShow && (
                 <div className="content-flip-card-wrap">
-                    <p className="content-flip-card-title">{content.title}</p>
+                    <p className="content-flip-card-title">
+                        {content.title}
+                    </p>
                     <div className="content-flip-card-tags">
-                        <span>{content.release_date.split('-')[0]}</span>
+                        <span>
+                            {
+                                content.release_date.split(
+                                    '-'
+                                )[0]
+                            }
+                        </span>
                         {/* <span>액션</span>
                         <span>범죄</span>
                         <span>스릴러</span> */}
                     </div>
-                    <p className="content-flip-card-desc">{content.overview}</p>
+                    <p className="content-flip-card-desc">
+                        {content.overview || ''}
+                    </p>
                 </div>
             )}
         </ContentFlipCardWrap>
