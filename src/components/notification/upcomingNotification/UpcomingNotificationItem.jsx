@@ -14,7 +14,7 @@ import {
     UpcomingUpIconWrap,
 } from './style';
 
-const UpcomingNotificationItem = () => {
+const UpcomingNotificationItem = ({ content }) => {
     return (
         <UpcomingNotificationItemWrap>
             <UpcomingContentWrap>
@@ -29,13 +29,17 @@ const UpcomingNotificationItem = () => {
                 <FlexWrap>
                     <UpcomingImageWrap>
                         <img
-                            src='https://github.com/oloklkl/bokjak-image/blob/main/images/main/flipback/flipcard1.png?raw=true'
-                            alt=''
+                            src={
+                                content.poster_path
+                                    ? `https://image.tmdb.org/t/p/w500${content.poster_path}`
+                                    : 'https://via.placeholder.com/300x430'
+                            }
+                            alt={content.title || '영화 포스터'}
                         />
                     </UpcomingImageWrap>
                     <UpcomingInfoWrap>
                         <UpcomingActionWrap>
-                            <h3>스파이더맨 : 파 프롬 홈</h3>
+                            <h3>{content.title}</h3>
                             <AgeLabel text='ALL' />
                         </UpcomingActionWrap>
                         <span>2017</span>
@@ -48,10 +52,7 @@ const UpcomingNotificationItem = () => {
                     </UpcomingInfoWrap>
                 </FlexWrap>
                 <UpcomingDescription>
-                    <p>
-                        시빌 워 당시 토니 스타크에게 발탁되어 대단한 활약을 펼친 스파이더맨 피터 파커. 허세와 정의감으로
-                        똘똘 뭉친 그는 세상을 위협하는 강력한 적 처벌에 맞서려 한다.
-                    </p>
+                    <p>{content.overview || '상세 내용 없음'}</p>
                 </UpcomingDescription>
                 <UpcomingDownIconWrap>
                     <BellSimpleRinging size={24} weight='fill' />
