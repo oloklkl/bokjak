@@ -73,14 +73,16 @@ export const SeriesItemCont = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   text-align: left;
-  gap: 16px;
-  font-size: ${font('title', 'lg')};
-  ${media.tablet} {
-    gap: 10px;
-    font-size: ${font('body', 'lg')};
-  }
-  ${media.mobile} {
-    font-size: ${font('body', 'md')};
+  gap: 10px;
+  h2 {
+    font-size: ${font('title', 'md')};
+    ${media.tablet} {
+      gap: 10px;
+      font-size: ${font('body', 'md')};
+    }
+    ${media.mobile} {
+      font-size: ${font('body', 'sm')};
+    }
   }
 `
 export const SeriesCardCont = styled.div`

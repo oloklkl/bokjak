@@ -35,6 +35,7 @@ export const BokjakListWrap = styled.div`
 `
 
 export const BokjakHeader = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -45,7 +46,6 @@ export const BokjakHeader = styled.div`
   ${media.mobile} {
     gap: 10px;
   }
-
   h2 {
     font-size: ${font('title', 'xxlg')};
     ${media.tablet} {
@@ -62,10 +62,50 @@ export const BokjakHeader = styled.div`
   .border {
     width: 24px;
     height: 24px;
+    cursor: pointer;
+    &:hover + .msgBox {
+      opacity: 1;
+      pointer-events: all;
+    }
     ${media.mobile} {
       width: 18px;
       height: 18px;
       size: 14px;
+    }
+  }
+  .msgBox {
+    width: 100%;
+    height: auto;
+    background: ${color('gray', '70')};
+    backdrop-filter: blur(10px);
+    border-radius: 7px;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    white-space: pre-wrap;
+    .textarea {
+      width: 100%;
+      display: flex;
+      text-align: left;
+      font-size: ${font('body', 'sm')};
+      color: ${color('gray', '30')};
+    }
+    ${media.tablet} {
+      transform: translate(-50%, 30%);
+    }
+    ${media.mobile} {
+      transform: translate(-50%, 20%);
+      width: 100%;
+      border-radius: 5px;
+      .textarea {
+        font-size: ${font('body', 'xsm')};
+      }
     }
   }
 `
@@ -83,33 +123,6 @@ export const BokjakList = styled.div`
   .swiper-slide {
     width: auto;
     height: auto;
-  }
-`
-export const MsgBox = styled.div`
-  display: flex;
-  /* justify-content: flex-start; */
-  align-content: center;
-  width: 290px;
-  height: 40px;
-  background: ${color('gray', '70')};
-  border-radius: 7px;
-  padding: 10px;
-  .textarea {
-    width: 280px;
-    display: flex;
-    text-align: left;
-    font-size: ${font('body', 'sm')};
-    color: ${color('gray', '30')};
-  }
-  ${media.mobile} {
-    width: 250px;
-    height: 32px;
-    border-radius: 5px;
-    padding: 7px 10px;
-    .textarea {
-      width: 240px;
-      font-size: ${font('body', 'xsm')};
-    }
   }
 `
 

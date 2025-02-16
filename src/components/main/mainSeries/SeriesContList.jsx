@@ -25,9 +25,9 @@ const SeriesContList = () => {
   return (
     <SeriesContainer>
       <div className="seriesHeader">
-        <h2>title</h2>
+        <h2>한번에 몰아보는 재미! 몰입감 넘치는 시리즈!</h2>
         <Link>
-          <h3>more</h3>
+          <h3>더보기</h3>
         </Link>
       </div>
       <div className="seriesList">

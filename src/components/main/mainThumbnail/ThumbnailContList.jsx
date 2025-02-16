@@ -49,7 +49,7 @@ const ThumbnailContList = () => {
       <ThumbnailHeader>
         <h2>title</h2>
         <Link>
-          <h3>more</h3>
+          <h3>더보기</h3>
         </Link>
       </ThumbnailHeader>
       <ThumbnailList>

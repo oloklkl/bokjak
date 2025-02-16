@@ -33,7 +33,7 @@ const TopContList = () => {
       <div className="topHeader">
         <h2>title</h2>
         <Link>
-          <h3>more</h3>
+          <h3>더보기</h3>
         </Link>
       </div>
       <div className="topList">
@@ -43,8 +43,8 @@ const TopContList = () => {
           modules={[Navigation]}
           navigation={false}
           breakpoints={{
-            320: { slidesPerView: 1.8, spaceBetween: 10 },
-            390: { slidesPerView: 2.1, spaceBetween: 10 },
+            320: { slidesPerView: 2.3, spaceBetween: 10 },
+            390: { slidesPerView: 2.3, spaceBetween: 10 },
 
             768: { slidesPerView: 3.2, spaceBetween: 16 },
             1024: {

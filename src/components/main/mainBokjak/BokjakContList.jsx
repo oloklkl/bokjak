@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
-import { BokjakHeader, BokjakList, BokjakListWrap, MsgBox } from './style'
+import { BokjakHeader, BokjakList, BokjakListWrap } from './style'
 import { NavigationButton } from '../style'
 import { Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -50,9 +50,16 @@ const BokjakContList = () => {
           icon={<QuestionMark size={18} />}
           text="smiley"
         />
-        <MsgBox>
-          <div className="textarea">실시간 영상 시청 및 채팅 서비스입니다.</div>
-        </MsgBox>
+        <div className="msgBox">
+          <div className="textarea">
+            {/* 실시간 영상 시청 및 채팅 서비스입니다. */}
+            ‘모여보기 복작’은 친구들과 실시간으로 영화를 보며 채팅으로 소통하는
+            특별한 경험입니다. <br />
+            🎬혼자서 느끼기엔 아쉬운 순간들, 이제 함께 즐기며 더 특별하게
+            만들어보세요! 💬✨ 멀리 있어도 함께하는 그 순간, ‘모여보기 복작’에서
+            지금 바로 경험해보세요.
+          </div>
+        </div>
       </BokjakHeader>
 
       <BokjakList>
