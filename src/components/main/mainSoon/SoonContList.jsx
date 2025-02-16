@@ -36,8 +36,8 @@ const SoonContList = () => {
           modules={[Navigation]}
           navigation={false}
           breakpoints={{
-            320: { slidesPerView: 1.2, spaceBetween: 10 },
-            768: { slidesPerView: 1.7, spaceBetween: 16 },
+            320: { slidesPerView: 1.2, slidesPerGroup: 1, spaceBetween: 10 },
+            768: { slidesPerView: 1.7, slidesPerGroup: 1, spaceBetween: 16 },
             1024: {
               slidesPerView: 1.2,
               spaceBetween: 24,

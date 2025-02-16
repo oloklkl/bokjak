@@ -24,8 +24,13 @@ const Main = () => {
         <ViewHistoryCont />
         <TopCont />
         <ThumbnailCont />
+        <ThumbnailCont />
         <SoonCont />
+        <ThumbnailCont />
+        <ThumbnailCont />
         <FlipBackCont />
+        <ThumbnailCont />
+        <ThumbnailCont />
         <SeriesCont />
         {/* <BottomNavigation /> */}
       </MainWrap>

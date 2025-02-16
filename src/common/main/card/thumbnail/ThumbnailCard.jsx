@@ -1,15 +1,15 @@
 import { TopItemWrap, TopThumbCont } from './style'
 
 const ThumbnailCard = ({ content, ...props }) => {
-  const bgurl = `https://image.tmdb.org/t/p/w500`
+  const bgurl = `https://image.tmdb.org/t/p/original`
   const logoUrl = content.logoImage
-    ? `https://image.tmdb.org/t/p/w500${content.logoImage}`
+    ? `https://image.tmdb.org/t/p/original${content.logoImage}`
     : null
   return (
     <>
       <TopItemWrap {...props}>
         <TopThumbCont>
-          <img src={`${bgurl}${content.backdrop_path}`} alt="" />
+          <img src={`${bgurl}${content.poster_path}`} alt="" />
           {/* {logoUrl && <img src={logoUrl} />} */}
         </TopThumbCont>
       </TopItemWrap>

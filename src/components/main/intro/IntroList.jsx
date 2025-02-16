@@ -1,11 +1,32 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import IntroItem from './IntroItem'
 import { IntroSliderCont } from './style'
+import { Link, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import {
+  getContentByGenre,
+  getContentDetail,
+  getMovies,
+  getTvShows,
+} from '../../../store/modules/getThunk'
 
 const IntroList = () => {
-  const { introData } = useSelector((state) => state.mainR)
+  const { movies } = useSelector((state) => state.contentR)
+  // const { movies, tvShows } = useSelector((state) => state.contentR)
+  const dispatch = useDispatch()
+  const location = useLocation()
+
+  useEffect(() => {
+    dispatch(getMovies())
+    dispatch(getTvShows())
+  }, [dispatch])
+
+  const showDetailModal = (type, id, genreId) => {
+    dispatch(getContentDetail({ type, id }))
+    dispatch(getContentByGenre({ type, genreId }))
+  }
   return (
     <IntroSliderCont>
       <Swiper
@@ -20,9 +41,18 @@ const IntroList = () => {
           768: { spaceBetween: 16 },
           1024: { spaceBetween: 24 },
         }}>
-        {introData.map((item) => (
-          <SwiperSlide key={item.id} className="swiper-slide">
-            <IntroItem {...item} />
+        {movies.map((content) => (
+          <SwiperSlide key={content.id}>
+            <Link
+              to={`/movie/${content.id}`}
+              state={{ previousLocation: location }}>
+              <IntroItem
+                content={content}
+                onClick={() => {
+                  showDetailModal('movie', content.id, content.genre_ids)
+                }}
+              />
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

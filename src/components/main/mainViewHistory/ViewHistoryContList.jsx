@@ -40,9 +40,9 @@ const ViewHistoryContList = () => {
           pagination={{ clickable: true }}
           navigation={false}
           breakpoints={{
-            390: { slidesPerView: 2.1, spaceBetween: 10 },
+            390: { slidesPerView: 2.1, slidesPerGroup: 1, spaceBetween: 10 },
 
-            768: { slidesPerView: 2.8, spaceBetween: 16 },
+            768: { slidesPerView: 2.8, slidesPerGroup: 1, spaceBetween: 16 },
             1024: {
               slidesPerView: 4.2,
               slidesPerGroup: 4.2,

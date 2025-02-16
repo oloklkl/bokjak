@@ -39,74 +39,79 @@ export const BokjakHeader = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
   gap: 16px;
   ${media.mobile} {
     gap: 10px;
   }
-  h2 {
-    font-size: ${font('title', 'xxlg')};
-    ${media.tablet} {
-      font-size: ${font('title', 'xlg')};
+  .quesCont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    h2 {
+      font-size: ${font('title', 'xxlg')};
+      ${media.tablet} {
+        font-size: ${font('title', 'xlg')};
+      }
+      ${media.mobile} {
+        font-size: ${font('title', 'lg')};
+      }
     }
-    ${media.mobile} {
-      font-size: ${font('title', 'lg')};
+    .border {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      &:hover + .msgBox {
+        opacity: 1;
+        pointer-events: all;
+      }
+      ${media.mobile} {
+        width: 18px;
+        height: 18px;
+        size: 14px;
+      }
+    }
+    .msgBox {
+      width: 100%;
+      height: auto;
+      background: ${color('gray', '70')};
+      backdrop-filter: blur(10px);
+      border-radius: 7px;
+      padding: 10px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      white-space: pre-wrap;
+      .textarea {
+        width: 100%;
+        display: flex;
+        text-align: left;
+        font-size: ${font('body', 'sm')};
+        color: ${color('gray', '30')};
+      }
+      ${media.tablet} {
+        transform: translate(-50%, 30%);
+      }
+      ${media.mobile} {
+        transform: translate(-50%, 20%);
+        width: 100%;
+        border-radius: 5px;
+        .textarea {
+          font-size: ${font('body', 'xsm')};
+        }
+      }
     }
   }
   h3 {
     font-size: ${font('body', 'sm')};
-  }
-
-  .border {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    &:hover + .msgBox {
-      opacity: 1;
-      pointer-events: all;
-    }
-    ${media.mobile} {
-      width: 18px;
-      height: 18px;
-      size: 14px;
-    }
-  }
-  .msgBox {
-    width: 100%;
-    height: auto;
-    background: ${color('gray', '70')};
-    backdrop-filter: blur(10px);
-    border-radius: 7px;
-    padding: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    z-index: 10;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    white-space: pre-wrap;
-    .textarea {
-      width: 100%;
-      display: flex;
-      text-align: left;
-      font-size: ${font('body', 'sm')};
-      color: ${color('gray', '30')};
-    }
-    ${media.tablet} {
-      transform: translate(-50%, 30%);
-    }
-    ${media.mobile} {
-      transform: translate(-50%, 20%);
-      width: 100%;
-      border-radius: 5px;
-      .textarea {
-        font-size: ${font('body', 'xsm')};
-      }
-    }
   }
 `
 

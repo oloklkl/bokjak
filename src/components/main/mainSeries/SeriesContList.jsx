@@ -38,10 +38,10 @@ const SeriesContList = () => {
           pagination={{ clickable: true }}
           navigation={false}
           breakpoints={{
-            320: { slidesPerView: 1.2, slidesPerGroup: 1.2, spaceBetween: 10 },
-            390: { slidesPerView: 1.2, slidesPerGroup: 1.2, spaceBetween: 10 },
+            320: { slidesPerView: 1.2, slidesPerGroup: 1, spaceBetween: 10 },
+            390: { slidesPerView: 1.2, slidesPerGroup: 1, spaceBetween: 10 },
 
-            768: { slidesPerView: 2.2, slidesPerGroup: 2.2, spaceBetween: 16 },
+            768: { slidesPerView: 2.2, slidesPerGroup: 1, spaceBetween: 16 },
             1024: {
               slidesPerView: 3.2,
               slidesPerGroup: 3.2,

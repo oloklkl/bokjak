@@ -61,20 +61,23 @@ const ThumbnailContList = () => {
           navigation={false}
           breakpoints={{
             330: {
-              slidesPerView: 'auto',
+              slidesPerView: 2.8,
+              slidesPerGroup: 1,
               spaceBetween: 10,
             },
             390: {
-              slidesPerView: 'auto',
+              slidesPerView: 3.1,
+              slidesPerGroup: 1,
               spaceBetween: 10,
             },
             768: {
-              slidesPerView: 'auto',
+              slidesPerView: 4.2,
+              slidesPerGroup: 1,
               spaceBetween: 16,
             },
             1024: {
-              slidesPerView: 'auto',
-              slidesPerGroup: 6,
+              slidesPerView: 5.1,
+              slidesPerGroup: 5.1,
               spaceBetween: 24,
             },
           }}>

@@ -17,13 +17,12 @@ export const IntroSliderCont = styled.div`
   .swiper {
     overflow: visible;
     width: 100%;
-    height: 620px;
-
+    height: 100%;
     ${media.tablet} {
-      height: 730px;
+      min-height: 730px;
     }
     ${media.mobile} {
-      height: 450px;
+      min-height: 450px;
     }
   }
   .swiper-slide {
@@ -37,6 +36,12 @@ export const IntroSliderCont = styled.div`
 export const IntroBannerCont = styled.div`
   width: 100%;
   height: 100%;
+  ${media.tablet} {
+    min-height: 730px;
+  }
+  ${media.mobile} {
+    min-height: 450px;
+  }
   display: flex;
   flex-direction: row;
   border-radius: 7px;
@@ -78,7 +83,6 @@ export const IntroTextCont = styled.div`
   justify-content: flex-start;
   text-align: left;
   gap: 16px;
-  white-space: pre-line;
   opacity: 0;
   transform: translateY(100px);
   transition: all 0.7s ease;
@@ -103,26 +107,35 @@ export const IntroTextCont = styled.div`
   }
 
   .introSlideLogo {
-    width: 100%;
-    height: 150px;
+    width: 80%;
+    height: 100px;
     object-fit: contain;
     object-position: left center;
     ${media.tablet} {
+      width: 60%;
       height: 110px;
     }
     ${media.mobile} {
+      width: 50%;
       height: 70px;
     }
   }
 
   span {
-    width: 100%;
+    width: 500px;
+    height: 100px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: ${color('gray', '0')};
     font-size: ${font('title', 'lg')};
     ${media.tablet} {
-      font-size: ${font('title', 'md')};
+      width: 100%;
+      height: 50px;
+      font-size: ${font('body', 'md')};
     }
     ${media.mobile} {
+      height: 40px;
       font-size: ${font('body', 'sm')};
     }
   }

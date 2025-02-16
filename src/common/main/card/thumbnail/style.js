@@ -9,18 +9,18 @@ export const TopItemWrap = styled.div`
 
 export const TopThumbCont = styled.div`
   position: relative;
-  width: auto;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
+  overflow: hidden;
   width: 100%;
-  width: clamp(110px, 18vw, 234px);
-  height: clamp(160px, 25vw, 340px);
+  height: 100%;
+  aspect-ratio: 2 / 3;
   img {
     width: 100%;
     height: 100%;
     border-radius: 7px;
     object-fit: cover;
+    object-position: center center;
   }
 `
