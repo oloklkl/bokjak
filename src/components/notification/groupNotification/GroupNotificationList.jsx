@@ -1,6 +1,6 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { IconButton } from '../../../ui';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -13,20 +13,40 @@ import {
     HeaderContent,
     NavigationButton,
 } from './style';
+import { Link, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContentByGenre, getContentDetail, getMovies, getTvShows } from '../../../store/modules/getThunk';
 
 const GroupNotificationList = () => {
+    const dispatch = useDispatch();
+    const [combinedContent, setCombinedContent] = useState([]);
+    const { movies, tvShows } = useSelector((state) => state.contentR);
+    const location = useLocation();
+
+    useEffect(() => {
+        dispatch(getMovies());
+        dispatch(getTvShows());
+    }, [dispatch]);
+
+    // 두 데이터 합치기 (movies + tvShows)
+    useEffect(() => {
+        if (movies && tvShows) {
+            setCombinedContent([...movies, ...tvShows]);
+        }
+    }, [movies, tvShows]);
+
+    const showDetailModal = (type, id, genreId) => {
+        dispatch(getContentDetail({ type, id }));
+        dispatch(getContentByGenre({ type, genreId }));
+    };
+
     const swiperRef = useRef();
 
     const goNext = () => {
-        if (swiperRef.current && swiperRef.current.swiper) {
-            swiperRef.current.swiper.slideNext();
-        }
+        swiperRef.current?.swiper.slideNext();
     };
-
     const goPrev = () => {
-        if (swiperRef.current && swiperRef.current.swiper) {
-            swiperRef.current.swiper.slidePrev();
-        }
+        swiperRef.current?.swiper.slidePrev();
     };
 
     return (
@@ -45,40 +65,38 @@ const GroupNotificationList = () => {
                     ref={swiperRef}
                     modules={[Navigation]}
                     pagination={{ clickable: true }}
-                    spaceBetween={24}
-                    slidesPerGroup={6}
-                    slidesPerView={4.5}
+                    navigation={false}
                     breakpoints={{
-                        1024: {
-                            slidesPerView: 4, // 테블릿
+                        330: {
+                            slidesPerView: 'auto',
+                            spaceBetween: 10,
                         },
-                        600: {
-                            slidesPerView: 3.5, // 모바일
+                        390: {
+                            slidesPerView: 'auto',
+                            spaceBetween: 10,
+                        },
+                        768: {
+                            slidesPerView: 'auto',
+                            spaceBetween: 16,
+                        },
+                        1024: {
+                            slidesPerView: 'auto',
+                            spaceBetween: 24,
                         },
                     }}
-                    navigation={false}
                 >
-                    <SwiperSlide>
-                        <GroupNotificationItem />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <GroupNotificationItem />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <GroupNotificationItem />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <GroupNotificationItem />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <GroupNotificationItem />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <GroupNotificationItem />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <GroupNotificationItem />
-                    </SwiperSlide>
+                    {combinedContent.map((content) => (
+                        <SwiperSlide key={content.id}>
+                            <Link to={`/movie/${content.id}`} state={{ previousLocation: location }}>
+                                <GroupNotificationItem
+                                    content={content}
+                                    onClick={() => {
+                                        showDetailModal('movie', content.id, content.genre_ids);
+                                    }}
+                                />
+                            </Link>
+                        </SwiperSlide>
+                    ))}
                 </Swiper>
 
                 <NavigationButton>

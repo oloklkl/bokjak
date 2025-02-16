@@ -8,57 +8,33 @@ export const GroupNotificationWrap = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 40px;
     padding: 100px 0 50px 0;
 
     ${media.tablet} {
-        padding: 80px 0 40px 0;
+        padding: 80px 0 40px;
     }
     ${media.mobile} {
         gap: 20px;
-        padding: 40px 0 20px 0;
+        padding: 40px 0 20px;
     }
-`;
-
-export const GroupNotificationListWrap = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 40px;
-`;
-
-export const GroupNotificationItemWrap = styled.div``;
-
-export const GroupNotificationSlider = styled.div`
-    position: relative;
-    display: flex;
-
-    .swiper {
-        overflow: visible;
-    }
-
-    .swiper-slide {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-    }
-`;
-
-export const NavigationButton = styled.div`
-    position: absolute;
-    top: 42%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    z-index: 3;
 `;
 
 // GroupNotificationItem
+export const GroupNotificationItemWrap = styled.div``;
+
 export const GroupNotificationImage = styled.div`
     position: relative;
     width: 300px;
     height: 430px;
+    overflow: hidden;
+    border-radius: 7px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 7px;
+    }
 
     ${media.tablet} {
         width: 200px;
@@ -94,12 +70,19 @@ export const TextWrap = styled.div`
         position: absolute;
         top: 62%;
         left: 20px;
+        max-width: 300px;
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
 
         ${media.tablet} {
+            top: 57%;
             font-size: ${font('body', 'sm')};
+            max-width: 180px;
         }
         ${media.mobile} {
             font-size: ${font('body', 'xsm')};
+            max-width: 180px;
         }
     }
     span {
@@ -151,8 +134,20 @@ export const ButtonWrap = styled.div`
         }
     }
 `;
+// GroupNotificationItem 끝
 
 // GroupNotificationList
+export const GroupNotificationListWrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 40px;
+
+    ${media.mobile} {
+        gap: 20px;
+    }
+`;
+
 export const GroupNotificationHeader = styled.div`
     display: flex;
     flex-direction: column;
@@ -185,3 +180,31 @@ export const HeaderContent = styled.div`
         font-size: ${font('body', 'sm')};
     }
 `;
+
+export const GroupNotificationSlider = styled.div`
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    .swiper {
+        width: 100%;
+        overflow: visible;
+    }
+
+    .swiper-slide {
+        width: auto;
+        height: auto;
+    }
+`;
+
+export const NavigationButton = styled.div`
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 3;
+`;
+// GroupNotificationList 끝

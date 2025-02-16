@@ -9,13 +9,17 @@ import {
     TextWrap,
 } from './style';
 
-const GroupNotificationItem = () => {
+const GroupNotificationItem = ({ content }) => {
     return (
         <GroupNotificationItemWrap>
             <GroupNotificationImage>
                 <img
-                    src='https://github.com/oloklkl/bokjak-image/blob/main/images/main/flipback/flipcard1.png?raw=true'
-                    alt=''
+                    src={
+                        content.poster_path
+                            ? `https://image.tmdb.org/t/p/w500${content.poster_path}`
+                            : 'https://via.placeholder.com/300x430'
+                    }
+                    alt={content.title || '콘텐츠 이미지'}
                 />
             </GroupNotificationImage>
             <GroupNotificationContent>
@@ -23,9 +27,9 @@ const GroupNotificationItem = () => {
                     <BellSimpleRinging size={24} weight='fill' />
                 </IconWrap>
                 <TextWrap>
-                    <h2>콘텐츠 제목</h2>
-                    <span>파티방 제목</span>
-                    <span>13:30</span>
+                    <h2>{content.title}</h2>
+                    <span>{content.partyTitle || '파티방 제목'}</span>
+                    <span>{content.time || '13:30'}</span>
                 </TextWrap>
                 <ButtonWrap>
                     <BarButton icon={<Link />} className='link' text='공유' width='265px' height='42px' />
