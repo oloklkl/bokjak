@@ -1,14 +1,14 @@
 import { SeriesCardCont, SeriesItemCont } from './style'
 
-const SeriesContItem = () => {
+const SeriesContItem = ({ content, ...props }) => {
+  const bgurl = `https://image.tmdb.org/t/p/original`
+  const title = content.name
+
   return (
-    <SeriesItemCont>
-      <h2>그녀의 이름은 난노</h2>
+    <SeriesItemCont {...props}>
+      <h2>{title}</h2>
       <SeriesCardCont>
-        <img
-          src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
-          alt=""
-        />
+        <img src={`${bgurl}${content.backdrop_path}`} alt={title} />
       </SeriesCardCont>
     </SeriesItemCont>
   )

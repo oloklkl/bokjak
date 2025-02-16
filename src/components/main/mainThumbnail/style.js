@@ -9,9 +9,9 @@ export const ThumbnailSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 100px 0 50px;
+  padding: 80px 0 40px;
   ${media.tablet} {
-    padding: 80px 0 40px;
+    padding: 60px 0 30px;
   }
   ${media.mobile} {
     gap: 20px;
@@ -63,5 +63,11 @@ export const ThumbnailList = styled.div`
   .swiper-slide {
     width: auto;
     height: auto;
+  }
+  .cardHover {
+    &:hover {
+      transition: transform 0.5s ease;
+      transform: scale(1.1);
+    }
   }
 `

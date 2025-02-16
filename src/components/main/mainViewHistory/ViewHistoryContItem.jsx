@@ -1,29 +1,32 @@
 import { IconButton } from '../../../ui'
 import { Info, Play } from '@phosphor-icons/react'
 import { InfoCont, StateBar, ViewHistoryItemCont } from './style'
+import { Link } from 'react-router-dom'
 
-const ViewHistoryContItem = () => {
+const ViewHistoryContItem = ({ content, ...props }) => {
+  const bgurl = `https://image.tmdb.org/t/p/original`
+  const desc = content.overview
+  const title = content.title
   return (
-    <ViewHistoryItemCont>
+    <ViewHistoryItemCont {...props}>
       <div className="thumbnailCont">
-        <img
-          src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
-          alt=""
-        />
+        <img src={`${bgurl}${content.backdrop_path}`} alt={title} />
 
         <div className="icon">
-          <IconButton
-            className="border"
-            icon={<Play size={24} weight="fill" />}
-            text="Play"
-          />
+          <Link>
+            <IconButton
+              className="border"
+              icon={<Play size={24} weight="fill" />}
+              text="Play"
+            />
+          </Link>
         </div>
         <StateBar></StateBar>
       </div>
       <InfoCont>
         <div className="textarea">
-          <h2>헝거게임 2: 부제목</h2>
-          <span>12분 13초 남음</span>
+          <h2>{title}</h2>
+          <span>{desc}</span>
         </div>
         <IconButton className="none" icon={<Info size={24} />} text="Info" />
       </InfoCont>

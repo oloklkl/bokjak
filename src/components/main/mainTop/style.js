@@ -10,9 +10,9 @@ export const TopSection = styled.div`
   justify-content: center;
   align-items: flex-start;
   background: ${color('gray', '80')};
-  padding: 100px 0 50px;
+  padding: 80px 0;
   ${media.tablet} {
-    padding: 80px 0;
+    padding: 60px 0;
   }
   ${media.mobile} {
     padding: 40px 0;
@@ -25,9 +25,12 @@ export const TopListWrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 40px;
+  ${media.tablet} {
+    gap: 30px;
+  }
   ${media.mobile} {
-    gap: 2rem;
+    gap: 20px;
   }
   .topHeader {
     width: 100%;

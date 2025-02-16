@@ -10,9 +10,9 @@ export const SoonSection = styled.div`
   justify-content: center;
   align-items: flex-start;
   background: ${color('gray', '80')};
-  padding: 100px 0;
+  padding: 80px 0;
   ${media.tablet} {
-    padding: 80px 0;
+    padding: 60px 0;
   }
   ${media.mobile} {
     padding: 40px 0;
@@ -26,6 +26,9 @@ export const SoonListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  ${media.tablet} {
+    gap: 30px;
+  }
   ${media.mobile} {
     gap: 20px;
   }
@@ -134,7 +137,12 @@ export const ImageCont = styled.div`
     object-fit: cover;
     background: ${color('gray', '80')};
     display: block;
-
+    &:hover {
+      ${media.desktop} {
+        transition: transform 0.3s ease;
+        transform: scale(1.2);
+      }
+    }
     ${media.tablet} {
       border-radius: 0px;
       flex: 1;
@@ -147,6 +155,7 @@ export const ImageCont = styled.div`
     left: 0;
     width: 80%;
     height: 100%;
+    pointer-events: none;
     border-radius: inherit;
     background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     ${media.tablet} {
@@ -191,8 +200,8 @@ export const TextCont = styled.div`
     gap: 10px;
   }
   .soonLogo {
-    width: 432px;
-    height: 133px;
+    width: 100%;
+    height: 130px;
     ${media.tablet} {
       width: 100%;
       height: 70px;
@@ -204,9 +213,16 @@ export const TextCont = styled.div`
       height: 55px;
     }
     img {
-      width: auto;
+      width: 80%;
       height: 100%;
       object-fit: contain;
+      object-position: left;
+      ${media.tablet} {
+        width: 50%;
+      }
+      ${media.mobile} {
+        width: 65%;
+      }
     }
   }
   .soonIconTop {
@@ -239,6 +255,12 @@ export const TextCont = styled.div`
       }
     }
     p {
+      min-height: 67.5px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
       font-size: ${font('body', 'sm')};
       font-weight: lighter;
       ${media.mobile} {

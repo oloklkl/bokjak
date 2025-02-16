@@ -2,6 +2,7 @@ import { BarButton } from '../../../ui'
 import { IntroBannerCont, IntroImgCont, IntroTextCont } from './style'
 
 const IntroItem = ({ content, ...props }) => {
+  // const getContentDetail = content.
   const bgurl = `https://image.tmdb.org/t/p/original`
   const logoUrl = content.logoImage
     ? `https://image.tmdb.org/t/p/original${content.logoImage}`

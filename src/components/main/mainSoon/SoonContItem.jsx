@@ -10,16 +10,21 @@ import {
   TextCont,
 } from './style'
 
-const SoonContItem = () => {
+const SoonContItem = ({ content, ...props }) => {
+  const bgurl = `https://image.tmdb.org/t/p/original`
+  const logoUrl = content.logoImage
+    ? `https://image.tmdb.org/t/p/original${content.logoImage}`
+    : null
+  const desc = content.overview
+  const title = content.title
+  const date = content.release_date
+  const year = date.split('-')[0]
   return (
-    <SoonItemCont>
+    <SoonItemCont {...props}>
       <h2 className="soonDate">3월 6일 공개</h2>
       <SooncardCont>
         <ImageCont>
-          <img
-            src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
-            alt="위키드"
-          />
+          <img src={`${bgurl}${content.backdrop_path}`} alt={title} />
           <div className="icon">
             <IconButton
               className="border"
@@ -30,10 +35,7 @@ const SoonContItem = () => {
         </ImageCont>
         <TextCont>
           <div className="soonLogo">
-            <img
-              src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introLogoSlide1.png?raw=true"
-              alt="위키드"
-            />
+            <img src={logoUrl} alt={title} />
             <IconButton
               className="soonIconTop"
               icon={<BellSimple size={24} />}
@@ -45,7 +47,7 @@ const SoonContItem = () => {
             <LabelWrapper>
               <AgeLabel text="ALL" />
               <em>·</em>
-              <span>2017</span>
+              <span>{year}</span>
               <em>·</em>
               <span>액션</span>
               <em>·</em>
@@ -53,11 +55,7 @@ const SoonContItem = () => {
               <em>·</em>
               <span>해외영화</span>
             </LabelWrapper>
-            <p>
-              시빌 워 당시 토니 스타크에게 발탁되어 대단한 활약을 펼친
-              스파이더맨 피터 파커. 허세와 정의감으로 똘똘 뭉친 그는 세상을
-              위협하는 강력한 적 벌처에 맞서려 한다.
-            </p>
+            <p>{desc}</p>
           </div>
           <ButtonGroup>
             <BarButton text="미리보기" width="366px" height="42px" />

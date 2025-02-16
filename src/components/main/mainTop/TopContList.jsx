@@ -6,14 +6,30 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 import { useEffect, useRef } from 'react'
-import { getTrending } from '../../../store/modules/getThunk'
-import { useDispatch } from 'react-redux'
+import {
+  getContentByGenre,
+  getContentDetail,
+  getTrending,
+} from '../../../store/modules/getThunk'
+import { useDispatch, useSelector } from 'react-redux'
 import { TopListWrap } from './style'
 import { NavigationButton } from '../style'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 // import { useDispatch } from 'react-redux'
 
 const TopContList = () => {
+  const { trending } = useSelector((state) => state.contentR)
+  const dispatch = useDispatch()
+  const location = useLocation()
+
+  useEffect(() => {
+    dispatch(getTrending())
+  }, [])
+
+  const showDetailModal = (type, id, genreId) => {
+    dispatch(getContentDetail({ type, id }))
+    dispatch(getContentByGenre({ type, genreId }))
+  }
   const swiperRef = useRef()
 
   const goNext = () => {
@@ -23,10 +39,6 @@ const TopContList = () => {
   const goPrev = () => {
     swiperRef.current?.swiper.slidePrev()
   }
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getTrending())
-  }, [])
 
   return (
     <TopListWrap>
@@ -49,40 +61,25 @@ const TopContList = () => {
             768: { slidesPerView: 3.2, slidesPerGroup: 1, spaceBetween: 16 },
             1024: {
               slidesPerView: 4.5,
-              slidesPerGroup: 4.5,
+              slidesPerGroup: 5,
               spaceBetween: 24,
             },
           }}>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
+          {trending.map((content) => (
+            <SwiperSlide key={content.id}>
+              <Link
+                to={`/trending/${content.id}`}
+                state={{ previousLocation: location }}>
+                <TopContItem
+                  content={content}
+                  onClick={() => {
+                    showDetailModal('trending', content.id, content.genre_ids)
+                  }}
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
+
           <NavigationButton>
             <IconButton
               onClick={goPrev}

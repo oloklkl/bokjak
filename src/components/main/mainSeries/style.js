@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { media } from '../../../styled/media'
-import { color, font } from '../../../styled/theme'
+import { font } from '../../../styled/theme'
 
 //cont
 export const SeriesSection = styled.div`

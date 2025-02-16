@@ -1,19 +1,38 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
-import { useRef } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 import { NavigationButton } from '../style'
 import { IconButton } from '../../../ui'
-import { detailActions } from '../../../store/modules/detailSlice'
 import SeriesContItem from './SeriesContItem'
 import { SeriesContainer } from './style'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import {
+  getContentByGenre,
+  getContentDetail,
+  getMovies,
+  getTvShows,
+} from '../../../store/modules/getThunk'
 
 const SeriesContList = () => {
+  const { tvShows } = useSelector((state) => state.contentR)
+  // const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
+  const location = useLocation()
+
+  useEffect(() => {
+    dispatch(getMovies())
+    dispatch(getTvShows())
+  }, [dispatch])
+
+  const showDetailModal = (type, id, genreId) => {
+    dispatch(getContentDetail({ type, id }))
+    dispatch(getContentByGenre({ type, genreId }))
+  }
+
   const swiperRef = useRef()
 
   const goNext = () => {
@@ -48,41 +67,20 @@ const SeriesContList = () => {
               spaceBetween: 24,
             },
           }}>
-          <SwiperSlide>
-            <SeriesContItem
-              onClick={() => dispatch(detailActions.openDetailModal())}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <SeriesContItem
-              onClick={() => dispatch(detailActions.openDetailModal())}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <SeriesContItem
-              onClick={() => dispatch(detailActions.openDetailModal())}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <SeriesContItem
-              onClick={() => dispatch(detailActions.openDetailModal())}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <SeriesContItem
-              onClick={() => dispatch(detailActions.openDetailModal())}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <SeriesContItem
-              onClick={() => dispatch(detailActions.openDetailModal())}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <SeriesContItem
-              onClick={() => dispatch(detailActions.openDetailModal())}
-            />
-          </SwiperSlide>
+          {tvShows.map((content) => (
+            <SwiperSlide key={content.id}>
+              <Link
+                to={`/tvShows/${content.id}`}
+                state={{ previousLocation: location }}>
+                <SeriesContItem
+                  content={content}
+                  onClick={() => {
+                    showDetailModal('tvShows', content.id, content.genre_ids)
+                  }}
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
 
           <NavigationButton>
             <IconButton

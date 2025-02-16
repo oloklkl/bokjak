@@ -13,9 +13,9 @@ export const BokjakSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 80px 0 50px;
+  padding: 80px 0 40px;
   ${media.tablet} {
-    padding: 60px 0 40px;
+    padding: 60px 0 30px;
   }
   ${media.mobile} {
     padding: 40px 0 20px;
@@ -29,6 +29,9 @@ export const BokjakListWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  ${media.tablet} {
+    gap: 30px;
+  }
   ${media.mobile} {
     gap: 20px;
   }
@@ -77,14 +80,14 @@ export const BokjakHeader = styled.div`
     .msgBox {
       width: 100%;
       height: auto;
-      background: ${color('gray', '70')};
-      backdrop-filter: blur(10px);
+      background: ${color('gray', '80')};
+      /* backdrop-filter: blur(10px); */
       border-radius: 7px;
       padding: 10px;
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, 50%);
+      transform: translate(-50%, -140%);
       z-index: 10;
       opacity: 0;
       pointer-events: none;
@@ -94,14 +97,16 @@ export const BokjakHeader = styled.div`
         width: 100%;
         display: flex;
         text-align: left;
+        font-weight: lighter;
         font-size: ${font('body', 'sm')};
-        color: ${color('gray', '30')};
+        color: ${color('gray', '0')};
       }
       ${media.tablet} {
-        transform: translate(-50%, 30%);
+        transform: translate(-50%, -125%);
+        font-size: ${font('body', 'xsm')};
       }
       ${media.mobile} {
-        transform: translate(-50%, 20%);
+        transform: translate(-50%, -115%);
         width: 100%;
         border-radius: 5px;
         .textarea {
@@ -147,18 +152,16 @@ export const BokjakItemCont = styled.div`
   }
 `
 export const ImgCont = styled.div`
+  padding: 20px;
   width: 100%;
   height: 100%;
   background: ${color('gray', '80')};
   border-radius: 999px;
-  ${media.tablet} {
-    max-width: 200px;
-  }
-
-  img {
+  .logoImg {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    overflow: hidden;
     border-radius: 50%;
   }
 `
@@ -167,16 +170,21 @@ export const TextCont = styled.div`
   text-align: center;
   width: 100%;
   h3 {
-    font-size: ${font('title', 'xlg')};
+    max-height: 25.5px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    font-size: ${font('title', 'md')};
     ${media.tablet} {
-      font-size: ${font('title', 'md')};
+      font-size: ${font('body', 'md')};
     }
     ${media.mobile} {
-      font-size: ${font('body', 'md')};
+      font-size: ${font('body', 'sm')};
     }
   }
   h4 {
-    font-size: ${font('title', 'lg')};
+    font-size: ${font('title', 'md')};
     color: ${color('gray', '40')};
     ${media.tablet} {
       font-size: ${font('body', 'md')};

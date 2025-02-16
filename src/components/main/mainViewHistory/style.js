@@ -9,12 +9,12 @@ export const ViewHistorySection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 80px 0 50px;
+  padding: 40px 0 80px;
   ${media.tablet} {
-    padding: 60px 0 40px;
+    padding: 30px 0 60px;
   }
   ${media.mobile} {
-    padding: 40px 0 20px;
+    padding: 20px 0 40px;
   }
 `
 
@@ -25,6 +25,9 @@ export const ViewHistoryContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  ${media.tablet} {
+    gap: 30px;
+  }
   ${media.mobile} {
     gap: 20px;
   }
@@ -111,10 +114,17 @@ export const ViewHistoryItemCont = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 4;
     ${media.mobile} {
       width: 24px;
       height: 24px;
       size: 18px;
+    }
+    .border {
+      cursor: grab;
+      &:hover {
+        background-color: ${color('gray', '80')};
+      }
     }
   }
 `

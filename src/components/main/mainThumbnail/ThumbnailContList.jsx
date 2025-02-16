@@ -6,7 +6,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 // import { useDispatch } from 'react-redux'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getContentByGenre,
@@ -18,6 +18,7 @@ import {
 import { Link, useLocation } from 'react-router-dom'
 import { ThumbnailContainer, ThumbnailHeader, ThumbnailList } from './style'
 import { NavigationButton } from '../style'
+import ThumbnailCardHover from '../../../common/main/card/thumbnail/ThumbnailCardHover'
 
 const ThumbnailContList = () => {
   const { movies } = useSelector((state) => state.contentR)
@@ -34,7 +35,17 @@ const ThumbnailContList = () => {
     dispatch(getContentDetail({ type, id }))
     dispatch(getContentByGenre({ type, genreId }))
   }
-  // const dispatch = useDispatch()
+
+  const [hoveredCardId, setHoveredCardId] = useState(null)
+
+  const handleMouseEnter = (id) => {
+    setHoveredCardId(id)
+  }
+
+  const handleMouseLeave = () => {
+    setHoveredCardId(null)
+  }
+
   const swiperRef = useRef()
 
   const goNext = () => {
@@ -77,22 +88,32 @@ const ThumbnailContList = () => {
             },
             1024: {
               slidesPerView: 5.1,
-              slidesPerGroup: 5.1,
+              slidesPerGroup: 5,
               spaceBetween: 24,
             },
           }}>
           {movies.map((content) => (
             <SwiperSlide key={content.id}>
-              <Link
-                to={`/movie/${content.id}`}
-                state={{ previousLocation: location }}>
-                <ThumbnailCard
-                  content={content}
-                  onClick={() => {
-                    showDetailModal('movie', content.id, content.genre_ids)
-                  }}
-                />
-              </Link>
+              <div
+                className="careHover"
+                onMouseEnter={() => handleMouseEnter(content.id)}
+                onMouseLeave={handleMouseLeave}
+                style={{ position: 'relative' }}>
+                <Link
+                  to={`/movie/${content.id}`}
+                  state={{ previousLocation: location }}>
+                  {hoveredCardId === content.id ? (
+                    <ThumbnailCardHover content={content} />
+                  ) : (
+                    <ThumbnailCard
+                      content={content}
+                      onClick={() =>
+                        showDetailModal('movie', content.id, content.genre_ids)
+                      }
+                    />
+                  )}
+                </Link>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

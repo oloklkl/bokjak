@@ -13,17 +13,10 @@ export const IntroSection = styled.section`
 //list
 export const IntroSliderCont = styled.div`
   width: 100%;
-
   .swiper {
     overflow: visible;
     width: 100%;
     height: 100%;
-    ${media.tablet} {
-      min-height: 730px;
-    }
-    ${media.mobile} {
-      min-height: 450px;
-    }
   }
   .swiper-slide {
     width: 100%;
@@ -36,21 +29,39 @@ export const IntroSliderCont = styled.div`
 export const IntroBannerCont = styled.div`
   width: 100%;
   height: 100%;
-  ${media.tablet} {
-    min-height: 730px;
-  }
-  ${media.mobile} {
-    min-height: 450px;
-  }
+
   display: flex;
   flex-direction: row;
   border-radius: 7px;
 `
 
+// export const IntroImgCont = styled.div`
+//   position: relative;
+//   width: 100%;
+
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 70%);
+//     border-radius: 7px;
+//   }
+
+//   .introSlideImg {
+//     width: 100%;
+//     height: 100%;
+//     border-radius: 7px;
+//     object-fit: cover;
+//   }
+// `
 export const IntroImgCont = styled.div`
   position: relative;
   width: 100%;
-
+  max-height: 700px;
+  overflow: hidden;
   &::before {
     content: '';
     position: absolute;
@@ -58,11 +69,7 @@ export const IntroImgCont = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.8),
-      rgba(0, 0, 0, 0) 54%
-    );
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 70%);
     border-radius: 7px;
   }
 
@@ -71,9 +78,14 @@ export const IntroImgCont = styled.div`
     height: 100%;
     border-radius: 7px;
     object-fit: cover;
+    ${media.tablet} {
+      min-height: 650px;
+    }
+    ${media.mobile} {
+      min-height: 450px;
+    }
   }
 `
-
 export const IntroTextCont = styled.div`
   position: absolute;
   bottom: 40px;
@@ -123,12 +135,12 @@ export const IntroTextCont = styled.div`
 
   span {
     width: 500px;
-    height: 100px;
+    height: 90px;
     white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
     color: ${color('gray', '0')};
-    font-size: ${font('title', 'lg')};
+    font-size: ${font('title', 'md')};
     ${media.tablet} {
       width: 100%;
       height: 50px;

@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay } from 'swiper/modules'
+import { Autoplay, EffectCreative } from 'swiper/modules'
 import { useDispatch, useSelector } from 'react-redux'
 import IntroItem from './IntroItem'
 import { IntroSliderCont } from './style'
@@ -31,11 +31,24 @@ const IntroList = () => {
     <IntroSliderCont>
       <Swiper
         className="swiper"
-        modules={[Autoplay]}
+        modules={[Autoplay, EffectCreative]}
         spaceBetween={24}
         slidesPerView={1}
-        autoplay={{ delay: 2000, disableOnInteraction: false }}
+        autoplay={{ delay: 6000, disableOnInteraction: false }}
         loop={true}
+        effect="creative"
+        creativeEffect={{
+          prev: {
+            opacity: 1,
+            translate: ['-80%', 0, -50],
+            scale: 0.9,
+          },
+          next: {
+            opacity: 0.9,
+            translate: ['80%', 0, -100],
+            scale: 1,
+          },
+        }}
         breakpoints={{
           390: { spaceBetween: 12 },
           768: { spaceBetween: 16 },
