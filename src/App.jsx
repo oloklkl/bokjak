@@ -50,7 +50,7 @@ const App = () => {
                             element={<Membership />}
                         />
                         <Route
-                            path="/subpage"
+                            path="/subpage/*"
                             element={<SubPage />}
                         />
                         <Route path="/filmo">
