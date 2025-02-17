@@ -13,8 +13,17 @@ import {
     UpcomingNotificationItemWrap,
     UpcomingUpIconWrap,
 } from './style';
+import { useState } from 'react';
 
 const UpcomingNotificationItem = ({ content }) => {
+    const [isVisible, setIsVisible] = useState(true);
+
+    if (!isVisible) return null;
+
+    const handleRemove = () => {
+        setIsVisible(false);
+    };
+
     return (
         <UpcomingNotificationItemWrap>
             <UpcomingContentWrap>
@@ -22,7 +31,7 @@ const UpcomingNotificationItem = ({ content }) => {
                     <HeaderTitle>
                         <h2>2월1일</h2>
                     </HeaderTitle>
-                    <UpcomingUpIconWrap>
+                    <UpcomingUpIconWrap onClick={handleRemove}>
                         <BellSimpleRinging size={24} weight='fill' />
                     </UpcomingUpIconWrap>
                 </UpcomingHeaderWrap>
@@ -54,7 +63,7 @@ const UpcomingNotificationItem = ({ content }) => {
                 <UpcomingDescription>
                     <p>{content.overview || '상세 내용 없음'}</p>
                 </UpcomingDescription>
-                <UpcomingDownIconWrap>
+                <UpcomingDownIconWrap onClick={handleRemove}>
                     <BellSimpleRinging size={24} weight='fill' />
                 </UpcomingDownIconWrap>
             </UpcomingContentWrap>
