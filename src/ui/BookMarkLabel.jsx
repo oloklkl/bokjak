@@ -9,6 +9,7 @@ const BookMarkLabelWrap = styled.button`
   width: 60px;
   height: 24px;
   font-weight: bold;
+  line-height: center;
   font-size: ${font('detail', 'sm')};
   background-color: ${color('primary', 'default')};
   color: ${color('gray', '0')};
@@ -24,6 +25,11 @@ const BookMarkLabelWrap = styled.button`
   // 더빙 (썸네일)
   &.dubbing {
     background-color: ${color('gray', '80')};
+  }
+  // +추가 모달
+  &.modal {
+    background-color: ${color('gray', '70')};
+    border-radius: 4px;
   }
 `
 

@@ -33,6 +33,7 @@ const App = () => {
         <>
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
+
                 <Routes
                     location={previousLocation || location}
                 >

@@ -1,10 +1,10 @@
 // getThunk.js
 
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
-const API_KEY = 'f32ee508f6b204c8a5175aaadefb59c7';
-const BASE_URL = 'https://api.themoviedb.org/3';
+const API_KEY = 'f32ee508f6b204c8a5175aaadefb59c7'
+const BASE_URL = 'https://api.themoviedb.org/3'
 
 // 콘텐츠 목록 가져오기 (영화 & TV)
 export const getMovies = createAsyncThunk(
@@ -87,6 +87,7 @@ export const getTvShows = createAsyncThunk(
         return res.data.results;
     }
 );
+
 
 export const getTrending = createAsyncThunk(
     'content/getTrending',

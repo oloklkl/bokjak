@@ -1,7 +1,4 @@
-import styled from 'styled-components'
-import { font } from '../../../styled/theme'
-import { media } from '../../../styled/media'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { detailActions } from '../../../store/modules/detailSlice'
 import ViewHistoryContItem from './ViewHistoryContItem'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -10,70 +7,33 @@ import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { ViewHistoryContainer } from './style'
+import { NavigationButton } from '../style'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import {
+  getContentByGenre,
+  getContentDetail,
+  getMovies,
+  getTvShows,
+} from '../../../store/modules/getThunk'
 
-const ViewHistoryContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  ${media.mobile} {
-    gap: 20px;
-  }
-  .viewHeader {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    h2 {
-      font-size: ${font('title', 'xxlg')};
-      ${media.tablet} {
-        font-size: ${font('title', 'xlg')};
-      }
-      ${media.mobile} {
-        font-size: ${font('title', 'lg')};
-      }
-    }
-    h3 {
-      font-size: ${font('body', 'sm')};
-    }
-  }
-  .viewList {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-
-    .swiper {
-      width: 100%;
-      overflow: visible;
-    }
-    .swiper-slide {
-      /* width: clamp(180px, 20vw, 300px); */
-      width: auto;
-      height: auto;
-      overflow: hidden;
-      border-radius: 7px;
-    }
-  }
-`
-const NavigationButton = styled.div`
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  z-index: 3;
-  ${media.tablet} {
-    display: none;
-  }
-  ${media.mobile} {
-    display: none;
-  }
-`
 const ViewHistoryContList = () => {
+  const { movies } = useSelector((state) => state.contentR)
+  // const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
+  const location = useLocation()
+  // const navigate = useNavigate ()
+
+  useEffect(() => {
+    dispatch(getMovies())
+    dispatch(getTvShows())
+  }, [dispatch])
+
+  const showDetailModal = (type, id, genreId) => {
+    dispatch(getContentDetail({ type, id }))
+    dispatch(getContentByGenre({ type, genreId }))
+  }
   const swiperRef = useRef()
 
   const goNext = () => {
@@ -87,7 +47,9 @@ const ViewHistoryContList = () => {
     <ViewHistoryContainer>
       <div className="viewHeader">
         <h2>title</h2>
-        <h3>more</h3>
+        <Link>
+          <h3>더보기</h3>
+        </Link>
       </div>
 
       <div className="viewList">
@@ -98,45 +60,29 @@ const ViewHistoryContList = () => {
           pagination={{ clickable: true }}
           navigation={false}
           breakpoints={{
-            320: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
-            390: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
+            390: { slidesPerView: 2.1, slidesPerGroup: 1, spaceBetween: 10 },
 
-            768: { slidesPerView: 'auto', slidesPerGroup: 4, spaceBetween: 16 },
+            768: { slidesPerView: 2.8, slidesPerGroup: 1, spaceBetween: 16 },
             1024: {
-              slidesPerView: 'auto',
-              slidesPerGroup: 5,
+              slidesPerView: 4.2,
+              slidesPerGroup: 4.2,
               spaceBetween: 24,
             },
           }}>
-          <SwiperSlide>
-            <ViewHistoryContItem
-              onClick={() => dispatch(detailActions.openDetailModal())}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ViewHistoryContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ViewHistoryContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ViewHistoryContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ViewHistoryContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ViewHistoryContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ViewHistoryContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ViewHistoryContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ViewHistoryContItem />
-          </SwiperSlide>
+          {movies.map((content) => (
+            <SwiperSlide key={content.id}>
+              <Link
+                to={`/movie/${content.id}`}
+                state={{ previousLocation: location }}>
+                <ViewHistoryContItem
+                  content={content}
+                  onClick={() => {
+                    showDetailModal('movie', content.id, content.genre_ids)
+                  }}
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
           <NavigationButton>
             <IconButton
               onClick={goPrev}

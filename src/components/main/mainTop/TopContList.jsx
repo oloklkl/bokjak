@@ -1,93 +1,53 @@
-import styled from 'styled-components';
-import { font } from '../../../styled/theme';
-import TopContItem from './TopContItem';
-import { IconButton } from '../../../ui';
-import { CaretLeft, CaretRight } from '@phosphor-icons/react';
-import { media } from '../../../styled/media';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
-import { useEffect, useRef } from 'react';
-import { getTrending } from '../../../store/modules/getThunk';
-import { useDispatch } from 'react-redux';
+import TopContItem from './TopContItem'
+import { IconButton } from '../../../ui'
+import { CaretLeft, CaretRight } from '@phosphor-icons/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Navigation } from 'swiper/modules'
+import { useEffect, useRef } from 'react'
+import {
+  getContentByGenre,
+  getContentDetail,
+  getTrending,
+} from '../../../store/modules/getThunk'
+import { useDispatch, useSelector } from 'react-redux'
+import { TopListWrap } from './style'
+import { NavigationButton } from '../style'
+import { Link, useLocation } from 'react-router-dom'
 // import { useDispatch } from 'react-redux'
 
-const TopListWrap = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    ${media.mobile} {
-        gap: 20px;
-    }
-    .topHeader {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        h2 {
-            font-size: ${font('title', 'xxlg')};
-            ${media.tablet} {
-                font-size: ${font('title', 'xlg')};
-            }
-            ${media.mobile} {
-                font-size: ${font('title', 'lg')};
-            }
-        }
-        h3 {
-            font-size: ${font('body', 'sm')};
-        }
-    }
-
-  }
-  .topList {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    .swiper {
-      width: 100%;
-      overflow: visible;
-    }
-    .swiper-slide {
-      width: auto;
-      height: auto;
-
-    }
-`;
-
-const NavigationButton = styled.div`
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    z-index: 3;
-`;
-
 const TopContList = () => {
-    const swiperRef = useRef();
+  const { trending } = useSelector((state) => state.contentR)
+  const dispatch = useDispatch()
+  const location = useLocation()
+  const trendTop = trending.slice(0, 10)
 
-    const goNext = () => {
-        swiperRef.current?.swiper.slideNext();
-    };
+  useEffect(() => {
+    dispatch(getTrending())
+  }, [])
 
-    const goPrev = () => {
-        swiperRef.current?.swiper.slidePrev();
-    };
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getTrending());
-    }, []);
+  const showDetailModal = (type, id, genreId) => {
+    dispatch(getContentDetail({ type, id }))
+    dispatch(getContentByGenre({ type, genreId }))
+  }
+  const swiperRef = useRef()
 
+  const goNext = () => {
+    swiperRef.current?.swiper.slideNext()
+  }
+
+  const goPrev = () => {
+    swiperRef.current?.swiper.slidePrev()
+  }
 
   return (
     <TopListWrap>
       <div className="topHeader">
         <h2>title</h2>
-        <h3>more</h3>
+        <Link>
+          <h3>더보기</h3>
+        </Link>
       </div>
       <div className="topList">
         <Swiper
@@ -96,46 +56,31 @@ const TopContList = () => {
           modules={[Navigation]}
           navigation={false}
           breakpoints={{
-            320: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
-            390: { slidesPerView: 'auto', slidesPerGroup: 3, spaceBetween: 10 },
+            320: { slidesPerView: 2.3, slidesPerGroup: 1, spaceBetween: 10 },
+            390: { slidesPerView: 2.3, slidesPerGroup: 1, spaceBetween: 10 },
 
-            768: { slidesPerView: 'auto', slidesPerGroup: 4, spaceBetween: 16 },
+            768: { slidesPerView: 3.2, slidesPerGroup: 1, spaceBetween: 16 },
             1024: {
-              slidesPerView: 'auto',
+              slidesPerView: 5,
               slidesPerGroup: 5,
               spaceBetween: 24,
             },
           }}>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TopContItem />
-          </SwiperSlide>
+          {trendTop.map((content) => (
+            <SwiperSlide key={content.id}>
+              <Link
+                to={`/trending/${content.id}`}
+                state={{ previousLocation: location }}>
+                <TopContItem
+                  content={content}
+                  onClick={() => {
+                    showDetailModal('trending', content.id, content.genre_ids)
+                  }}
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
+
           <NavigationButton>
             <IconButton
               onClick={goPrev}
@@ -156,5 +101,4 @@ const TopContList = () => {
   )
 }
 
-
-export default TopContList;
+export default TopContList
