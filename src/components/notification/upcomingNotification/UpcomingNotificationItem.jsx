@@ -15,6 +15,28 @@ import {
 } from './style';
 import { useState } from 'react';
 
+const genres = {
+    28: '액션',
+    12: '모험',
+    16: '애니메이션',
+    35: '코미디',
+    80: '범죄',
+    99: '다큐멘터리',
+    18: '드라마',
+    10751: '가족',
+    14: '판타지',
+    36: '역사',
+    27: '공포',
+    10402: '음악',
+    9648: '미스터리',
+    10749: '로맨스',
+    878: 'SF',
+    10770: 'TV 영화',
+    53: '스릴러',
+    10752: '전쟁',
+    37: '서부',
+};
+
 const UpcomingNotificationItem = ({ content }) => {
     const [isVisible, setIsVisible] = useState(true);
 
@@ -24,12 +46,33 @@ const UpcomingNotificationItem = ({ content }) => {
         setIsVisible(false);
     };
 
+    const genreNames =
+        content.genre_ids
+            ?.map((id) => genres[id])
+            .filter(Boolean)
+            .join(' · ') || '장르 없음';
+
+    const releaseMonth = content.release_date
+        ? `${parseInt(content.release_date.split('-')[1], 10)}월`
+        : '월 정보 없음';
+
+    const releaseYear = content.release_date ? content.release_date.split('-')[0] : '연도 없음';
+
+    const getAgeLabel = (content) => {
+        if (content.adult) return '19+';
+        if (content.vote_average >= 8) return '15+';
+        if (content.vote_average >= 6) return '12+';
+        return 'ALL';
+    };
+
+    const ageLabel = getAgeLabel(content);
+
     return (
         <UpcomingNotificationItemWrap>
             <UpcomingContentWrap>
                 <UpcomingHeaderWrap>
                     <HeaderTitle>
-                        <h2>2월1일</h2>
+                        <h2>{releaseMonth}</h2>
                     </HeaderTitle>
                     <UpcomingUpIconWrap onClick={handleRemove}>
                         <BellSimpleRinging size={24} weight='fill' />
@@ -49,15 +92,11 @@ const UpcomingNotificationItem = ({ content }) => {
                     <UpcomingInfoWrap>
                         <UpcomingActionWrap>
                             <h3>{content.title}</h3>
-                            <AgeLabel text='ALL' />
+                            <AgeLabel text={ageLabel} />
                         </UpcomingActionWrap>
-                        <span>2017</span>
+                        <span>{content.release_date ? content.release_date.split('-')[0] : '연도 없음'}</span>
                         <em>·</em>
-                        <span>액션</span>
-                        <em>·</em>
-                        <span>SF</span>
-                        <em>·</em>
-                        <span>해외영화</span>
+                        <span>{genreNames}</span>
                     </UpcomingInfoWrap>
                 </FlexWrap>
                 <UpcomingDescription>
