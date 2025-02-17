@@ -10,8 +10,9 @@ const Filmo = () => {
         <div className="inner">
             <FilmoWrap>
                 <h2>
-                    {currentPerson[0] &&
-                        currentPerson[0].name}
+                    {currentPerson[0]
+                        ? currentPerson[0].name
+                        : ''}
                 </h2>
                 <div className="filmo-card-wrap">
                     {filmoData.map((item) => (
