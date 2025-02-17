@@ -9,6 +9,7 @@ import {
   SoonItemCont,
   TextCont,
 } from './style'
+import genres from '../../../assets/api/genreData'
 
 const SoonContItem = ({ content, ...props }) => {
   const bgurl = `https://image.tmdb.org/t/p/original`
@@ -19,6 +20,15 @@ const SoonContItem = ({ content, ...props }) => {
   const title = content.title
   const date = content.release_date
   const year = date.split('-')[0]
+  const genreNames =
+    content.genre_ids
+      ?.map((id) => {
+        const genre = genres.find((genre) => genre.id === id) // 장르 데이터에서 id로 매칭
+        return genre ? genre.name : null // 장르 이름 반환, 없으면 null
+      })
+      .filter(Boolean) // null, undefined 제거
+      .join(' · ') || '장르 없음'
+
   return (
     <SoonItemCont {...props}>
       <h2 className="soonDate">3월 6일 공개</h2>
@@ -49,11 +59,7 @@ const SoonContItem = ({ content, ...props }) => {
               <em>·</em>
               <span>{year}</span>
               <em>·</em>
-              <span>액션</span>
-              <em>·</em>
-              <span>SF</span>
-              <em>·</em>
-              <span>해외영화</span>
+              <span>{genreNames}</span>
             </LabelWrapper>
             <p>{desc}</p>
           </div>
