@@ -9,19 +9,30 @@ const RecentSearchBtnWrap = styled.button`
     align-items: center;
     justify-content: center;
     gap: 10px;
-
     padding: 0 32px;
     height: 55px;
     border-radius: 9999px;
     background-color: ${color('gray', '80')};
     color: ${color('gray', '30')};
-
     font-size: ${font('title', 'lg')};
 
     &:hover {
         background-color: ${color('gray', '70')};
         color: ${color('gray', '0')};
         border: 1px solid ${color('gray', '0')};
+
+        .delete-icon {
+            color: ${color('gray', '0')};
+        }
+    }
+
+    .delete-icon {
+        color: ${color('gray', '50')};
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: ${color('gray', '0')};
+        }
     }
 
     ${media.tablet} {
@@ -37,11 +48,16 @@ const RecentSearchBtnWrap = styled.button`
     }
 `;
 
-const RecentSearchButton = (props) => {
+const RecentSearchButton = ({ text, onRemove }) => {
+    const handleClick = (e) => {
+        e.preventDefault();
+        onRemove(text);
+    };
+
     return (
-        <RecentSearchBtnWrap>
-            {props.text}
-            <X size={24} />
+        <RecentSearchBtnWrap onClick={handleClick}>
+            {text}
+            <X size={24} className='delete-icon' />
         </RecentSearchBtnWrap>
     );
 };
