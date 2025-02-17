@@ -12,6 +12,7 @@ import {
     Login,
     Main,
     Membership,
+    MyPage,
     NotFiles,
     Notification,
     Search,
@@ -59,6 +60,10 @@ const App = () => {
                                 element={<FilmoPage />}
                             />
                         </Route>
+                        <Route
+                            path="/mypage"
+                            element={<MyPage />}
+                        />
                     </Route>
                     <Route element={<SubLayout />}>
                         <Route
