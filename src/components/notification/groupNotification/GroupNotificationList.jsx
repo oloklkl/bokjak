@@ -23,6 +23,8 @@ const GroupNotificationList = () => {
     const { movies, tvShows } = useSelector((state) => state.contentR);
     const location = useLocation();
 
+    const [hiddenItems, setHiddenItems] = useState([]);
+
     useEffect(() => {
         dispatch(getMovies());
         dispatch(getTvShows());
@@ -35,11 +37,6 @@ const GroupNotificationList = () => {
         }
     }, [movies, tvShows]);
 
-    const showDetailModal = (type, id, genreId) => {
-        dispatch(getContentDetail({ type, id }));
-        dispatch(getContentByGenre({ type, genreId }));
-    };
-
     const swiperRef = useRef();
 
     const goNext = () => {
@@ -47,6 +44,10 @@ const GroupNotificationList = () => {
     };
     const goPrev = () => {
         swiperRef.current?.swiper.slidePrev();
+    };
+
+    const handleHideItem = (id) => {
+        setHiddenItems((prev) => [...prev, id]);
     };
 
     return (
@@ -85,18 +86,21 @@ const GroupNotificationList = () => {
                         },
                     }}
                 >
-                    {combinedContent.map((content) => (
-                        <SwiperSlide key={content.id}>
-                            <Link to={`/movie/${content.id}`} state={{ previousLocation: location }}>
-                                <GroupNotificationItem
-                                    content={content}
-                                    onClick={() => {
-                                        showDetailModal('movie', content.id, content.genre_ids);
-                                    }}
-                                />
-                            </Link>
-                        </SwiperSlide>
-                    ))}
+                    {combinedContent.map(
+                        (content) =>
+                            !hiddenItems.includes(content.id) && (
+                                <SwiperSlide key={content.id}>
+                                    <Link to={`/movie/${content.id}`} state={{ previousLocation: location }}>
+                                        <GroupNotificationItem
+                                            content={content}
+                                            onClick={() => {
+                                                handleHideItem(content.id);
+                                            }}
+                                        />
+                                    </Link>
+                                </SwiperSlide>
+                            )
+                    )}
                 </Swiper>
 
                 <NavigationButton>

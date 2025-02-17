@@ -9,7 +9,7 @@ import {
     TextWrap,
 } from './style';
 
-const GroupNotificationItem = ({ content }) => {
+const GroupNotificationItem = ({ content, onClick }) => {
     return (
         <GroupNotificationItemWrap>
             <GroupNotificationImage>
@@ -23,7 +23,7 @@ const GroupNotificationItem = ({ content }) => {
                 />
             </GroupNotificationImage>
             <GroupNotificationContent>
-                <IconWrap>
+                <IconWrap onClick={onClick}>
                     <BellSimpleRinging size={24} weight='fill' />
                 </IconWrap>
                 <TextWrap>
