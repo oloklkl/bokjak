@@ -2,6 +2,7 @@ import { MagnifyingGlass } from '@phosphor-icons/react';
 import { IconButton, RecentSearchButton } from '../../ui';
 import { Container, Nav, PopularList, PopularListContainer, RecentKeywords, SearchBar, Section } from './style';
 import BottomNavigation from '../../common/bottomnavigation';
+import { useState } from 'react';
 
 const Search = () => {
     const popularSearches = [
@@ -17,8 +18,21 @@ const Search = () => {
         '커플팰리스',
     ];
 
+    const [recentSearches, setRecentSearches] = useState([
+        '또 오해영',
+        '나 혼자 산다',
+        '런닝맨',
+        '위키드',
+        '너의 이름은',
+        '환승연애',
+    ]);
+
     const firstHalf = popularSearches.slice(0, 5);
     const secondHalf = popularSearches.slice(5);
+
+    const handleRemove = (searchText) => {
+        setRecentSearches(recentSearches.filter((text) => text !== searchText));
+    };
 
     return (
         <Container>
@@ -37,12 +51,9 @@ const Search = () => {
                 <Nav aria-label='최근 검색어'>
                     <h2>최근 검색어</h2>
                     <RecentKeywords>
-                        <RecentSearchButton text='또 오해영' />
-                        <RecentSearchButton text='나 혼자 산다' />
-                        <RecentSearchButton text='런닝맨' />
-                        <RecentSearchButton text='위키드' />
-                        <RecentSearchButton text='너의 이름은' />
-                        <RecentSearchButton text='환승연애' />
+                        {recentSearches.map((text) => (
+                            <RecentSearchButton key={text} text={text} onRemove={handleRemove} />
+                        ))}
                     </RecentKeywords>
                 </Nav>
 
