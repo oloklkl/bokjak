@@ -26,6 +26,7 @@ export const GroupNotificationImage = styled.div`
     position: relative;
     width: 300px;
     height: 430px;
+
     overflow: hidden;
     border-radius: 7px;
 
@@ -57,60 +58,62 @@ export const GroupNotificationImage = styled.div`
 `;
 
 export const GroupNotificationContent = styled.div`
-    width: 300px;
+    width: 100%;
     height: 100%;
     padding: 16px;
     box-sizing: border-box;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 16px;
+    top: 0;
+    left: 0;
 `;
 
 export const TextWrap = styled.div`
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+
     h2 {
-        font-size: ${font('title', 'md')};
+        font-size: ${font('title', 'exlg')};
         font-weight: 700;
-        position: absolute;
-        top: 62%;
-        left: 20px;
         max-width: 300px;
         white-space: normal;
         word-wrap: break-word;
         overflow-wrap: break-word;
+        margin-bottom: 10px;
 
         ${media.tablet} {
-            top: 57%;
-            font-size: ${font('body', 'sm')};
+            font-size: ${font('title', 'lg')};
             max-width: 180px;
         }
         ${media.mobile} {
-            font-size: ${font('body', 'xsm')};
+            font-size: ${font('title', 'lg')};
             max-width: 180px;
         }
     }
     span {
         color: ${color('gray', '30')};
-        font-size: ${font('body', 'md')};
-        position: absolute;
-        top: 70%;
-        left: 140px;
+        font-size: ${font('body', 'lg')};
 
         ${media.tablet} {
-            font-size: ${font('body', 'xsm')};
+            font-size: ${font('body', 'md')};
         }
         ${media.mobile} {
-            font-size: ${font('label', 'xsm')};
+            font-size: ${font('label', 'sm')};
         }
     }
     span:nth-of-type(1) {
-        position: absolute;
-        top: 70%;
-        left: 20px;
+        margin-right: 20px;
     }
 `;
 
 export const IconWrap = styled.div`
-    position: absolute;
-    top: 5%;
-    left: 20px;
     cursor: pointer;
+    align-self: flex-start;
 
     ${media.tablet} {
     }
@@ -119,18 +122,18 @@ export const IconWrap = styled.div`
 `;
 
 export const ButtonWrap = styled.div`
-    position: absolute;
-    top: 78%;
-    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
     .link {
         ${media.tablet} {
             width: 178px;
-            height: 30px;
+            height: 40px;
         }
         ${media.mobile} {
             width: 160px;
-            height: 20px;
+            height: 35px;
         }
     }
 `;
