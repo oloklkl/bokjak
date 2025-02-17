@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { motion } from 'framer-motion';
 import { AboutWrap } from './style';
 import { BarButton } from '../../ui';
 
@@ -290,29 +289,23 @@ const HomePage = () => {
         >
           좋아하는 콘텐츠를 친구들과 함께 <br /> 감상하며 즐거움을 나눠보세요!
         </h2>
-        <div className="relative w-full h-screen bg-white overflow-hidden flex justify-center items-center">
-          <div
+        <div
+          style={{
+            textAlign: 'center',
+            paddingTop: '80px',
+            position: 'relative', // 애니메이션 이미지와 배경 이미지가 겹칠 수 있도록 설정
+            zIndex: 1, // 애니메이션 이미지는 배경 이미지 위에 오게 설정
+          }}
+        >
+          <img
+            src="https://raw.githubusercontent.com/lse-7660/bokjak-image/ea1decc22540a6f97e470d430f20a256bd37a994/images/about/watchparty-2.png"
+            alt="복작화면"
+            className="floating-animation"
             style={{
-              textAlign: 'center',
-              paddingTop: '80px',
-              position: 'relative', // 애니메이션 이미지와 배경 이미지가 겹칠 수 있도록 설정
-              zIndex: 1, // 애니메이션 이미지는 배경 이미지 위에 오게 설정
+              maxWidth: '500px',
+              height: 'auto',
             }}
-          >
-            <img
-              src="https://raw.githubusercontent.com/lse-7660/bokjak-image/ea1decc22540a6f97e470d430f20a256bd37a994/images/about/watchparty-2.png"
-              alt="복작화면"
-              className="floating-animation"
-              style={{
-                maxWidth: '500px',
-                height: 'auto',
-              }}
-            />
-          </div>
-          {/* <Balloon color="bg-red-400" delay={0} />
-          <Balloon color="bg-blue-400" delay={0.5} />
-          <Balloon color="bg-yellow-400" delay={1} />
-          <Balloon color="bg-green-400" delay={1.5} /> */}
+          />
         </div>
       </section>
 
