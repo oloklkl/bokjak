@@ -1,5 +1,5 @@
-import { IntroSection } from '../style'
 import IntroList from './introList'
+import { IntroSection } from './style'
 
 const Intro = () => {
   return (
