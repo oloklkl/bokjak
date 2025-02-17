@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion } from 'framer-motion';
 import { AboutWrap } from './style';
 import { BarButton } from '../../ui';
 
@@ -153,7 +154,6 @@ const HomePage = () => {
           boxSizing: 'border-box',
         }}
       >
-        {/* 이미지 리스트 */}
         {[
           'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-1.png',
           'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-10.png',
@@ -170,7 +170,7 @@ const HomePage = () => {
             key={index}
             style={{
               width: '30%', // 크기 증가
-              minWidth: '250px', // 최소 크기 증가
+
               aspectRatio: '16 / 9',
               backgroundImage: `url(${img})`,
               backgroundSize: 'cover',
@@ -253,7 +253,7 @@ const HomePage = () => {
           <div
             key={index}
             style={{
-              width: '30%',
+              width: '30%', // 크기 증가
               minWidth: '250px', // 최소 크기 증가
               aspectRatio: '16 / 9',
               backgroundImage: `url(${img})`,
@@ -290,23 +290,29 @@ const HomePage = () => {
         >
           좋아하는 콘텐츠를 친구들과 함께 <br /> 감상하며 즐거움을 나눠보세요!
         </h2>
-        <div
-          style={{
-            textAlign: 'center',
-            paddingTop: '80px',
-            position: 'relative', // 애니메이션 이미지와 배경 이미지가 겹칠 수 있도록 설정
-            zIndex: 1, // 애니메이션 이미지는 배경 이미지 위에 오게 설정
-          }}
-        >
-          <img
-            src="https://raw.githubusercontent.com/lse-7660/bokjak-image/ea1decc22540a6f97e470d430f20a256bd37a994/images/about/watchparty-2.png"
-            alt="복작화면"
-            className="floating-animation"
+        <div className="relative w-full h-screen bg-white overflow-hidden flex justify-center items-center">
+          <div
             style={{
-              maxWidth: '500px',
-              height: 'auto',
+              textAlign: 'center',
+              paddingTop: '80px',
+              position: 'relative', // 애니메이션 이미지와 배경 이미지가 겹칠 수 있도록 설정
+              zIndex: 1, // 애니메이션 이미지는 배경 이미지 위에 오게 설정
             }}
-          />
+          >
+            <img
+              src="https://raw.githubusercontent.com/lse-7660/bokjak-image/ea1decc22540a6f97e470d430f20a256bd37a994/images/about/watchparty-2.png"
+              alt="복작화면"
+              className="floating-animation"
+              style={{
+                maxWidth: '500px',
+                height: 'auto',
+              }}
+            />
+          </div>
+          {/* <Balloon color="bg-red-400" delay={0} />
+          <Balloon color="bg-blue-400" delay={0.5} />
+          <Balloon color="bg-yellow-400" delay={1} />
+          <Balloon color="bg-green-400" delay={1.5} /> */}
         </div>
       </section>
 
@@ -333,50 +339,228 @@ const HomePage = () => {
 
         <div
           style={{
+            display: 'flex',
             textAlign: 'center',
-            display: 'inline-block',
-            padding: '20px',
-
             borderRadius: '5px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            width: '80%',
+            width: '100%',
             maxWidth: '800px',
           }}
         >
-          <table style={{ width: '100%', backgroundColor: '#1d1d1d', color: 'white' }}>
+          <table
+            style={{
+              width: '100%',
+              color: 'white',
+              borderCollapse: 'collapse',
+            }}
+          >
             <thead>
               <tr>
-                <th style={{ padding: '10px', textAlign: 'center' }}>베이직</th>
-                <th style={{ padding: '10px', textAlign: 'center' }}>프리미엄</th>
+                <th
+                  colSpan="2"
+                  style={{
+                    padding: '20px',
+                    textAlign: 'center',
+                    backgroundColor: '#272727',
+                    borderBottom: '2px solid #fff',
+                    fontWeight: 'bold',
+                    fontSize: '1.2em',
+                  }}
+                >
+                  베이직
+                </th>
+                <th
+                  style={{
+                    padding: '20px',
+                    textAlign: 'center',
+                    backgroundColor: '#272727',
+                    borderBottom: '2px solid #fff',
+                    fontWeight: 'bold',
+                    fontSize: '1.2em',
+                  }}
+                >
+                  프리미엄
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="py-4 px-6 text-center">연간 99,000원</td>
-                <td className="py-4 px-6 text-center">연간 139,000원</td>
-              </tr>
-              <tr>
-                <td className="py-4 px-6 text-center">최대 16% 할인된 가격</td>
-                <td className="py-4 px-6 text-center">최대 16% 할인된 가격</td>
-              </tr>
-              <tr>
-                <td className="py-4 px-6 text-center">최대 1080p Full HD</td>
-                <td className="py-4 px-6 text-center">최대 4K UHD & HDR</td>
-              </tr>
-              <tr>
-                <td className="py-4 px-6 text-center">최대 5.1 사운드</td>
-                <td className="py-4 px-6 text-center">최대 Dolby Atmos 오디오</td>
-              </tr>
-              <tr>
-                <td className="py-4 px-6 text-center">광고 없는 스트리밍</td>
-                <td className="py-4 px-6 text-center">광고 없는 스트리밍</td>
-              </tr>
-              <tr>
-                <td className="py-4 px-6 text-center">
-                  <span className="text-green-500"> 콘텐츠 저장 ✔</span>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    borderBottom: '2px solid #333',
+                    backgroundColor: '#1d1d1d',
+                  }}
+                >
+                  연간 구독료
                 </td>
-                <td className="py-4 px-6 text-center">
-                  <span className="text-green-500"> 콘텐츠 저장 ✔</span>
+
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    borderBottom: '2px solid #333',
+                    backgroundColor: '#1d1d1d',
+                  }}
+                >
+                  <td
+                    style={{
+                      padding: '10px',
+                      textAlign: 'center',
+                      border: '2px solid #fff',
+                      borderRadius: '10px',
+                    }}
+                  >
+                    연 99,000원
+                  </td>
+                  최대 16% 할인된 가격
+                </td>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    borderBottom: '2px solid #333',
+                    backgroundColor: '#2e2e2e',
+                  }}
+                >
+                  <td
+                    style={{
+                      padding: '10px',
+                      textAlign: 'center',
+                      border: '2px solid #fff',
+                      borderRadius: '10px',
+                    }}
+                  >
+                    연 15,000원
+                  </td>
+                  최대 16% 할인된 가격
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    borderBottom: '2px solid #333',
+                    backgroundColor: '#1d1d1d',
+                  }}
+                >
+                  오디오
+                </td>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    borderBottom: '2px solid #333',
+                    backgroundColor: '#1d1d1d',
+                  }}
+                >
+                  최대 5.1 사운드
+                </td>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    borderBottom: '2px solid #333',
+                    backgroundColor: '#2e2e2e',
+                  }}
+                >
+                  최대 Dolby Atmos 오디오
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    borderBottom: '2px solid #333',
+                    backgroundColor: '#1d1d1d',
+                  }}
+                >
+                  영상화질
+                </td>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    borderBottom: '2px solid #333',
+                    backgroundColor: '#1d1d1d',
+                  }}
+                >
+                  최대 1080p Full HD
+                </td>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    borderBottom: '2px solid #333',
+                    backgroundColor: '#2e2e2e',
+                  }}
+                >
+                  최대 4K UHD & HDR
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    borderBottom: '2px solid #333',
+                    backgroundColor: '#1d1d1d',
+                  }}
+                >
+                  광고
+                </td>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    borderBottom: '2px solid #333',
+                    backgroundColor: '#1d1d1d',
+                  }}
+                >
+                  광고 없는 스트리밍
+                </td>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    borderBottom: '2px solid #333',
+                    backgroundColor: '#2e2e2e',
+                  }}
+                >
+                  광고 없는 스트리밍
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    backgroundColor: '#1d1d1d',
+                  }}
+                >
+                  콘텐츠 저장
+                </td>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+                    backgroundColor: '#1d1d1d',
+                  }}
+                >
+                  <span>✔</span>
+                </td>
+                <td
+                  style={{
+                    padding: '15px',
+                    textAlign: 'center',
+
+                    backgroundColor: '#2e2e2e',
+                  }}
+                >
+                  <span>✔</span>
                 </td>
               </tr>
             </tbody>
