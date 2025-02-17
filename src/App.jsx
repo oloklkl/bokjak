@@ -1,7 +1,19 @@
 import GlobalStyle from './styled/GlobalStyle';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Layout from './common/Layout';
-import { About, FilmoPage, Login, Main, Membership, NotFiles, Notification, Search, SubPage, Video } from './pages';
+import {
+    About,
+    FilmoPage,
+    Login,
+    Main,
+    Membership,
+    MyPage,
+    NotFiles,
+    Notification,
+    Search,
+    SubPage,
+    Video,
+} from './pages';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styled/theme';
 import SubLayout from './common/SubLayout';
@@ -16,26 +28,27 @@ const App = () => {
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
                 <Routes location={previousLocation || location}>
-                    <Route path="/" element={<Layout />}>
+                    <Route path='/' element={<Layout />}>
                         <Route index element={<Main />} />
-                        <Route path="/notification" element={<Notification />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/membership" element={<Membership />} />
-                        <Route path="/subpage" element={<SubPage />} />
-                        <Route path="/filmo" element={<FilmoPage />} />
+                        <Route path='/notification' element={<Notification />} />
+                        <Route path='/about' element={<About />} />
+                        <Route path='/membership' element={<Membership />} />
+                        <Route path='/subpage' element={<SubPage />} />
+                        <Route path='/filmo' element={<FilmoPage />} />
+                        <Route path='/mypage' element={<MyPage />} />
                     </Route>
                     <Route element={<SubLayout />}>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/video" element={<Video />} />
+                        <Route path='/login' element={<Login />} />
+                        <Route path='/video' element={<Video />} />
                     </Route>
                     <Route element={<SearchLayout />}>
-                        <Route path="/search" element={<Search />} />
+                        <Route path='/search' element={<Search />} />
                     </Route>
-                    <Route path="*" element={<NotFiles />} />
+                    <Route path='*' element={<NotFiles />} />
                 </Routes>
                 {previousLocation && (
                     <Routes>
-                        <Route path="/:type/:id" element={<Detail />} />
+                        <Route path='/:type/:id' element={<Detail />} />
                     </Routes>
                 )}
             </ThemeProvider>
