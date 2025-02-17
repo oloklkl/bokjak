@@ -1,122 +1,37 @@
-import styled from 'styled-components'
 import BokjakContItem from './BokjakContItem'
-import { color, font } from '../../../styled/theme'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight, QuestionMark } from '@phosphor-icons/react'
-import { media } from '../../../styled/media'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
-
-const BokjakListWrap = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  ${media.mobile} {
-    gap: 20px;
-  }
-`
-
-const BokjakHeader = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  text-align: center;
-  gap: 16px;
-  ${media.mobile} {
-    gap: 10px;
-  }
-
-  h2 {
-    font-size: ${font('title', 'xxlg')};
-    ${media.tablet} {
-      font-size: ${font('title', 'xlg')};
-    }
-    ${media.mobile} {
-      font-size: ${font('title', 'lg')};
-    }
-  }
-  h3 {
-    font-size: ${font('body', 'sm')};
-  }
-
-  .border {
-    width: 24px;
-    height: 24px;
-    ${media.mobile} {
-      width: 18px;
-      height: 18px;
-      size: 14px;
-    }
-  }
-`
-
-const BokjakList = styled.div`
-  width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-
-  .swiper {
-    width: 100%;
-    overflow: visible;
-  }
-  .swiper-slide {
-    width: auto;
-    height: auto;
-  }
-`
-const MsgBox = styled.div`
-  display: flex;
-  /* justify-content: flex-start; */
-  align-content: center;
-  width: 290px;
-  height: 40px;
-  background: ${color('gray', '70')};
-  border-radius: 7px;
-  padding: 10px;
-  .textarea {
-    width: 280px;
-    display: flex;
-    text-align: left;
-    font-size: ${font('body', 'sm')};
-    color: ${color('gray', '30')};
-  }
-  ${media.mobile} {
-    width: 250px;
-    height: 32px;
-    border-radius: 5px;
-    padding: 7px 10px;
-    .textarea {
-      width: 240px;
-      font-size: ${font('body', 'xsm')};
-    }
-  }
-`
-
-const NavigationButton = styled.div`
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  z-index: 3;
-
-  ${media.tablet} {
-    display: none;
-  }
-  ${media.mobile} {
-    display: none;
-  }
-`
+import { BokjakHeader, BokjakList, BokjakListWrap } from './style'
+import { NavigationButton } from '../style'
+import { Link, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  getContentByGenre,
+  getContentDetail,
+  getMovies,
+  getTvShows,
+} from '../../../store/modules/getThunk'
 
 const BokjakContList = () => {
+  const { movies } = useSelector((state) => state.contentR)
+  // const { movies, tvShows } = useSelector((state) => state.contentR)
+  const dispatch = useDispatch()
+  const location = useLocation()
+
+  useEffect(() => {
+    dispatch(getMovies())
+    dispatch(getTvShows())
+  }, [dispatch])
+
+  const BokjakModal = (type, id, genreId) => {
+    dispatch(getContentDetail({ type, id }))
+    dispatch(getContentByGenre({ type, genreId }))
+  }
   const swiperRef = useRef()
 
   const goNext = () => {
@@ -129,15 +44,26 @@ const BokjakContList = () => {
   return (
     <BokjakListWrap>
       <BokjakHeader>
-        <h2>title</h2>
-        <IconButton
-          className="border"
-          icon={<QuestionMark size={18} />}
-          text="smiley"
-        />
-        <MsgBox>
-          <div className="textarea">실시간 영상 시청 및 채팅 서비스입니다.</div>
-        </MsgBox>
+        <div className="quesCont">
+          <h2>title</h2>
+          <IconButton
+            className="border"
+            icon={<QuestionMark size={18} />}
+            text="smiley"
+          />
+          <div className="msgBox">
+            <div className="textarea">
+              ‘모여보기 복작’은 친구들과 실시간으로 영화를 보며 채팅으로
+              소통하는 특별한 경험입니다. <br />
+              🎬혼자서 느끼기엔 아쉬운 순간들, 이제 함께 즐기며 더 특별하게
+              만들어보세요! 💬✨ 멀리 있어도 함께하는 그 순간, ‘모여보기
+              복작’에서 지금 바로 경험해보세요.
+            </div>
+          </div>
+        </div>
+        <Link>
+          <h3>더보기</h3>
+        </Link>
       </BokjakHeader>
 
       <BokjakList>
@@ -145,57 +71,42 @@ const BokjakContList = () => {
           className="swiper"
           ref={swiperRef}
           modules={[Navigation]}
-          slidesPerGroupAuto
           breakpoints={{
             330: {
-              slidesPerView: 3,
+              slidesPerView: 2.8,
+              slidesPerGroup: 1,
               spaceBetween: 10,
             },
-
-            600: {
-              slidesPerView: 4,
-              spaceBetween: 16,
+            390: {
+              slidesPerView: 2.8,
+              slidesPerGroup: 1,
+              spaceBetween: 10,
             },
-
-            1024: {
-              slidesPerView: 6,
+            768: {
+              slidesPerView: 4.2,
+              slidesPerGroup: 1,
               spaceBetween: 24,
             },
+            1024: {
+              slidesPerView: 5.2,
+              slidesPerGroup: 5.2,
+              spaceBetween: 32,
+            },
           }}>
-          <SwiperSlide>
-            <BokjakContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BokjakContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BokjakContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BokjakContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BokjakContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BokjakContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BokjakContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BokjakContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BokjakContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BokjakContItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BokjakContItem />
-          </SwiperSlide>
-
+          {movies.map((content) => (
+            <SwiperSlide key={content.id}>
+              <Link
+                to={`/movie/${content.id}`}
+                state={{ previousLocation: location }}>
+                <BokjakContItem
+                  content={content}
+                  onClick={() => {
+                    BokjakModal('movie', content.id, content.genre_ids)
+                  }}
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
           <NavigationButton>
             <IconButton
               onClick={goPrev}
