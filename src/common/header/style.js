@@ -131,12 +131,16 @@ export const CategoryDropdown = styled.ul`
     display: flex;
     flex-direction: column;
     left: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+    span {
+        color: ${color('gray', '30')};
+    }
 
     ${media.desktop} {
         flex-wrap: wrap;
         height: 400px;
         padding: 64px 160px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
         li {
             display: block;
@@ -145,7 +149,7 @@ export const CategoryDropdown = styled.ul`
         span {
             display: flex;
             text-align: left;
-            color: ${color('gray', '30')};
+
             font-size: ${font('body', 'md')};
 
             &:hover {
@@ -159,7 +163,6 @@ export const CategoryDropdown = styled.ul`
         flex-wrap: wrap;
         height: 968px;
         padding: 80px 147px 324px 100px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
         li {
             display: block;
@@ -179,7 +182,6 @@ export const CategoryDropdown = styled.ul`
         top: 0;
         padding: 20px 128px;
         height: 100%;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
         li {
             display: block;
