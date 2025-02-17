@@ -21,6 +21,7 @@ const TopContList = () => {
   const { trending } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
   const location = useLocation()
+  const trendTop = trending.slice(0, 10)
 
   useEffect(() => {
     dispatch(getTrending())
@@ -60,12 +61,12 @@ const TopContList = () => {
 
             768: { slidesPerView: 3.2, slidesPerGroup: 1, spaceBetween: 16 },
             1024: {
-              slidesPerView: 4.5,
+              slidesPerView: 5,
               slidesPerGroup: 5,
               spaceBetween: 24,
             },
           }}>
-          {trending.map((content) => (
+          {trendTop.map((content) => (
             <SwiperSlide key={content.id}>
               <Link
                 to={`/trending/${content.id}`}

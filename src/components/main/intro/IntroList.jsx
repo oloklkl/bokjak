@@ -17,6 +17,7 @@ const IntroList = () => {
   // const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
   const location = useLocation()
+  const intro = movies.slice(0, 5)
 
   useEffect(() => {
     dispatch(getMovies())
@@ -54,7 +55,7 @@ const IntroList = () => {
           768: { spaceBetween: 16 },
           1024: { spaceBetween: 24 },
         }}>
-        {movies.map((content) => (
+        {intro.map((content) => (
           <SwiperSlide key={content.id}>
             <Link
               to={`/movie/${content.id}`}

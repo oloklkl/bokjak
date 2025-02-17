@@ -60,10 +60,10 @@ const SeriesContList = () => {
             320: { slidesPerView: 1.2, slidesPerGroup: 1, spaceBetween: 10 },
             390: { slidesPerView: 1.2, slidesPerGroup: 1, spaceBetween: 10 },
 
-            768: { slidesPerView: 2.2, slidesPerGroup: 1, spaceBetween: 16 },
+            768: { slidesPerView: 2, slidesPerGroup: 1, spaceBetween: 16 },
             1024: {
-              slidesPerView: 3.2,
-              slidesPerGroup: 3.2,
+              slidesPerView: 3.1,
+              slidesPerGroup: 3,
               spaceBetween: 24,
             },
           }}>

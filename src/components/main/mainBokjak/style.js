@@ -80,8 +80,8 @@ export const BokjakHeader = styled.div`
     .msgBox {
       width: 100%;
       height: auto;
-      background: ${color('gray', '80')};
-      /* backdrop-filter: blur(10px); */
+      background: ${color('gray', '70')};
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
       border-radius: 7px;
       padding: 10px;
       position: absolute;

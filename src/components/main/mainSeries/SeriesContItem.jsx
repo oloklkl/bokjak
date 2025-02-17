@@ -8,7 +8,7 @@ const SeriesContItem = ({ content, ...props }) => {
     <SeriesItemCont {...props}>
       <h2>{title}</h2>
       <SeriesCardCont>
-        <img src={`${bgurl}${content.backdrop_path}`} alt={title} />
+        <img src={`${bgurl}${content.poster_path}`} alt={title} />
       </SeriesCardCont>
     </SeriesItemCont>
   )

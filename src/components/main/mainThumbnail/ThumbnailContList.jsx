@@ -1,12 +1,10 @@
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
-import ThumbnailCard from '../../../common/main/card/thumbnail/ThumbnailCard'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
-// import { useDispatch } from 'react-redux'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getContentByGenre,
@@ -14,11 +12,10 @@ import {
   getMovies,
   getTvShows,
 } from '../../../store/modules/getThunk'
-// import { detailActions } from '../../../store/modules/detailSlice'
 import { Link, useLocation } from 'react-router-dom'
 import { ThumbnailContainer, ThumbnailHeader, ThumbnailList } from './style'
+import ThumbnailCard from '../../../ui/ThumbnailCard'
 import { NavigationButton } from '../style'
-import ThumbnailCardHover from '../../../common/main/card/thumbnail/ThumbnailCardHover'
 
 const ThumbnailContList = () => {
   const { movies } = useSelector((state) => state.contentR)
@@ -34,16 +31,6 @@ const ThumbnailContList = () => {
   const showDetailModal = (type, id, genreId) => {
     dispatch(getContentDetail({ type, id }))
     dispatch(getContentByGenre({ type, genreId }))
-  }
-
-  const [hoveredCardId, setHoveredCardId] = useState(null)
-
-  const handleMouseEnter = (id) => {
-    setHoveredCardId(id)
-  }
-
-  const handleMouseLeave = () => {
-    setHoveredCardId(null)
   }
 
   const swiperRef = useRef()
@@ -94,26 +81,16 @@ const ThumbnailContList = () => {
           }}>
           {movies.map((content) => (
             <SwiperSlide key={content.id}>
-              <div
-                className="careHover"
-                onMouseEnter={() => handleMouseEnter(content.id)}
-                onMouseLeave={handleMouseLeave}
-                style={{ position: 'relative' }}>
-                <Link
-                  to={`/movie/${content.id}`}
-                  state={{ previousLocation: location }}>
-                  {hoveredCardId === content.id ? (
-                    <ThumbnailCardHover content={content} />
-                  ) : (
-                    <ThumbnailCard
-                      content={content}
-                      onClick={() =>
-                        showDetailModal('movie', content.id, content.genre_ids)
-                      }
-                    />
-                  )}
-                </Link>
-              </div>
+              <Link
+                to={`/movie/${content.id}`}
+                state={{ previousLocation: location }}>
+                <ThumbnailCard
+                  content={content}
+                  onClick={() =>
+                    showDetailModal('movie', content.id, content.genre_ids)
+                  }
+                />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

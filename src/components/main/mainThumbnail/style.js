@@ -64,10 +64,4 @@ export const ThumbnailList = styled.div`
     width: auto;
     height: auto;
   }
-  .cardHover {
-    &:hover {
-      transition: transform 0.5s ease;
-      transform: scale(1.1);
-    }
-  }
 `

@@ -69,6 +69,7 @@ export const SeriesContainer = styled.div`
 ////////////////////////////////
 //item
 export const SeriesItemCont = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -86,11 +87,14 @@ export const SeriesItemCont = styled.div`
   }
 `
 export const SeriesCardCont = styled.div`
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
   img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     border-radius: 7px;
+    /* object-position: center; */
   }
 `

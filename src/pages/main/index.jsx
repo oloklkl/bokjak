@@ -1,5 +1,4 @@
-import BottomNavigation from '../../common/bottomnavigation'
-import ThumbnailCardHover from '../../common/main/card/thumbnail/ThumbnailCardHover'
+// import BottomNavigation from '../../common/bottomnavigation'
 import {
   Intro,
   BokjakCont,
@@ -10,14 +9,11 @@ import {
   TopCont,
   ViewHistoryCont,
 } from '../../components'
-import BokjakModal from '../../components/main/mainBokjak/BokjakModal'
 import { MainWrap, VisualWrap } from './style'
 
 const Main = () => {
   return (
     <>
-      {/* <BokjakModal /> */}
-      <ThumbnailCardHover />
       <VisualWrap>
         <Intro />
       </VisualWrap>
