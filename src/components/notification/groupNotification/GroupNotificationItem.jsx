@@ -8,8 +8,28 @@ import {
     IconWrap,
     TextWrap,
 } from './style';
+import { useEffect, useState } from 'react';
+
+const partyTitles = ['안녕', '들어와', '모여봐요', '함께 즐기자', '시작합니다', '밤새 놀자!', '우리끼리 파티!'];
 
 const GroupNotificationItem = ({ content, onClick }) => {
+    const [randomPartyTitle, setRandomPartyTitle] = useState('');
+    const [randomTime, setRandomTime] = useState('');
+
+    useEffect(() => {
+        const title = content.partyTitle || partyTitles[Math.floor(Math.random() * partyTitles.length)];
+        setRandomPartyTitle(title);
+    }, [content.partyTitle]);
+
+    useEffect(() => {
+        if (!content.time) {
+            const time = `${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}:${String(
+                Math.floor(Math.random() * 60)
+            ).padStart(2, '0')}`;
+            setRandomTime(time);
+        }
+    }, [content.time]);
+
     return (
         <GroupNotificationItemWrap>
             <GroupNotificationImage>
@@ -28,8 +48,8 @@ const GroupNotificationItem = ({ content, onClick }) => {
                 </IconWrap>
                 <TextWrap>
                     <h2>{content.title}</h2>
-                    <span>{content.partyTitle || '파티방 제목'}</span>
-                    <span>{content.time || '13:30'}</span>
+                    <span>{randomPartyTitle}</span>
+                    <span>{content.time || randomTime}</span>
                 </TextWrap>
                 <ButtonWrap>
                     <BarButton icon={<Link />} className='link' text='공유' width='265px' height='42px' />

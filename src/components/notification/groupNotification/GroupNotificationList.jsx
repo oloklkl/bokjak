@@ -86,7 +86,7 @@ const GroupNotificationList = () => {
                         },
                     }}
                 >
-                    {combinedContent.map(
+                    {combinedContent.slice(0, 10).map(
                         (content) =>
                             !hiddenItems.includes(content.id) && (
                                 <SwiperSlide key={content.id}>
