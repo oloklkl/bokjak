@@ -68,7 +68,10 @@ export const DetailPreviewWrap = styled.div`
             top: 0;
             width: 100%;
             aspect-ratio: 16/9;
-            background: linear-gradient(#00000000, #00000080);
+            background: linear-gradient(
+                #00000000,
+                #00000080
+            );
         }
 
         &.detailpreview-wrap {
@@ -99,6 +102,12 @@ export const DescriptionWrap = styled.div`
     display: flex;
     flex-direction: column;
     gap: 60px;
+
+    a {
+        &:hover {
+            color: ${color('primary', 'default')};
+        }
+    }
 
     h2 {
         font-size: ${font('display', 'md')};

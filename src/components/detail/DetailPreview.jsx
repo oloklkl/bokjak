@@ -12,6 +12,7 @@ const DetailPreview = () => {
 
     const goPrevPage = () => {
         navigate(-1);
+        dispatch(detailActions.clearCurrentData());
     };
 
     const bgurl = `https://image.tmdb.org/t/p/w500`;
@@ -36,12 +37,7 @@ const DetailPreview = () => {
                 <div className="detailpreview-wrap">
                     <IconButton onClick={goPrevPage} className="b30" icon={<X />} />
                     <div className="detailpreview-util-wrap">
-                        <BarButton
-                            onClick={() => dispatch(detailActions.closeDetailModal())}
-                            text="재생하기"
-                            width="240px"
-                            height="42px"
-                        >
+                        <BarButton text="재생하기" width="240px" height="42px">
                             <Link to="/video" />
                         </BarButton>
                         <IconButton className="" icon={<Heart />} text="좋아요" />
