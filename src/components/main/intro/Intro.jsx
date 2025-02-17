@@ -4,7 +4,9 @@ import { IntroSection } from './style'
 const Intro = () => {
   return (
     <IntroSection>
-      <IntroList />
+      <div className="inner">
+        <IntroList />
+      </div>
     </IntroSection>
   )
 }

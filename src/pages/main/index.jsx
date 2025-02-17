@@ -18,18 +18,24 @@ const Main = () => {
         <Intro />
       </VisualWrap>
       <MainWrap>
-        <BokjakCont />
-        <ViewHistoryCont />
+        <div className="inner">
+          <BokjakCont />
+          <ViewHistoryCont />
+        </div>
         <TopCont />
-        <ThumbnailCont />
-        <ThumbnailCont />
+        <div className="inner">
+          <ThumbnailCont />
+          <ThumbnailCont />
+        </div>
         <SoonCont />
-        <ThumbnailCont />
-        <ThumbnailCont />
-        <FlipBackCont />
-        <ThumbnailCont />
-        <ThumbnailCont />
-        <SeriesCont />
+        <div className="inner">
+          <ThumbnailCont />
+          <ThumbnailCont />
+          <FlipBackCont />
+          <ThumbnailCont />
+          <ThumbnailCont />
+          <SeriesCont />
+        </div>
         {/* <BottomNavigation /> */}
       </MainWrap>
     </>

@@ -10,12 +10,12 @@ export const TopSection = styled.div`
   justify-content: center;
   align-items: flex-start;
   background: ${color('gray', '80')};
-  padding: 80px 0;
+  padding: 80px 30px;
   ${media.tablet} {
-    padding: 60px 0;
+    padding: 60px 30px;
   }
   ${media.mobile} {
-    padding: 40px 0;
+    padding: 40px 20px;
   }
 `
 
