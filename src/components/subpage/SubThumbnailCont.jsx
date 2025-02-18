@@ -1,10 +1,10 @@
 import { ThumbnailSection } from './style';
-import ThumbnailContList from './SubThumbnailContList';
+import SubThumbnailContList from './SubThumbnailContList';
 
 const SubThumbnailCont = ({ title, contents }) => {
     return (
         <ThumbnailSection>
-            <ThumbnailContList title={title} contents={contents} />
+            <SubThumbnailContList title={title} contents={contents} />
         </ThumbnailSection>
     );
 };

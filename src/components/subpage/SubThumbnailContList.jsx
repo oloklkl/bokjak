@@ -13,15 +13,17 @@ import { NavigationButton } from './style';
 import { IconButton } from '../../ui';
 
 const SubThumbnailContList = ({ title, contents }) => {
-    const { movies } = useSelector((state) => state.contentR);
-    // const { movies, tvShows } = useSelector((state) => state.contentR)
     const dispatch = useDispatch();
     const location = useLocation();
 
+    const { movies, tvShows } = useSelector((state) => state.contentR);
+
     useEffect(() => {
-        dispatch(getMovies());
-        dispatch(getTvShows());
-    }, [dispatch]);
+        if (!movies || !tvShows) {
+            dispatch(getMovies());
+            dispatch(getTvShows());
+        }
+    }, [dispatch, movies, tvShows]);
 
     const showDetailModal = (type, id, genreId) => {
         dispatch(getContentDetail({ type, id }));
@@ -75,12 +77,12 @@ const SubThumbnailContList = ({ title, contents }) => {
                         },
                     }}
                 >
-                    {movies.map((content) => (
+                    {contents.map((content) => (
                         <SwiperSlide key={content.id}>
-                            <Link to={`/movie/${content.id}`} state={{ previousLocation: location }}>
+                            <Link to={`/${content.media_type}/${content.id}`} state={{ previousLocation: location }}>
                                 <ThumbnailCard
                                     content={content}
-                                    onClick={() => showDetailModal('movie', content.id, content.genre_ids)}
+                                    onClick={() => showDetailModal(content.media_type, content.id, content.genre_ids)}
                                 />
                             </Link>
                         </SwiperSlide>
