@@ -62,7 +62,7 @@ export const AboutWrap = styled.div`
   }
 
   h4 {
-    font-size: xx-small;
+    font-size: x-small;
   }
   h5 {
     font-size: large;
@@ -83,6 +83,9 @@ export const AboutWrap = styled.div`
       font-size: xx-small;
     }
   }
+
+  //무브-비쥬얼 움직이는거
+
   section::-webkit-scrollbar {
     display: none;
   }
@@ -97,16 +100,26 @@ export const AboutWrap = styled.div`
   }
 
   .scroll-section {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    gap: 15px;
-    overflow-x: auto;
-    white-space: nowrap;
-    animation: scroll-left 10s linear infinite;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
   }
 
-  .hover\\:scale-105:hover {
-    transform: scale(1.05);
+  .carousel-track {
+    display: flex;
+    gap: 15px;
+    position: absolute;
+    left: 0;
+    animation: scroll-left 20s linear infinite;
+  }
+
+  .carousel-item {
+    width: 250px;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    flex-shrink: 0;
   }
 `;
