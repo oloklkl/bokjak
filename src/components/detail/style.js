@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { color, font } from '../../styled/theme';
+import { media } from '../../styled/media';
 
 export const DetailWindow = styled.div`
     position: fixed;
@@ -35,6 +36,13 @@ export const DetailWrap = styled.div`
     border: 1px solid ${color('gray', '70')};
 
     color: ${color('gray', '0')};
+
+    ${media.tablet} {
+        margin: 40px 0 0 0;
+        width: 100%;
+
+        border-radius: 20px;
+    }
 `;
 
 export const DetailPreviewWrap = styled.div`
@@ -68,10 +76,7 @@ export const DetailPreviewWrap = styled.div`
             top: 0;
             width: 100%;
             aspect-ratio: 16/9;
-            background: linear-gradient(
-                #00000000,
-                #00000080
-            );
+            background: linear-gradient(#00000000, #00000080);
         }
 
         &.detailpreview-wrap {
@@ -82,11 +87,16 @@ export const DetailPreviewWrap = styled.div`
 
             height: 100%;
             padding: 40px;
-        }
-        &.detailpreview-util-wrap {
-            width: 100%;
-            display: flex;
-            gap: 12px;
+
+            ${media.tablet} {
+                padding: 30px;
+            }
+
+            ${media.mobile} {
+                padding: 20px;
+                justify-content: center;
+                align-items: center;
+            }
         }
     }
 `;
@@ -96,6 +106,16 @@ export const DetailContentWrap = styled.div`
     flex-direction: column;
     gap: 120px;
     padding: 60px 40px;
+
+    ${media.tablet} {
+        gap: 100px;
+        padding: 60px 30px;
+    }
+
+    ${media.mobile} {
+        gap: 60px;
+        padding: 20px;
+    }
 `;
 
 export const DescriptionWrap = styled.div`
@@ -112,12 +132,32 @@ export const DescriptionWrap = styled.div`
     h2 {
         font-size: ${font('display', 'md')};
         font-weight: 600;
+
+        ${media.mobile} {
+            font-size: ${font('title', 'xxlg')};
+        }
     }
     div {
+        &.desc-title-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
         &.desc-info-wrap {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
+
+            ${media.tablet} {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            ${media.mobile} {
+                font-size: ${font('body', 'sm')};
+            }
         }
 
         &.desc-inner {
@@ -126,6 +166,12 @@ export const DescriptionWrap = styled.div`
             gap: 24px;
 
             max-width: 558px;
+
+            ${media.tablet} {
+                gap: 20px;
+
+                max-width: 100%;
+            }
         }
         &.desc-info {
             display: flex;
@@ -152,7 +198,7 @@ export const DescriptionWrap = styled.div`
     span {
         &.tag-label {
             display: block;
-            width: 60px;
+            min-width: 60px;
         }
     }
 `;
@@ -177,6 +223,10 @@ export const MoreDetailInfoWrap = styled.div`
         background-color: ${color('gray', '0')};
         transition: all 0.2s ease;
         z-index: -1;
+
+        ${media.tablet} {
+            display: none;
+        }
     }
 
     &:hover {
@@ -186,6 +236,18 @@ export const MoreDetailInfoWrap = styled.div`
         &::before {
             height: 100%;
         }
+
+        ${media.tablet} {
+            color: ${color('gray', '0')};
+            padding: 0;
+        }
+    }
+
+    ${media.mobile} {
+        width: 54px;
+        height: 18px;
+        border-bottom: 0;
+        font-size: ${font('detail', 'sm')};
     }
 `;
 
@@ -196,6 +258,10 @@ export const DetailSectionWrap = styled.div`
     h3 {
         font-size: ${font('heading', 'md')};
         font-weight: 600;
+
+        ${media.mobile} {
+            font-size: ${font('heading', 'xs')};
+        }
     }
     button {
         &.season-dropdown-toggle {
