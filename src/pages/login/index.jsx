@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LoginButtons, LoginContent, LoginHeader, LoginNotice, LoginWrap, Logo } from './style';
+import { BackgroundImage, LoginButtons, LoginContent, LoginHeader, LoginNotice, LoginWrap, Logo } from './style';
 
 const Login = () => {
     return (
@@ -10,6 +10,7 @@ const Login = () => {
                     src='https://raw.githubusercontent.com/lse-7660/bokjak-image/1cc1bc51d66246dcc6e27bc9ed887e2759fba6d1/images/common/bokjak.svg'
                     alt='logo'
                 ></Logo>
+                <BackgroundImage />
             </Link>
             <LoginContent>
                 <LoginHeader>

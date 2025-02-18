@@ -4,15 +4,25 @@ import { media } from '../../styled/media';
 
 export const LoginWrap = styled.div`
     position: relative;
-    background-color: ${color('gray', '90')};
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     ${media.tablet} {
+        background-color: ${color('gray', '90')};
     }
-    ${media.mobile} {
-    }
+`;
+
+export const BackgroundImage = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://raw.githubusercontent.com/lse-7660/bokjak-image/main/images/login/background.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
 `;
 
 export const Logo = styled.img`
@@ -33,7 +43,7 @@ export const Logo = styled.img`
 `;
 
 export const LoginContent = styled.div`
-    background-color: ${color('gray', '70')};
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 40px 55px;
     width: 600px;
     height: 600px;
@@ -83,12 +93,14 @@ export const LoginButtons = styled.div`
         align-items: center;
         gap: 130px;
         padding: 12px 20px;
-        background: #00000070;
+        background: ${color('gray', '100')};
         border-radius: 7px;
-        border: 1px solid ${color('gray', '50')};
+        border: 1px solid ${color('gray', '60')};
 
         &:hover {
-            background: ${color('gray', '50')};
+            background: ${color('gray', '70')};
+            border: 1px solid ${color('gray', '0')};
+
             span {
                 color: ${color('gray', '0')};
                 font-weight: 700;
