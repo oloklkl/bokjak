@@ -20,6 +20,7 @@ const Detail = () => {
     const { currentContent } = useSelector((state) => state.detailR);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { width } = useSelector((state) => state.windowR);
     const bgurl = `https://image.tmdb.org/t/p/w500`;
 
     const goPrevPage = () => {
@@ -35,7 +36,7 @@ const Detail = () => {
 
                 <DetailContentWrap className="detail-content">
                     <Description />
-                    {innerWidth <= 600 && type === 'tv' && <MobileDetailTab />}
+                    {width <= 600 && type === 'tv' && <MobileDetailTab />}
 
                     {type === 'tv' && <EpisodeList />}
                     <MoreLikeThisList />

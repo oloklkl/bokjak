@@ -1,11 +1,17 @@
 import styled, { keyframes } from 'styled-components';
 import { color, font } from '../../styled/theme';
+import { media } from '../../styled/media';
 
 export const VideoWrapCom = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    overflow: hidden;
+    /* overflow: hidden; */
+
+    @media (max-aspect-ratio: 1/1) {
+        flex-direction: column;
+        height: 100%;
+    }
 `;
 
 export const VideoPlayerWrap = styled.div`
@@ -16,11 +22,21 @@ export const VideoPlayerWrap = styled.div`
 
     overflow-y: hidden;
 
+    @media (max-aspect-ratio: 1/1) {
+        width: 100vw;
+        height: 100%;
+    }
+
     iframe {
         pointer-events: none;
     }
 
     div {
+        &.video-player {
+            width: 100%;
+            height: 100%;
+        }
+
         &.video-util-wrap {
             pointer-events: none;
 
@@ -69,10 +85,7 @@ export const VideoPlayerWrap = styled.div`
                     min-width: 232px;
                     padding: 10px 20px;
                     border-radius: 7px;
-                    background-color: ${color(
-                        'gray',
-                        '80'
-                    )};
+                    background-color: ${color('gray', '80')};
                     li {
                         &.video-option-item {
                             padding: 15px 0;
@@ -116,11 +129,23 @@ export const BokjakChatWrap = styled.div`
     background-color: ${color('gray', '80')};
     transition: all 0.2s ease;
 
+    @media (max-aspect-ratio: 1/1) {
+        width: 100vw;
+        height: 0;
+    }
+
     &.chat-window-active {
         visibility: visible;
         width: 30%;
         min-width: 400px;
         padding: 78px 24px 24px 24px;
+
+        @media (max-aspect-ratio: 1/1) {
+            width: 100%;
+            height: 60%;
+            padding: 20px;
+            /* border-radius: 12px; */
+        }
     }
 
     P {
@@ -141,12 +166,11 @@ export const BokjakChatWrap = styled.div`
             justify-content: flex-end;
 
             height: 100%;
-            /* max-height: calc(100vh - 218px); */
 
             overflow-y: scroll;
-            -ms-overflow-style: none;
+            /* -ms-overflow-style: none; */
             &::-webkit-scrollbar {
-                display: none;
+                /* display: none; */
             }
         }
     }

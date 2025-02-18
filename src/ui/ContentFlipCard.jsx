@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { color, font } from '../styled/theme';
 import { media } from '../styled/media';
+import { useSelector } from 'react-redux';
 
 export const ContentFlipCardWrap = styled.div`
     width: 100%;
@@ -76,14 +77,15 @@ export const ContentFlipCardWrap = styled.div`
 const ContentFlipCard = ({ content }) => {
     const [isShow, setIsShow] = useState(false);
     const bgurl = `https://image.tmdb.org/t/p/w500`;
+    const { width } = useSelector((state) => state.windowR);
 
     return (
         <ContentFlipCardWrap
             onMouseEnter={() => {
-                if (window.innerWidth > 1024) setIsShow(true);
+                if (width > 1024) setIsShow(true);
             }}
             onMouseLeave={() => {
-                if (window.innerWidth > 1024) setIsShow(false);
+                if (width > 1024) setIsShow(false);
             }}
         >
             {!isShow && (

@@ -3,12 +3,10 @@
 import { DescriptionWrap } from './style';
 import MoreDetailInfo from './MoreDetailInfo';
 import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContentDetail, getPeopleBySearch } from '../../store/modules/getThunk';
-import { filmoActions } from '../../store/modules/filmoSlice';
+import { getPeopleBySearch } from '../../store/modules/getThunk';
 import AgeLabel from '../../ui/AgeLabel';
-import { current } from '@reduxjs/toolkit';
 import UtilButtonWrap from './UtilButtonWrap';
 
 const Description = () => {

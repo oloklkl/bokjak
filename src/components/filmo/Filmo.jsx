@@ -4,6 +4,7 @@ import { FilmoWrap } from './style';
 
 const Filmo = () => {
     const { currentPerson, filmoData } = useSelector((state) => state.filmoR);
+
     if (currentPerson !== null)
         return (
             <div className="inner">
