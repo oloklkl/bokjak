@@ -9,9 +9,9 @@ export const SubWrap = styled.div`
 `;
 
 export const VisualWrap = styled.section`
-    width: 100%;
-    height: 800px;
     position: relative;
+    width: 100%;
+    height: 100%;
 `;
 export const CategoryWrap = styled.div`
     width: 100%;
@@ -20,10 +20,10 @@ export const CategoryWrap = styled.div`
 `;
 
 export const ButtonWrap = styled.div`
-    display: flex;
+    /* display: flex;
     overflow-x: auto;
     white-space: nowrap;
-    gap: 28px;
+    gap: 28px; */
     margin: 40px 0 0;
 
     &::-webkit-scrollbar {
