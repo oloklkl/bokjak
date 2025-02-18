@@ -52,7 +52,6 @@ const SubThumbnailContList = ({ title, contents }) => {
                     className='swiper'
                     ref={swiperRef}
                     modules={[Navigation]}
-                    pagination={{ clickable: true }}
                     navigation={false}
                     breakpoints={{
                         330: {
