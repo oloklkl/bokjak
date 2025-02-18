@@ -1,10 +1,10 @@
 import { ThumbnailSection } from './style'
 import ThumbnailContList from './ThumbnailContList'
 
-const ThumbnailCont = () => {
+const ThumbnailCont = ({ title }) => {
   return (
     <ThumbnailSection>
-      <ThumbnailContList />
+      <ThumbnailContList title={title} />
     </ThumbnailSection>
   )
 }

@@ -36,6 +36,7 @@ export const FlipBackHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   h2 {
+    font-weight: bold;
     font-size: ${font('title', 'xxlg')};
     ${media.tablet} {
       font-size: ${font('title', 'xlg')};
@@ -45,6 +46,7 @@ export const FlipBackHeader = styled.div`
     }
   }
   h3 {
+    color: ${color('gray', '40')};
     font-size: ${font('body', 'sm')};
   }
 `

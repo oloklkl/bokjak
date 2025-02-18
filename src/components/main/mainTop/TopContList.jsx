@@ -42,9 +42,6 @@ const TopContList = () => {
     <TopListWrap>
       <div className="topHeader">
         <h2>{getTitle()}</h2>
-        <Link to="/trending">
-          <h3>더보기</h3>
-        </Link>
       </div>
       <div className="topList">
         <Swiper

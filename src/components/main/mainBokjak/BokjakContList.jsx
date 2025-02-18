@@ -79,7 +79,7 @@ const BokjakContList = () => {
     <BokjakListWrap>
       <BokjakHeader>
         <div className="quesCont">
-          <h2>title</h2>
+          <h2>🐣 모여봐요 복작 </h2>
           <IconButton
             className="border"
             icon={<QuestionMark size={18} />}

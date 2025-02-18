@@ -17,7 +17,7 @@ import { ThumbnailContainer, ThumbnailHeader, ThumbnailList } from './style'
 import ThumbnailCard from '../../../ui/ThumbnailCard'
 import { NavigationButton } from '../style'
 
-const ThumbnailContList = () => {
+const ThumbnailContList = ({ title }) => {
   const { movies } = useSelector((state) => state.contentR)
   // const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
@@ -45,7 +45,7 @@ const ThumbnailContList = () => {
   return (
     <ThumbnailContainer>
       <ThumbnailHeader>
-        <h2>title</h2>
+        <h2>{title}</h2>
         <Link>
           <h3>더보기</h3>
         </Link>

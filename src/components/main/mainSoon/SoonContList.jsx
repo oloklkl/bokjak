@@ -50,7 +50,7 @@ const SoonContList = () => {
   return (
     <SoonListContainer>
       <SoonHeader>
-        <h2>title</h2>
+        <h2>💛 곧 공개 예정!</h2>
         <Link>
           <h3>더보기</h3>
         </Link>

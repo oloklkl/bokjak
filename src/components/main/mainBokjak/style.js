@@ -55,6 +55,7 @@ export const BokjakHeader = styled.div`
     align-items: center;
     gap: 16px;
     h2 {
+      font-weight: bold;
       font-size: ${font('title', 'xxlg')};
       ${media.tablet} {
         font-size: ${font('title', 'xlg')};
@@ -116,6 +117,7 @@ export const BokjakHeader = styled.div`
     }
   }
   h3 {
+    color: ${color('gray', '40')};
     font-size: ${font('body', 'sm')};
   }
 `

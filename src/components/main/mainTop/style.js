@@ -41,6 +41,7 @@ export const TopListWrap = styled.div`
     justify-content: space-between;
     align-items: center;
     h2 {
+      font-weight: bold;
       font-size: ${font('title', 'xxlg')};
       ${media.tablet} {
         font-size: ${font('title', 'xlg')};
@@ -48,9 +49,6 @@ export const TopListWrap = styled.div`
       ${media.mobile} {
         font-size: ${font('title', 'lg')};
       }
-    }
-    h3 {
-      font-size: ${font('body', 'sm')};
     }
   }
 
