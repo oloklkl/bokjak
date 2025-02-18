@@ -1,7 +1,7 @@
 import BokjakContItem from './BokjakContItem'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight, QuestionMark } from '@phosphor-icons/react'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -16,19 +16,34 @@ import {
   getMovies,
   getTvShows,
 } from '../../../store/modules/getThunk'
+import BokjakModal from './BokjakModal'
+import bokjakData from '../../../assets/api/bokjakData'
 
 const BokjakContList = () => {
   const { movies } = useSelector((state) => state.contentR)
   // const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
   const location = useLocation()
+  const movie = movies.slice(0, 5)
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedContent, setSelectedContent] = useState(null)
 
   useEffect(() => {
     dispatch(getMovies())
     dispatch(getTvShows())
   }, [dispatch])
+  const openModal = (content) => {
+    setSelectedContent(content)
+    setIsModalOpen(true)
+  }
 
-  const BokjakModal = (type, id, genreId) => {
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setSelectedContent(null)
+  }
+
+  const showDetailModal = (type, id, genreId) => {
     dispatch(getContentDetail({ type, id }))
     dispatch(getContentByGenre({ type, genreId }))
   }
@@ -93,15 +108,19 @@ const BokjakContList = () => {
               spaceBetween: 32,
             },
           }}>
-          {movies.map((content) => (
+          {movie.map((content) => (
             <SwiperSlide key={content.id}>
               <Link
                 to={`/movie/${content.id}`}
                 state={{ previousLocation: location }}>
                 <BokjakContItem
                   content={content}
+                  bokjakData={bokjakData.find(
+                    (bokjak) => bokjak.id === content.id
+                  )}
                   onClick={() => {
-                    BokjakModal('movie', content.id, content.genre_ids)
+                    showDetailModal('movie', content.id, content.genre_ids)
+                    openModal(content)
                   }}
                 />
               </Link>
@@ -123,6 +142,12 @@ const BokjakContList = () => {
           </NavigationButton>
         </Swiper>
       </BokjakList>
+      {isModalOpen && selectedContent && (
+        <BokjakModal
+          content={selectedContent}
+          closeModal={closeModal} // 모달 닫기 함수
+        />
+      )}
     </BokjakListWrap>
   )
 }

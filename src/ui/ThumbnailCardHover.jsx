@@ -1,6 +1,7 @@
 import {
   BookmarkSimple,
   Heart,
+  SpeakerSimpleHigh,
   SpeakerSimpleSlash,
 } from '@phosphor-icons/react'
 import { LabelWrapper } from '../components/main/mainSoon/style'
@@ -9,35 +10,50 @@ import AgeLabel from './AgeLabel'
 import styled from 'styled-components'
 import { color, font } from '../styled/theme'
 import { media } from '../styled/media'
+import genres from '../assets/api/genreData'
+import { useState } from 'react'
 
 export const HoverItemWrap = styled.div`
+  position: relative;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
-  width: 450px;
-  height: 450px;
+  transition: opacity 0.5s ease-in-out;
+  transform: translate(-50%, -50%) scale(0.9);
+
+  width: 500px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: left;
   flex: 1;
   background: ${color('gray', '80')};
   border-radius: 7px;
-  z-index: 10;
-  opacity: 0;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.3s ease;
-  }
-
+  z-index: 100;
   .videoCont {
+    position: relative;
     width: 100%;
     height: 100%;
+    cursor: pointer;
+
     .topCont {
+      /* position: absolute;
+      bottom: 20px;
+      left: 0; */
+
       padding: 0 20px;
       width: 100%;
       display: flex;
+      align-items: center;
       justify-content: space-between;
+
+      img {
+        max-width: 50%;
+        max-height: 60px;
+        object-fit: contain;
+        object-position: left;
+      }
     }
   }
   .textCont {
@@ -57,6 +73,9 @@ export const HoverItemWrap = styled.div`
         flex-direction: row;
         align-items: center;
         gap: 10px;
+        .play {
+          font-size: ${font('body', 'md')};
+        }
       }
     }
     .textarea {
@@ -82,26 +101,84 @@ export const HoverItemWrap = styled.div`
       }
     }
   }
+  &:hover {
+    opacity: 1;
+    transition: opacity 0.7s ease;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &.edge-left {
+    right: auto;
+    left: 0;
+    transform: translateX(100%);
+  }
+
+  &.edge-right {
+    left: auto;
+    right: 0;
+    transform: translateX(-50%);
+  }
 `
 
-const ThumbnailCardHover = () => {
+const ThumbnailCardHover = ({ content, position }) => {
+  const [isMuted, setIsMuted] = useState(true)
+
+  const handleLogoClick = () => {
+    // 로고 클릭 시 해당 상세 페이지로 이동
+    window.location.href = `/detail/${content.id}` // 예시로 id를 URL에 포함시킴
+  }
+
+  const toggleSound = () => {
+    // 소리 아이콘 클릭 시 상태 변경
+    setIsMuted(!isMuted)
+  }
+
+  const edgeClass =
+    position === 'left' ? 'edge-left' : position === 'right' ? 'edge-right' : ''
+  const logoUrl = content.logoImage
+    ? `https://image.tmdb.org/t/p/original${content.logoImage}`
+    : null
+  const title = content.title
+  const desc = content.overview
+  const date = content.release_date
+  const year = date.split('-')[0]
+  const genreNames =
+    content.genre_ids
+      ?.map((id) => {
+        const genre = genres.find((genre) => genre.id === id) // 장르 데이터에서 id로 매칭
+        return genre ? genre.name : null // 장르 이름 반환, 없으면 null
+      })
+      .filter(Boolean) // null, undefined 제거
+      .join(' · ') || '장르 없음'
   return (
-    <HoverItemWrap>
+    <HoverItemWrap className={edgeClass}>
       <div className="videoCont">
         <video src=""></video>
         <div className="topCont">
-          <img src="{logoUrl}" alt="{title}" />
+          <img src={logoUrl} alt={title} onClick={handleLogoClick} />
           <IconButton
             className="b30"
-            icon={<SpeakerSimpleSlash size={24} />}
-            text="SpeakerSimpleSlash"
+            icon={
+              isMuted ? (
+                <SpeakerSimpleSlash size={24} />
+              ) : (
+                <SpeakerSimpleHigh size={24} />
+              )
+            }
+            text="스피커"
+            onClick={toggleSound}
           />
         </div>
       </div>
       <div className="textCont">
         <div className="topBtn">
           <div className="leftBtn">
-            <BarButton text="재생하기" width="100px" height="42px" />
+            <BarButton
+              className="play"
+              text="재생하기"
+              width="100px"
+              height="42px"
+            />
             <IconButton
               icon={<BookmarkSimple size={24} />}
               text="BookmarkSimple"
@@ -118,19 +195,15 @@ const ThumbnailCardHover = () => {
           />
         </div>
         <div className="textarea">
-          <h2>title</h2>
+          <h2>{title}</h2>
           <LabelWrapper>
             <AgeLabel text="12+" />
             <em>·</em>
-            <span>year</span>
+            <span>{year}</span>
             <em>·</em>
-            <span>액션</span>
-            <em>·</em>
-            <span>SF</span>
-            <em>·</em>
-            <span>해외영화</span>
+            <span>{genreNames}</span>
           </LabelWrapper>
-          <p>desc</p>
+          <p>{desc}</p>
         </div>
       </div>
     </HoverItemWrap>

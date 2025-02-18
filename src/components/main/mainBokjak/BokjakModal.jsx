@@ -4,10 +4,11 @@ import Dimmed from '../../../ui/Dimmed'
 import BookMarkLabel from '../../../ui/BookMarkLabel'
 import { BokjakDetailCont, BokjakModalCont } from './style'
 
-const BokjakModal = ({ content, ...props }) => {
+const BokjakModal = ({ content, closeModal }) => {
+  const title = content.title
   return (
-    <BokjakModalCont {...props}>
-      <Dimmed>
+    <Dimmed>
+      <BokjakModalCont>
         <BokjakDetailCont>
           <div className="detailTop">
             <div className="titleTxt">
@@ -18,13 +19,18 @@ const BokjakModal = ({ content, ...props }) => {
                 <h3>2명 참여 예정</h3>
               </div>
             </div>
-            <IconButton className="none" icon={<X size={24} />} text="close" />
+            <IconButton
+              className="none"
+              icon={<X size={24} />}
+              text="close"
+              onClick={closeModal}
+            />
           </div>
           <div className="detailMid">
             <div className="imgBox">
               <img
                 src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
-                alt=""
+                alt={title}
               />
             </div>
             <div className="textarea">
@@ -57,8 +63,8 @@ const BokjakModal = ({ content, ...props }) => {
             />
           </div>
         </BokjakDetailCont>
-      </Dimmed>
-    </BokjakModalCont>
+      </BokjakModalCont>
+    </Dimmed>
   )
 }
 

@@ -23,6 +23,9 @@ export const SoonSection = styled.div`
 //list
 export const SoonListContainer = styled.div`
   width: 100%;
+  max-width: 1540px;
+  box-sizing: border-box;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 40px;

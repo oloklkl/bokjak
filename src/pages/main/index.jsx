@@ -22,6 +22,7 @@ const Main = () => {
           <BokjakCont />
           <ViewHistoryCont />
         </div>
+
         <TopCont />
         <div className="inner">
           <ThumbnailCont />

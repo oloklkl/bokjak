@@ -203,6 +203,7 @@ export const BokjakModalCont = styled.div`
   height: 100%;
   display: flex;
   position: relative;
+  z-index: 150;
 `
 export const BokjakDetailCont = styled.div`
   padding: 20px;

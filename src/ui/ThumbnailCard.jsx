@@ -3,6 +3,7 @@ import ThumbnailCardHover from './ThumbnailCardHover'
 import styled from 'styled-components'
 
 const ThumbItemWrap = styled.div`
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -24,6 +25,9 @@ const ThumbTopCont = styled.div`
     border-radius: 7px;
     object-fit: cover;
     object-position: center center;
+  }
+  &:hover .hover {
+    opacity: 1;
   }
 `
 
@@ -49,7 +53,7 @@ const ThumbnailCard = ({ content, ...props }) => {
         <img src={`${bgurl}${content.poster_path}`} alt={title} />
         {/* {logoUrl && <img src={logoUrl} />} */}
       </ThumbTopCont>
-      {isHovered && <ThumbnailCardHover />}
+      {isHovered && <ThumbnailCardHover className="hover" content={content} />}
     </ThumbItemWrap>
   )
 }
