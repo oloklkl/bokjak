@@ -5,12 +5,12 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContentByGenre, getContentDetail, getMovies, getTvShows } from '../../store/modules/getThunk';
+import { getContentByGenre, getContentDetail, getMovies, getTvShows } from '../../../store/modules/getThunk';
 import { Link, useLocation } from 'react-router-dom';
 import { ThumbnailContainer, ThumbnailHeader, ThumbnailList } from './style';
-import ThumbnailCard from '../../ui/ThumbnailCard';
+import ThumbnailCard from '../../../ui/ThumbnailCard';
 import { NavigationButton } from './style';
-import { IconButton } from '../../ui';
+import { IconButton } from '../../../ui';
 
 const SubThumbnailContList = ({ title, contents = [] }) => {
     const dispatch = useDispatch();

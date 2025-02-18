@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { media } from '../../styled/media';
-import { font } from '../../styled/theme';
+import { media } from '../../../styled/media';
+import { font } from '../../../styled/theme';
 
 //cont
 export const ThumbnailSection = styled.div`
