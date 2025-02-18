@@ -12,7 +12,7 @@ import ThumbnailCard from '../../ui/ThumbnailCard';
 import { NavigationButton } from './style';
 import { IconButton } from '../../ui';
 
-const SubThumbnailContList = ({ title, contents }) => {
+const SubThumbnailContList = ({ title, contents = [] }) => {
     const dispatch = useDispatch();
     const location = useLocation();
 
