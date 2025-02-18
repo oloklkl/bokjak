@@ -7,17 +7,15 @@ import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useEffect, useRef } from 'react';
 import { ViewHistoryContainer } from './style';
 import { NavigationButton } from './style';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getContentByGenre, getContentDetail, getMovies, getTvShows } from '../../store/modules/getThunk';
 import MyPageViewHistoryItem from './MyPageViewHistoryItem';
 import { IconButton } from '../../ui';
 
 const MyPageViewHistoryList = () => {
     const { movies } = useSelector((state) => state.contentR);
-    // const { movies, tvShows } = useSelector((state) => state.contentR)
     const dispatch = useDispatch();
     const location = useLocation();
-    // const navigate = useNavigate ()
 
     useEffect(() => {
         dispatch(getMovies());
@@ -40,7 +38,7 @@ const MyPageViewHistoryList = () => {
     return (
         <ViewHistoryContainer>
             <div className='viewHeader'>
-                <h2>title</h2>
+                <h2>시청중인 콘텐츠</h2>
                 <Link>
                     <h3>더보기</h3>
                 </Link>
@@ -64,18 +62,20 @@ const MyPageViewHistoryList = () => {
                         },
                     }}
                 >
-                    {movies.map((content) => (
-                        <SwiperSlide key={content.id}>
-                            <Link to={`/movie/${content.id}`} state={{ previousLocation: location }}>
-                                <MyPageViewHistoryItem
-                                    content={content}
-                                    onClick={() => {
-                                        showDetailModal('movie', content.id, content.genre_ids);
-                                    }}
-                                />
-                            </Link>
-                        </SwiperSlide>
-                    ))}
+                    {movies
+                        .filter((content) => content.overview && content.overview.trim() !== '')
+                        .map((content) => (
+                            <SwiperSlide key={content.id}>
+                                <Link to={`/movie/${content.id}`} state={{ previousLocation: location }}>
+                                    <MyPageViewHistoryItem
+                                        content={content}
+                                        onClick={() => {
+                                            showDetailModal('movie', content.id, content.genre_ids);
+                                        }}
+                                    />
+                                </Link>
+                            </SwiperSlide>
+                        ))}
                     <NavigationButton>
                         <IconButton onClick={goPrev} className='b30' icon={<CaretLeft size={24} />} text='caretLeft' />
                         <IconButton
