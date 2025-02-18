@@ -7,17 +7,10 @@ import { useState } from 'react';
 const MyPageViewHistoryItem = ({ content, ...props }) => {
     const bgurl = `https://image.tmdb.org/t/p/original`;
     const title = content.title;
-    const totalTime = 120; // 총 시간 (120분)
+    const totalTime = 120;
 
-    // 🟡 State로 남은 시간 및 진행률 관리
-    const [remainingTime, setRemainingTime] = useState(Math.floor(Math.random() * 120) + 1);
+    const [remainingTime] = useState(Math.floor(Math.random() * 120) + 1);
     const progress = ((totalTime - remainingTime) / totalTime) * 100;
-
-    // 🟠 클릭 시 새로운 무작위 시간 업데이트
-    const handleRandomTime = () => {
-        const randomTime = Math.floor(Math.random() * 120) + 1;
-        setRemainingTime(randomTime);
-    };
 
     return (
         <ViewHistoryItemCont {...props}>
@@ -25,7 +18,7 @@ const MyPageViewHistoryItem = ({ content, ...props }) => {
                 <img src={`${bgurl}${content.backdrop_path}`} alt={title} />
 
                 <div className='icon'>
-                    <Link onClick={handleRandomTime}>
+                    <Link>
                         <IconButton className='border' icon={<Play size={24} weight='fill' />} text='Play' />
                     </Link>
                 </div>
