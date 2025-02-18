@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import BottomNavigation from '../../common/bottomnavigation';
 import MyPageViewHistoryCont from '../../components/mypage/MyPageViewHistoryCont';
 import ProfileSection from '../../components/profile';
-import SubThumbnailCont from '../../components/subpage/SubThumbnailCont';
+import SubThumbnailCont from '../../components/subpage/subThumbnailCont/SubThumbnailCont';
 import { BarButton } from '../../ui';
 import { MyPageWrap } from './style';
 

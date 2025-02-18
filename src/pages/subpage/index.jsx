@@ -4,7 +4,7 @@ import { Intro, TopCont } from '../../components';
 import { VisualWrap } from '../main/style';
 import { ButtonWrap, CategoryWrap, ContentWrap, SubWrap } from './style';
 import { useSelector } from 'react-redux';
-import SubThumbnailCont from '../../components/subpage/SubThumbnailCont';
+import SubThumbnailCont from '../../components/subpage/subThumbnailCont/SubThumbnailCont';
 import CategorySlider from '../../components/subpage/categorySlider/CategorySlider';
 
 const SubPage = () => {
