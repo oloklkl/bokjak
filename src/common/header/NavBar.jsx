@@ -76,11 +76,11 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to={'/subpage/drama'}
+                        to={'/subpage/series'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => handleNavClick('/subpage/drama')}
+                        onClick={() => handleNavClick('/subpage/series')}
                     >
-                        드라마
+                        시리즈
                     </NavLink>
                 </li>
             </NavCenter>
