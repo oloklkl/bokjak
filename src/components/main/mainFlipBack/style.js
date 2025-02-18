@@ -36,7 +36,6 @@ export const FlipBackHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   h2 {
-    font-weight: bold;
     font-size: ${font('title', 'xxlg')};
     ${media.tablet} {
       font-size: ${font('title', 'xlg')};
@@ -46,7 +45,6 @@ export const FlipBackHeader = styled.div`
     }
   }
   h3 {
-    color: ${color('gray', '40')};
     font-size: ${font('body', 'sm')};
   }
 `
@@ -62,8 +60,8 @@ export const FlipBackList = styled.div`
     overflow: hidden;
   }
   .swiper-slide {
-    width: 100%;
-    height: 100%;
+    width: 20%;
+    height: 15%;
   }
 `
 
@@ -76,12 +74,12 @@ export const FlipBackItemCont = styled.div`
   overflow: hidden;
   border-radius: 7px;
   width: 100%;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 3 / 4;
 `
 export const ImageCont = styled.div`
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 20%;
+  height: 15%;
   overflow: hidden;
 
   img {
