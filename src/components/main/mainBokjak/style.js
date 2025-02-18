@@ -198,12 +198,16 @@ export const TextCont = styled.div`
 /////////////////////////////////////////////////////
 //modal
 export const BokjakModalCont = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   display: flex;
-  position: relative;
-  z-index: 150;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  .dimmed {
+    z-index: 9998;
+  }
 `
 export const BokjakDetailCont = styled.div`
   padding: 20px;
@@ -226,6 +230,10 @@ export const BokjakDetailCont = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-content: flex-start;
+    gap: 10px;
+    .none {
+      height: 32px;
+    }
     .titleTxt {
       display: flex;
       flex-direction: column;
@@ -233,7 +241,8 @@ export const BokjakDetailCont = styled.div`
       align-content: center;
       h2 {
         font-weight: bold;
-        font-size: ${font('title', 'xlg')};
+        font-size: ${font('title', 'lg')};
+        white-space: break-spaces;
       }
       .subTitle {
         display: flex;
@@ -268,7 +277,7 @@ export const BokjakDetailCont = styled.div`
       gap: 10px;
       h2 {
         font-weight: bold;
-        font-size: ${font('body', 'md')};
+        font-size: ${font('body', 'sm')};
       }
       .enterDate {
         color: ${color('primary', 'default')};

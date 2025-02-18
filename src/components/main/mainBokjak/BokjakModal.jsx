@@ -3,20 +3,76 @@ import { BarButton, IconButton } from '../../../ui'
 import Dimmed from '../../../ui/Dimmed'
 import BookMarkLabel from '../../../ui/BookMarkLabel'
 import { BokjakDetailCont, BokjakModalCont } from './style'
+import genres from '../../../assets/api/genreData'
+import { detailActions } from '../../../store/modules/detailSlice'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react'
 
 const BokjakModal = ({ content, closeModal }) => {
+  const dispatch = useDispatch()
+  const Navigate = useNavigate()
+  const [isTimeToEnter, setIsTimeToEnter] = useState(false)
+
+  const goPrevPage = () => {
+    Navigate(-1)
+    dispatch(detailActions.clearCurrentData())
+  }
+
+  const bgurl = `https://image.tmdb.org/t/p/original`
   const title = content.title
+  const bokjakTitle = content.bokjak_title
+  const enterTime = content.bokjak_time
+  const people = content.expected_participants
+  const genreNames =
+    content.genre_ids
+      ?.map((id) => {
+        const genre = genres.find((genre) => genre.id === id)
+        return genre ? genre.name : null
+      })
+      .filter(Boolean)
+      .join(' · ') || '장르 없음'
+
+  const formatEnterTime = (time) => {
+    const date = new Date(time)
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    const hour = String(date.getHours()).padStart(2, '0')
+    const minute = String(date.getMinutes()).padStart(2, '0')
+
+    return `${month}월 ${day}일  ${hour}:${minute} 입장`
+  }
+
+  useEffect(() => {
+    const checkTime = () => {
+      const currentTime = new Date()
+      const targetTime = new Date(enterTime)
+
+      if (currentTime >= targetTime) {
+        setIsTimeToEnter(true)
+      } else {
+        setIsTimeToEnter(false)
+      }
+    }
+
+    // 매초 시간을 확인하여 버튼 텍스트를 업데이트
+    const intervalId = setInterval(checkTime, 1000)
+
+    // 컴포넌트가 언마운트되면 interval 제거
+    return () => clearInterval(intervalId)
+  }, [enterTime])
+
   return (
-    <Dimmed>
-      <BokjakModalCont>
+    <BokjakModalCont>
+      <Dimmed onClick={goPrevPage} zindex={11} className="dimmed-active">
         <BokjakDetailCont>
           <div className="detailTop">
             <div className="titleTxt">
-              <h2>주술회전</h2>
+              <h2>{title}</h2>
               <div className="subTitle">
-                <h3>파티방 제목</h3>
+                <h3>{bokjakTitle}</h3>
                 <em>|</em>
-                <h3>2명 참여 예정</h3>
+                <h3>{people}명 참여 예정</h3>
               </div>
             </div>
             <IconButton
@@ -28,22 +84,15 @@ const BokjakModal = ({ content, closeModal }) => {
           </div>
           <div className="detailMid">
             <div className="imgBox">
-              <img
-                src="https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true"
-                alt={title}
-              />
+              <img src={`${bgurl}${content.poster_path}`} alt={title} />
             </div>
             <div className="textarea">
               <BookMarkLabel text="더빙" className="modal" />
-              <h2>애니메이션 : 주술회전 2기</h2>
+              <h2>{title}</h2>
               <div className="category">
-                <span>애니</span>
-                <em>·</em>
-                <span>액션</span>
-                <em>·</em>
-                <span>공포</span>
+                <span>{genreNames}</span>
               </div>
-              <span className="enterDate">2월 5일 23:00 입장</span>
+              <span className="enterTime">{formatEnterTime(enterTime)}</span>
             </div>
           </div>
           <div className="detailBottom">
@@ -56,15 +105,15 @@ const BokjakModal = ({ content, closeModal }) => {
             />
             <BarButton
               className="modalBtn"
-              icon={<BellSimple size={24} />}
-              text="알림받기"
+              icon={!isTimeToEnter && <BellSimple size={24} />}
+              text={isTimeToEnter ? '입장하기' : '알림받기'}
               width="230px"
               height="42px"
             />
           </div>
         </BokjakDetailCont>
-      </BokjakModalCont>
-    </Dimmed>
+      </Dimmed>
+    </BokjakModalCont>
   )
 }
 

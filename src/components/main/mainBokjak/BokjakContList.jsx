@@ -17,14 +17,30 @@ import {
   getTvShows,
 } from '../../../store/modules/getThunk'
 import BokjakModal from './BokjakModal'
-import bokjakData from '../../../assets/api/bokjakData'
 
 const BokjakContList = () => {
   const { movies } = useSelector((state) => state.contentR)
-  // const { movies, tvShows } = useSelector((state) => state.contentR)
+  const { bokjakData } = useSelector((state) => state.mainR)
+
   const dispatch = useDispatch()
   const location = useLocation()
-  const movie = movies.slice(0, 5)
+  const movie = movies.slice(0, 10)
+  const bokjakItems = bokjakData.slice(0, 10)
+
+  // combinedContent: 영화 데이터와 복작 데이터의 타이틀, 시간 결합
+  const combinedContent = movie.map((content, index) => {
+    const bokjakTitle = bokjakItems[index]?.bokjak_title || 'Default Title'
+    const bokjakTime = bokjakItems[index]?.bokjak_time || 'Default Time'
+    const bokjakPeople =
+      bokjakItems[index]?.expected_participants || 'Default Time'
+
+    return {
+      ...content,
+      bokjak_title: bokjakTitle,
+      bokjak_time: bokjakTime,
+      expected_participants: bokjakPeople,
+    }
+  })
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedContent, setSelectedContent] = useState(null)
@@ -33,6 +49,7 @@ const BokjakContList = () => {
     dispatch(getMovies())
     dispatch(getTvShows())
   }, [dispatch])
+
   const openModal = (content) => {
     setSelectedContent(content)
     setIsModalOpen(true)
@@ -47,6 +64,7 @@ const BokjakContList = () => {
     dispatch(getContentDetail({ type, id }))
     dispatch(getContentByGenre({ type, genreId }))
   }
+
   const swiperRef = useRef()
 
   const goNext = () => {
@@ -56,6 +74,7 @@ const BokjakContList = () => {
   const goPrev = () => {
     swiperRef.current?.swiper.slidePrev()
   }
+
   return (
     <BokjakListWrap>
       <BokjakHeader>
@@ -108,16 +127,13 @@ const BokjakContList = () => {
               spaceBetween: 32,
             },
           }}>
-          {movie.map((content) => (
+          {combinedContent.map((content) => (
             <SwiperSlide key={content.id}>
               <Link
                 to={`/movie/${content.id}`}
                 state={{ previousLocation: location }}>
                 <BokjakContItem
                   content={content}
-                  bokjakData={bokjakData.find(
-                    (bokjak) => bokjak.id === content.id
-                  )}
                   onClick={() => {
                     showDetailModal('movie', content.id, content.genre_ids)
                     openModal(content)
@@ -143,10 +159,7 @@ const BokjakContList = () => {
         </Swiper>
       </BokjakList>
       {isModalOpen && selectedContent && (
-        <BokjakModal
-          content={selectedContent}
-          closeModal={closeModal} // 모달 닫기 함수
-        />
+        <BokjakModal content={selectedContent} closeModal={closeModal} />
       )}
     </BokjakListWrap>
   )
