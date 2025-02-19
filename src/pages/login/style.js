@@ -46,18 +46,16 @@ export const Logo = styled.img`
 export const LoginContent = styled.div`
     background-color: rgba(0, 0, 0, 0.7);
     padding: 40px 55px;
-    width: 600px;
-    height: 650px;
+    width: auto;
+    height: auto;
 
     ${media.tablet} {
         background-color: ${color('gray', '90')};
         padding: 10px 0;
         width: auto;
-        height: 596px;
     }
     ${media.mobile} {
-        width: 345px;
-        height: 545px;
+        width: auto;
     }
 `;
 
@@ -178,5 +176,44 @@ export const LoginNotice = styled.span`
 
     ${media.mobile} {
         font-size: ${font('detail', 'sm')};
+    }
+`;
+
+// BokjakLogin 시작
+
+export const BokjakLoginContent = styled.div`
+    h1 {
+        margin-bottom: 40px;
+    }
+    input {
+        width: 490px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 24px;
+        padding: 12px 20px;
+        background: ${color('gray', '100')};
+        border-radius: 7px;
+        border: 1px solid ${color('gray', '60')};
+        font-size: ${font('body', 'md')};
+        color: ${color('gray', '0')};
+    }
+    span {
+        display: flex;
+        color: ${color('gray', '40')};
+        font-size: ${font('body', 'xsm')};
+        margin-bottom: 10px;
+    }
+    .loginbutton {
+        font-size: ${font('body', 'sm')};
+    }
+    a {
+        span {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+            color: ${color('gray', '0')};
+            font-size: ${font('body', 'sm')};
+        }
     }
 `;
