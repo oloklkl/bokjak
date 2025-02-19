@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 import { BackgroundImage, LoginButtons, LoginContent, LoginHeader, LoginNotice, LoginWrap, Logo } from './style';
 
 const Login = () => {
+    const REST_API_KEY = '4429f99ed88887273376bb986547f61d';
+    const REDIRECT_URI = 'http://localhost:5173/oauth/kakao/callback';
+
+    const handleKakaoLogin = () => {
+        const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+        window.location.href = kakaoURL;
+    };
+
     return (
         <LoginWrap>
             <Link to={'/'}>
@@ -18,7 +26,7 @@ const Login = () => {
                     <h1>계정을 선택해주세요.</h1>
                 </LoginHeader>
                 <LoginButtons>
-                    <button>
+                    <button onClick={handleKakaoLogin}>
                         <img
                             className='kakao'
                             src='https://raw.githubusercontent.com/lse-7660/bokjak-image/61105440a091e532b03925524f6d2b5296cd750b/images/login/kakao.svg'
