@@ -76,7 +76,10 @@ export const DetailPreviewWrap = styled.div`
             top: 0;
             width: 100%;
             aspect-ratio: 16/9;
-            background: linear-gradient(#00000000, #00000080);
+            background: linear-gradient(
+                #00000000,
+                #00000080
+            );
         }
 
         &.detailpreview-wrap {
@@ -427,6 +430,14 @@ export const DetailModalCom = styled.div`
             flex-direction: column;
             gap: 60px;
         }
+
+        &.create-room-modal-wrap-mo {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin-top: 30px;
+            background-color: ${color('gray', '80')};
+        }
     }
 
     form {
@@ -449,6 +460,16 @@ export const DetailModalCom = styled.div`
                 outline: none;
                 border: 1px solid ${color('gray', '0')};
             }
+
+            ${media.mobile} {
+                width: auto;
+            }
         }
+    }
+
+    ${media.mobile} {
+        width: 100%;
+        height: 100%;
+        background-color: #00000090;
     }
 `;
