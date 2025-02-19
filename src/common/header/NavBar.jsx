@@ -1,6 +1,15 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { IconButton } from '../../ui';
-import { BellSimple, BellSimpleRinging, CaretDown, CaretUp, MagnifyingGlass, User, X } from '@phosphor-icons/react';
+import {
+    BellSimple,
+    BellSimpleRinging,
+    CaretDown,
+    CaretUp,
+    MagnifyingGlass,
+    User,
+    UserCheck,
+    X,
+} from '@phosphor-icons/react';
 import { CategoryDropdown, CategoryTitleWrap, CloseButton, NavCenter, NavRight, NavWrap } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategory, toggleCategory } from '../../store/modules/categorySlice';
@@ -10,6 +19,7 @@ const NavBar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const activeLink = useSelector((state) => state.navR.activeLink);
+    const { authed } = useSelector((state) => state.authR);
 
     const handleNavClick = (link) => {
         dispatch(setActiveLink(link));
@@ -122,14 +132,14 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to={'/login'}
+                        to={authed ? '/mypage' : '/login'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => handleNavClick('login')}
+                        onClick={() => handleNavClick(authed ? 'mypage' : 'login')}
                     >
                         <IconButton
                             className='gray40 none'
-                            icon={activeLink === 'mypage' ? <User size={24} weight='fill' /> : <User size={24} />}
-                            text='MY'
+                            icon={authed ? <UserCheck size={24} weight='fill' /> : <User size={24} />}
+                            text={authed ? 'My Page' : 'Login'}
                         />
                     </NavLink>
                 </li>
