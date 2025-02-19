@@ -6,11 +6,11 @@ export const VideoWrapCom = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* overflow: hidden; */
+    overflow: hidden;
 
     @media (max-aspect-ratio: 1/1) {
         flex-direction: column;
-        height: 100%;
+        height: 100vh;
     }
 `;
 
@@ -19,8 +19,6 @@ export const VideoPlayerWrap = styled.div`
     width: 100%;
     height: 100vh;
     background-color: ${color('gray', '50')};
-
-    overflow-y: hidden;
 
     @media (max-aspect-ratio: 1/1) {
         width: 100vw;
@@ -143,6 +141,7 @@ export const BokjakChatWrap = styled.div`
         @media (max-aspect-ratio: 1/1) {
             width: 100%;
             height: 60%;
+            min-height: 60%;
             padding: 20px;
             /* border-radius: 12px; */
         }
@@ -161,16 +160,15 @@ export const BokjakChatWrap = styled.div`
     div {
         &.chat-content-wrap {
             display: flex;
-            flex-direction: column;
+            flex-direction: column-reverse;
             gap: 12px;
-            justify-content: flex-end;
 
             height: 100%;
 
-            overflow-y: scroll;
-            /* -ms-overflow-style: none; */
+            overflow-y: auto;
+            -ms-overflow-style: none;
             &::-webkit-scrollbar {
-                /* display: none; */
+                display: none;
             }
         }
     }

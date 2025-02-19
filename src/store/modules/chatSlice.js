@@ -18,29 +18,24 @@ export const chatSlice = createSlice({
         addChat: (state, action) => {
             const text = action.payload;
             state.chatData = [
-                ...state.chatData,
                 {
                     id: uuidv4(),
                     ...text,
                 },
+                ...state.chatData,
             ];
         },
         setEmoji: (state, action) => {
-            const NewEmoji = Array.from(
-                { length: 10 },
-                () => ({
-                    id: uuidv4(),
-                    duration: Math.random() * 1.5 + 1,
-                })
-            );
+            const NewEmoji = Array.from({ length: 10 }, () => ({
+                id: uuidv4(),
+                duration: Math.random() * 1.5 + 1,
+            }));
             state.emoji = [state.emoji, NewEmoji];
             state.currentEmoji = action.payload;
         },
         removeEmoji: (state, action) => {
             const id = action.payload;
-            state.emoji = state.emoji.filter(
-                (item) => item.id !== id
-            );
+            state.emoji = state.emoji.filter((item) => item.id !== id);
         },
     },
 });
