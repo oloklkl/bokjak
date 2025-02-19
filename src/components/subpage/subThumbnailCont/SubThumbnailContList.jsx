@@ -76,8 +76,8 @@ const SubThumbnailContList = ({ title, contents = [] }) => {
                         },
                     }}
                 >
-                    {contents.map((content) => (
-                        <SwiperSlide key={content.id}>
+                    {contents.map((content, index) => (
+                        <SwiperSlide key={`${content.id}-${index}`}>
                             <Link to={`/${content.media_type}/${content.id}`} state={{ previousLocation: location }}>
                                 <ThumbnailCard
                                     content={content}
