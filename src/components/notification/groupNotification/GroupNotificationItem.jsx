@@ -15,20 +15,27 @@ const partyTitles = ['안녕', '들어와', '모여봐요', '함께 즐기자', 
 const GroupNotificationItem = ({ content, onClick }) => {
     const [randomPartyTitle, setRandomPartyTitle] = useState('');
     const [randomTime, setRandomTime] = useState('');
+    const [date, setDate] = useState('');
 
     useEffect(() => {
-        const title = content.partyTitle || partyTitles[Math.floor(Math.random() * partyTitles.length)];
+        const title = content?.partyTitle || partyTitles[Math.floor(Math.random() * partyTitles.length)];
         setRandomPartyTitle(title);
-    }, [content.partyTitle]);
+    }, [content?.partyTitle]);
 
     useEffect(() => {
-        if (!content.time) {
+        if (!content?.time) {
             const time = `${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}:${String(
                 Math.floor(Math.random() * 60)
             ).padStart(2, '0')}`;
             setRandomTime(time);
         }
-    }, [content.time]);
+    }, [content?.time]);
+
+    useEffect(() => {
+        const randomMonth = Math.floor(Math.random() * 12) + 1;
+        const randomDay = Math.floor(Math.random() * 28) + 1;
+        setDate(`${randomMonth}월 ${randomDay}일`);
+    }, []);
 
     return (
         <GroupNotificationItemWrap>
@@ -47,9 +54,10 @@ const GroupNotificationItem = ({ content, onClick }) => {
                     <BellSimpleRinging size={24} weight='fill' />
                 </IconWrap>
                 <TextWrap>
-                    <h2>{content.title}</h2>
+                    <h2>{content?.title}</h2>
                     <span>{randomPartyTitle}</span>
-                    <span>{content.time || randomTime}</span>
+                    <span>{date}</span>
+                    <p>{content?.time || randomTime}</p>
                 </TextWrap>
                 <ButtonWrap>
                     <BarButton icon={<Link />} className='link' text='공유' width='265px' height='42px' />
