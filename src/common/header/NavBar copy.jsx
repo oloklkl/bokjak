@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { IconButton } from '../../ui';
 import { BellSimple, BellSimpleRinging, CaretDown, CaretUp, MagnifyingGlass, User, X } from '@phosphor-icons/react';
 import { CategoryDropdown, CategoryTitleWrap, CloseButton, NavCenter, NavRight, NavWrap } from './style';
@@ -8,7 +8,6 @@ import { setActiveLink } from '../../store/modules/navSlice';
 
 const NavBar = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const activeLink = useSelector((state) => state.navR.activeLink);
 
     const handleNavClick = (link) => {
@@ -24,12 +23,6 @@ const NavBar = () => {
 
     const handleCategorySelect = (category) => {
         dispatch(selectCategory(category));
-
-        const categoryType = ['예능', '다큐멘터리', '한국 TV 프로그램', '외국 TV 프로그램'].includes(category)
-            ? 'series'
-            : 'movie';
-
-        navigate(`/subpage/${categoryType}?category=${category}`);
         dispatch(toggleCategory());
     };
 
@@ -56,13 +49,13 @@ const NavBar = () => {
                         <CategoryDropdown>
                             {categories.map((category) => (
                                 <li key={category}>
-                                    <button onClick={() => handleCategorySelect(category)}>
+                                    <Link to={`/category/${category}`} onClick={() => handleCategorySelect(category)}>
                                         <span>{category}</span>
-                                    </button>
+                                    </Link>
                                 </li>
                             ))}
                             <CloseButton
-                                className='close-btn'
+                                className=''
                                 icon={<X size={24} />}
                                 text='Close'
                                 aria-label='카테고리 닫기'
