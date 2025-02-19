@@ -60,8 +60,8 @@ export const FlipBackList = styled.div`
     overflow: hidden;
   }
   .swiper-slide {
-    width: 20%;
-    height: 15%;
+    width: 100%;
+    height: 100%;
   }
 `
 
@@ -74,12 +74,12 @@ export const FlipBackItemCont = styled.div`
   overflow: hidden;
   border-radius: 7px;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 2 / 3;
 `
 export const ImageCont = styled.div`
   position: relative;
-  width: 20%;
-  height: 15%;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 
   img {

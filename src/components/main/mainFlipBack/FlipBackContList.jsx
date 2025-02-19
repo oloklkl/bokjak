@@ -19,10 +19,8 @@ import {
 
 const FlipBackContList = () => {
   const { movies } = useSelector((state) => state.contentR)
-  // const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
   const location = useLocation()
-  const flipBack = movies.slice(0, 8)
 
   useEffect(() => {
     dispatch(getMovies())
@@ -55,19 +53,17 @@ const FlipBackContList = () => {
         <Swiper
           className="swiper"
           ref={swiperRef}
-          modules={[Navigation, EffectFlip]}
+          modules={[Navigation]}
           pagination={{ clickable: true }}
-          effect="flip"
-          slidesPerView={1}
-          slidesPerGroup={1}
+          // effect="flip"
           navigation={false}
           breakpoints={{
-            320: { spaceBetween: 10 },
-            390: { spaceBetween: 10 },
-            768: { spaceBetween: 16 },
-            1024: { spaceBetween: 24 },
+            320: { slidesPerViews: 3, slidesPerGroup: 3, paceBetween: 10 },
+            390: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 10 },
+            768: { slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 16 },
+            1024: { slidesPerView: 5, slidesPerGroup: 5, spaceBetween: 24 },
           }}>
-          {flipBack.map((content) => (
+          {movies.map((content) => (
             <SwiperSlide key={content.id}>
               <Link
                 to={`/movie/${content.id}`}

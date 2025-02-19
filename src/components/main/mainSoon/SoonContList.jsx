@@ -16,14 +16,23 @@ import {
   getMovies,
   getTvShows,
 } from '../../../store/modules/getThunk'
+import soondate from '../../../assets/api/soonDate'
 
 const SoonContList = () => {
   const { movies } = useSelector((state) => state.contentR)
-  // const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
   const location = useLocation()
   const soon = movies.slice(0, 6)
 
+  const soonContent = soon.map((content, index) => {
+    const soonDateTime = soondate[index]?.soon_date
+    const age = soondate[index]?.age_rating
+    return {
+      ...content,
+      soon_date: soonDateTime,
+      age_rating: age,
+    }
+  })
   useEffect(() => {
     dispatch(getMovies())
     dispatch(getTvShows())
@@ -42,10 +51,6 @@ const SoonContList = () => {
   const goPrev = () => {
     swiperRef.current?.swiper.slidePrev()
   }
-
-  // const actionMovies = movies.filter((movie) =>
-  //   movie.genreNames.includes('액션')
-  // )
 
   return (
     <SoonListContainer>
@@ -69,7 +74,7 @@ const SoonContList = () => {
               spaceBetween: 24,
             },
           }}>
-          {soon
+          {soonContent
             .filter((content) => content.overview?.trim() !== '')
             .map((content) => (
               <SwiperSlide key={content.id}>

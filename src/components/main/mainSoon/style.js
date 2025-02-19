@@ -79,6 +79,30 @@ export const SoonList = styled.div`
 
 ///////////////////////////////////////////////
 //item
+export const ModalCont = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .modalContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: auto;
+    background: ${color('gray', '80')};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+      color: ${color('gray', '0')};
+    }
+    h3 {
+      color: ${color('gray', '50')};
+    }
+  }
+`
+
 export const SoonItemCont = styled.div`
   position: relative;
   display: flex;

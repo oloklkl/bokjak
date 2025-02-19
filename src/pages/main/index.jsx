@@ -33,7 +33,7 @@ const Main = () => {
           <ThumbnailCont title="지금 뜨고 있는 드라마" targetGenreId={878} />
           <ThumbnailCont
             title="스릴 넘치는 미스터리, 끝까지 놓치지 마세요"
-            targetGenreId={9648}
+            targetGenreId={12}
           />
           <FlipBackCont />
           <ThumbnailCont title="지금, 이 콘텐츠!!" isRandom={true} />

@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getContentByGenre,
@@ -16,6 +16,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { ThumbnailContainer, ThumbnailHeader, ThumbnailList } from './style'
 import ThumbnailCard from '../../../ui/ThumbnailCard'
 import { NavigationButton } from '../style'
+import './style.css'
 
 const ThumbnailContList = ({
   title,
@@ -110,7 +111,9 @@ const ThumbnailContList = ({
                 content.overview.trim() !== ''
             )
             .map((content) => (
-              <SwiperSlide key={`${content.type}-${content.id}`}>
+              <SwiperSlide
+                className="swiper-slide"
+                key={`${content.type}-${content.id}`}>
                 <Link
                   to={`/${content.type}/${content.id}`}
                   state={{ previousLocation: location }}>

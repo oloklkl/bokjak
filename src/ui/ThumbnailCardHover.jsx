@@ -27,7 +27,7 @@ export const HoverItemWrap = styled.div`
   transform: translate(-50%, -50%) scale(0.8);
   pointer-events: auto;
   img {
-    border-radius: 7px;
+    border-radius: 7px 7px 0 0;
   }
 
   &:hover {
@@ -76,18 +76,25 @@ export const HoverItemWrap = styled.div`
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      .info {
+        img {
+          width: 24px;
+          height: 24px;
+        }
+      }
       .leftBtn {
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 10px;
         .play {
-          font-size: ${font('body', 'md')};
+          font-weight: bold;
+          font-size: ${font('body', 'sm')};
         }
         .together {
           img {
-            width: 32px;
-            height: 32px;
+            width: 24px;
+            height: 24px;
           }
         }
       }
@@ -169,9 +176,8 @@ const ThumbnailCardHover = ({ content }) => {
             />
           </div>
           <IconButton
-            icon="https://raw.githubusercontent.com/lse-7660/bokjak-image/f7683cb4e88d31d422118d70c20dcdccb0ad102e/images/icon/bokjak-icon.svg"
-            width={18}
-            height={18}
+            className="info"
+            icon="https://raw.githubusercontent.com/lse-7660/bokjak-image/50a46ba90da58313ac29280fc31efeb7885fba5c/images/common/bokjak-icon-info.svg"
             text="info"
           />
         </div>

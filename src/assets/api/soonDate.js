@@ -1,22 +1,8 @@
 export default [
-  {
-    id: 0,
-    release_date: '2025-03-15',
-  },
-  {
-    id: 1,
-    release_date: '2025-04-01',
-  },
-  {
-    id: 2,
-    release_date: '2025-03-22',
-  },
-  {
-    id: 3,
-    release_date: '2025-05-10',
-  },
-  {
-    id: 4,
-    release_date: '2025-04-28',
-  },
+  { id: 0, soon_date: '20250224', age_rating: 'ALL' },
+  { id: 1, soon_date: '20250321', age_rating: '12+' },
+  { id: 2, soon_date: '20250413', age_rating: '15+' },
+  { id: 3, soon_date: '20250415', age_rating: '19+' },
+  { id: 4, soon_date: '20250502', age_rating: 'ALL' },
+  { id: 5, soon_date: '20250502', age_rating: 'ALL' },
 ]
