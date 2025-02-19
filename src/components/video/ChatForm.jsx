@@ -1,8 +1,9 @@
 import EmojiPicker from 'emoji-picker-react';
 import { ChatFormWrap } from './style';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { chatActions } from '../../store/modules/chatSlice';
 import { useState } from 'react';
+import { ArrowUp, CaretUp, Smiley } from '@phosphor-icons/react';
 
 const ChatForm = () => {
     const dispatch = useDispatch();
@@ -10,6 +11,7 @@ const ChatForm = () => {
         username: 'user1',
         reply: '',
     });
+    const { isEmojiOpen } = useSelector((state) => state.chatR);
 
     const changeInput = (e) => {
         const { value, name } = e.target;
@@ -24,17 +26,17 @@ const ChatForm = () => {
     };
 
     return (
-        <ChatFormWrap onSubmit={onSubmit}>
+        <ChatFormWrap onSubmit={onSubmit} className="chatform-wrap">
             <EmojiPicker
                 className="emoji-picker"
-                // onEmojiClick={() => dispatch(chatActions.setEmoji)}
-                width="100%"
+                open={isEmojiOpen}
+                onEmojiClick={() => dispatch(chatActions.setEmoji())}
+                width="80%"
                 suggestedEmojisMode="recent"
                 theme="dark"
-                // open={false}
-                reactionsDefaultOpen={true}
                 style={{ backgroundColor: '#2d2d2d' }}
             />
+            <Smiley size={24} onClick={() => dispatch(chatActions.toggleEmoji())} />
             <input
                 className="chat-input-bar"
                 value={text.reply}
@@ -42,10 +44,10 @@ const ChatForm = () => {
                 name="reply"
                 placeholder="채팅 보내기"
             />
-            <button
-                type="submit"
-                style={{ display: 'none' }}
-            ></button>
+            <button className="chatform-submit-btn" type="submit">
+                <span className="hide">채팅 보내기</span>
+                <ArrowUp color="white" size={20} />
+            </button>
         </ChatFormWrap>
     );
 };

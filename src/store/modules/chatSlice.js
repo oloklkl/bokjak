@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 const initialState = {
     chatData: [],
     isChatOpen: false,
+    isEmojiOpen: false,
     emoji: [],
     currentEmoji: '',
 };
@@ -25,13 +26,12 @@ export const chatSlice = createSlice({
                 ...state.chatData,
             ];
         },
+        toggleEmoji: (state, action) => {
+            state.isEmojiOpen = !state.isEmojiOpen;
+        },
         setEmoji: (state, action) => {
-            const NewEmoji = Array.from({ length: 10 }, () => ({
-                id: uuidv4(),
-                duration: Math.random() * 1.5 + 1,
-            }));
-            state.emoji = [state.emoji, NewEmoji];
-            state.currentEmoji = action.payload;
+            console.log(action.payload);
+            state.isEmojiOpen = false;
         },
         removeEmoji: (state, action) => {
             const id = action.payload;

@@ -188,9 +188,19 @@ export const ChatItemWrap = styled.div`
 `;
 
 export const ChatFormWrap = styled.form`
+    position: relative;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     gap: 10px;
+
+    aside {
+        &.emoji-picker {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+        }
+    }
 
     input {
         position: relative;
@@ -204,6 +214,18 @@ export const ChatFormWrap = styled.form`
         background-color: transparent;
 
         color: ${color('gray', '0')};
+    }
+    button {
+        &.chatform-submit-btn {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+
+            width: 34px;
+            height: 34px;
+            background-color: ${color('primary', 'default')};
+            border-radius: 4px;
+        }
     }
 `;
 
