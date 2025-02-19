@@ -26,6 +26,14 @@ const Login = () => {
                     <h1>계정을 선택해주세요.</h1>
                 </LoginHeader>
                 <LoginButtons>
+                    <button>
+                        <img
+                            className='bokjak'
+                            src='https://raw.githubusercontent.com/lse-7660/bokjak-image/50a46ba90da58313ac29280fc31efeb7885fba5c/images/common/bokjak-logo-only.svg'
+                            alt='bokjak'
+                        />
+                        <span>bokjak으로 시작하기</span>
+                    </button>
                     <button onClick={handleKakaoLogin}>
                         <img
                             className='kakao'

@@ -8,6 +8,7 @@ export const LoginWrap = styled.div`
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+
     ${media.tablet} {
         background-color: ${color('gray', '90')};
     }
@@ -46,12 +47,12 @@ export const LoginContent = styled.div`
     background-color: rgba(0, 0, 0, 0.7);
     padding: 40px 55px;
     width: 600px;
-    height: 600px;
+    height: 650px;
 
     ${media.tablet} {
         background-color: ${color('gray', '90')};
         padding: 10px 0;
-        width: 470px;
+        width: auto;
         height: 596px;
     }
     ${media.mobile} {
@@ -65,8 +66,6 @@ export const LoginHeader = styled.div`
         font-size: ${font('heading', 'sm')};
         text-align: center;
 
-        ${media.tablet} {
-        }
         ${media.mobile} {
             font-size: ${font('heading', 'xs')};
         }
@@ -74,10 +73,6 @@ export const LoginHeader = styled.div`
 
     h1:nth-of-type(2) {
         margin-bottom: 40px;
-        ${media.tablet} {
-        }
-        ${media.mobile} {
-        }
     }
 `;
 
@@ -114,6 +109,15 @@ export const LoginButtons = styled.div`
             width: 345px;
             height: 60px;
             gap: 80px;
+        }
+    }
+    .bokjak {
+        width: 32px;
+        height: auto;
+        margin-left: -4px;
+
+        ${media.mobile} {
+            width: 27px;
         }
     }
 
@@ -159,8 +163,6 @@ export const LoginButtons = styled.div`
         font-size: ${font('body', 'md')};
         color: ${color('gray', '30')};
 
-        ${media.tablet} {
-        }
         ${media.mobile} {
             font-size: ${font('body', 'sm')};
         }
@@ -174,8 +176,6 @@ export const LoginNotice = styled.span`
     margin-top: 30px;
     text-align: center;
 
-    ${media.tablet} {
-    }
     ${media.mobile} {
         font-size: ${font('detail', 'sm')};
     }
