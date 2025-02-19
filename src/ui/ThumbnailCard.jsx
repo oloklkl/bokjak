@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ThumbnailCardHover from './ThumbnailCardHover'
 import styled from 'styled-components'
+import { media } from '../styled/media'
 
 const ThumbItemWrap = styled.div`
   position: relative;
