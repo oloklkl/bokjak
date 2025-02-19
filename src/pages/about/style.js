@@ -102,7 +102,7 @@ export const AboutWrap = styled.div`
   .scroll-section {
     height: 150px;
     overflow: hidden;
-    position: relative;
+
     margin-bottom: 10px;
   }
 
@@ -121,5 +121,8 @@ export const AboutWrap = styled.div`
     background-position: center;
     border-radius: 8px;
     flex-shrink: 0;
+  }
+  .hover\\:scale-105:hover {
+    transform: scale(1.05);
   }
 `;

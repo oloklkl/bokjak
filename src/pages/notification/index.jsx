@@ -6,24 +6,24 @@ import GroupNotification from '../../components/notification/groupNotification/G
 import UpcomingNotification from '../../components/notification/upcomingNotification/upcomingNotification';
 
 const Notification = () => {
-    return (
-        <Container>
-            <ProfileSection />
+  return (
+    <Container>
+      <ProfileSection />
 
-            <ContentWrapper>
-                <div className='inner'>
-                    <NotificationSection>
-                        <GroupNotification />
-                    </NotificationSection>
+      <ContentWrapper>
+        <div className="inner">
+          <NotificationSection>
+            <GroupNotification />
+          </NotificationSection>
 
-                    <NotificationSection>
-                        <UpcomingNotification />
-                    </NotificationSection>
-                </div>
-            </ContentWrapper>
-            <BottomNavigation />
-        </Container>
-    );
+          <NotificationSection>
+            <UpcomingNotification />
+          </NotificationSection>
+        </div>
+      </ContentWrapper>
+      <BottomNavigation />
+    </Container>
+  );
 };
 
 export default Notification;
