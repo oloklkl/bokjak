@@ -40,11 +40,6 @@ export const HoverItemWrap = styled.div`
       transform: translate(-50%, -50%) scale(1);
       transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
     }
-    .cardHover:nth-child(1) :hover {
-      position: absolute;
-      left: 60px;
-    }
-
     .imgCont {
       position: relative;
       width: 100%;
@@ -137,7 +132,7 @@ const ThumbnailCardHover = ({ content }) => {
   }
 
   const bgurl = `https://image.tmdb.org/t/p/original`
-  const logoUrl = content.logoImage
+  const logoUrl = content?.logoImage
     ? `https://image.tmdb.org/t/p/original${content.logoImage}`
     : null
   const title = content.title

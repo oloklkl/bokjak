@@ -131,9 +131,7 @@ const BokjakContList = () => {
             .filter((content) => content.logoImage?.trim() !== '')
             .map((content) => (
               <SwiperSlide key={content.id}>
-                <Link
-                  to={`/movie/${content.id}`}
-                  state={{ previousLocation: location }}>
+                <Link state={{ previousLocation: location }}>
                   <BokjakContItem
                     content={content}
                     onClick={() => {

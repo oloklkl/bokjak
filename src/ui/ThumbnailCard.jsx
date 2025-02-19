@@ -32,7 +32,6 @@ const ThumbTopCont = styled.div`
 const ThumbnailCard = ({ content, ...props }) => {
   const [isHovered, setIsHovered] = useState(false)
   const [hoverTimeout, setHoverTimeout] = useState(null)
-
   const bgurl = `https://image.tmdb.org/t/p/original`
   const title = content.title
 
@@ -55,8 +54,9 @@ const ThumbnailCard = ({ content, ...props }) => {
       onMouseLeave={handleMouseLeave}>
       <ThumbTopCont>
         <img src={`${bgurl}${content.poster_path}`} alt={title} />
+        {/* {src && <img src={src} alt={`${title} logo`} className="logo-img" />} */}
       </ThumbTopCont>
-      {isHovered && <ThumbnailCardHover content={content} />}
+      {isHovered && <ThumbnailCardHover className="" content={content} />}
     </ThumbItemWrap>
   )
 }
