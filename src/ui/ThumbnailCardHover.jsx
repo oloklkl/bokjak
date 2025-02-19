@@ -1,9 +1,4 @@
-import {
-  BookmarkSimple,
-  Heart,
-  SpeakerSimpleHigh,
-  SpeakerSimpleSlash,
-} from '@phosphor-icons/react'
+import { BookmarkSimple, Heart } from '@phosphor-icons/react'
 import { LabelWrapper } from '../components/main/mainSoon/style'
 import { BarButton, IconButton } from '.'
 import AgeLabel from './AgeLabel'
@@ -11,16 +6,13 @@ import styled from 'styled-components'
 import { color, font } from '../styled/theme'
 import { media } from '../styled/media'
 import genres from '../assets/api/genreData'
-import { useState } from 'react'
 
 export const HoverItemWrap = styled.div`
   position: relative;
   position: absolute;
   top: 50%;
   left: 50%;
-  transition: opacity 0.5s ease-in-out;
-  transform: translate(-50%, -50%) scale(0.9);
-
+  pointer-events: auto;
   width: 500px;
   height: 500px;
   display: flex;
@@ -30,18 +22,33 @@ export const HoverItemWrap = styled.div`
   flex: 1;
   background: ${color('gray', '80')};
   border-radius: 7px;
-  z-index: 100;
-  .videoCont {
+  z-index: 1000;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  pointer-events: auto;
+  img {
+    border-radius: 7px;
+  }
+
+  &:hover {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 0.5s ease-in-out, opacity 0.2s ease-in-out;
+  }
+  .cardHover:nth-child(1) :hover {
+    position: absolute;
+    left: 60px;
+  }
+
+  .imgCont {
     position: relative;
     width: 100%;
     height: 100%;
-    cursor: pointer;
-
+    border-radius: 7px;
     .topCont {
-      /* position: absolute;
+      position: absolute;
       bottom: 20px;
-      left: 0; */
-
+      left: 0;
       padding: 0 20px;
       width: 100%;
       display: flex;
@@ -53,6 +60,7 @@ export const HoverItemWrap = styled.div`
         max-height: 60px;
         object-fit: contain;
         object-position: left;
+        border-radius: 7px;
       }
     }
   }
@@ -75,6 +83,12 @@ export const HoverItemWrap = styled.div`
         gap: 10px;
         .play {
           font-size: ${font('body', 'md')};
+        }
+        .together {
+          img {
+            width: 32px;
+            height: 32px;
+          }
         }
       }
     }
@@ -101,47 +115,22 @@ export const HoverItemWrap = styled.div`
       }
     }
   }
-  &:hover {
-    opacity: 1;
-    transition: opacity 0.7s ease;
-    transition: all 0.5s ease-in-out;
-  }
-
-  &.edge-left {
-    right: auto;
-    left: 0;
-    transform: translateX(100%);
-  }
-
-  &.edge-right {
-    left: auto;
-    right: 0;
-    transform: translateX(-50%);
-  }
 `
 
-const ThumbnailCardHover = ({ content, position }) => {
-  const [isMuted, setIsMuted] = useState(true)
-
+const ThumbnailCardHover = ({ content }) => {
   const handleLogoClick = () => {
     // 로고 클릭 시 해당 상세 페이지로 이동
     window.location.href = `/detail/${content.id}` // 예시로 id를 URL에 포함시킴
   }
 
-  const toggleSound = () => {
-    // 소리 아이콘 클릭 시 상태 변경
-    setIsMuted(!isMuted)
-  }
-
-  const edgeClass =
-    position === 'left' ? 'edge-left' : position === 'right' ? 'edge-right' : ''
+  const bgurl = `https://image.tmdb.org/t/p/original`
   const logoUrl = content.logoImage
     ? `https://image.tmdb.org/t/p/original${content.logoImage}`
     : null
   const title = content.title
   const desc = content.overview
-  const date = content.release_date
-  const year = date.split('-')[0]
+  const date = content?.release_date ?? ''
+  const year = date ? date.split('-')[0] : '정보 없음'
   const genreNames =
     content.genre_ids
       ?.map((id) => {
@@ -150,24 +139,13 @@ const ThumbnailCardHover = ({ content, position }) => {
       })
       .filter(Boolean) // null, undefined 제거
       .join(' · ') || '장르 없음'
+
   return (
-    <HoverItemWrap className={edgeClass}>
-      <div className="videoCont">
-        <video src=""></video>
+    <HoverItemWrap className="cardHover">
+      <div className="imgCont">
+        <img src={`${bgurl}${content.backdrop_path}`} alt={title} />
         <div className="topCont">
           <img src={logoUrl} alt={title} onClick={handleLogoClick} />
-          <IconButton
-            className="b30"
-            icon={
-              isMuted ? (
-                <SpeakerSimpleSlash size={24} />
-              ) : (
-                <SpeakerSimpleHigh size={24} />
-              )
-            }
-            text="스피커"
-            onClick={toggleSound}
-          />
         </div>
       </div>
       <div className="textCont">
@@ -185,12 +163,15 @@ const ThumbnailCardHover = ({ content, position }) => {
             />
             <IconButton icon={<Heart size={24} />} text="Heart" />
             <IconButton
+              className="together"
               icon="https://raw.githubusercontent.com/lse-7660/bokjak-image/f7683cb4e88d31d422118d70c20dcdccb0ad102e/images/icon/bokjak-icon.svg"
               text="모여보기"
             />
           </div>
           <IconButton
             icon="https://raw.githubusercontent.com/lse-7660/bokjak-image/f7683cb4e88d31d422118d70c20dcdccb0ad102e/images/icon/bokjak-icon.svg"
+            width={18}
+            height={18}
             text="info"
           />
         </div>

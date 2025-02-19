@@ -25,16 +25,19 @@ const Main = () => {
 
         <TopCont />
         <div className="inner">
-          <ThumbnailCont title="한 번 보면 빠져드는" />
-          <ThumbnailCont title="오늘의 추천작" />
+          <ThumbnailCont title="오늘의 추천작" isRandom={true} />
+          <ThumbnailCont title="생동감 넘치는 액션 영화" targetGenreId={28} />
         </div>
         <SoonCont />
         <div className="inner">
-          <ThumbnailCont title="판타지 세계 속으로 다이브 ~" />
-          <ThumbnailCont title="스릴 넘치는 미스터리, 끝까지 놓치지 마세요" />
+          <ThumbnailCont title="지금 뜨고 있는 드라마" targetGenreId={878} />
+          <ThumbnailCont
+            title="스릴 넘치는 미스터리, 끝까지 놓치지 마세요"
+            targetGenreId={9648}
+          />
           <FlipBackCont />
-          <ThumbnailCont title="지금, 이 콘텐츠!!" />
-          <ThumbnailCont title="마음을 울리는 로맨스" />
+          <ThumbnailCont title="지금, 이 콘텐츠!!" isRandom={true} />
+          <ThumbnailCont title="마음을 울리는 로맨스" targetGenreId={10749} />
           <SeriesCont />
         </div>
         {/* <BottomNavigation /> */}

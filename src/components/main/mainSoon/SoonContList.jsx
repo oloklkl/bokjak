@@ -22,7 +22,7 @@ const SoonContList = () => {
   // const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
   const location = useLocation()
-  const soon = movies.slice(0, 5)
+  const soon = movies.slice(0, 6)
 
   useEffect(() => {
     dispatch(getMovies())
@@ -69,20 +69,22 @@ const SoonContList = () => {
               spaceBetween: 24,
             },
           }}>
-          {soon.map((content) => (
-            <SwiperSlide key={content.id}>
-              <Link
-                to={`/movie/${content.id}`}
-                state={{ previousLocation: location }}>
-                <SoonContItem
-                  content={content}
-                  onClick={() => {
-                    showDetailModal('movie', content.id, content.genre_ids[0])
-                  }}
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
+          {soon
+            .filter((content) => content.overview?.trim() !== '')
+            .map((content) => (
+              <SwiperSlide key={content.id}>
+                <Link
+                  to={`/movie/${content.id}`}
+                  state={{ previousLocation: location }}>
+                  <SoonContItem
+                    content={content}
+                    onClick={() => {
+                      showDetailModal('movie', content.id, content.genre_ids[0])
+                    }}
+                  />
+                </Link>
+              </SwiperSlide>
+            ))}
 
           <NavigationButton>
             <IconButton

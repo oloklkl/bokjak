@@ -55,10 +55,8 @@ const BokjakModal = ({ content, closeModal }) => {
       }
     }
 
-    // 매초 시간을 확인하여 버튼 텍스트를 업데이트
     const intervalId = setInterval(checkTime, 1000)
 
-    // 컴포넌트가 언마운트되면 interval 제거
     return () => clearInterval(intervalId)
   }, [enterTime])
 

@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getContentByGenre,
@@ -17,11 +17,33 @@ import { ThumbnailContainer, ThumbnailHeader, ThumbnailList } from './style'
 import ThumbnailCard from '../../../ui/ThumbnailCard'
 import { NavigationButton } from '../style'
 
-const ThumbnailContList = ({ title }) => {
-  const { movies } = useSelector((state) => state.contentR)
-  // const { movies, tvShows } = useSelector((state) => state.contentR)
+const ThumbnailContList = ({
+  title,
+  targetGenreId = null,
+  isRandom = false,
+}) => {
+  const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
   const location = useLocation()
+
+  const combinedContent = [
+    ...movies.map((item) => ({ ...item, type: 'movie' })),
+    ...tvShows.map((item) => ({ ...item, type: 'tv' })),
+  ]
+
+  let filteredContent = combinedContent
+
+  if (targetGenreId) {
+    filteredContent = combinedContent.filter((content) =>
+      content.genre_ids.includes(targetGenreId)
+    )
+  }
+
+  if (isRandom) {
+    filteredContent = [...filteredContent].sort(() => Math.random() - 0.5)
+  }
+
+  const thumnail = filteredContent.slice(0, 12)
 
   useEffect(() => {
     dispatch(getMovies())
@@ -79,20 +101,32 @@ const ThumbnailContList = ({ title }) => {
               spaceBetween: 24,
             },
           }}>
-          {movies.map((content) => (
-            <SwiperSlide key={content.id}>
-              <Link
-                to={`/movie/${content.id}`}
-                state={{ previousLocation: location }}>
-                <ThumbnailCard
-                  content={content}
-                  onClick={() =>
-                    showDetailModal('movie', content.id, content.genre_ids)
-                  }
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
+          {thumnail
+            .filter(
+              (content) =>
+                !!content.logoImage &&
+                content.logoImage.trim() !== '' &&
+                !!content.overview &&
+                content.overview.trim() !== ''
+            )
+            .map((content) => (
+              <SwiperSlide key={`${content.type}-${content.id}`}>
+                <Link
+                  to={`/${content.type}/${content.id}`}
+                  state={{ previousLocation: location }}>
+                  <ThumbnailCard
+                    content={content}
+                    onClick={() =>
+                      showDetailModal(
+                        content.type,
+                        content.id,
+                        content.genre_ids
+                      )
+                    }
+                  />
+                </Link>
+              </SwiperSlide>
+            ))}
         </Swiper>
 
         <NavigationButton>

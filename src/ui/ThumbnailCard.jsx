@@ -26,21 +26,24 @@ const ThumbTopCont = styled.div`
     object-fit: cover;
     object-position: center center;
   }
-  &:hover .hover {
-    opacity: 1;
-  }
 `
 
 const ThumbnailCard = ({ content, ...props }) => {
   const [isHovered, setIsHovered] = useState(false)
+  const [hoverTimeout, setHoverTimeout] = useState(null)
+
   const bgurl = `https://image.tmdb.org/t/p/original`
   const title = content.title
 
   const handleMouseEnter = () => {
-    setIsHovered(true)
+    const timeout = setTimeout(() => {
+      setIsHovered(true)
+    }, 200)
+    setHoverTimeout(timeout)
   }
 
   const handleMouseLeave = () => {
+    clearTimeout(hoverTimeout)
     setIsHovered(false)
   }
 
@@ -51,9 +54,8 @@ const ThumbnailCard = ({ content, ...props }) => {
       onMouseLeave={handleMouseLeave}>
       <ThumbTopCont>
         <img src={`${bgurl}${content.poster_path}`} alt={title} />
-        {/* {logoUrl && <img src={logoUrl} />} */}
       </ThumbTopCont>
-      {isHovered && <ThumbnailCardHover className="hover" content={content} />}
+      {isHovered && <ThumbnailCardHover content={content} />}
     </ThumbItemWrap>
   )
 }

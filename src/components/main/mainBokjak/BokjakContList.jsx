@@ -127,21 +127,23 @@ const BokjakContList = () => {
               spaceBetween: 32,
             },
           }}>
-          {combinedContent.map((content) => (
-            <SwiperSlide key={content.id}>
-              <Link
-                to={`/movie/${content.id}`}
-                state={{ previousLocation: location }}>
-                <BokjakContItem
-                  content={content}
-                  onClick={() => {
-                    showDetailModal('movie', content.id, content.genre_ids)
-                    openModal(content)
-                  }}
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
+          {combinedContent
+            .filter((content) => content.logoImage?.trim() !== '')
+            .map((content) => (
+              <SwiperSlide key={content.id}>
+                <Link
+                  to={`/movie/${content.id}`}
+                  state={{ previousLocation: location }}>
+                  <BokjakContItem
+                    content={content}
+                    onClick={() => {
+                      showDetailModal('movie', content.id, content.genre_ids)
+                      openModal(content)
+                    }}
+                  />
+                </Link>
+              </SwiperSlide>
+            ))}
           <NavigationButton>
             <IconButton
               onClick={goPrev}
