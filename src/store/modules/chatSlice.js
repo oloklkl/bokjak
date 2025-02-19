@@ -5,8 +5,7 @@ const initialState = {
     chatData: [],
     isChatOpen: false,
     isEmojiOpen: false,
-    emoji: [],
-    currentEmoji: '',
+    emojiArray: [],
 };
 
 export const chatSlice = createSlice({
@@ -30,12 +29,31 @@ export const chatSlice = createSlice({
             state.isEmojiOpen = !state.isEmojiOpen;
         },
         setEmoji: (state, action) => {
-            console.log(action.payload);
+            const emoji = action.payload.emoji;
+            const newEmojis = Array.from(
+                {
+                    length:
+                        Math.floor(Math.random() * 3) + 8,
+                },
+                () => ({
+                    id: uuidv4(),
+                    emoji,
+                    left: Math.random() * 20 - 10,
+                    delay: Math.random() * 0.5,
+                    duration: Math.random() * 2 + 1.5,
+                })
+            );
+            state.emojiArray = [
+                ...state.emojiArray,
+                ...newEmojis,
+            ];
             state.isEmojiOpen = false;
         },
         removeEmoji: (state, action) => {
             const id = action.payload;
-            state.emoji = state.emoji.filter((item) => item.id !== id);
+            state.emojiArray = state.emojiArray.filter(
+                (item) => item.id !== id
+            );
         },
     },
 });

@@ -83,7 +83,10 @@ export const VideoPlayerWrap = styled.div`
                     min-width: 232px;
                     padding: 10px 20px;
                     border-radius: 7px;
-                    background-color: ${color('gray', '80')};
+                    background-color: ${color(
+                        'gray',
+                        '80'
+                    )};
                     li {
                         &.video-option-item {
                             padding: 15px 0;
@@ -194,11 +197,30 @@ export const ChatFormWrap = styled.form`
     align-items: flex-end;
     gap: 10px;
 
+    svg {
+        &.emoji-picker-btn {
+            position: absolute;
+            bottom: 9px;
+            right: 46px;
+            color: ${color('gray', '60')};
+            z-index: 20;
+            width: 24px;
+            height: 24px;
+
+            ${media.desktop} {
+                right: 9px;
+                bottom: 9px;
+            }
+        }
+    }
+
     aside {
         &.emoji-picker {
             position: absolute;
-            bottom: 80px;
+            bottom: 50px;
             right: 0;
+            min-width: 300px;
+            max-width: 400px;
         }
     }
 
@@ -211,20 +233,26 @@ export const ChatFormWrap = styled.form`
 
         border-radius: 7px;
         border: 1px solid ${color('gray', '60')};
-        background-color: transparent;
+        background-color: ${color('gray', '80')};
 
         color: ${color('gray', '0')};
     }
     button {
         &.chatform-submit-btn {
             position: absolute;
-            bottom: 4px;
-            right: 4px;
+            bottom: 6px;
+            right: 6px;
 
-            width: 34px;
-            height: 34px;
-            background-color: ${color('primary', 'default')};
+            width: 30px;
+            height: 30px;
+            background-color: ${color(
+                'primary',
+                'default'
+            )};
             border-radius: 4px;
+            ${media.desktop} {
+                display: none;
+            }
         }
     }
 `;
