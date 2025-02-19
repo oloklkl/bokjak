@@ -34,27 +34,26 @@ const CategorySlider = () => {
     const location = useLocation();
     const [searchParams] = useSearchParams();
 
-    const currentCategory = location.pathname.split('/')[2]; // 현재 카테고리 (movie 또는 series)
-    const selectedCategory = searchParams.get('category'); // ?category=값 읽기
+    const currentCategory = location.pathname.split('/')[2];
+    const selectedCategory = searchParams.get('category') || (currentCategory === 'series' ? '시리즈' : '영화');
+
+    const sortedCategories = [...categories].sort((a, b) => {
+        if (a.name === selectedCategory) return -1;
+        if (b.name === selectedCategory) return 1;
+        return 0;
+    });
 
     return (
         <CategoryContainer>
             <Swiper modules={[FreeMode]} freeMode={true} slidesPerView={'auto'} spaceBetween={8}>
-                {categories.map((cat, index) => {
+                {sortedCategories.map((cat, index) => {
                     const targetPath = cat.path || (cat.type === 'series' ? 'series' : 'movie');
 
-                    const isActive =
-                        (currentCategory === 'series' &&
-                            targetPath === 'series' &&
-                            (selectedCategory === cat.name || (!selectedCategory && cat.name === '시리즈'))) || // 기본 '시리즈' 활성화
-                        (currentCategory === 'movie' &&
-                            targetPath === 'movie' &&
-                            (selectedCategory === cat.name || (!selectedCategory && cat.name === '영화'))); // 기본 '영화' 활성화
+                    const isActive = selectedCategory === cat.name;
 
                     return (
                         <SwiperSlide key={index}>
                             <CategoryButton
-                                key={cat.name}
                                 text={cat.name}
                                 to={`/subpage/${targetPath}?category=${cat.name}`}
                                 isActive={isActive}
