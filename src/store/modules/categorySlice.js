@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// 카테고리별 콘텐츠 페이지
+
 const initialState = {
     categories: [
         '코미디',

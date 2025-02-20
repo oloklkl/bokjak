@@ -1,6 +1,15 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { IconButton } from '../../ui';
-import { BellSimple, BellSimpleRinging, CaretDown, CaretUp, MagnifyingGlass, User, X } from '@phosphor-icons/react';
+import {
+    BellSimple,
+    BellSimpleRinging,
+    CaretDown,
+    CaretUp,
+    MagnifyingGlass,
+    User,
+    UserCheck,
+    X,
+} from '@phosphor-icons/react';
 import { CategoryDropdown, CategoryTitleWrap, CloseButton, NavCenter, NavRight, NavWrap } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategory, toggleCategory } from '../../store/modules/categorySlice';
@@ -8,7 +17,9 @@ import { setActiveLink } from '../../store/modules/navSlice';
 
 const NavBar = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const activeLink = useSelector((state) => state.navR.activeLink);
+    const { authed } = useSelector((state) => state.authR);
 
     const handleNavClick = (link) => {
         dispatch(setActiveLink(link));
@@ -23,6 +34,12 @@ const NavBar = () => {
 
     const handleCategorySelect = (category) => {
         dispatch(selectCategory(category));
+
+        const categoryType = ['예능', '다큐멘터리', '한국 TV 프로그램', '외국 TV 프로그램'].includes(category)
+            ? 'series'
+            : 'movie';
+
+        navigate(`/subpage/${categoryType}?category=${category}`);
         dispatch(toggleCategory());
     };
 
@@ -49,13 +66,13 @@ const NavBar = () => {
                         <CategoryDropdown>
                             {categories.map((category) => (
                                 <li key={category}>
-                                    <Link to={`/category/${category}`} onClick={() => handleCategorySelect(category)}>
+                                    <button onClick={() => handleCategorySelect(category)}>
                                         <span>{category}</span>
-                                    </Link>
+                                    </button>
                                 </li>
                             ))}
                             <CloseButton
-                                className=''
+                                className='close-btn'
                                 icon={<X size={24} />}
                                 text='Close'
                                 aria-label='카테고리 닫기'
@@ -76,11 +93,11 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to={'/subpage/drama'}
+                        to={'/subpage/series'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => handleNavClick('/subpage/drama')}
+                        onClick={() => handleNavClick('/subpage/series')}
                     >
-                        드라마
+                        시리즈
                     </NavLink>
                 </li>
             </NavCenter>
@@ -115,14 +132,14 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to={'/login'}
+                        to={authed ? '/mypage' : '/login'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => handleNavClick('login')}
+                        onClick={() => handleNavClick(authed ? 'mypage' : 'login')}
                     >
                         <IconButton
                             className='gray40 none'
-                            icon={activeLink === 'mypage' ? <User size={24} weight='fill' /> : <User size={24} />}
-                            text='MY'
+                            icon={authed ? <UserCheck size={24} weight='fill' /> : <User size={24} />}
+                            text={authed ? 'My Page' : 'Login'}
                         />
                     </NavLink>
                 </li>

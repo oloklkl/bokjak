@@ -4,15 +4,26 @@ import { media } from '../../styled/media';
 
 export const LoginWrap = styled.div`
     position: relative;
-    background-color: ${color('gray', '90')};
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+
     ${media.tablet} {
+        background-color: ${color('gray', '90')};
     }
-    ${media.mobile} {
-    }
+`;
+
+export const BackgroundImage = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://raw.githubusercontent.com/lse-7660/bokjak-image/main/images/login/background.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
 `;
 
 export const Logo = styled.img`
@@ -33,20 +44,18 @@ export const Logo = styled.img`
 `;
 
 export const LoginContent = styled.div`
-    background-color: ${color('gray', '70')};
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 40px 55px;
-    width: 600px;
-    height: 600px;
+    width: auto;
+    height: auto;
 
     ${media.tablet} {
         background-color: ${color('gray', '90')};
         padding: 10px 0;
-        width: 470px;
-        height: 596px;
+        width: auto;
     }
     ${media.mobile} {
-        width: 345px;
-        height: 545px;
+        width: auto;
     }
 `;
 
@@ -55,8 +64,6 @@ export const LoginHeader = styled.div`
         font-size: ${font('heading', 'sm')};
         text-align: center;
 
-        ${media.tablet} {
-        }
         ${media.mobile} {
             font-size: ${font('heading', 'xs')};
         }
@@ -64,10 +71,6 @@ export const LoginHeader = styled.div`
 
     h1:nth-of-type(2) {
         margin-bottom: 40px;
-        ${media.tablet} {
-        }
-        ${media.mobile} {
-        }
     }
 `;
 
@@ -83,12 +86,14 @@ export const LoginButtons = styled.div`
         align-items: center;
         gap: 130px;
         padding: 12px 20px;
-        background: #00000070;
+        background: ${color('gray', '100')};
         border-radius: 7px;
-        border: 1px solid ${color('gray', '50')};
+        border: 1px solid ${color('gray', '60')};
 
         &:hover {
-            background: ${color('gray', '50')};
+            background: ${color('gray', '70')};
+            border: 1px solid ${color('gray', '0')};
+
             span {
                 color: ${color('gray', '0')};
                 font-weight: 700;
@@ -102,6 +107,15 @@ export const LoginButtons = styled.div`
             width: 345px;
             height: 60px;
             gap: 80px;
+        }
+    }
+    .bokjak {
+        width: 32px;
+        height: auto;
+        margin-left: -4px;
+
+        ${media.mobile} {
+            width: 27px;
         }
     }
 
@@ -147,8 +161,6 @@ export const LoginButtons = styled.div`
         font-size: ${font('body', 'md')};
         color: ${color('gray', '30')};
 
-        ${media.tablet} {
-        }
         ${media.mobile} {
             font-size: ${font('body', 'sm')};
         }
@@ -162,9 +174,46 @@ export const LoginNotice = styled.span`
     margin-top: 30px;
     text-align: center;
 
-    ${media.tablet} {
-    }
     ${media.mobile} {
         font-size: ${font('detail', 'sm')};
+    }
+`;
+
+// BokjakLogin 시작
+
+export const BokjakLoginContent = styled.div`
+    h1 {
+        margin-bottom: 40px;
+    }
+    input {
+        width: 490px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 24px;
+        padding: 12px 20px;
+        background: ${color('gray', '100')};
+        border-radius: 7px;
+        border: 1px solid ${color('gray', '60')};
+        font-size: ${font('body', 'md')};
+        color: ${color('gray', '0')};
+    }
+    span {
+        display: flex;
+        color: ${color('gray', '40')};
+        font-size: ${font('body', 'xsm')};
+        margin-bottom: 10px;
+    }
+    .loginbutton {
+        font-size: ${font('body', 'sm')};
+    }
+    a {
+        span {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+            color: ${color('gray', '0')};
+            font-size: ${font('body', 'sm')};
+        }
     }
 `;

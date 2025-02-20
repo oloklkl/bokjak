@@ -98,16 +98,23 @@ export const TextWrap = styled.div`
     span {
         color: ${color('gray', '30')};
         font-size: ${font('body', 'lg')};
-
-        ${media.tablet} {
-            font-size: ${font('body', 'md')};
-        }
-        ${media.mobile} {
-            font-size: ${font('label', 'sm')};
-        }
+        margin-top: 10px;
     }
     span:nth-of-type(1) {
         margin-right: 20px;
+    }
+
+    p {
+        color: ${color('gray', '20')};
+        margin-top: 15px;
+        font-size: ${font('title', 'xlg')};
+
+        ${media.tablet} {
+            font-size: ${font('title', 'lg')};
+        }
+        ${media.mobile} {
+            font-size: ${font('title', 'md')};
+        }
     }
 `;
 
