@@ -6,13 +6,15 @@ import { useSelector } from 'react-redux';
 
 const EpisodeList = () => {
     const { currentContent } = useSelector((state) => state.detailR);
+    const { width } = useSelector((state) => state.windowR);
     const [isShow, setIsShow] = useState(false);
     const toggleDropdown = () => {
         setIsShow(!isShow);
     };
     return (
         <DetailSectionWrap>
-            <h3>에피소드</h3>
+            {width > 600 && <h3>에피소드</h3>}
+
             <div className="season-dropdown">
                 <button className="season-dropdown-toggle" onClick={toggleDropdown}>
                     <span>시즌 1</span>

@@ -37,9 +37,8 @@ const Detail = () => {
                 <DetailContentWrap className="detail-content">
                     <Description />
                     {width <= 600 && type === 'tv' && <MobileDetailTab />}
-
-                    {type === 'tv' && <EpisodeList />}
-                    <MoreLikeThisList />
+                    {type === 'tv' && width > 600 && <EpisodeList />}
+                    {width > 600 && <MoreLikeThisList />}
                 </DetailContentWrap>
             </DetailWrap>
             <Dimmed onClick={goPrevPage} zindex={10} className="dimmed-active" />
