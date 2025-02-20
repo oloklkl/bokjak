@@ -68,10 +68,6 @@ const SubPage = () => {
     return (
         <SubWrap>
             <div className='inner'>
-                <VisualWrap>
-                    <Intro />
-                </VisualWrap>
-
                 <CategoryWrap>
                     <h2>카테고리</h2>
                     <ButtonWrap>
