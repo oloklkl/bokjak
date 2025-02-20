@@ -76,7 +76,10 @@ export const DetailPreviewWrap = styled.div`
             top: 0;
             width: 100%;
             aspect-ratio: 16/9;
-            background: linear-gradient(#00000000, #00000080);
+            background: linear-gradient(
+                #00000000,
+                #00000080
+            );
         }
 
         &.detailpreview-wrap {
@@ -514,6 +517,7 @@ export const DetailModalCom = styled.div`
             border-radius: 7px;
             border: 1px solid ${color('gray', '60')};
             padding: 12px;
+            color: ${color('gray', '0')};
 
             &:focus {
                 outline: none;
