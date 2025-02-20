@@ -10,12 +10,12 @@ export const SoonSection = styled.div`
   justify-content: center;
   align-items: flex-start;
   background: ${color('gray', '80')};
-  padding: 80px 0;
+  padding: 80px 30px;
   ${media.tablet} {
-    padding: 60px 0;
+    padding: 60px 30px;
   }
   ${media.mobile} {
-    padding: 40px 0;
+    padding: 40px 20px;
   }
 `
 
@@ -23,6 +23,9 @@ export const SoonSection = styled.div`
 //list
 export const SoonListContainer = styled.div`
   width: 100%;
+  max-width: 1540px;
+  box-sizing: border-box;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -40,6 +43,7 @@ export const SoonHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   h2 {
+    font-weight: bold;
     font-size: ${font('title', 'xxlg')};
     ${media.tablet} {
       font-size: ${font('title', 'xlg')};
@@ -49,6 +53,7 @@ export const SoonHeader = styled.div`
     }
   }
   h3 {
+    color: ${color('gray', '40')};
     font-size: ${font('body', 'sm')};
   }
 `
@@ -74,6 +79,30 @@ export const SoonList = styled.div`
 
 ///////////////////////////////////////////////
 //item
+export const ModalCont = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .modalContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: auto;
+    background: ${color('gray', '80')};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+      color: ${color('gray', '0')};
+    }
+    h3 {
+      color: ${color('gray', '50')};
+    }
+  }
+`
+
 export const SoonItemCont = styled.div`
   position: relative;
   display: flex;

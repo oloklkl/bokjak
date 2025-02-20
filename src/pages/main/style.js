@@ -5,10 +5,4 @@ export const VisualWrap = styled.section`
   width: 100%;
   height: 100%;
 `
-export const MainWrap = styled.div`
-  &.main {
-  }
-  .inner {
-    padding: 100px 0;
-  }
-`
+export const MainWrap = styled.div``

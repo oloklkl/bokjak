@@ -2,7 +2,7 @@ import FlipBackContItem from './FlipBackContItem'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { Navigation } from 'swiper/modules'
+import { EffectFlip, Navigation } from 'swiper/modules'
 import { useEffect, useRef } from 'react'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
@@ -19,7 +19,6 @@ import {
 
 const FlipBackContList = () => {
   const { movies } = useSelector((state) => state.contentR)
-  // const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
   const location = useLocation()
 
@@ -56,9 +55,10 @@ const FlipBackContList = () => {
           ref={swiperRef}
           modules={[Navigation]}
           pagination={{ clickable: true }}
+          // effect="flip"
           navigation={false}
           breakpoints={{
-            320: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 10 },
+            320: { slidesPerViews: 3, slidesPerGroup: 3, paceBetween: 10 },
             390: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 10 },
             768: { slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 16 },
             1024: { slidesPerView: 5, slidesPerGroup: 5, spaceBetween: 24 },

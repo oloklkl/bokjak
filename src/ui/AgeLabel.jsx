@@ -26,8 +26,9 @@ const AgeLabelWrap = styled.button`
   }
 `
 
-const AgeLabel = (props) => {
-  return <AgeLabelWrap {...props}>{props.text}</AgeLabelWrap>
+const AgeLabel = ({ text, ...props }) => {
+  const ageText = text || 'ALL'
+  return <AgeLabelWrap {...props}>{ageText}</AgeLabelWrap>
 }
 
 export default AgeLabel

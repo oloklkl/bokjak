@@ -1,18 +1,19 @@
+import ThumbnailCard from '../../../ui/ThumbnailCard'
+import ThumbnailCardHover from '../../../ui/ThumbnailCardHover'
 import { TopItemCont, TopNumberImg, TopThumbnailImg } from './style'
 
-const TopContItem = ({ content, ...props }) => {
-  const bgurl = `https://image.tmdb.org/t/p/original`
+const TopContItem = ({ content, numberImg, ...props }) => {
   const title = content.title
   return (
     <TopItemCont {...props}>
-      <TopNumberImg>
-        <img
-          src="https://raw.githubusercontent.com/lse-7660/bokjak-image/c9ff4c8cc09bdda334eb731251f0ec9a55642779/images/main/top/numberImg/pc/pc_number2.svg"
-          alt=""
-        />
-      </TopNumberImg>
+      {numberImg && (
+        <TopNumberImg>
+          <img src={numberImg} alt={`순위 이미지 ${title}`} />
+        </TopNumberImg>
+      )}
+
       <TopThumbnailImg>
-        <img src={`${bgurl}${content.poster_path}`} alt={title} />
+        <ThumbnailCard content={content}></ThumbnailCard>
       </TopThumbnailImg>
     </TopItemCont>
   )

@@ -1,7 +1,7 @@
 import BokjakContItem from './BokjakContItem'
 import { IconButton } from '../../../ui'
 import { CaretLeft, CaretRight, QuestionMark } from '@phosphor-icons/react'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -16,22 +16,55 @@ import {
   getMovies,
   getTvShows,
 } from '../../../store/modules/getThunk'
+import BokjakModal from './BokjakModal'
 
 const BokjakContList = () => {
   const { movies } = useSelector((state) => state.contentR)
-  // const { movies, tvShows } = useSelector((state) => state.contentR)
+  const { bokjakData } = useSelector((state) => state.mainR)
+
   const dispatch = useDispatch()
   const location = useLocation()
+  const movie = movies.slice(0, 10)
+  const bokjakItems = bokjakData.slice(0, 10)
+
+  // combinedContent: 영화 데이터와 복작 데이터의 타이틀, 시간 결합
+  const combinedContent = movie.map((content, index) => {
+    const bokjakTitle = bokjakItems[index]?.bokjak_title || 'Default Title'
+    const bokjakTime = bokjakItems[index]?.bokjak_time || 'Default Time'
+    const bokjakPeople =
+      bokjakItems[index]?.expected_participants || 'Default Time'
+
+    return {
+      ...content,
+      bokjak_title: bokjakTitle,
+      bokjak_time: bokjakTime,
+      expected_participants: bokjakPeople,
+    }
+  })
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedContent, setSelectedContent] = useState(null)
 
   useEffect(() => {
     dispatch(getMovies())
     dispatch(getTvShows())
   }, [dispatch])
 
-  const BokjakModal = (type, id, genreId) => {
+  const openModal = (content) => {
+    setSelectedContent(content)
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setSelectedContent(null)
+  }
+
+  const showDetailModal = (type, id, genreId) => {
     dispatch(getContentDetail({ type, id }))
     dispatch(getContentByGenre({ type, genreId }))
   }
+
   const swiperRef = useRef()
 
   const goNext = () => {
@@ -41,11 +74,12 @@ const BokjakContList = () => {
   const goPrev = () => {
     swiperRef.current?.swiper.slidePrev()
   }
+
   return (
     <BokjakListWrap>
       <BokjakHeader>
         <div className="quesCont">
-          <h2>title</h2>
+          <h2>🐣 모여봐요 복작 </h2>
           <IconButton
             className="border"
             icon={<QuestionMark size={18} />}
@@ -93,20 +127,21 @@ const BokjakContList = () => {
               spaceBetween: 32,
             },
           }}>
-          {movies.map((content) => (
-            <SwiperSlide key={content.id}>
-              <Link
-                to={`/movie/${content.id}`}
-                state={{ previousLocation: location }}>
-                <BokjakContItem
-                  content={content}
-                  onClick={() => {
-                    BokjakModal('movie', content.id, content.genre_ids)
-                  }}
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
+          {combinedContent
+            .filter((content) => content.logoImage?.trim() !== '')
+            .map((content) => (
+              <SwiperSlide key={content.id}>
+                <Link state={{ previousLocation: location }}>
+                  <BokjakContItem
+                    content={content}
+                    onClick={() => {
+                      showDetailModal('movie', content.id, content.genre_ids)
+                      openModal(content)
+                    }}
+                  />
+                </Link>
+              </SwiperSlide>
+            ))}
           <NavigationButton>
             <IconButton
               onClick={goPrev}
@@ -123,6 +158,9 @@ const BokjakContList = () => {
           </NavigationButton>
         </Swiper>
       </BokjakList>
+      {isModalOpen && selectedContent && (
+        <BokjakModal content={selectedContent} closeModal={closeModal} />
+      )}
     </BokjakListWrap>
   )
 }
