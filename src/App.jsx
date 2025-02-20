@@ -40,7 +40,7 @@ const WindowListener = () => {
         };
     }, [dispatch]);
 
-    return null; // UI를 렌더링할 필요 없음
+    return null;
 };
 
 const App = () => {

@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 // 로그인, 로그아웃
 const initialState = {
     joinData: JSON.parse(localStorage.getItem('joinData')) || [
@@ -14,7 +13,6 @@ const initialState = {
     authed: JSON.parse(localStorage.getItem('authed')) || false,
     user: JSON.parse(localStorage.getItem('user')) || null,
 };
-
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -47,6 +45,5 @@ export const authSlice = createSlice({
         },
     },
 });
-
 export const authActions = authSlice.actions;
 export default authSlice.reducer;
