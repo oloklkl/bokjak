@@ -1,9 +1,11 @@
 import GlobalStyle from './styled/GlobalStyle';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Layout from './common/Layout';
 import {
     About,
+    BokjakLogin,
     FilmoPage,
+    Join,
     Login,
     Main,
     Membership,
@@ -19,6 +21,7 @@ import { theme } from './styled/theme';
 import SubLayout from './common/SubLayout';
 import SearchLayout from './common/SearchLayout';
 import { Detail } from './components';
+import KakaoAuthCallback from './components/login/KakaoAuthCallback';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { windowActions } from './store/modules/windowSlice';
@@ -62,11 +65,14 @@ const App = () => {
                     </Route>
                     <Route element={<SubLayout />}>
                         <Route path="/login" element={<Login />} />
+                        <Route path="/login/bokjaklogin" element={<BokjakLogin />} />
+                        <Route path="/login/join" element={<Join />} />
                         <Route path="/video" element={<Video />} />
                     </Route>
                     <Route element={<SearchLayout />}>
                         <Route path="/search" element={<Search />} />
                     </Route>
+                    <Route path="/oauth/kakao/callback" element={<KakaoAuthCallback />} />
                     <Route path="*" element={<NotFiles />} />
                 </Routes>
                 {previousLocation && (
