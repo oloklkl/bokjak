@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
-import { color, font } from './theme';
-import { media } from './media';
+import { createGlobalStyle } from 'styled-components'
+import reset from 'styled-reset'
+import { color, font } from './theme'
+import { media } from './media'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -52,6 +52,10 @@ const GlobalStyle = createGlobalStyle`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.swiper-slide:hover {
+  z-index: 25;
 }
 
 .swiper-slide img {
@@ -97,6 +101,6 @@ box-shadow:none !important;}}
      height: 0;
      line-height: 0;
   }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle

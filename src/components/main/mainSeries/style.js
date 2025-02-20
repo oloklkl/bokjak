@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { media } from '../../../styled/media'
-import { font } from '../../../styled/theme'
+import { color, font } from '../../../styled/theme'
 
 //cont
 export const SeriesSection = styled.div`
@@ -34,6 +34,7 @@ export const SeriesContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     h2 {
+      font-weight: bold;
       font-size: ${font('title', 'xxlg')};
       ${media.tablet} {
         font-size: ${font('title', 'xlg')};
@@ -43,6 +44,7 @@ export const SeriesContainer = styled.div`
       }
     }
     h3 {
+      color: ${color('gray', '40')};
       font-size: ${font('body', 'sm')};
     }
   }

@@ -46,7 +46,7 @@ const ViewHistoryContList = () => {
   return (
     <ViewHistoryContainer>
       <div className="viewHeader">
-        <h2>title</h2>
+        <h2>👀 시청기록</h2>
         <Link>
           <h3>더보기</h3>
         </Link>

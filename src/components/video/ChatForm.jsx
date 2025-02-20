@@ -1,8 +1,13 @@
 import EmojiPicker from 'emoji-picker-react';
 import { ChatFormWrap } from './style';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { chatActions } from '../../store/modules/chatSlice';
 import { useState } from 'react';
+import {
+    ArrowUp,
+    CaretUp,
+    Smiley,
+} from '@phosphor-icons/react';
 
 const ChatForm = () => {
     const dispatch = useDispatch();
@@ -10,6 +15,9 @@ const ChatForm = () => {
         username: 'user1',
         reply: '',
     });
+    const { isEmojiOpen } = useSelector(
+        (state) => state.chatR
+    );
 
     const changeInput = (e) => {
         const { value, name } = e.target;
@@ -23,17 +31,29 @@ const ChatForm = () => {
         setText({ ...text, reply: '' });
     };
 
+    const onEmojiClick = (emoji) => {
+        dispatch(chatActions.setEmoji(emoji));
+    };
+
     return (
-        <ChatFormWrap onSubmit={onSubmit}>
+        <ChatFormWrap
+            onSubmit={onSubmit}
+            className="chatform-wrap"
+        >
             <EmojiPicker
                 className="emoji-picker"
-                // onEmojiClick={() => dispatch(chatActions.setEmoji)}
-                width="100%"
+                open={isEmojiOpen}
+                onEmojiClick={onEmojiClick}
+                width="80%"
                 suggestedEmojisMode="recent"
                 theme="dark"
-                // open={false}
-                reactionsDefaultOpen={true}
                 style={{ backgroundColor: '#2d2d2d' }}
+            />
+            <Smiley
+                className="emoji-picker-btn"
+                onClick={() =>
+                    dispatch(chatActions.toggleEmoji())
+                }
             />
             <input
                 className="chat-input-bar"
@@ -43,9 +63,12 @@ const ChatForm = () => {
                 placeholder="채팅 보내기"
             />
             <button
+                className="chatform-submit-btn"
                 type="submit"
-                style={{ display: 'none' }}
-            ></button>
+            >
+                <span className="hide">채팅 보내기</span>
+                <ArrowUp color="white" size={20} />
+            </button>
         </ChatFormWrap>
     );
 };

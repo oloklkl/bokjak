@@ -9,11 +9,16 @@ export const NavigationButton = styled.div`
   justify-content: space-between;
   transform: translateY(-50%);
   z-index: 3;
+  pointer-events: none;
 
   ${media.tablet} {
     display: none;
   }
   ${media.mobile} {
     display: none;
+  }
+
+  .b30 {
+    pointer-events: auto;
   }
 `

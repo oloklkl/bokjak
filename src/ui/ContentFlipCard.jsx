@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { color, font } from '../styled/theme';
 import { media } from '../styled/media';
+import { useSelector } from 'react-redux';
 
 export const ContentFlipCardWrap = styled.div`
     width: 100%;
@@ -76,41 +77,33 @@ export const ContentFlipCardWrap = styled.div`
 const ContentFlipCard = ({ content }) => {
     const [isShow, setIsShow] = useState(false);
     const bgurl = `https://image.tmdb.org/t/p/w500`;
+    const { width } = useSelector((state) => state.windowR);
 
     return (
         <ContentFlipCardWrap
-            onMouseEnter={() => setIsShow(true)}
-            onMouseLeave={() => setIsShow(false)}
+            onMouseEnter={() => {
+                if (width > 1024) setIsShow(true);
+            }}
+            onMouseLeave={() => {
+                if (width > 1024) setIsShow(false);
+            }}
         >
             {!isShow && (
                 <div className="content-flip-card-preview">
-                    <img
-                        src={`${bgurl}${content.poster_path}`}
-                        alt=""
-                    />
+                    <img src={`${bgurl}${content.poster_path}`} alt="" />
                 </div>
             )}
 
             {isShow && (
                 <div className="content-flip-card-wrap">
-                    <p className="content-flip-card-title">
-                        {content.title}
-                    </p>
+                    <p className="content-flip-card-title">{content.title}</p>
                     <div className="content-flip-card-tags">
-                        <span>
-                            {
-                                content.release_date.split(
-                                    '-'
-                                )[0]
-                            }
-                        </span>
+                        <span>{content.release_date.split('-')[0]}</span>
                         {/* <span>액션</span>
                         <span>범죄</span>
                         <span>스릴러</span> */}
                     </div>
-                    <p className="content-flip-card-desc">
-                        {content.overview || ''}
-                    </p>
+                    <p className="content-flip-card-desc">{content.overview || ''}</p>
                 </div>
             )}
         </ContentFlipCardWrap>

@@ -17,7 +17,7 @@ const IntroList = () => {
   // const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
   const location = useLocation()
-  const intro = movies.slice(0, 5)
+  const intro = movies.slice(0, 7)
 
   useEffect(() => {
     dispatch(getMovies())
@@ -55,20 +55,22 @@ const IntroList = () => {
           768: { spaceBetween: 16 },
           1024: { spaceBetween: 24 },
         }}>
-        {intro.map((content) => (
-          <SwiperSlide key={content.id}>
-            <Link
-              to={`/movie/${content.id}`}
-              state={{ previousLocation: location }}>
-              <IntroItem
-                content={content}
-                onClick={() => {
-                  showDetailModal('movie', content.id, content.genre_ids)
-                }}
-              />
-            </Link>
-          </SwiperSlide>
-        ))}
+        {intro
+          .filter((content) => content.overview?.trim() !== '')
+          .map((content) => (
+            <SwiperSlide key={content.id}>
+              <Link
+                to={`/movie/${content.id}`}
+                state={{ previousLocation: location }}>
+                <IntroItem
+                  content={content}
+                  onClick={() => {
+                    showDetailModal('movie', content.id, content.genre_ids)
+                  }}
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
       </Swiper>
     </IntroSliderCont>
   )

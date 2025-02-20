@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const VideoExitModalSrap = styled.div``;
+const VideoExitModalWrap = styled.div``;
 
 const VideoExitModal = () => {
-    return <VideoExitModalSrap></VideoExitModalSrap>;
+    return <VideoExitModalWrap></VideoExitModalWrap>;
 };
 
 export default VideoExitModal;

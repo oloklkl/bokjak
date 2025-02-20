@@ -145,11 +145,14 @@ export const CategoryDropdown = styled.ul`
         li {
             display: block;
             padding: 12px 20px;
+
+            button {
+                background: none;
+                display: flex;
+                text-align: left;
+            }
         }
         span {
-            display: flex;
-            text-align: left;
-
             font-size: ${font('body', 'md')};
 
             &:hover {

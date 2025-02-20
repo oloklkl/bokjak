@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { color, font } from '../styled/theme';
 import { media } from '../styled/media';
+
 const StyledLink = styled(Link)`
     display: flex;
     align-items: center;
@@ -29,11 +30,13 @@ const StyledLink = styled(Link)`
         font-size: ${font('detail', 'sm')};
     }
 `;
-const CategoryButton = ({ text, to, isActive }) => {
+
+const CategoryButton = ({ text, to, isActive = false }) => {
     return (
         <StyledLink to={to} isActive={isActive}>
             {text}
         </StyledLink>
     );
 };
+
 export default CategoryButton;

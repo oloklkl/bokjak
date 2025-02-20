@@ -1,11 +1,17 @@
 import styled, { keyframes } from 'styled-components';
 import { color, font } from '../../styled/theme';
+import { media } from '../../styled/media';
 
 export const VideoWrapCom = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
+
+    @media (max-aspect-ratio: 1/1) {
+        flex-direction: column;
+        height: 100vh;
+    }
 `;
 
 export const VideoPlayerWrap = styled.div`
@@ -14,13 +20,21 @@ export const VideoPlayerWrap = styled.div`
     height: 100vh;
     background-color: ${color('gray', '50')};
 
-    overflow-y: hidden;
+    @media (max-aspect-ratio: 1/1) {
+        width: 100vw;
+        height: 100%;
+    }
 
     iframe {
         pointer-events: none;
     }
 
     div {
+        &.video-player {
+            width: 100%;
+            height: 100%;
+        }
+
         &.video-util-wrap {
             pointer-events: none;
 
@@ -116,11 +130,24 @@ export const BokjakChatWrap = styled.div`
     background-color: ${color('gray', '80')};
     transition: all 0.2s ease;
 
+    @media (max-aspect-ratio: 1/1) {
+        width: 100vw;
+        height: 0;
+    }
+
     &.chat-window-active {
         visibility: visible;
         width: 30%;
         min-width: 400px;
         padding: 78px 24px 24px 24px;
+
+        @media (max-aspect-ratio: 1/1) {
+            width: 100%;
+            height: 60%;
+            min-height: 60%;
+            padding: 20px;
+            /* border-radius: 12px; */
+        }
     }
 
     P {
@@ -136,14 +163,12 @@ export const BokjakChatWrap = styled.div`
     div {
         &.chat-content-wrap {
             display: flex;
-            flex-direction: column;
+            flex-direction: column-reverse;
             gap: 12px;
-            justify-content: flex-end;
 
             height: 100%;
-            /* max-height: calc(100vh - 218px); */
 
-            overflow-y: scroll;
+            overflow-y: auto;
             -ms-overflow-style: none;
             &::-webkit-scrollbar {
                 display: none;
@@ -166,9 +191,38 @@ export const ChatItemWrap = styled.div`
 `;
 
 export const ChatFormWrap = styled.form`
+    position: relative;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     gap: 10px;
+
+    svg {
+        &.emoji-picker-btn {
+            position: absolute;
+            bottom: 9px;
+            right: 46px;
+            color: ${color('gray', '60')};
+            z-index: 20;
+            width: 24px;
+            height: 24px;
+
+            ${media.desktop} {
+                right: 9px;
+                bottom: 9px;
+            }
+        }
+    }
+
+    aside {
+        &.emoji-picker {
+            position: absolute;
+            bottom: 50px;
+            right: 0;
+            min-width: 300px;
+            max-width: 400px;
+        }
+    }
 
     input {
         position: relative;
@@ -179,9 +233,27 @@ export const ChatFormWrap = styled.form`
 
         border-radius: 7px;
         border: 1px solid ${color('gray', '60')};
-        background-color: transparent;
+        background-color: ${color('gray', '80')};
 
         color: ${color('gray', '0')};
+    }
+    button {
+        &.chatform-submit-btn {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+
+            width: 30px;
+            height: 30px;
+            background-color: ${color(
+                'primary',
+                'default'
+            )};
+            border-radius: 4px;
+            ${media.desktop} {
+                display: none;
+            }
+        }
     }
 `;
 

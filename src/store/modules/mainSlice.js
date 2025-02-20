@@ -1,8 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
-import introdata from '../../assets/api/introdata'
+import topdata from '../../assets/api/topData'
+import soondate from '../../assets/api/soonDate'
+import genredata from '../../assets/api/genreData'
+import bokjakdata from '../../assets/api/bokjakData'
 // 메인페이지
 const initialState = {
-  introData: introdata,
+  topData: topdata,
+  soonDate: soondate,
+  genreData: genredata,
+  bokjakData: bokjakdata,
 }
 
 export const mainSlice = createSlice({

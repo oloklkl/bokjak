@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { color } from '../styled/theme';
+import { media } from '../styled/media';
 
 const BarBtnWrap = styled.button`
     display: flex;
@@ -14,6 +15,10 @@ const BarBtnWrap = styled.button`
     border-radius: 7px;
     background-color: ${color('primary', 'default')};
     color: ${color('gray', '0')};
+
+    ${media.mobile} {
+        width: auto;
+    }
 
     svg,
     img {
@@ -41,7 +46,11 @@ const BarBtnWrap = styled.button`
 const BarButton = ({ children, ...props }) => {
     return (
         <BarBtnWrap {...props}>
-            {typeof props.icon === 'string' ? <img src={props.icon} alt={props.text} /> : <>{props.icon}</>}
+            {typeof props.icon === 'string' ? (
+                <img src={props.icon} alt={props.text} />
+            ) : (
+                <>{props.icon}</>
+            )}
             {children}
             {props.text}
         </BarBtnWrap>

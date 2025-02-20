@@ -10,12 +10,12 @@ export const TopSection = styled.div`
   justify-content: center;
   align-items: flex-start;
   background: ${color('gray', '80')};
-  padding: 80px 0;
+  padding: 80px 30px;
   ${media.tablet} {
-    padding: 60px 0;
+    padding: 60px 30px;
   }
   ${media.mobile} {
-    padding: 40px 0;
+    padding: 40px 20px;
   }
 `
 
@@ -23,6 +23,9 @@ export const TopSection = styled.div`
 //list
 export const TopListWrap = styled.div`
   width: 100%;
+  max-width: 1540px;
+  box-sizing: border-box;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -38,6 +41,7 @@ export const TopListWrap = styled.div`
     justify-content: space-between;
     align-items: center;
     h2 {
+      font-weight: bold;
       font-size: ${font('title', 'xxlg')};
       ${media.tablet} {
         font-size: ${font('title', 'xlg')};
@@ -45,9 +49,6 @@ export const TopListWrap = styled.div`
       ${media.mobile} {
         font-size: ${font('title', 'lg')};
       }
-    }
-    h3 {
-      font-size: ${font('body', 'sm')};
     }
   }
 

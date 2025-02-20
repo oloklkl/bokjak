@@ -1,0 +1,9 @@
+.swiper-slide:nth-child(1) .posX,
+.swiper-slide:nth-child(6) .posX {
+  border: 5px solid #ff0;
+  transform: translate(100%, -50%) scale(1);
+}
+.swiper-slide:nth-child(5) .posX {
+  border: 5px solid #ff0;
+  transform: translate(20%, -50%) scale(1);
+}

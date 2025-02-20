@@ -1,34 +1,43 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { IconButton } from '../../ui';
-import { BellSimple, BellSimpleRinging, CaretDown, CaretUp, MagnifyingGlass, User, X } from '@phosphor-icons/react';
+import {
+    BellSimple,
+    BellSimpleRinging,
+    CaretDown,
+    CaretUp,
+    MagnifyingGlass,
+    User,
+    UserCheck,
+    X,
+} from '@phosphor-icons/react';
 import { CategoryDropdown, CategoryTitleWrap, CloseButton, NavCenter, NavRight, NavWrap } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategory, toggleCategory } from '../../store/modules/categorySlice';
 import { setActiveLink } from '../../store/modules/navSlice';
-
 const NavBar = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const activeLink = useSelector((state) => state.navR.activeLink);
-
+    const { authed } = useSelector((state) => state.authR);
     const handleNavClick = (link) => {
         dispatch(setActiveLink(link));
     };
-
     const { categories, isOpen } = useSelector((state) => state.categoryR);
-
     const handleToggle = (e) => {
         e.preventDefault();
         dispatch(toggleCategory());
     };
-
     const handleCategorySelect = (category) => {
         dispatch(selectCategory(category));
+        const categoryType = ['예능', '다큐멘터리', '한국 TV 프로그램', '외국 TV 프로그램'].includes(category)
+            ? 'series'
+            : 'movie';
+        navigate(`/subpage/${categoryType}?category=${category}`);
         dispatch(toggleCategory());
     };
-
     return (
-        <NavWrap className='nav'>
-            <NavCenter className='nav-center'>
+        <NavWrap className="nav">
+            <NavCenter className="nav-center">
                 <li>
                     <NavLink
                         to={'/about'}
@@ -39,7 +48,7 @@ const NavBar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='#' className={({ isActive }) => (isActive ? 'active' : '')} onClick={handleToggle}>
+                    <NavLink to="#" className={({ isActive }) => (isActive ? 'active' : '')} onClick={handleToggle}>
                         <CategoryTitleWrap>
                             카테고리
                             {isOpen ? <CaretUp size={24} /> : <CaretDown size={24} />}
@@ -49,22 +58,21 @@ const NavBar = () => {
                         <CategoryDropdown>
                             {categories.map((category) => (
                                 <li key={category}>
-                                    <Link to={`/category/${category}`} onClick={() => handleCategorySelect(category)}>
+                                    <button onClick={() => handleCategorySelect(category)}>
                                         <span>{category}</span>
-                                    </Link>
+                                    </button>
                                 </li>
                             ))}
                             <CloseButton
-                                className=''
+                                className="close-btn"
                                 icon={<X size={24} />}
-                                text='Close'
-                                aria-label='카테고리 닫기'
+                                text="Close"
+                                aria-label="카테고리 닫기"
                                 onClick={handleToggle}
                             />
                         </CategoryDropdown>
                     )}
                 </li>
-
                 <li>
                     <NavLink
                         to={'/subpage/movie'}
@@ -76,22 +84,22 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to={'/subpage/drama'}
+                        to={'/subpage/series'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => handleNavClick('/subpage/drama')}
+                        onClick={() => handleNavClick('/subpage/series')}
                     >
-                        드라마
+                        시리즈
                     </NavLink>
                 </li>
             </NavCenter>
-            <NavRight className='nav-right'>
+            <NavRight className="nav-right">
                 <li>
                     <NavLink
                         to={'/search'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
                         onClick={() => handleNavClick('search')}
                     >
-                        <IconButton className='gray40 none' icon={<MagnifyingGlass size={24} />} text='검색' />
+                        <IconButton className="gray40 none" icon={<MagnifyingGlass size={24} />} text="검색" />
                     </NavLink>
                 </li>
                 <li>
@@ -101,28 +109,28 @@ const NavBar = () => {
                         onClick={() => handleNavClick('notification')}
                     >
                         <IconButton
-                            className='gray40 none'
+                            className="gray40 none"
                             icon={
                                 activeLink === 'notification' ? (
-                                    <BellSimpleRinging size={24} weight='fill' />
+                                    <BellSimpleRinging size={24} weight="fill" />
                                 ) : (
                                     <BellSimple size={24} />
                                 )
                             }
-                            text='알림'
+                            text="알림"
                         />
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to={'/login'}
+                        to={authed ? '/mypage' : '/login'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => handleNavClick('login')}
+                        onClick={() => handleNavClick(authed ? 'mypage' : 'login')}
                     >
                         <IconButton
-                            className='gray40 none'
-                            icon={activeLink === 'mypage' ? <User size={24} weight='fill' /> : <User size={24} />}
-                            text='MY'
+                            className="gray40 none"
+                            icon={authed ? <UserCheck size={24} weight="fill" /> : <User size={24} />}
+                            text={authed ? 'My Page' : 'Login'}
                         />
                     </NavLink>
                 </li>
@@ -130,5 +138,4 @@ const NavBar = () => {
         </NavWrap>
     );
 };
-
 export default NavBar;

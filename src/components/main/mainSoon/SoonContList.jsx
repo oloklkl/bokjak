@@ -16,13 +16,23 @@ import {
   getMovies,
   getTvShows,
 } from '../../../store/modules/getThunk'
+import soondate from '../../../assets/api/soonDate'
 
 const SoonContList = () => {
   const { movies } = useSelector((state) => state.contentR)
-  // const { movies, tvShows } = useSelector((state) => state.contentR)
   const dispatch = useDispatch()
   const location = useLocation()
+  const soon = movies.slice(0, 6)
 
+  const soonContent = soon.map((content, index) => {
+    const soonDateTime = soondate[index]?.soon_date
+    const age = soondate[index]?.age_rating
+    return {
+      ...content,
+      soon_date: soonDateTime,
+      age_rating: age,
+    }
+  })
   useEffect(() => {
     dispatch(getMovies())
     dispatch(getTvShows())
@@ -45,7 +55,7 @@ const SoonContList = () => {
   return (
     <SoonListContainer>
       <SoonHeader>
-        <h2>title</h2>
+        <h2>💛 곧 공개 예정!</h2>
         <Link>
           <h3>더보기</h3>
         </Link>
@@ -64,20 +74,22 @@ const SoonContList = () => {
               spaceBetween: 24,
             },
           }}>
-          {movies.map((content) => (
-            <SwiperSlide key={content.id}>
-              <Link
-                to={`/movie/${content.id}`}
-                state={{ previousLocation: location }}>
-                <SoonContItem
-                  content={content}
-                  onClick={() => {
-                    showDetailModal('movie', content.id, content.genre_ids)
-                  }}
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
+          {soonContent
+            .filter((content) => content.overview?.trim() !== '')
+            .map((content) => (
+              <SwiperSlide key={content.id}>
+                <Link
+                  to={`/movie/${content.id}`}
+                  state={{ previousLocation: location }}>
+                  <SoonContItem
+                    content={content}
+                    onClick={() => {
+                      showDetailModal('movie', content.id, content.genre_ids[0])
+                    }}
+                  />
+                </Link>
+              </SwiperSlide>
+            ))}
 
           <NavigationButton>
             <IconButton
