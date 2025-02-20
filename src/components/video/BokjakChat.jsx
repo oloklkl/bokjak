@@ -1,9 +1,10 @@
-import { SignOut } from '@phosphor-icons/react';
+import { SignOut, X } from '@phosphor-icons/react';
 import { BokjakChatWrap } from './style';
 import ChatItem from './ChatItem';
 import ChatForm from './ChatForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { videoActions } from '../../store/modules/videoSlice';
+import EmojiFloat from './EmojiFloat';
 
 const BokjakChat = () => {
     const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const BokjakChat = () => {
     const { isChatOpen } = useSelector(
         (state) => state.videoR
     );
+    const { width } = useSelector((state) => state.windowR);
 
     return (
         <BokjakChatWrap
@@ -26,7 +28,7 @@ const BokjakChat = () => {
                     dispatch(videoActions.showChatWindow())
                 }
             >
-                <SignOut size={30} />
+                {width > 1024 ? <SignOut size={30} /> : ''}
             </p>
             <div className="chat-content-wrap">
                 {chatData.map((item) => (
@@ -34,6 +36,7 @@ const BokjakChat = () => {
                 ))}
             </div>
             <ChatForm />
+            <EmojiFloat className="emojifloating" />
         </BokjakChatWrap>
     );
 };

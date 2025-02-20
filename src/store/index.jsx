@@ -11,7 +11,8 @@ import chatR from './modules/chatSlice';
 import tvR from './modules/tvSlice';
 import contentR from './modules/contentSlice';
 import navR from './modules/navSlice';
+import windowR from './modules/windowSlice';
 
 export const store = configureStore({
-    reducer: { authR, categoryR, detailR, filmoR, mainR, videoR, movieR, userR, chatR, tvR, contentR, navR  },
+    reducer: { authR, categoryR, detailR, filmoR, mainR, videoR, movieR, userR, chatR, tvR, contentR, navR, windowR },
 });
