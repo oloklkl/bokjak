@@ -7,11 +7,10 @@ import ProfileSection from '../../components/profile';
 import SubThumbnailCont from '../../components/subpage/subThumbnailCont/SubThumbnailCont';
 import { BarButton } from '../../ui';
 import { MyPageWrap } from './style';
+import { useEffect } from 'react';
 
 const MyPage = () => {
     const dispatch = useDispatch();
-    dispatch(authActions.logout());
-
     const navigate = useNavigate();
     const { movies, tvShows } = useSelector((state) => state.contentR);
 
