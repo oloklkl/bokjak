@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { AboutWrap } from './style';
 import { BarButton } from '../../ui';
+import { CgEnter } from 'react-icons/cg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,18 +30,21 @@ const HomePage = () => {
     const sections = gsap.utils.toArray('.scroll-section');
     sections.forEach((section, i) => {
       const width = section.scrollWidth;
-      gsap.to(section, {
-        x: -width,
-        ease: 'linear',
-        repeat: -1,
-        duration: 10,
-        delay: i, // Each section starts 1 second after the previous
-        modifiers: {
-          x: (x) => gsap.utils.wrap(-width, 0, parseFloat(x)) + 'px',
-        },
-      });
+      gsap.fromTo(
+        section,
+        { x: window.innerWidth },
+        {
+          x: -width,
+          ease: 'linear',
+          repeat: -1,
+          duration: 10,
+          delay: i,
+          modifiers: {
+            x: (x) => gsap.utils.wrap(-width, window.innerWidth, parseFloat(x)) + 'px',
+          },
+        }
+      );
     });
-
     return () => {
       document.body.style.overflowX = '';
     };
@@ -112,6 +116,35 @@ const HomePage = () => {
           >
             이 모든 이야기가 여기에 <br /> 지금 스트리밍 중
           </h1>
+          <BarButton
+            className=""
+            text="구독"
+            width="250px"
+            height="50px"
+            style={{
+              position: 'absolute',
+              top: '400px',
+              left: '10%',
+              zIndex: 3,
+              marginTop: '100px',
+            }}
+            onClick={() => window.open('pages/membership', '_blank')}
+          />
+          <BarButton
+            className=""
+            text="더 알아보기"
+            width="250px"
+            height="50px"
+            style={{
+              position: 'absolute',
+              top: '400px',
+              left: '10%',
+              zIndex: 3,
+              marginTop: '100px',
+              marginLeft: '280px',
+            }}
+            onClick={() => window.open('pages/membership', '_blank')}
+          />
         </div>
       </section>
 
@@ -139,145 +172,127 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* 추가된 이미지 그리드 섹션 */}
-      <section
-        className="scroll-section"
-        style={{
-          display: 'flex',
-          flexWrap: 'nowrap', // 한 줄 유지
-          justifyContent: 'flex-start', // 왼쪽 정렬
-          gap: '15px',
-          overflowX: 'auto', // 가로 스크롤 가능
-          whiteSpace: 'nowrap', // 줄 바꿈 방지
-          width: '100%',
-          boxSizing: 'border-box',
-        }}
-      >
-        {[
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-1.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-10.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-2.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-4.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-3.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-5.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-6.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-8.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-7.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-9.png',
-        ].map((img, index) => (
-          <div
-            key={index}
-            style={{
-              width: '30%', // 크기 증가
+      <section className="scroll-section">
+        <div className="carousel-track">
+          {[
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-1.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-10.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-4.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-2.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-3.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-5.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-6.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-8.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-7.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-9.png',
+          ].map((img, index) => (
+            <div key={index} className="carousel-item" style={{ backgroundImage: `url(${img})` }}></div>
+          ))}
+        </div>
+      </section>
 
-              aspectRatio: '16 / 9',
-              backgroundImage: `url(${img})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              borderRadius: '10px',
-              transition: 'transform 0.3s ease-in-out',
-            }}
-            className="hover:scale-105"
-          ></div>
-        ))}
+      <section className="scroll-section">
+        <div className="carousel-track">
+          {[
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-9.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-6.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-5.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-4.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-3.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-2.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-10.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-8.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-1.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-7.png',
+          ].map((img, index) => (
+            <div key={index} className="carousel-item" style={{ backgroundImage: `url(${img})` }}></div>
+          ))}
+        </div>
       </section>
-      <section
-        className="scroll-section"
-        style={{
-          display: 'flex',
-          flexWrap: 'nowrap', // 한 줄 유지
-          justifyContent: 'flex-start', // 왼쪽 정렬
-          gap: '15px',
-          paddingTop: '10px',
-          overflowX: 'auto', // 가로 스크롤 가능
-          whiteSpace: 'nowrap', // 줄 바꿈 방지
-          width: '100%',
-          boxSizing: 'border-box',
-        }}
-      >
-        {/* 이미지 리스트 */}
-        {[
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-9.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-6.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-5.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-4.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-3.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-2.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-10.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-8.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-1.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-7.png',
-        ].map((img, index) => (
-          <div
-            key={index}
-            style={{
-              width: '30%', // 크기 증가
-              minWidth: '250px', // 최소 크기 증가
-              aspectRatio: '16 / 9',
-              backgroundImage: `url(${img})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              borderRadius: '10px',
-              transition: 'transform 0.3s ease-in-out',
-            }}
-            className="hover:scale-105"
-          ></div>
-        ))}
-      </section>
-      <section
-        className="scroll-section"
-        style={{
-          display: 'flex',
-          flexWrap: 'nowrap', // 한 줄 유지
-          justifyContent: 'flex-start', // 왼쪽 정렬
-          gap: '15px',
-          paddingTop: '10px',
-          overflowX: 'auto', // 가로 스크롤 가능
-          whiteSpace: 'nowrap', // 줄 바꿈 방지
-        }}
-      >
-        {/* 이미지 리스트 */}
-        {[
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-10.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-2.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-3.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-4.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-6.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-4.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-5.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-8.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-9.png',
-          'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-7.png',
-        ].map((img, index) => (
-          <div
-            key={index}
-            style={{
-              width: '30%', // 크기 증가
-              minWidth: '250px', // 최소 크기 증가
-              aspectRatio: '16 / 9',
-              backgroundImage: `url(${img})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              borderRadius: '10px',
-              transition: 'transform 0.3s ease-in-out',
-            }}
-            className="hover:scale-105"
-          ></div>
-        ))}
+
+      <section className="scroll-section">
+        <div className="carousel-track">
+          {[
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-10.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-2.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-3.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-6.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-4.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-4.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-5.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-8.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-9.png',
+            'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-7.png',
+          ].map((img, index) => (
+            <div key={index} className="carousel-item" style={{ backgroundImage: `url(${img})` }}></div>
+          ))}
+        </div>
       </section>
 
       <section>
         <h6
           style={{
             paddingTop: '100px',
+            paddingBottom: '200px',
           }}
         >
           1,200편 이상의 영화 | 20,000편 이상의 에피소드 | 신규 및 단독 콘텐츠
         </h6>
       </section>
 
+      <section
+        style={{
+          backgroundImage:
+            "url('https://github.com/gamtwidodug/bokjak-image/blob/main/images/about/MultiDevice-bg.png?raw=true')", // 여기에 배경 이미지 URL을 입력하세요
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          width: '100vw',
+          height: '800px',
+        }}
+      >
+        <h2
+          className="text-3xl font-semibold"
+          style={{
+            paddingTop: '200px',
+            textAlign: 'center',
+            fontWeight: 'bold',
+            color: 'white', // 배경 이미지와 텍스트 간의 대비를 위해 흰색으로 설정
+          }}
+        >
+          원하는 기기로 다 같이 감상 <br /> 스마트폰, 태블릿, PC, TV까지!
+        </h2>
+
+        <div
+          style={{
+            textAlign: 'center',
+            paddingTop: '20px', // 텍스트와 이미지 간의 간격을 위해 여백 추가
+          }}
+        >
+          <img
+            src="https://github.com/gamtwidodug/bokjak-image/blob/main/images/about/MultiDevice-1.png?raw=true"
+            alt="복작화면"
+            className="max-w-full h-auto"
+            style={{
+              paddingTop: '20px',
+              maxWidth: '50%', // 이미지 크기를 절반으로 줄임
+              height: 'auto',
+            }}
+          />
+        </div>
+      </section>
+
       {/* Floating Animation Section */}
-      <section className="py-12">
+      <section
+        style={{
+          backgroundImage:
+            "url('https://raw.githubusercontent.com/lse-7660/bokjak-image/994d1d21e0b341164f5526ec84337e50dd58c27f/images/about/movevisual_bg.png')",
+          backgroundSize: 'auto',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          paddingBottom: '40%',
+        }}
+      >
         <h2
           style={{
             textAlign: 'center',
@@ -309,13 +324,22 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section>
+      <section
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '100vh', // 화면 높이에 맞춤
+          boxSizing: 'border-box',
+          padding: '20px', // 여백 추가
+        }}
+      >
         <h2
           style={{
             textAlign: 'center',
             fontWeight: 'bold',
-            paddingTop: '300px',
+            paddingTop: '20px', // 여백 변경
           }}
         >
           원하는 멤버십을 선택하세요
@@ -324,7 +348,7 @@ const HomePage = () => {
           style={{
             textAlign: 'center',
             paddingTop: '10px',
-            paddingBottom: '50px',
+            paddingBottom: '30px', // 여백 변경
           }}
         >
           멤버십은 언제나 변경, 취소할 수 있습니다.
@@ -337,6 +361,7 @@ const HomePage = () => {
             borderRadius: '5px',
             width: '100%',
             maxWidth: '800px',
+            margin: '0 auto', // 중앙 정렬
           }}
         >
           <table
@@ -349,29 +374,72 @@ const HomePage = () => {
             <thead>
               <tr>
                 <th
-                  colSpan="2"
+                  colSpan="3" // 세 개의 열을 차지하도록 변경
                   style={{
-                    padding: '20px',
-                    textAlign: 'center',
-                    backgroundColor: '#272727',
+                    padding: '20px 20px 75px',
+                    textAlign: 'center', // 중앙 정렬
+                    backgroundColor: '#1d1d1d',
                     borderBottom: '2px solid #fff',
                     fontWeight: 'bold',
                     fontSize: '1.2em',
                   }}
                 >
-                  베이직
+                  <p
+                    style={{
+                      position: 'relative',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      marginLeft: '35%',
+                    }}
+                  >
+                    베이직
+                    <BarButton
+                      className=""
+                      text="월 9900원"
+                      width="150px"
+                      height="45px"
+                      style={{
+                        position: 'absolute',
+                        top: '40px', // Adjust the top value as needed
+                        left: '25%',
+                        zIndex: 3,
+                      }}
+                      onClick={() => window.open('pages/membership', '_blank')}
+                    />
+                  </p>
                 </th>
                 <th
                   style={{
                     padding: '20px',
                     textAlign: 'center',
-                    backgroundColor: '#272727',
+                    backgroundColor: '#1d1d1d',
                     borderBottom: '2px solid #fff',
                     fontWeight: 'bold',
                     fontSize: '1.2em',
                   }}
                 >
-                  프리미엄
+                  <p
+                    style={{
+                      position: 'relative',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    프리미엄
+                    <BarButton
+                      className=""
+                      text="월 15,000원"
+                      width="150px"
+                      height="45px"
+                      style={{
+                        position: 'absolute',
+                        top: '40px', // Adjust the top value as needed
+                        left: '25%',
+                        zIndex: 3,
+                      }}
+                      onClick={() => window.open('pages/membership', '_blank')}
+                    />
+                  </p>
                 </th>
               </tr>
             </thead>
@@ -383,53 +451,69 @@ const HomePage = () => {
                     textAlign: 'center',
                     borderBottom: '2px solid #333',
                     backgroundColor: '#1d1d1d',
+                    verticalAlign: 'middle', // 중앙 정렬
                   }}
                 >
                   연간 구독료
                 </td>
-
                 <td
+                  colSpan="2" // 두 개의 열을 차지하도록 변경
                   style={{
-                    padding: '15px',
+                    padding: '20px 0px 40px',
                     textAlign: 'center',
                     borderBottom: '2px solid #333',
                     backgroundColor: '#1d1d1d',
+                    verticalAlign: 'middle', // 중앙 정렬
                   }}
                 >
-                  <td
+                  <div
                     style={{
-                      padding: '10px',
+                      padding: '10px 50px 10px',
                       textAlign: 'center',
                       border: '2px solid #fff',
-                      borderRadius: '10px',
+                      borderRadius: '5px',
+                      display: 'inline-block', // 중앙 정렬
                     }}
                   >
                     연 99,000원
-                  </td>
-                  최대 16% 할인된 가격
+                  </div>
+                  <p
+                    style={{
+                      paddingTop: '20px',
+                    }}
+                  >
+                    최대 16% 할인된 가격
+                  </p>
                 </td>
                 <td
                   style={{
-                    padding: '15px',
+                    padding: '20px 0px 40px',
                     textAlign: 'center',
                     borderBottom: '2px solid #333',
                     backgroundColor: '#2e2e2e',
+                    verticalAlign: 'middle', // 중앙 정렬
                   }}
                 >
-                  <td
+                  <div
                     style={{
-                      padding: '10px',
+                      padding: '10px 50px 10px',
                       textAlign: 'center',
                       border: '2px solid #fff',
-                      borderRadius: '10px',
+                      borderRadius: '5px',
+                      display: 'inline-block', // 중앙 정렬
                     }}
                   >
-                    연 15,000원
-                  </td>
-                  최대 16% 할인된 가격
+                    연 150,000원
+                  </div>
+                  <p
+                    style={{
+                      paddingTop: '20px',
+                    }}
+                  >
+                    최대 16% 할인된 가격
+                  </p>
                 </td>
               </tr>
-
               <tr>
                 <td
                   style={{
@@ -442,6 +526,7 @@ const HomePage = () => {
                   오디오
                 </td>
                 <td
+                  colSpan="2" // 두 개의 열을 차지하도록 변경
                   style={{
                     padding: '15px',
                     textAlign: 'center',
@@ -453,7 +538,7 @@ const HomePage = () => {
                 </td>
                 <td
                   style={{
-                    padding: '15px',
+                    padding: '30px 0px 30px',
                     textAlign: 'center',
                     borderBottom: '2px solid #333',
                     backgroundColor: '#2e2e2e',
@@ -474,6 +559,7 @@ const HomePage = () => {
                   영상화질
                 </td>
                 <td
+                  colSpan="2" // 두 개의 열을 차지하도록 변경
                   style={{
                     padding: '15px',
                     textAlign: 'center',
@@ -485,7 +571,7 @@ const HomePage = () => {
                 </td>
                 <td
                   style={{
-                    padding: '15px',
+                    padding: '30px 0px 30px',
                     textAlign: 'center',
                     borderBottom: '2px solid #333',
                     backgroundColor: '#2e2e2e',
@@ -506,6 +592,7 @@ const HomePage = () => {
                   광고
                 </td>
                 <td
+                  colSpan="2" // 두 개의 열을 차지하도록 변경
                   style={{
                     padding: '15px',
                     textAlign: 'center',
@@ -517,7 +604,7 @@ const HomePage = () => {
                 </td>
                 <td
                   style={{
-                    padding: '15px',
+                    padding: '30px 0px 30px',
                     textAlign: 'center',
                     borderBottom: '2px solid #333',
                     backgroundColor: '#2e2e2e',
@@ -537,23 +624,35 @@ const HomePage = () => {
                   콘텐츠 저장
                 </td>
                 <td
+                  colSpan="2" // 두 개의 열을 차지하도록 변경
                   style={{
                     padding: '15px',
                     textAlign: 'center',
                     backgroundColor: '#1d1d1d',
                   }}
                 >
-                  <span>✔</span>
+                  <span
+                    style={{
+                      fontSize: '30px',
+                    }}
+                  >
+                    ✔
+                  </span>
                 </td>
                 <td
                   style={{
-                    padding: '15px',
+                    padding: '25px 0px 25px',
                     textAlign: 'center',
-
                     backgroundColor: '#2e2e2e',
                   }}
                 >
-                  <span>✔</span>
+                  <span
+                    style={{
+                      fontSize: '30px',
+                    }}
+                  >
+                    ✔
+                  </span>
                 </td>
               </tr>
             </tbody>
@@ -563,11 +662,12 @@ const HomePage = () => {
         <h4
           style={{
             textAlign: 'left',
-            paddingTop: '5px',
-            color: 'gray',
+            paddingTop: '10px',
+            color: '#717171',
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'flex-start', // 왼쪽 정렬
             width: '100%',
+            maxWidth: '800px', // 중앙 정렬
           }}
         >
           멤버십 구독이 필요합니다.
