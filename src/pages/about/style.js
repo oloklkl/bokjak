@@ -95,26 +95,27 @@ export const AboutWrap = styled.div`
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
     }
   }
 
   .scroll-section {
     height: 150px;
     overflow: hidden;
-
+    position: relative;
     margin-bottom: 10px;
+    white-space: nowrap;
   }
 
   .carousel-track {
     display: flex;
     gap: 15px;
     position: absolute;
-    left: 0;
+    width: 200%;
     animation: scroll-left 20s linear infinite;
   }
 
-  .carousel-item {
+  .carousel-track .carousel-item {
     width: 250px;
     height: 150px;
     background-size: cover;
@@ -122,7 +123,8 @@ export const AboutWrap = styled.div`
     border-radius: 8px;
     flex-shrink: 0;
   }
-  .hover\\:scale-105:hover {
+
+  .hover\:scale-105:hover {
     transform: scale(1.05);
   }
 `;

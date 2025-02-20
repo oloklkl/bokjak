@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { BarButton } from '../../ui';
 
 const Membership = () => {
@@ -10,14 +11,8 @@ const Membership = () => {
 
       <div>
         {/* 1개월 옵션 */}
-        <div
-          className={`flex items-center justify-between p-4 rounded-lg border cursor-pointer ${
-            selected === '1month' ? 'border-pink-500 bg-pink-900/20' : 'border-gray-700'
-          }`}
-          onClick={() => setSelected('1month')}
-        >
-          <div className="flex items-center gap-2">
-            {selected === '1month' ? <CheckCircle className="text-pink-500" /> : <Circle className="text-gray-500" />}
+        <div>
+          <div>
             <span>1개월</span>
           </div>
           <span className="font-bold">12,900원</span>
@@ -32,15 +27,10 @@ const Membership = () => {
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              {selected === '12months' ? (
-                <CheckCircle className="text-pink-500" />
-              ) : (
-                <Circle className="text-gray-500" />
-              )}
               <span>12개월</span>
-              <span className="bg-pink-500 text-white text-xs px-2 py-1 rounded-md">16% 절약</span>
+              <span>16% 절약</span>
             </div>
-            <span className="font-bold">129,900원</span>
+            <span>129,900원</span>
           </div>
           <span className="text-gray-400 text-sm mt-1">월 10,830원 꼴</span>
         </div>
