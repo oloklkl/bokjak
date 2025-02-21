@@ -144,7 +144,7 @@ const HomePage = () => {
               marginTop: '100px',
               marginLeft: '280px',
             }}
-            onClick={() => (window.location.href = '/membership')}
+            onClick={() => document.getElementById('faqSection')?.scrollIntoView({ behavior: 'smooth' })}
           />
         </div>
       </section>
@@ -680,7 +680,7 @@ const HomePage = () => {
       </section>
 
       {/* FAQ Section */}
-      <section>
+      <section id="faqSection">
         <h2
           style={{
             textAlign: 'center',
