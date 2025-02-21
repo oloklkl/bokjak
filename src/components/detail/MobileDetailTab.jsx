@@ -37,7 +37,7 @@ const MobileDetailTab = () => {
     };
     console.log(isTabActive);
     return (
-        <>
+        <div className="mobile-detail-tab-wrap">
             <MobileDetailTabWrap className="mobile-detail-tab">
                 <div onClick={episodeTab} className={`detail-tab-item ${isTabActive && 'detail-tab-item-active'}`}>
                     <span>에피소드</span>
@@ -50,7 +50,7 @@ const MobileDetailTab = () => {
                 </div>
             </MobileDetailTabWrap>
             {isTabActive ? <EpisodeList /> : <MoreLikeThisList />}
-        </>
+        </div>
     );
 };
 

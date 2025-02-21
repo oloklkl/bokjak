@@ -1,10 +1,7 @@
 // detailSlice.js
 
 import { createSlice } from '@reduxjs/toolkit';
-import {
-    getContentByGenre,
-    getContentDetail,
-} from './getThunk';
+import { getContentByGenre, getContentDetail } from './getThunk';
 // 상세페이지
 
 const initialState = {
@@ -24,6 +21,9 @@ export const detailSlice = createSlice({
     reducers: {
         updateGenre: (state, action) => {
             state.currentGenre = action.payload;
+        },
+        updateCurrentContent: (state, action) => {
+            state.currentContent = action.payload;
         },
         openUrlModal: (state, action) => {
             state.isUrlModalOpen = true;
@@ -58,46 +58,29 @@ export const detailSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(
-                getContentDetail.fulfilled,
-                (state, action) => {
-                    state.loading = false;
-                    state.currentContent = action.payload;
-                    state.currentGenre =
-                        state.currentContent.genres;
-                }
-            )
-            .addCase(
-                getContentDetail.rejected,
-                (state, action) => {
-                    state.loading = false;
-                    state.error = action.error.message;
-                }
-            )
+            .addCase(getContentDetail.fulfilled, (state, action) => {
+                state.loading = false;
+                state.currentContent = action.payload;
+                state.currentGenre = state.currentContent.genres;
+            })
+            .addCase(getContentDetail.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
             .addCase(getContentByGenre.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(
-                getContentByGenre.fulfilled,
-                (state, action) => {
-                    state.loading = false;
-                    state.moreLikeThisData =
-                        action.payload.filter(
-                            (item) =>
-                                item.id !==
-                                    state.currentContent
-                                        .id && item.overview
-                        );
-                }
-            )
-            .addCase(
-                getContentByGenre.rejected,
-                (state, action) => {
-                    state.loading = false;
-                    state.error = action.error.message;
-                }
-            );
+            .addCase(getContentByGenre.fulfilled, (state, action) => {
+                state.loading = false;
+                state.moreLikeThisData = action.payload.filter(
+                    (item) => item.id !== state.currentContent.id && item.overview
+                );
+            })
+            .addCase(getContentByGenre.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            });
     },
 });
 

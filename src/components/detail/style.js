@@ -119,6 +119,14 @@ export const DetailContentWrap = styled.div`
         gap: 60px;
         padding: 20px;
     }
+
+    div {
+        &.mobile-detail-tab-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+    }
 `;
 
 export const DescriptionWrap = styled.div`
@@ -258,6 +266,19 @@ export const DetailSectionWrap = styled.div`
     display: flex;
     flex-direction: column;
     gap: 30px;
+
+    ${media.mobile} {
+        gap: 14px;
+    }
+
+    div {
+        &.morelikethis-wrap-mo {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+        }
+    }
+
     h3 {
         font-size: ${font('heading', 'md')};
         font-weight: 600;
@@ -283,6 +304,10 @@ export const DetailSectionWrap = styled.div`
             background-color: transparent;
             color: ${color('gray', '0')};
             font-size: ${font('body', 'md')};
+
+            ${media.mobile} {
+                margin-bottom: 16px;
+            }
 
             &::before {
                 content: '';
@@ -339,6 +364,14 @@ export const EpisodeItemWrap = styled.div`
     border-radius: 10px;
     transition: all 0.2s ease;
 
+    ${media.mobile} {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding-top: 0;
+        padding-bottom: 14px;
+    }
+
     div {
         &.episode-preview {
             width: 240px;
@@ -347,6 +380,14 @@ export const EpisodeItemWrap = styled.div`
             /* background-color: white; */
             overflow: hidden;
             transition: all 0.2s ease;
+
+            ${media.tablet} {
+                min-width: 210px;
+            }
+            ${media.mobile} {
+                min-width: 134px;
+                width: 134px;
+            }
 
             img {
                 width: 100%;
@@ -368,17 +409,36 @@ export const EpisodeItemWrap = styled.div`
         &.episode-sum {
             display: flex;
             gap: 24px;
+
+            ${media.tablet} {
+                display: grid;
+                gap: 10px;
+                grid-template-columns: 1fr 12fr 4fr;
+            }
+        }
+        &.episode-preview-wrap-mo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
     }
     span {
         &.episode-title {
             font-weight: 600;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
         }
         &.episode-desc {
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 3;
             overflow: hidden;
+        }
+
+        ${media.mobile} {
+            font-size: ${font('body', 'sm')};
         }
     }
 
@@ -387,7 +447,9 @@ export const EpisodeItemWrap = styled.div`
 
         div {
             &.episode-preview {
-                transform: scale(1.05);
+                ${media.desktop} {
+                    transform: scale(1.05);
+                }
             }
         }
     }
@@ -455,6 +517,7 @@ export const DetailModalCom = styled.div`
             border-radius: 7px;
             border: 1px solid ${color('gray', '60')};
             padding: 12px;
+            color: ${color('gray', '0')};
 
             &:focus {
                 outline: none;

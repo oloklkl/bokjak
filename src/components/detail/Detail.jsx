@@ -18,6 +18,7 @@ const Detail = () => {
     const { type } = useParams();
     const { isUrlModalOpen, isCreateOpen, isRoomCreated } = useSelector((state) => state.detailR);
     const { currentContent } = useSelector((state) => state.detailR);
+    const { authed } = useSelector((state) => state.authR);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { width } = useSelector((state) => state.windowR);
@@ -37,9 +38,9 @@ const Detail = () => {
                 <DetailContentWrap className="detail-content">
                     <Description />
                     {width <= 600 && type === 'tv' && <MobileDetailTab />}
-
-                    {type === 'tv' && <EpisodeList />}
-                    <MoreLikeThisList />
+                    {type === 'tv' && width > 600 && <EpisodeList />}
+                    {width > 600 && <MoreLikeThisList />}
+                    {width <= 600 && type === 'movie' && <MoreLikeThisList />}
                 </DetailContentWrap>
             </DetailWrap>
             <Dimmed onClick={goPrevPage} zindex={10} className="dimmed-active" />
