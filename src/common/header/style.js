@@ -136,30 +136,29 @@ export const CategoryDropdown = styled.ul`
     span {
         color: ${color('gray', '30')};
     }
+    li {
+        display: block;
+        padding: 12px 20px;
+
+        button {
+            background: none;
+            display: flex;
+            text-align: left;
+        }
+    }
+    span {
+        font-size: ${font('body', 'md')};
+
+        &:hover {
+            color: ${color('gray', '0')};
+            font-weight: 700;
+        }
+    }
 
     ${media.desktop} {
         flex-wrap: wrap;
         height: 400px;
         padding: 64px 160px;
-
-        li {
-            display: block;
-            padding: 12px 20px;
-
-            button {
-                background: none;
-                display: flex;
-                text-align: left;
-            }
-        }
-        span {
-            font-size: ${font('body', 'md')};
-
-            &:hover {
-                color: ${color('gray', '0')};
-                font-weight: 700;
-            }
-        }
     }
 
     ${media.tablet} {
