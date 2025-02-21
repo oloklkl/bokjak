@@ -7,7 +7,6 @@ import ProfileSection from '../../components/profile';
 import SubThumbnailCont from '../../components/subpage/subThumbnailCont/SubThumbnailCont';
 import { BarButton } from '../../ui';
 import { MyPageWrap } from './style';
-import { useEffect } from 'react';
 
 const MyPage = () => {
     const dispatch = useDispatch();
