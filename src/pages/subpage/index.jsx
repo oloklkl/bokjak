@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import BottomNavigation from '../../common/bottomnavigation';
-import { Intro, TopCont } from '../../components';
-import { VisualWrap } from '../main/style';
+import { TopCont } from '../../components';
 import { ButtonWrap, CategoryWrap, ContentWrap, SubWrap } from './style';
 import { useSelector } from 'react-redux';
 import SubThumbnailCont from '../../components/subpage/subThumbnailCont/SubThumbnailCont';
