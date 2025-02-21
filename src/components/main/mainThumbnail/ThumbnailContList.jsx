@@ -63,15 +63,6 @@ const ThumbnailContList = ({
         tempContent = shuffleArray(tempContent)
       }
 
-      const MIN_ITEMS = 1 // 최소 12개 유지
-
-      let thumnail = filteredContent.slice(0, MIN_ITEMS)
-
-      // 데이터가 12개보다 부족하면 반복해서 채우기
-      while (thumnail.length < MIN_ITEMS && filteredContent.length > 0) {
-        thumnail = [...thumnail, ...filteredContent].slice(0, MIN_ITEMS)
-      }
-
       setFilteredContent(tempContent)
       setIsLoading(false) // ✅ 로딩 완료 후 UI 업데이트
     }
