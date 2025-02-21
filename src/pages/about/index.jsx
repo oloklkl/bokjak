@@ -144,7 +144,7 @@ const HomePage = () => {
               marginTop: '100px',
               marginLeft: '280px',
             }}
-            onClick={() => document.getElementById('faqSection')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => window.scrollTo(0, document.getElementById('faqSection').offsetTop - 50)}
           />
         </div>
       </section>
