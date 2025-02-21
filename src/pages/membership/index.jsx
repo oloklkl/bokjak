@@ -82,7 +82,7 @@ const Membership = () => {
               icon={isBasicChecked ? faCheckSquare : faSquare}
               style={{ marginRight: '10px', color: getCheckboxColor('basic') }}
             />
-            베이직(월)
+            베이직
           </span>
           <span>9,900원</span>
         </div>
