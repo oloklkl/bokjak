@@ -8,7 +8,7 @@
         "build": "vite build",
         "lint": "eslint .",
         "preview": "vite preview",
-        "install-go": "curl -O https://dl.google.com/go/go1.19.linux-amd64.tar.gz && tar -xzf go1.19.linux-amd64.tar.gz && sudo mv go /usr/local"
+        "install-go": "go@1.19"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.7.2",
