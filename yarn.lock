@@ -2043,7 +2043,7 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prop-types@^15.5.8, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -2084,18 +2084,6 @@ react-helmet-async@^2.0.5:
     react-fast-compare "^3.2.2"
     shallowequal "^1.1.0"
 
-react-icons@^5.4.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-5.5.0.tgz#8aa25d3543ff84231685d3331164c00299cdfaf2"
-  integrity sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==
-
-react-ios-time-picker@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/react-ios-time-picker/-/react-ios-time-picker-0.2.2.tgz#4c528736649147e5fb72e47f0469950ee39680f3"
-  integrity sha512-bi+K23lK6Pf2xDXmhAlz+RJuy9/onWYi7Ye+ODVhIkis9AVFECOza2ckkZl/4vUypj2+TdTsHn+VZrTNdGIwDQ==
-  dependencies:
-    react-portal "^4.2.2"
-
 react-is@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -2111,13 +2099,6 @@ react-player@^2.16.0:
     memoize-one "^5.1.1"
     prop-types "^15.7.2"
     react-fast-compare "^3.0.1"
-
-react-portal@^4.2.2:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/react-portal/-/react-portal-4.3.0.tgz#92ca3492b1309883134f317a6aa88004534c860f"
-  integrity sha512-qs/2uKq1ifB3J1+K8ExfgUvCDZqlqCkfOEhqTELEDTfosloKiuzOzc7hl7IQ/7nohiFZD41BUYU0boAsIsGYHw==
-  dependencies:
-    prop-types "^15.5.8"
 
 react-redux@^9.2.0:
   version "9.2.0"
