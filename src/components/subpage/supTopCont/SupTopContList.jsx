@@ -1,31 +1,46 @@
-import TopContItem from './SupTopContItem';
 import { IconButton } from '../../../ui';
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
-import { useEffect, useRef } from 'react';
-import { getContentByGenre, getContentDetail, getTrending } from '../../../store/modules/getThunk';
+import { useEffect, useRef, useState } from 'react';
+import {
+    getContentByGenre,
+    getContentDetail,
+    getMovies,
+    getTrending,
+    getTvShows,
+} from '../../../store/modules/getThunk';
 import { useDispatch, useSelector } from 'react-redux';
-import { TopListWrap } from './style';
-import { NavigationButton } from '../style';
+import { NavigationButton, TopListWrap } from './style';
 import { Link, useLocation } from 'react-router-dom';
 import topData from '../../../assets/api/topData';
 import SupTopContItem from './SupTopContItem';
 
 const SupTopContList = () => {
-    const { trending } = useSelector((state) => state.contentR);
+    const { trending, movies, tvShows } = useSelector((state) => state.contentR);
     const dispatch = useDispatch();
     const location = useLocation();
     const trendTop = trending.slice(0, 10);
+    const [currentData, setCurrentData] = useState(trendTop);
 
     useEffect(() => {
-        dispatch(getTrending());
-    }, []);
+        if (location.pathname.includes('/movie')) {
+            dispatch(getMovies());
+            setCurrentData(movies.slice(0, 10));
+        } else if (location.pathname.includes('/series')) {
+            dispatch(getTvShows());
+            setCurrentData(tvShows.slice(0, 10));
+        } else {
+            dispatch(getTrending());
+            setCurrentData(trendTop);
+        }
+    }, [dispatch, location.pathname, movies, tvShows, trendTop]);
+
     const getTitle = () => {
         if (location.pathname.includes('/movie')) return '🎬 이번주 영화 TOP 10';
-        if (location.pathname.includes('/drama')) return '📺 이번주 시리즈 TOP 10';
+        if (location.pathname.includes('/series')) return '📺 이번주 시리즈 TOP 10';
         return '🔥 이번주 인기작 TOP 10';
     };
 
@@ -55,7 +70,7 @@ const SupTopContList = () => {
                         1024: { slidesPerView: 5, slidesPerGroup: 5, spaceBetween: 24 },
                     }}
                 >
-                    {trendTop.map((content, index) => (
+                    {currentData.map((content, index) => (
                         <SwiperSlide key={content.id}>
                             <Link to={`/trending/${content.id}`} state={{ previousLocation: location }}>
                                 <SupTopContItem
