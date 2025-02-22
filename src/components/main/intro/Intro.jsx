@@ -1,4 +1,4 @@
-import IntroList from './introList';
+import IntroList from './IntroList';
 import { IntroSection } from './style';
 
 const Intro = () => {
