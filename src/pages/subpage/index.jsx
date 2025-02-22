@@ -1,10 +1,10 @@
 import { useLocation } from 'react-router-dom';
 import BottomNavigation from '../../common/bottomnavigation';
-import { TopCont } from '../../components';
 import { ButtonWrap, CategoryWrap, ContentWrap, SubWrap } from './style';
 import { useSelector } from 'react-redux';
 import SubThumbnailCont from '../../components/subpage/subThumbnailCont/SubThumbnailCont';
 import CategorySlider from '../../components/subpage/categorySlider/CategorySlider';
+import SupTopCont from '../../components/subpage/supTopCont/SupTopCont';
 
 const SubPage = () => {
     const location = useLocation();
@@ -76,7 +76,7 @@ const SubPage = () => {
             </div>
 
             <ContentWrap>
-                <TopCont />
+                <SupTopCont />
                 <div className='inner'>
                     {['movie', 'series'].includes(currentCategory) ? (
                         titles[currentCategory].map((title, index) => (
