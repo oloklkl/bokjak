@@ -1,4 +1,4 @@
-export { default as IconButton } from './IconButton';
+export { default as IconButton } from './iconButton';
 export { default as BarButton } from './BarButton';
 export { default as CategoryButton } from './CategoryButton';
 export { default as RecentSearchButton } from './RecentSearchButton';
