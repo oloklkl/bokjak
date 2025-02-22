@@ -8,11 +8,6 @@ export const SubWrap = styled.div`
     }
 `;
 
-export const VisualWrap = styled.section`
-    position: relative;
-    width: 100%;
-    height: 100%;
-`;
 export const CategoryWrap = styled.div`
     width: 100%;
     height: 100%;
