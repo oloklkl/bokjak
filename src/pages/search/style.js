@@ -29,7 +29,7 @@ export const SearchBar = styled.div`
             border: none;
             background: ${color('gray', '90')};
             border-bottom: 2px solid ${color('gray', '0')};
-            font-size: 28px;
+            font-size: ${font('title', 'exlg')};
         }
 
         ${media.tablet} {
@@ -59,7 +59,7 @@ export const SearchBar = styled.div`
 
 export const Nav = styled.nav`
     h2 {
-        font-size: ${font('title', 'xlg')};
+        font-size: ${font('title', 'exlg')};
         font-weight: 700;
         margin-bottom: 24px;
 
@@ -90,7 +90,7 @@ export const RecentKeywords = styled.div`
     flex-wrap: wrap;
     gap: 20px;
     justify-content: flex-start;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
 `;
 
 /* 검색 결과 시작*/
@@ -102,11 +102,12 @@ export const SearchResults = styled.div`
     h2 {
         font-weight: 700;
         margin-bottom: 24px;
+        font-size: ${font('title', 'exlg')};
 
-        ${media.desktop} {
+        ${media.tablet} {
             font-size: ${font('title', 'xlg')};
         }
-        ${media.tablet} {
+        ${media.mobile} {
             font-size: ${font('title', 'md')};
         }
     }
@@ -117,15 +118,27 @@ export const SearchResultsContainer = styled.div`
     height: auto;
     display: flex;
     justify-content: flex-start;
-    padding: 80px 0 40px;
+    padding: 40px 0 40px;
     gap: 40px;
 
     ${media.tablet} {
-        padding: 60px 0 30px;
+        padding: 30px 0 30px;
     }
     ${media.mobile} {
         gap: 20px;
-        padding: 40px 0 20px;
+        padding: 20px 0 20px;
+    }
+
+    p {
+        font-size: ${font('title', 'lg')};
+        color: ${color('gray', '30')};
+
+        ${media.tablet} {
+            font-size: ${font('body', 'md')};
+        }
+        ${media.mobile} {
+            font-size: ${font('body', 'sm')};
+        }
     }
 `;
 
@@ -149,13 +162,14 @@ export const SearchResultList = styled.div`
 /* 인기 검색어 시작*/
 export const Section = styled.div`
     h2 {
+        font-size: ${font('title', 'exlg')};
         font-weight: 700;
         margin-bottom: 24px;
 
-        ${media.desktop} {
+        ${media.tablet} {
             font-size: ${font('title', 'xlg')};
         }
-        ${media.tablet} {
+        ${media.mobile} {
             font-size: ${font('title', 'md')};
         }
     }
@@ -172,6 +186,7 @@ export const PopularListContainer = styled.div`
     h2 {
         font-weight: 700;
         margin-bottom: 24px;
+        font-size: ${font('title', 'exlg')};
 
         ${media.desktop} {
             font-size: ${font('title', 'xlg')};
