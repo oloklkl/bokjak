@@ -188,7 +188,6 @@ export const LinkContainer = styled.div`
     cursor: pointer;
 
     span {
-        margin-top: 10px;
         color: ${color('gray', '40')};
         font-size: ${font('detail', 'md')};
 
