@@ -71,6 +71,18 @@ export const Nav = styled.nav`
     ${media.mobile} {
         display: none;
     }
+
+    P {
+        margin-bottom: 50px;
+        color: ${color('gray', '30')};
+
+        ${media.desktop} {
+            font-size: ${font('title', 'lg')};
+        }
+        ${media.tablet} {
+            font-size: ${font('body', 'md')};
+        }
+    }
 `;
 
 export const RecentKeywords = styled.div`

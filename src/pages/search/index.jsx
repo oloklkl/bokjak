@@ -2,27 +2,27 @@ import { MagnifyingGlass } from '@phosphor-icons/react';
 import { IconButton, RecentSearchButton } from '../../ui';
 import { Container, Nav, PopularList, PopularListContainer, RecentKeywords, SearchBar, Section } from './style';
 import BottomNavigation from '../../common/bottomnavigation';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const Search = () => {
     const { movies, tvShows } = useSelector((state) => state.contentR);
+    const isAuthed = useSelector((state) => state.authR.authed);
 
     const [recentSearches, setRecentSearches] = useState([
-        '또 오해영',
-        '나 혼자 산다',
+        '무파사: 라이온 킹',
+        '모아나2',
         '런닝맨',
         '위키드',
-        '너의 이름은',
-        '환승연애',
+        '판다 플랜',
+        '수퍼 소닉3',
     ]);
 
-    const handleRemove = (searchText) => {
-        setRecentSearches(recentSearches.filter((text) => text !== searchText));
-    };
+    const handleRemove = useCallback((searchText) => {
+        setRecentSearches((prevSearches) => prevSearches.filter((text) => text !== searchText));
+    }, []);
 
     const combinedPopularItems = [...movies, ...tvShows];
-
     const firstHalf = combinedPopularItems.slice(0, 5);
     const secondHalf = combinedPopularItems.slice(5, 10);
 
@@ -42,11 +42,15 @@ const Search = () => {
 
                 <Nav aria-label='최근 검색어'>
                     <h2>최근 검색어</h2>
-                    <RecentKeywords>
-                        {recentSearches.map((text) => (
-                            <RecentSearchButton key={text} text={text} onRemove={handleRemove} />
-                        ))}
-                    </RecentKeywords>
+                    {isAuthed ? (
+                        <RecentKeywords>
+                            {recentSearches.map((text) => (
+                                <RecentSearchButton key={text} text={text} onRemove={handleRemove} />
+                            ))}
+                        </RecentKeywords>
+                    ) : (
+                        <p>로그인을 해주세요.</p>
+                    )}
                 </Nav>
 
                 <Section aria-labelledby='popular-searches'>
