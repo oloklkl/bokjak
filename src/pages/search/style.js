@@ -93,6 +93,60 @@ export const RecentKeywords = styled.div`
     margin-bottom: 100px;
 `;
 
+/* 검색 결과 시작*/
+export const SearchResults = styled.div`
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+
+    h2 {
+        font-weight: 700;
+        margin-bottom: 24px;
+
+        ${media.desktop} {
+            font-size: ${font('title', 'xlg')};
+        }
+        ${media.tablet} {
+            font-size: ${font('title', 'md')};
+        }
+    }
+`;
+
+export const SearchResultsContainer = styled.div`
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    padding: 80px 0 40px;
+    gap: 40px;
+
+    ${media.tablet} {
+        padding: 60px 0 30px;
+    }
+    ${media.mobile} {
+        gap: 20px;
+        padding: 40px 0 20px;
+    }
+`;
+
+export const SearchResultList = styled.div`
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    position: relative;
+
+    li {
+        display: block;
+        width: 100%;
+        max-width: 250px;
+        margin-bottom: 16px;
+        padding: 0 16px;
+    }
+`;
+
+/* 검색 결과 끝*/
+
+/* 인기 검색어 시작*/
 export const Section = styled.div`
     h2 {
         font-weight: 700;
@@ -113,6 +167,18 @@ export const PopularListContainer = styled.div`
 
     ${media.mobile} {
         flex-direction: column;
+    }
+
+    h2 {
+        font-weight: 700;
+        margin-bottom: 24px;
+
+        ${media.desktop} {
+            font-size: ${font('title', 'xlg')};
+        }
+        ${media.tablet} {
+            font-size: ${font('title', 'md')};
+        }
     }
 `;
 
@@ -161,3 +227,4 @@ export const PopularList = styled.ol`
         text-align: center;
     }
 `;
+/* 인기 검색어 끝*/
