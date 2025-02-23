@@ -2,7 +2,6 @@ export { default as NotFiles } from './notfile';
 export { default as Main } from './main';
 export { default as About } from './about';
 export { default as Login } from './login/login';
-export { default as BokjakLogin } from './login/bokjaklogin';
 export { default as Join } from './login/join';
 export { default as Video } from './video';
 export { default as Membership } from './membership';
