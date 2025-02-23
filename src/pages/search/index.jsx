@@ -3,20 +3,10 @@ import { IconButton, RecentSearchButton } from '../../ui';
 import { Container, Nav, PopularList, PopularListContainer, RecentKeywords, SearchBar, Section } from './style';
 import BottomNavigation from '../../common/bottomnavigation';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const Search = () => {
-    const popularSearches = [
-        '이혼숙려캠프',
-        '원경',
-        '명탐정 코난 2025(자막)',
-        '짱구는 못말려 24',
-        '놀라운 토요일',
-        '스터디그룹',
-        '나 혼자 산다',
-        '선재 업고 튀어',
-        '유 퀴즈 온 더 블럭',
-        '커플팰리스',
-    ];
+    const { movies, tvShows } = useSelector((state) => state.contentR);
 
     const [recentSearches, setRecentSearches] = useState([
         '또 오해영',
@@ -27,12 +17,14 @@ const Search = () => {
         '환승연애',
     ]);
 
-    const firstHalf = popularSearches.slice(0, 5);
-    const secondHalf = popularSearches.slice(5);
-
     const handleRemove = (searchText) => {
         setRecentSearches(recentSearches.filter((text) => text !== searchText));
     };
+
+    const combinedPopularItems = [...movies, ...tvShows];
+
+    const firstHalf = combinedPopularItems.slice(0, 5);
+    const secondHalf = combinedPopularItems.slice(5, 10);
 
     return (
         <Container>
@@ -60,23 +52,21 @@ const Search = () => {
                 <Section aria-labelledby='popular-searches'>
                     <h2 id='popular-searches'>실시간 인기 검색어</h2>
 
-                    {/* 왼쪽 정렬 */}
                     <PopularListContainer>
                         <PopularList as='ol'>
                             {firstHalf.map((item, index) => (
                                 <li key={index} className='left'>
                                     <span>{index + 1}</span>
-                                    {item}
+                                    {item.title}
                                 </li>
                             ))}
                         </PopularList>
 
-                        {/* 오른쪽 정렬 */}
                         <PopularList as='ol'>
                             {secondHalf.map((item, index) => (
                                 <li key={index} className='right'>
                                     <span>{index + 6}</span>
-                                    {item}
+                                    {item.title}
                                 </li>
                             ))}
                         </PopularList>
