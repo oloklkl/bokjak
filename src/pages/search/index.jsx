@@ -33,11 +33,14 @@ const Search = () => {
         const query = event.target.value;
         setSearchQuery(query);
 
+        const queryWithoutSpaces = query.replace(/\s+/g, '').toLowerCase();
+
         if (query.trim()) {
             const combinedItems = [...movies, ...tvShows];
             const filtered = combinedItems.filter((item) => {
                 const title = item?.title || item?.name || '';
-                return title.toLowerCase().includes(query.toLowerCase());
+                const titleWithoutSpaces = title.replace(/\s+/g, '').toLowerCase(); // 제목에서도 공백을 제거
+                return titleWithoutSpaces.includes(queryWithoutSpaces);
             });
             setFilteredResults(filtered);
         } else {
