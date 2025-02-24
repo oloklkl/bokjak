@@ -1,22 +1,18 @@
 import { FlipBackItemCont, ImageCont } from './style'
 
 const FlipBackContItem = ({ content, ...props }) => {
-  const bgurl = `https://image.tmdb.org/t/p/original`
-  const title = content.title
+  const imageUrl = content.imageUrl || ''
 
   return (
     <FlipBackItemCont {...props}>
       <ImageCont>
-        {[
-          content.backdrop_path,
-          content.poster_path,
-          content.backdrop_path,
-          content.backdrop_path,
-          content.backdrop_path,
-        ].map((path, index) => (
-          <img key={index} src={`${bgurl}${path}`} alt={title} />
-        ))}
+        <img src={imageUrl} alt="title" />
       </ImageCont>
+      {/* {flipped && (
+        <div className="flip-card-back">
+          <p>여기에는 뒷면 내용이 들어갑니다.</p>
+        </div>
+      )} */}
     </FlipBackItemCont>
   )
 }

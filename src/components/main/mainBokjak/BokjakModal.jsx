@@ -4,20 +4,10 @@ import Dimmed from '../../../ui/Dimmed'
 import BookMarkLabel from '../../../ui/BookMarkLabel'
 import { BokjakDetailCont, BokjakModalCont } from './style'
 import genres from '../../../assets/api/genreData'
-import { detailActions } from '../../../store/modules/detailSlice'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 
 const BokjakModal = ({ content, closeModal }) => {
-  const dispatch = useDispatch()
-  const Navigate = useNavigate()
   const [isTimeToEnter, setIsTimeToEnter] = useState(false)
-
-  const goPrevPage = () => {
-    Navigate(-1)
-    dispatch(detailActions.clearCurrentData())
-  }
 
   const bgurl = `https://image.tmdb.org/t/p/original`
   const title = content.title
@@ -62,7 +52,7 @@ const BokjakModal = ({ content, closeModal }) => {
 
   return (
     <BokjakModalCont>
-      <Dimmed onClick={goPrevPage} zindex={11} className="dimmed-active">
+      <Dimmed zindex={11} className="dimmed-active">
         <BokjakDetailCont>
           <div className="detailTop">
             <div className="titleTxt">

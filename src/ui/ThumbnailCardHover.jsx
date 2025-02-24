@@ -6,10 +6,6 @@ import styled from 'styled-components'
 import { color, font } from '../styled/theme'
 import { media } from '../styled/media'
 import genres from '../assets/api/genreData'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react'
-import { authActions } from '../store/modules/authSlice'
 
 export const HoverItemWrap = styled.div`
   ${media.tablet} {
@@ -130,14 +126,11 @@ export const HoverItemWrap = styled.div`
 `
 
 const ThumbnailCardHover = ({ content }) => {
-  // const handleLogoClick = () => {
-  //   // 로고 클릭 시 해당 상세 페이지로 이동
-  //   window.location.href = `/detail/${content.id}` // 예시로 id를 URL에 포함시킴
-  // }
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { type, id } = useParams()
-  const { authed } = useSelector((state) => state.authR)
+  const handleLogoClick = () => {
+    // 로고 클릭 시 해당 상세 페이지로 이동
+    window.location.href = `/detail/${content.id}` // 예시로 id를 URL에 포함시킴
+  }
+
   const bgurl = `https://image.tmdb.org/t/p/original`
   const logoUrl = content?.logoImage
     ? `https://image.tmdb.org/t/p/original${content.logoImage}`
@@ -154,37 +147,15 @@ const ThumbnailCardHover = ({ content }) => {
       })
       .filter(Boolean) // null, undefined 제거
       .join(' · ') || '장르 없음'
-  const [isLiked, setIsLiked] = useState(false)
-  const [isBookmarked, setIsBookmarked] = useState(false)
 
-  const onImgClick = () => {
-    if (!authed) {
-      navigate('/login')
-    } else {
-      navigate('/video')
-    }
-  }
-  const onLikeBtnClick = () => {
-    if (!authed) {
-      navigate('/login')
-    } else {
-      setIsLiked(!isLiked)
-      dispatch(authActions.setLiked({ type, id }))
-    }
-  }
-  const onBookmarkBtnClick = () => {
-    if (!authed) {
-      navigate('/login')
-    } else {
-      setIsBookmarked(!isBookmarked)
-    }
-  }
   return (
     <HoverItemWrap className="cardHover">
-      <div className="imgCont" onClick={onImgClick}>
+      <div className="imgCont">
         <img src={`${bgurl}${content.backdrop_path}`} alt={title} />
         <div className="topCont">
-          <img src={logoUrl} alt={title} />
+          {logoUrl && (
+            <img src={logoUrl} alt={title} onClick={handleLogoClick} />
+          )}
         </div>
       </div>
       <div className="textCont">
@@ -194,33 +165,19 @@ const ThumbnailCardHover = ({ content }) => {
               className="play"
               text="재생하기"
               width="100px"
-              height="42px">
-              <Link to={authed ? '/video' : '/login'} />
-            </BarButton>
+              height="42px"
+            />
             <IconButton
-              icon={
-                authed && isBookmarked ? (
-                  <BookmarkSimple weight="fill" />
-                ) : (
-                  <BookmarkSimple />
-                )
-              }
+              icon={<BookmarkSimple size={24} />}
               text="BookmarkSimple"
-              onClick={onBookmarkBtnClick}
             />
-            <IconButton
-              icon={authed && isLiked ? <Heart weight="fill" /> : <Heart />}
-              text="Heart"
-              onClick={onLikeBtnClick}
-            />
+            <IconButton icon={<Heart size={24} />} text="Heart" />
           </div>
-          <Link to={authed ? '/detail' : '/login'}>
-            <IconButton
-              className="info"
-              icon="https://raw.githubusercontent.com/lse-7660/bokjak-image/50a46ba90da58313ac29280fc31efeb7885fba5c/images/common/bokjak-icon-info.svg"
-              text="info"
-            />
-          </Link>
+          <IconButton
+            className="info"
+            icon="https://raw.githubusercontent.com/lse-7660/bokjak-image/50a46ba90da58313ac29280fc31efeb7885fba5c/images/common/bokjak-icon-info.svg"
+            text="info"
+          />
         </div>
         <div className="textarea">
           <h2>{title}</h2>

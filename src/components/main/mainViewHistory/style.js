@@ -25,6 +25,7 @@ export const ViewHistoryContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  /* overflow-x: hidden; */
   ${media.tablet} {
     gap: 30px;
   }

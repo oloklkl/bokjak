@@ -54,7 +54,6 @@ export const FlipBackList = styled.div`
   flex-direction: row;
   overflow: hidden;
   position: relative;
-
   .swiper {
     width: 100%;
     overflow: hidden;
@@ -74,8 +73,10 @@ export const FlipBackItemCont = styled.div`
   overflow: hidden;
   border-radius: 7px;
   width: 100%;
-  aspect-ratio: 2 / 3;
+  /* height: 100%; */
+  aspect-ratio: 2 / 3.5;
 `
+
 export const ImageCont = styled.div`
   position: relative;
   width: 100%;
@@ -89,9 +90,14 @@ export const ImageCont = styled.div`
     object-fit: cover;
     background: ${color('gray', '80')};
     display: block;
+    transition: transform 0.3s ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+    }
 
     ${media.mobile} {
       border-radius: 5px;
     }
+    transition: transform 0.6s ease;
   }
 `

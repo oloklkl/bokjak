@@ -21,78 +21,57 @@ import './style.css'
 const ThumbnailContList = ({
   title,
   targetGenreId = null,
-  isRandom = false,
+  typeFilter = null,
 }) => {
   const { movies, tvShows, trending } = useSelector((state) => state.contentR)
-  const { currentContent } = useSelector((state) => state.detailR)
+  // const { currentContent } = useSelector((state) => state.detailR)
   const dispatch = useDispatch()
   const location = useLocation()
 
   const [filteredContent, setFilteredContent] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [isFirstLoad, setIsFirstLoad] = useState(true)
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth) // 화면 크기 업데이트
-    }
+  // const [isFirstLoad, setIsFirstLoad] = useState(true)
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setWindowWidth(window.innerWidth) // 화면 크기 업데이트
+  //   }
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize) // 컴포넌트가 언마운트 될 때 이벤트 리스너 제거
-  }, [])
+  //   window.addEventListener('resize', handleResize)
+  //   return () => window.removeEventListener('resize', handleResize) // 컴포넌트가 언마운트 될 때 이벤트 리스너 제거
+  // }, [])
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)
 
-      const combinedContent = [
-        ...movies.map((item) => ({ ...item, type: 'movie' })),
-        ...tvShows.map((item) => ({ ...item, type: 'tv' })),
-        ...trending.map((item) => ({ ...item, type: 'trend' })),
-      ]
+      let combinedContent = []
 
-      let tempContent = combinedContent
+      if (typeFilter === 'movie') {
+        combinedContent = movies.map((item) => ({ ...item, type: 'movie' }))
+      } else if (typeFilter === 'tv') {
+        combinedContent = tvShows.map((item) => ({ ...item, type: 'tv' }))
+      } else {
+        combinedContent = [
+          ...movies.map((item) => ({ ...item, type: 'movie' })),
+          ...tvShows.map((item) => ({ ...item, type: 'tv' })),
+          ...trending.map((item) => ({ ...item, type: 'trend' })),
+        ]
+      }
 
       // 장르 필터링 적용
       if (targetGenreId) {
-        tempContent = tempContent.filter((content) =>
+        combinedContent = combinedContent.filter((content) =>
           content.genre_ids.includes(targetGenreId)
         )
       }
 
-      // 랜덤화 처리 (첫 번째 로딩 시에만)
-      if (isRandom && isFirstLoad) {
-        const shuffleArray = (array) => {
-          const shuffled = [...array]
-          for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1))
-            ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-          }
-          return shuffled
-        }
-        tempContent = shuffleArray(tempContent)
-        setIsFirstLoad(false) // 랜덤화 후 첫 로딩 상태 변경
-      }
-
-      // currentContent가 있을 경우 이를 추가
-      if (currentContent) {
-        tempContent = [currentContent, ...tempContent]
-      }
-      const MIN_ITEMS = 1 // 최소 12개 유지
-
-      let thumnail = filteredContent.slice(0, MIN_ITEMS)
-
-      // 데이터가 12개보다 부족하면 반복해서 채우기
-      while (thumnail.length < MIN_ITEMS && filteredContent.length > 0) {
-        thumnail = [...thumnail, ...filteredContent].slice(0, MIN_ITEMS)
-      }
-
-      setFilteredContent(tempContent)
-      setIsLoading(false) // ✅ 로딩 완료 후 UI 업데이트
+      setFilteredContent(combinedContent)
+      setIsLoading(false)
     }
 
     fetchData()
-  }, [movies, tvShows, targetGenreId, isRandom, currentContent])
+  }, [movies, tvShows, trending, targetGenreId, typeFilter])
 
   useEffect(() => {
     dispatch(getMovies())
@@ -154,13 +133,15 @@ const ThumbnailContList = ({
               },
             }}>
             {filteredContent
-              .filter(
-                (content) =>
-                  !!content.logoImage &&
-                  content.logoImage.trim() !== '' &&
-                  !!content.overview &&
-                  content.overview.trim() !== ''
+              .filter((content) =>
+                content.type === 'movie' || content.type === 'trend'
+                  ? !!content.logoImage &&
+                    content.logoImage.trim() !== '' &&
+                    !!content.overview &&
+                    content.overview.trim() !== ''
+                  : !!content.overview && content.overview.trim() !== ''
               )
+
               .map((content) => (
                 <SwiperSlide
                   className="swiper-slide"
@@ -172,13 +153,11 @@ const ThumbnailContList = ({
                       content={content}
                       onClick={() => {
                         // 데스크탑이 아닐 때만 모달을 여는 함수 호출
-                        if (windowWidth <= 1024) {
-                          showDetailModal(
-                            content.type,
-                            content.id,
-                            content.genre_ids
-                          )
-                        }
+                        showDetailModal(
+                          content.type,
+                          content.id,
+                          content.genre_ids
+                        )
                       }}
                     />
                   </Link>
