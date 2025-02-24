@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { detailActions } from '../../store/modules/detailSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import UtilButtonWrap from './UtilButtonWrap';
+import ReactPlayer from 'react-player';
 
 const DetailPreview = () => {
     const { currentContent } = useSelector(
@@ -29,17 +30,28 @@ const DetailPreview = () => {
     return (
         <DetailPreviewWrap className="detail-preview">
             {currentContent.videos.results[0] ? (
-                <iframe
-                    id="player"
-                    type="text/html"
-                    width="640"
-                    height="390"
-                    src={
+                // <iframe
+                //     id="player"
+                //     type="text/html"
+                //     width="640"
+                //     height="390"
+                //     src={
+                //         currentContent.videos.results[0] &&
+                //         `http://www.youtube.com/embed/${currentContent.videos.results[0].key}?autoplay=1&mute=1&controls=0&enablejsapi=1&loop=1&playlist=${currentContent.videos.results[0].key}`
+                //     }
+                //     allow="autoplay"
+                // ></iframe>
+                <ReactPlayer
+                    url={
                         currentContent.videos.results[0] &&
-                        `http://www.youtube.com/embed/${currentContent.videos.results[0].key}?autoplay=1&mute=1&controls=0&enablejsapi=1&loop=1&playlist=${currentContent.videos.results[0].key}`
+                        `https://www.youtube.com/watch?v=${currentContent.videos.results[0].key}`
                     }
-                    allow="autoplay"
-                ></iframe>
+                    playing={true}
+                    muted={true}
+                    controls={false}
+                    width="100%"
+                    height="100%"
+                />
             ) : (
                 <img
                     src={`${bgurl}${currentContent.backdrop_path}`}
