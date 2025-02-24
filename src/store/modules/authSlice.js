@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { useEffect } from 'react';
 // 로그인, 로그아웃
 const initialState = {
     joinData: JSON.parse(localStorage.getItem('joinData')) || [
@@ -48,25 +49,26 @@ export const authSlice = createSlice({
             localStorage.setItem('joinData', JSON.stringify(state.joinData));
         },
         setLiked: (state, action) => {
-            //local storage의 user에 데이터 저장 후 joinData에 업로드 하는 방식으로 바꾸기
-            // likedContent에 데이터가 있는 경우, user 데이터에 포함 유무 조건 넣어 fill : ''
             const newLike = action.payload;
-            state.joinData = state.joinData.map((user) => {
-                if (user.id === state.user.id) {
-                    const isLiked = user.likedContent.includes(newLike);
-                    return {
-                        ...user,
-                        likedContent: isLiked
-                            ? user.likedContent.filter((item) => item.id !== newLike.id)
-                            : [...user.likedContent, newLike],
-                    };
-                }
-            });
-            JSON.parse(localStorage.getItem('user'));
+
+            const index = state.user.likedContent.findIndex((item) => item.id === newLike.id);
+
+            if (index !== -1) {
+                state.user.likedContent.splice(index, 1);
+            } else {
+                state.user.likedContent.push(newLike);
+            }
         },
         setBookmarked: (state, action) => {
             const newBookmark = action.payload;
-            state.joinData.bookmarkedContent = [...state.joinData.bookmarkedContent, ...newBookmark];
+
+            const index = state.user.bookmarkedContent.findIndex((item) => item.id === newBookmark.id);
+
+            if (index !== -1) {
+                state.user.bookmarkedContent.splice(index, 1);
+            } else {
+                state.user.bookmarkedContent.push(newBookmark);
+            }
         },
         setSoonAlarm: (state, action) => {
             const newSoon = action.payload;
