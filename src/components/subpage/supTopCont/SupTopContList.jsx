@@ -22,16 +22,16 @@ const SupTopContList = () => {
     const { trending, movies, tvShows } = useSelector((state) => state.contentR);
     const dispatch = useDispatch();
     const location = useLocation();
-    const trendTop = trending.slice(0, 10);
+    const trendTop = trending.slice(0, 5);
     const [currentData, setCurrentData] = useState(trendTop);
 
     useEffect(() => {
         if (location.pathname.includes('/movie')) {
             dispatch(getMovies());
-            setCurrentData(movies.slice(0, 10));
+            setCurrentData(movies.slice(0, 5));
         } else if (location.pathname.includes('/series')) {
             dispatch(getTvShows());
-            setCurrentData(tvShows.slice(0, 10));
+            setCurrentData(tvShows.slice(0, 5));
         } else {
             dispatch(getTrending());
             setCurrentData(trendTop);
@@ -39,9 +39,9 @@ const SupTopContList = () => {
     }, [dispatch, location.pathname, movies, tvShows, trendTop]);
 
     const getTitle = () => {
-        if (location.pathname.includes('/movie')) return '🎬 이번주 영화 TOP 10';
-        if (location.pathname.includes('/series')) return '📺 이번주 시리즈 TOP 10';
-        return '🔥 이번주 인기작 TOP 10';
+        if (location.pathname.includes('/movie')) return '🎬 이번주 영화 TOP 5';
+        if (location.pathname.includes('/series')) return '📺 이번주 시리즈 TOP 5';
+        return '🔥 이번주 인기작 TOP 5';
     };
 
     const showDetailModal = (type, id, genreId) => {
