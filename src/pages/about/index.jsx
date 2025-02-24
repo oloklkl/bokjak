@@ -27,7 +27,9 @@ const HomePage = () => {
             }
         );
 
-        const sections = gsap.utils.toArray('.scroll-section');
+        const sections = gsap.utils.toArray(
+            '.scroll-section'
+        );
         sections.forEach((section, i) => {
             const width = section.scrollWidth;
             gsap.fromTo(
@@ -40,7 +42,12 @@ const HomePage = () => {
                     duration: 10,
                     delay: i,
                     modifiers: {
-                        x: (x) => gsap.utils.wrap(-width, window.innerWidth, parseFloat(x)) + 'px',
+                        x: (x) =>
+                            gsap.utils.wrap(
+                                -width,
+                                window.innerWidth,
+                                parseFloat(x)
+                            ) + 'px',
                     },
                 }
             );
@@ -60,7 +67,8 @@ const HomePage = () => {
             answer: '복작은 사용자들에게 다양한 콘텐츠를 제공하는 스트리밍 플랫폼입니다. 저렴한 월 요금으로 원하는 시간에 원하는 만큼 즐길 수 있습니다. 무궁무진한 콘텐츠가 준비되어 있으며 매주 새로운 시리즈와 영화가 제공됩니다.',
         },
         {
-            question: '복작에서 어떤 콘텐츠를 시청할 수 있나요?',
+            question:
+                '복작에서 어떤 콘텐츠를 시청할 수 있나요?',
             answer: '복작에서는 장편 영화, 다큐멘터리, 시리즈, 애니메이션, 등 수많은 콘텐츠를 확보하고 있습니다. 마음에 드는 콘텐츠를 원하는 시간에 원하는 만큼 시청하실 수 있습니다.',
         },
         {
@@ -96,7 +104,8 @@ const HomePage = () => {
                             left: 0,
                             width: '100%',
                             height: '100%',
-                            backgroundColor: 'rgba(0, 0, 0, 0.25)',
+                            backgroundColor:
+                                'rgba(0, 0, 0, 0.25)',
                             zIndex: 1,
                         }}
                     ></div>
@@ -110,7 +119,8 @@ const HomePage = () => {
                             color: 'white',
                         }}
                     >
-                        이 모든 이야기가 여기에 <br /> 지금 스트리밍 중
+                        이 모든 이야기가 여기에 <br /> 지금
+                        스트리밍 중
                     </h1>
                     <BarButton
                         className=""
@@ -124,7 +134,9 @@ const HomePage = () => {
                             zIndex: 3,
                             marginTop: '100px',
                         }}
-                        onClick={() => navigate('/membership')}
+                        onClick={() =>
+                            navigate('/membership')
+                        }
                     />
                     <BarButton
                         className=""
@@ -139,7 +151,14 @@ const HomePage = () => {
                             marginTop: '100px',
                             marginLeft: '280px',
                         }}
-                        onClick={() => window.scrollTo(0, document.getElementById('faqSection').offsetTop - 50)}
+                        onClick={() =>
+                            window.scrollTo(
+                                0,
+                                document.getElementById(
+                                    'faqSection'
+                                ).offsetTop - 50
+                            )
+                        }
                     />
                 </div>
             </section>
@@ -162,7 +181,8 @@ const HomePage = () => {
                             paddingBottom: '50px',
                         }}
                     >
-                        다른 어디에서도 볼 수 없는 복작을 만나보세요. <br />
+                        다른 어디에서도 볼 수 없는 복작을
+                        만나보세요. <br />
                         영화, 드라마, 애니메이션
                     </h3>
                 </div>
@@ -185,8 +205,14 @@ const HomePage = () => {
                         'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-4.png',
                         'https://raw.githubusercontent.com/lse-7660/bokjak-image/48de5d9e8827900045f128317f07c7c24d4c0db8/images/about/movevisual1-2.png',
                     ].map((img, index) => (
-                        <div key={index} className="image-item">
-                            <img src={img} alt={`Image ${index + 1}`} />
+                        <div
+                            key={index}
+                            className="image-item"
+                        >
+                            <img
+                                src={img}
+                                alt={`Image ${index + 1}`}
+                            />
                         </div>
                     ))}
                 </div>
@@ -209,8 +235,14 @@ const HomePage = () => {
                         'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-6.png',
                         'https://raw.githubusercontent.com/lse-7660/bokjak-image/ed65b9963c35ce9b2178fabfd2993f40b92888de/images/about/movevisual2-5.png',
                     ].map((img, index) => (
-                        <div key={index} className="image-item">
-                            <img src={img} alt={`Image ${index + 1}`} />
+                        <div
+                            key={index}
+                            className="image-item"
+                        >
+                            <img
+                                src={img}
+                                alt={`Image ${index + 1}`}
+                            />
                         </div>
                     ))}
                 </div>
@@ -233,8 +265,14 @@ const HomePage = () => {
                         'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-2.png',
                         'https://raw.githubusercontent.com/lse-7660/bokjak-image/7791a8d09f6cc22fddcd359a3886384bf5013c07/images/about/movevisual3-3.png',
                     ].map((img, index) => (
-                        <div key={index} className="image-item">
-                            <img src={img} alt={`Image ${index + 1}`} />
+                        <div
+                            key={index}
+                            className="image-item"
+                        >
+                            <img
+                                src={img}
+                                alt={`Image ${index + 1}`}
+                            />
                         </div>
                     ))}
                 </div>
@@ -247,7 +285,8 @@ const HomePage = () => {
                         paddingBottom: '200px',
                     }}
                 >
-                    1,200편 이상의 영화 | 20,000편 이상의 에피소드 | 신규 및 단독 콘텐츠
+                    1,200편 이상의 영화 | 20,000편 이상의
+                    에피소드 | 신규 및 단독 콘텐츠
                 </h6>
             </section>
 
@@ -271,7 +310,8 @@ const HomePage = () => {
                         color: 'white', // 배경 이미지와 텍스트 간의 대비를 위해 흰색으로 설정
                     }}
                 >
-                    원하는 기기로 다 같이 감상 <br /> 스마트폰, 태블릿, PC, TV까지!
+                    원하는 기기로 다 같이 감상 <br />{' '}
+                    스마트폰, 태블릿, PC, TV까지!
                 </h2>
 
                 <div
@@ -313,7 +353,8 @@ const HomePage = () => {
                         position: 'relative',
                     }}
                 >
-                    좋아하는 콘텐츠를 친구들과 함께 <br /> 감상하며 즐거움을 나눠보세요!
+                    좋아하는 콘텐츠를 친구들과 함께 <br />{' '}
+                    감상하며 즐거움을 나눠보세요!
                 </h2>
                 <div
                     style={{
@@ -362,7 +403,8 @@ const HomePage = () => {
                         paddingBottom: '30px', // 여백 변경
                     }}
                 >
-                    멤버십은 언제나 변경, 취소할 수 있습니다.
+                    멤버십은 언제나 변경, 취소할 수
+                    있습니다.
                 </h3>
 
                 <div
@@ -387,20 +429,27 @@ const HomePage = () => {
                                 <th
                                     colSpan="3" // 세 개의 열을 차지하도록 변경
                                     style={{
-                                        padding: '20px 20px 75px',
+                                        padding:
+                                            '20px 20px 75px',
                                         textAlign: 'center', // 중앙 정렬
-                                        backgroundColor: '#1d1d1d',
-                                        borderBottom: '2px solid #fff',
+                                        backgroundColor:
+                                            '#1d1d1d',
+                                        borderBottom:
+                                            '2px solid #fff',
                                         fontWeight: 'bold',
                                         fontSize: '1.2em',
                                     }}
                                 >
                                     <p
                                         style={{
-                                            position: 'relative',
-                                            flexDirection: 'column',
-                                            alignItems: 'center',
-                                            marginLeft: '35%',
+                                            position:
+                                                'relative',
+                                            flexDirection:
+                                                'column',
+                                            alignItems:
+                                                'center',
+                                            marginLeft:
+                                                '35%',
                                         }}
                                     >
                                         베이직
@@ -410,12 +459,16 @@ const HomePage = () => {
                                             width="150px"
                                             height="45px"
                                             style={{
-                                                position: 'absolute',
+                                                position:
+                                                    'absolute',
                                                 top: '40px', // Adjust the top value as needed
                                                 left: '25%',
                                                 zIndex: 3,
                                             }}
-                                            onClick={() => (window.location.href = '/membership')}
+                                            onClick={() =>
+                                                (window.location.href =
+                                                    '/membership')
+                                            }
                                         />
                                     </p>
                                 </th>
@@ -423,17 +476,22 @@ const HomePage = () => {
                                     style={{
                                         padding: '20px',
                                         textAlign: 'center',
-                                        backgroundColor: '#1d1d1d',
-                                        borderBottom: '2px solid #fff',
+                                        backgroundColor:
+                                            '#1d1d1d',
+                                        borderBottom:
+                                            '2px solid #fff',
                                         fontWeight: 'bold',
                                         fontSize: '1.2em',
                                     }}
                                 >
                                     <p
                                         style={{
-                                            position: 'relative',
-                                            flexDirection: 'column',
-                                            alignItems: 'center',
+                                            position:
+                                                'relative',
+                                            flexDirection:
+                                                'column',
+                                            alignItems:
+                                                'center',
                                         }}
                                     >
                                         프리미엄
@@ -443,12 +501,17 @@ const HomePage = () => {
                                             width="150px"
                                             height="45px"
                                             style={{
-                                                position: 'absolute',
+                                                position:
+                                                    'absolute',
                                                 top: '40px', // Adjust the top value as needed
                                                 left: '25%',
                                                 zIndex: 3,
                                             }}
-                                            onClick={() => (window.location.href = '/membership')}
+                                            onClick={() =>
+                                                navigate(
+                                                    '/membership'
+                                                )
+                                            }
                                         />
                                     </p>
                                 </th>
@@ -460,9 +523,12 @@ const HomePage = () => {
                                     style={{
                                         padding: '15px',
                                         textAlign: 'center',
-                                        borderBottom: '2px solid #333',
-                                        backgroundColor: '#1d1d1d',
-                                        verticalAlign: 'middle', // 중앙 정렬
+                                        borderBottom:
+                                            '2px solid #333',
+                                        backgroundColor:
+                                            '#1d1d1d',
+                                        verticalAlign:
+                                            'middle', // 중앙 정렬
                                     }}
                                 >
                                     연간 구독료
@@ -470,27 +536,36 @@ const HomePage = () => {
                                 <td
                                     colSpan="2" // 두 개의 열을 차지하도록 변경
                                     style={{
-                                        padding: '20px 0px 40px',
+                                        padding:
+                                            '20px 0px 40px',
                                         textAlign: 'center',
-                                        borderBottom: '2px solid #333',
-                                        backgroundColor: '#1d1d1d',
-                                        verticalAlign: 'middle', // 중앙 정렬
+                                        borderBottom:
+                                            '2px solid #333',
+                                        backgroundColor:
+                                            '#1d1d1d',
+                                        verticalAlign:
+                                            'middle', // 중앙 정렬
                                     }}
                                 >
                                     <div
                                         style={{
-                                            padding: '10px 50px 10px',
-                                            textAlign: 'center',
+                                            padding:
+                                                '10px 50px 10px',
+                                            textAlign:
+                                                'center',
                                             border: '2px solid #fff',
-                                            borderRadius: '5px',
-                                            display: 'inline-block', // 중앙 정렬
+                                            borderRadius:
+                                                '5px',
+                                            display:
+                                                'inline-block', // 중앙 정렬
                                         }}
                                     >
                                         연 99,000원
                                     </div>
                                     <p
                                         style={{
-                                            paddingTop: '20px',
+                                            paddingTop:
+                                                '20px',
                                         }}
                                     >
                                         최대 16% 할인된 가격
@@ -498,27 +573,36 @@ const HomePage = () => {
                                 </td>
                                 <td
                                     style={{
-                                        padding: '20px 0px 40px',
+                                        padding:
+                                            '20px 0px 40px',
                                         textAlign: 'center',
-                                        borderBottom: '2px solid #333',
-                                        backgroundColor: '#2e2e2e',
-                                        verticalAlign: 'middle', // 중앙 정렬
+                                        borderBottom:
+                                            '2px solid #333',
+                                        backgroundColor:
+                                            '#2e2e2e',
+                                        verticalAlign:
+                                            'middle', // 중앙 정렬
                                     }}
                                 >
                                     <div
                                         style={{
-                                            padding: '10px 50px 10px',
-                                            textAlign: 'center',
+                                            padding:
+                                                '10px 50px 10px',
+                                            textAlign:
+                                                'center',
                                             border: '2px solid #fff',
-                                            borderRadius: '5px',
-                                            display: 'inline-block', // 중앙 정렬
+                                            borderRadius:
+                                                '5px',
+                                            display:
+                                                'inline-block', // 중앙 정렬
                                         }}
                                     >
                                         연 150,000원
                                     </div>
                                     <p
                                         style={{
-                                            paddingTop: '20px',
+                                            paddingTop:
+                                                '20px',
                                         }}
                                     >
                                         최대 16% 할인된 가격
@@ -530,8 +614,10 @@ const HomePage = () => {
                                     style={{
                                         padding: '15px',
                                         textAlign: 'center',
-                                        borderBottom: '2px solid #333',
-                                        backgroundColor: '#1d1d1d',
+                                        borderBottom:
+                                            '2px solid #333',
+                                        backgroundColor:
+                                            '#1d1d1d',
                                     }}
                                 >
                                     오디오
@@ -541,18 +627,23 @@ const HomePage = () => {
                                     style={{
                                         padding: '15px',
                                         textAlign: 'center',
-                                        borderBottom: '2px solid #333',
-                                        backgroundColor: '#1d1d1d',
+                                        borderBottom:
+                                            '2px solid #333',
+                                        backgroundColor:
+                                            '#1d1d1d',
                                     }}
                                 >
                                     최대 5.1 사운드
                                 </td>
                                 <td
                                     style={{
-                                        padding: '30px 0px 30px',
+                                        padding:
+                                            '30px 0px 30px',
                                         textAlign: 'center',
-                                        borderBottom: '2px solid #333',
-                                        backgroundColor: '#2e2e2e',
+                                        borderBottom:
+                                            '2px solid #333',
+                                        backgroundColor:
+                                            '#2e2e2e',
                                     }}
                                 >
                                     최대 Dolby Atmos 오디오
@@ -563,8 +654,10 @@ const HomePage = () => {
                                     style={{
                                         padding: '15px',
                                         textAlign: 'center',
-                                        borderBottom: '2px solid #333',
-                                        backgroundColor: '#1d1d1d',
+                                        borderBottom:
+                                            '2px solid #333',
+                                        backgroundColor:
+                                            '#1d1d1d',
                                     }}
                                 >
                                     영상화질
@@ -574,18 +667,23 @@ const HomePage = () => {
                                     style={{
                                         padding: '15px',
                                         textAlign: 'center',
-                                        borderBottom: '2px solid #333',
-                                        backgroundColor: '#1d1d1d',
+                                        borderBottom:
+                                            '2px solid #333',
+                                        backgroundColor:
+                                            '#1d1d1d',
                                     }}
                                 >
                                     최대 1080p Full HD
                                 </td>
                                 <td
                                     style={{
-                                        padding: '30px 0px 30px',
+                                        padding:
+                                            '30px 0px 30px',
                                         textAlign: 'center',
-                                        borderBottom: '2px solid #333',
-                                        backgroundColor: '#2e2e2e',
+                                        borderBottom:
+                                            '2px solid #333',
+                                        backgroundColor:
+                                            '#2e2e2e',
                                     }}
                                 >
                                     최대 4K UHD & HDR
@@ -596,8 +694,10 @@ const HomePage = () => {
                                     style={{
                                         padding: '15px',
                                         textAlign: 'center',
-                                        borderBottom: '2px solid #333',
-                                        backgroundColor: '#1d1d1d',
+                                        borderBottom:
+                                            '2px solid #333',
+                                        backgroundColor:
+                                            '#1d1d1d',
                                     }}
                                 >
                                     광고
@@ -607,18 +707,23 @@ const HomePage = () => {
                                     style={{
                                         padding: '15px',
                                         textAlign: 'center',
-                                        borderBottom: '2px solid #333',
-                                        backgroundColor: '#1d1d1d',
+                                        borderBottom:
+                                            '2px solid #333',
+                                        backgroundColor:
+                                            '#1d1d1d',
                                     }}
                                 >
                                     광고 없는 스트리밍
                                 </td>
                                 <td
                                     style={{
-                                        padding: '30px 0px 30px',
+                                        padding:
+                                            '30px 0px 30px',
                                         textAlign: 'center',
-                                        borderBottom: '2px solid #333',
-                                        backgroundColor: '#2e2e2e',
+                                        borderBottom:
+                                            '2px solid #333',
+                                        backgroundColor:
+                                            '#2e2e2e',
                                     }}
                                 >
                                     광고 없는 스트리밍
@@ -629,7 +734,8 @@ const HomePage = () => {
                                     style={{
                                         padding: '15px',
                                         textAlign: 'center',
-                                        backgroundColor: '#1d1d1d',
+                                        backgroundColor:
+                                            '#1d1d1d',
                                     }}
                                 >
                                     콘텐츠 저장
@@ -639,12 +745,14 @@ const HomePage = () => {
                                     style={{
                                         padding: '15px',
                                         textAlign: 'center',
-                                        backgroundColor: '#1d1d1d',
+                                        backgroundColor:
+                                            '#1d1d1d',
                                     }}
                                 >
                                     <span
                                         style={{
-                                            fontSize: '30px',
+                                            fontSize:
+                                                '30px',
                                         }}
                                     >
                                         ✔
@@ -652,14 +760,17 @@ const HomePage = () => {
                                 </td>
                                 <td
                                     style={{
-                                        padding: '25px 0px 25px',
+                                        padding:
+                                            '25px 0px 25px',
                                         textAlign: 'center',
-                                        backgroundColor: '#2e2e2e',
+                                        backgroundColor:
+                                            '#2e2e2e',
                                     }}
                                 >
                                     <span
                                         style={{
-                                            fontSize: '30px',
+                                            fontSize:
+                                                '30px',
                                         }}
                                     >
                                         ✔
@@ -682,10 +793,13 @@ const HomePage = () => {
                     }}
                 >
                     멤버십 구독이 필요합니다.
-                    <br /> 결제 주기 종료 시 취소 처리됩니다.
-                    <br /> 월간 멤버십 12개월 구독료 대비 할인된 가격입니다. 추가 약관 적용.
-                    <br /> 영상 화질/오디오 및 저장 기능은 인터넷 서비스, 기기 성능, 멤버십 유형 및 각 콘텐츠에 따라
-                    달라질 수 있습니다.
+                    <br /> 결제 주기 종료 시 취소
+                    처리됩니다.
+                    <br /> 월간 멤버십 12개월 구독료 대비
+                    할인된 가격입니다. 추가 약관 적용.
+                    <br /> 영상 화질/오디오 및 저장 기능은
+                    인터넷 서비스, 기기 성능, 멤버십 유형 및
+                    각 콘텐츠에 따라 달라질 수 있습니다.
                 </h4>
             </section>
 
@@ -719,10 +833,17 @@ const HomePage = () => {
                                 borderRadius: '5px',
                                 position: 'relative',
                                 overflow: 'hidden',
-                                transition: 'background-color 0.3s ease',
+                                transition:
+                                    'background-color 0.3s ease',
                             }}
-                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#2d2d2d')}
-                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#1d1d1d')}
+                            onMouseEnter={(e) =>
+                                (e.currentTarget.style.backgroundColor =
+                                    '#2d2d2d')
+                            }
+                            onMouseLeave={(e) =>
+                                (e.currentTarget.style.backgroundColor =
+                                    '#1d1d1d')
+                            }
                         >
                             <div
                                 style={{
@@ -732,7 +853,9 @@ const HomePage = () => {
                                     height: '70px',
                                     cursor: 'pointer',
                                 }}
-                                onClick={() => toggleQuestion(index)}
+                                onClick={() =>
+                                    toggleQuestion(index)
+                                }
                             >
                                 <span
                                     style={{
@@ -746,10 +869,16 @@ const HomePage = () => {
                                 <span
                                     style={{
                                         fontSize: '30px',
-                                        fontWeight: 'normal',
+                                        fontWeight:
+                                            'normal',
                                         color: 'white',
-                                        transform: openIndex === index ? 'rotate(45deg)' : 'none',
-                                        transition: 'transform 0.3s ease',
+                                        transform:
+                                            openIndex ===
+                                            index
+                                                ? 'rotate(45deg)'
+                                                : 'none',
+                                        transition:
+                                            'transform 0.3s ease',
                                     }}
                                 >
                                     +
@@ -759,14 +888,21 @@ const HomePage = () => {
                             {/* 열림/닫힘 애니메이션 */}
                             <div
                                 style={{
-                                    maxHeight: openIndex === index ? '300px' : '0px',
+                                    maxHeight:
+                                        openIndex === index
+                                            ? '300px'
+                                            : '0px',
                                     overflow: 'hidden',
                                     transition:
                                         openIndex === index
                                             ? 'max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
                                             : 'max-height 0.3s ease', // 닫힐 때 더 빠르게
-                                    backgroundColor: '#1d1d1d',
-                                    borderRadius: openIndex === index ? '0 0 5px 5px' : '5px',
+                                    backgroundColor:
+                                        '#1d1d1d',
+                                    borderRadius:
+                                        openIndex === index
+                                            ? '0 0 5px 5px'
+                                            : '5px',
                                 }}
                             >
                                 <div
