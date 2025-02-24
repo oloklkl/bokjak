@@ -21,15 +21,7 @@ const Search = () => {
     const { movies, tvShows } = useSelector((state) => state.contentR);
     const isAuthed = useSelector((state) => state.authR.authed);
 
-    const [recentSearches, setRecentSearches] = useState([
-        '무파사: 라이온 킹',
-        '모아나 2',
-        '런닝맨',
-        '위키드',
-        '판다 플랜',
-        '수퍼 소닉3',
-    ]);
-
+    const [recentSearches, setRecentSearches] = useState(['무파사: 라이온 킹', '런닝맨', '위키드', '판다 플랜']);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
 
@@ -41,15 +33,26 @@ const Search = () => {
         const query = event.target.value;
         setSearchQuery(query);
 
-        if (query) {
+        if (query.trim()) {
             const combinedItems = [...movies, ...tvShows];
             const filtered = combinedItems.filter((item) => {
-                const title = item.title || item.name || '';
+                const title = item?.title || item?.name || '';
                 return title.toLowerCase().includes(query.toLowerCase());
             });
             setFilteredResults(filtered);
         } else {
             setFilteredResults([]);
+        }
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' && searchQuery.trim()) {
+            setRecentSearches((prevSearches) => {
+                const updatedSearches = prevSearches.includes(searchQuery)
+                    ? prevSearches
+                    : [searchQuery, ...prevSearches].slice(0, 10);
+                return updatedSearches;
+            });
         }
     };
 
@@ -67,6 +70,7 @@ const Search = () => {
                             placeholder='제목, 장르, 배우로 검색해보세요.'
                             value={searchQuery}
                             onChange={handleSearch}
+                            onKeyDown={handleKeyDown}
                         />
                         <IconButton
                             className='search-icon gray40 none'
@@ -76,6 +80,7 @@ const Search = () => {
                     </div>
                 </SearchBar>
 
+                {/* 최근 검색어 */}
                 <Nav aria-label='최근 검색어'>
                     <h2>최근 검색어</h2>
                     {isAuthed ? (
@@ -90,21 +95,17 @@ const Search = () => {
                 </Nav>
 
                 {/* 검색 결과 */}
-                {searchQuery && (
+                {searchQuery.trim() && filteredResults.length > 0 && (
                     <SearchResults>
                         <h2>검색 결과</h2>
                         <SearchResultsContainer>
-                            {filteredResults.length > 0 ? (
-                                filteredResults.map((item, index) => (
-                                    <SearchResultList key={index}>
-                                        <li>
-                                            <ThumbnailCard content={item} />
-                                        </li>
-                                    </SearchResultList>
-                                ))
-                            ) : (
-                                <p>검색 결과가 없습니다.</p>
-                            )}
+                            {filteredResults.map((item, index) => (
+                                <SearchResultList key={index}>
+                                    <li>
+                                        <ThumbnailCard content={item} />
+                                    </li>
+                                </SearchResultList>
+                            ))}
                         </SearchResultsContainer>
                     </SearchResults>
                 )}
