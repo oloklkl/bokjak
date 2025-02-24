@@ -1,4 +1,5 @@
 // import BottomNavigation from '../../common/bottomnavigation'
+import { Link } from 'react-router-dom'
 import {
   Intro,
   BokjakCont,
@@ -25,19 +26,28 @@ const Main = () => {
 
         <TopCont />
         <div className="inner">
-          <ThumbnailCont title="오늘의 추천작" isRandom={true} />
-          <ThumbnailCont title="생동감 넘치는 액션 영화" targetGenreId={28} />
+          <ThumbnailCont title="요즘 뜨는영화" typeFilter="movie" />
+          <ThumbnailCont title="인기 드라마" typeFilter="tv" />
         </div>
         <SoonCont />
         <div className="inner">
-          <ThumbnailCont title="지금 뜨고 있는 드라마" targetGenreId={878} />
           <ThumbnailCont
-            title="스릴 넘치는 미스터리, 끝까지 놓치지 마세요"
-            targetGenreId={12}
+            title="생동감 넘치는 액션 영화"
+            typeFilter=""
+            targetGenreId={28}
+          />
+          <ThumbnailCont
+            title="웃음이 필요한 순간"
+            typeFilter="tv"
+            // targetGenreId={35}
           />
           <FlipBackCont />
-          <ThumbnailCont title="지금, 이 콘텐츠!!" isRandom={true} />
-          <ThumbnailCont title="마음을 울리는 로맨스" targetGenreId={10749} />
+          <ThumbnailCont title="지금, 이 콘텐츠!!" typeFilter="" />
+          <ThumbnailCont
+            title="잠 못들게 하는 스릴러 영화"
+            typeFilter="movie"
+            targetGenreId={53}
+          />
           <SeriesCont />
         </div>
         {/* <BottomNavigation /> */}

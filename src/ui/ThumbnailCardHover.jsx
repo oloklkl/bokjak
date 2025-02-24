@@ -153,7 +153,9 @@ const ThumbnailCardHover = ({ content }) => {
       <div className="imgCont">
         <img src={`${bgurl}${content.backdrop_path}`} alt={title} />
         <div className="topCont">
-          <img src={logoUrl} alt={title} onClick={handleLogoClick} />
+          {logoUrl && (
+            <img src={logoUrl} alt={title} onClick={handleLogoClick} />
+          )}
         </div>
       </div>
       <div className="textCont">

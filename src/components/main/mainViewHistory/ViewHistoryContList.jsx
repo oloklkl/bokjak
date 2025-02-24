@@ -20,7 +20,7 @@ import {
 
 const ViewHistoryContList = () => {
   const { movies } = useSelector((state) => state.contentR)
-  // const { movies, tvShows } = useSelector((state) => state.contentR)
+  const { authed, user } = useSelector((state) => state.authR)
   const dispatch = useDispatch()
   const location = useLocation()
   // const navigate = useNavigate ()
@@ -42,7 +42,9 @@ const ViewHistoryContList = () => {
   const goPrev = () => {
     swiperRef.current?.swiper.slidePrev()
   }
-
+  if (!authed) {
+    return null
+  }
   return (
     <ViewHistoryContainer>
       <div className="viewHeader">
