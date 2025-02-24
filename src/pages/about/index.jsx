@@ -466,8 +466,9 @@ const HomePage = () => {
                                                 zIndex: 3,
                                             }}
                                             onClick={() =>
-                                                (window.location.href =
-                                                    '/membership')
+                                                navigate(
+                                                    '/membership'
+                                                )
                                             }
                                         />
                                     </p>
