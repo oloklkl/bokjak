@@ -55,48 +55,23 @@ const BokjakUrlModalWrap = styled.div`
 
 const BokjakUrlModal = () => {
     const dispatch = useDispatch();
-    const { isRoomCreated } = useSelector(
-        (state) => state.detailR
-    );
+    const { isRoomCreated, currentContent } = useSelector((state) => state.detailR);
     const { width } = useSelector((state) => state.windowR);
+
     return (
         <DetailModalCom>
-            <BokjakUrlModalWrap
-                className={
-                    isRoomCreated
-                        ? 'bj-url-modal-hidden'
-                        : ''
-                }
-            >
-                <p
-                    onClick={() =>
-                        dispatch(
-                            detailActions.closeUrlModal()
-                        )
-                    }
-                    className="bjmodal-close-button"
-                >
+            <BokjakUrlModalWrap className={isRoomCreated ? 'bj-url-modal-hidden' : ''}>
+                <p onClick={() => dispatch(detailActions.closeUrlModal())} className="bjmodal-close-button">
                     <X size={24} />
                 </p>
                 {width > 600 ? (
                     <>
                         <div className="bj-modal-content-wrap">
-                            <p className="bj-modal-title">
-                                힐하우스의 유령 모여보기
-                            </p>
+                            <p className="bj-modal-title">{currentContent.title} 모여보기</p>
                             <div className="bj-modal-btns">
+                                <BarButton icon={<Link />} text="URL 복사" width="340px" height="42px" />
                                 <BarButton
-                                    icon={<Link />}
-                                    text="URL 복사"
-                                    width="340px"
-                                    height="42px"
-                                />
-                                <BarButton
-                                    onClick={() =>
-                                        dispatch(
-                                            detailActions.openCreateModal()
-                                        )
-                                    }
+                                    onClick={() => dispatch(detailActions.openCreateModal())}
                                     icon="https://raw.githubusercontent.com/lse-7660/bokjak-image/18cb6ec19defe09b46ec12917c88c31e962632b7/images/common/bokjak-icon.svg"
                                     text="방 만들기"
                                     width="340px"
@@ -109,19 +84,10 @@ const BokjakUrlModal = () => {
                     <>
                         <div className="bj-modal-content-wrap-mo">
                             <div className="bj-modal-btns-mo">
-                                <IconButton
-                                    icon={<Link />}
-                                />
+                                <IconButton icon={<Link />} />
                                 <span>URL 복사</span>
                             </div>
-                            <div
-                                className="bj-modal-btns-mo"
-                                onClick={() =>
-                                    dispatch(
-                                        detailActions.openCreateModal()
-                                    )
-                                }
-                            >
+                            <div className="bj-modal-btns-mo" onClick={() => dispatch(detailActions.openCreateModal())}>
                                 <IconButton icon="https://raw.githubusercontent.com/lse-7660/bokjak-image/18cb6ec19defe09b46ec12917c88c31e962632b7/images/common/bokjak-icon.svg" />
                                 <span>방 만들기</span>
                             </div>
