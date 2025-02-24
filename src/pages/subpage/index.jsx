@@ -14,6 +14,7 @@ const SubPage = () => {
 
     const [shuffledContentChunks, setShuffledContentChunks] = useState([]);
     const [contentList, setContentList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const titles = {
         movie: [
@@ -43,7 +44,10 @@ const SubPage = () => {
     }, [currentCategory, movies, tvShows]);
 
     useEffect(() => {
-        if (contentList.length === 0) return;
+        if (contentList.length === 0) {
+            setIsLoading(false);
+            return;
+        }
 
         const filledContents = [...contentList];
         while (filledContents.length < 60) {
@@ -78,7 +82,12 @@ const SubPage = () => {
         }
 
         setShuffledContentChunks(contentChunks);
+        setIsLoading(false);
     }, [contentList]);
+
+    if (isLoading) {
+        return <p>로딩 중...</p>;
+    }
 
     if (contentList.length === 0) {
         return <p>해당 카테고리의 콘텐츠가 없습니다.</p>;
