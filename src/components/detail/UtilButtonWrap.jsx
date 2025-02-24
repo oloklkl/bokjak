@@ -20,15 +20,15 @@ const UtilButtonWrap = () => {
     const navigate = useNavigate();
     const { type, id } = useParams();
     const { width } = useSelector((state) => state.windowR);
-    const { authed } = useSelector((state) => state.authR);
-    const [isLiked, setIsLiked] = useState(false);
-    const [isBookmarked, setIsBookmarked] = useState(false);
+    const { authed, user } = useSelector((state) => state.authR);
+
+    const isLiked = authed && user?.likedContent?.some((content) => content.id === id);
+    const isBookmarked = authed && user?.bookmarkedContent?.some((content) => content.id === id);
 
     const onLikeBtnClick = () => {
         if (!authed) {
             navigate('/login');
         } else {
-            setIsLiked(!isLiked);
             dispatch(authActions.setLiked({ type, id }));
         }
     };
@@ -36,9 +36,13 @@ const UtilButtonWrap = () => {
         if (!authed) {
             navigate('/login');
         } else {
-            setIsBookmarked(!isBookmarked);
+            dispatch(authActions.setBookmarked({ type, id }));
         }
     };
+
+    useEffect(() => {
+        localStorage.setItem('user', JSON.stringify(user));
+    }, [user]);
 
     return (
         <UtilButtonWrapStyle className="detailpreview-util-wrap">
@@ -51,13 +55,13 @@ const UtilButtonWrap = () => {
             <IconButton
                 onClick={onLikeBtnClick}
                 className=""
-                icon={authed && isLiked ? <Heart weight="fill" /> : <Heart />}
+                icon={isLiked ? <Heart weight="fill" /> : <Heart />}
                 text="좋아요"
             />
             <IconButton
                 onClick={onBookmarkBtnClick}
                 className=""
-                icon={authed && isBookmarked ? <BookmarkSimple weight="fill" /> : <BookmarkSimple />}
+                icon={isBookmarked ? <BookmarkSimple weight="fill" /> : <BookmarkSimple />}
                 text="북마크"
             />
             <IconButton
