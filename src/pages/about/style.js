@@ -84,47 +84,40 @@ export const AboutWrap = styled.div`
     }
   }
 
-  //무브-비쥬얼 움직이는거
-
-  section::-webkit-scrollbar {
-    display: none;
-  }
-
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .scroll-section {
-    height: 150px;
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 10px;
+  .image-scroll {
+    width: 100%;
+    overflow: visible; /* 잘린 이미지가 보이도록 변경 */
     white-space: nowrap;
+    padding: 5px;
+    position: relative;
   }
 
-  .carousel-track {
+  .image-container {
     display: flex;
-    gap: 15px;
-    position: absolute;
-    width: 200%;
-    animation: scroll-left 20s linear infinite;
+    gap: 10px;
+    justify-content: flex-start;
   }
 
-  .carousel-track .carousel-item {
-    width: 250px;
-    height: 150px;
-    background-size: cover;
-    background-position: center;
+  .image-item img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
     border-radius: 8px;
-    flex-shrink: 0;
   }
 
-  .hover\:scale-105:hover {
-    transform: scale(1.05);
+  .scroll-1 .image-container {
+    transform: translateX(-39%);
+  }
+
+  .scroll-2 .image-container {
+    transform: translateX(-15%);
+  }
+
+  .scroll-3 .image-container {
+    transform: translateX(-20%);
+  }
+
+  .image-scroll::-webkit-scrollbar {
+    display: none;
   }
 `;
