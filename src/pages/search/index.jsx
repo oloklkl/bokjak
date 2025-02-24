@@ -21,7 +21,7 @@ const Search = () => {
     const { movies, tvShows } = useSelector((state) => state.contentR);
     const isAuthed = useSelector((state) => state.authR.authed);
 
-    const [recentSearches, setRecentSearches] = useState(['무파사: 라이온 킹', '런닝맨', '위키드', '판다 플랜']);
+    const [recentSearches, setRecentSearches] = useState(['무파사: 라이온 킹', '런닝맨', '판다 플랜']);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
 
