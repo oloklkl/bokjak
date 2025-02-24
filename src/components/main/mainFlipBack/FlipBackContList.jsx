@@ -1,101 +1,74 @@
-import FlipBackContItem from './FlipBackContItem'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import { EffectFlip, Navigation } from 'swiper/modules'
-import { useEffect, useRef } from 'react'
-import { IconButton } from '../../../ui'
-import { CaretLeft, CaretRight } from '@phosphor-icons/react'
-import { FlipBackHeader, FlipBackList, FlipBackListContainer } from './style'
-import { NavigationButton } from '../style'
-import { Link, useLocation } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  getContentByGenre,
-  getContentDetail,
-  getMovies,
-  getTvShows,
-} from '../../../store/modules/getThunk'
+import FlipBackContItem from './FlipBackContItem';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
+import { useRef } from 'react';
+import 'swiper/css/effect-flip'; //
+import { IconButton } from '../../../ui';
+import { CaretLeft, CaretRight } from '@phosphor-icons/react';
+import { FlipBackHeader, FlipBackList, FlipBackListContainer } from './style';
+import { NavigationButton } from '../style';
+import { Link } from 'react-router-dom';
 
+const images = [
+    'https://github.com/lse-7660/bokjak-image/blob/main/images/main/flipback/1.png?raw=true',
+    'https://github.com/lse-7660/bokjak-image/blob/main/images/main/flipback/2.png?raw=true',
+    'https://github.com/lse-7660/bokjak-image/blob/main/images/main/flipback/3.png?raw=true',
+    'https://github.com/lse-7660/bokjak-image/blob/main/images/main/flipback/4.png?raw=true',
+    'https://github.com/lse-7660/bokjak-image/blob/main/images/main/flipback/5.png?raw=true',
+];
 const FlipBackContList = () => {
-  const { movies } = useSelector((state) => state.contentR)
-  const dispatch = useDispatch()
-  const location = useLocation()
+    const swiperRef = useRef();
 
-  useEffect(() => {
-    dispatch(getMovies())
-    dispatch(getTvShows())
-  }, [dispatch])
+    const goNext = () => {
+        swiperRef.current?.swiper.slideNext();
+    };
 
-  const showDetailModal = (type, id, genreId) => {
-    dispatch(getContentDetail({ type, id }))
-    dispatch(getContentByGenre({ type, genreId }))
-  }
-  const swiperRef = useRef()
+    const goPrev = () => {
+        swiperRef.current?.swiper.slidePrev();
+    };
 
-  const goNext = () => {
-    swiperRef.current?.swiper.slideNext()
-  }
+    return (
+        <FlipBackListContainer>
+            <FlipBackHeader>
+                <h2>다시 시작된 게임, 이번엔 다를 거야</h2>
+                <Link>
+                    <h3>더보기</h3>
+                </Link>
+            </FlipBackHeader>
+            <FlipBackList>
+                <Swiper
+                    className="swiper"
+                    ref={swiperRef}
+                    modules={[Navigation]}
+                    navigation={false}
+                    breakpoints={{
+                        320: { slidesPerViews: 3, slidesPerGroup: 3, paceBetween: 10 },
+                        390: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 10 },
+                        768: { slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 16 },
+                        1024: { slidesPerView: 5, slidesPerGroup: 5, spaceBetween: 10 },
+                    }}
+                >
+                    {images.map((imageUrl, index) => (
+                        <SwiperSlide key={index}>
+                            <FlipBackContItem content={{ id: index, imageUrl }} />
+                        </SwiperSlide>
+                    ))}
 
-  const goPrev = () => {
-    swiperRef.current?.swiper.slidePrev()
-  }
+                    <NavigationButton>
+                        <IconButton onClick={goPrev} className="b30" icon={<CaretLeft size={24} />} text="caretLeft" />
+                        <IconButton
+                            onClick={goNext}
+                            className="b30"
+                            icon={<CaretRight size={24} />}
+                            text="caretRight"
+                        />
+                    </NavigationButton>
+                </Swiper>
+            </FlipBackList>
+        </FlipBackListContainer>
+    );
+};
 
-  return (
-    <FlipBackListContainer>
-      <FlipBackHeader>
-        <h2>title</h2>
-        <Link>
-          <h3>더보기</h3>
-        </Link>
-      </FlipBackHeader>
-      <FlipBackList>
-        <Swiper
-          className="swiper"
-          ref={swiperRef}
-          modules={[Navigation]}
-          pagination={{ clickable: true }}
-          // effect="flip"
-          navigation={false}
-          breakpoints={{
-            320: { slidesPerViews: 3, slidesPerGroup: 3, paceBetween: 10 },
-            390: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 10 },
-            768: { slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 16 },
-            1024: { slidesPerView: 5, slidesPerGroup: 5, spaceBetween: 24 },
-          }}>
-          {movies.map((content) => (
-            <SwiperSlide key={content.id}>
-              <Link
-                to={`/movie/${content.id}`}
-                state={{ previousLocation: location }}>
-                <FlipBackContItem
-                  content={content}
-                  onClick={() => {
-                    showDetailModal('movie', content.id, content.genre_ids)
-                  }}
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
-
-          <NavigationButton>
-            <IconButton
-              onClick={goPrev}
-              className="b30"
-              icon={<CaretLeft size={24} />}
-              text="caretLeft"
-            />
-            <IconButton
-              onClick={goNext}
-              className="b30"
-              icon={<CaretRight size={24} />}
-              text="caretRight"
-            />
-          </NavigationButton>
-        </Swiper>
-      </FlipBackList>
-    </FlipBackListContainer>
-  )
-}
-
-export default FlipBackContList
+export default FlipBackContList;

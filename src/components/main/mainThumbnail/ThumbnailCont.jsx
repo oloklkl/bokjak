@@ -1,13 +1,13 @@
 import { ThumbnailSection } from './style'
 import ThumbnailContList from './ThumbnailContList'
 
-const ThumbnailCont = ({ title, targetGenreId, isRandom }) => {
+const ThumbnailCont = ({ title, targetGenreId, typeFilter }) => {
   return (
     <ThumbnailSection>
       <ThumbnailContList
         title={title}
         targetGenreId={targetGenreId}
-        isRandom={isRandom}
+        typeFilter={typeFilter}
       />
     </ThumbnailSection>
   )

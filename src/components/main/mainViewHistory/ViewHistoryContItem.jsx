@@ -28,7 +28,9 @@ const ViewHistoryContItem = ({ content, ...props }) => {
           <h2>{title}</h2>
           <span>{desc}</span>
         </div>
-        <IconButton className="none" icon={<Info size={24} />} text="Info" />
+        <Link to={`/video/${content.id}`}>
+          <IconButton className="none" icon={<Info size={24} />} text="Info" />
+        </Link>
       </InfoCont>
     </ViewHistoryItemCont>
   )

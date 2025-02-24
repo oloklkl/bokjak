@@ -68,90 +68,39 @@ export const LoginHeader = styled.div`
             font-size: ${font('heading', 'xs')};
         }
     }
-
-    h1:nth-of-type(2) {
-        margin-bottom: 40px;
-    }
 `;
 
 export const LoginButtons = styled.div`
     display: flex;
-    flex-direction: column;
-    gap: 24px;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 40px;
 
-    button {
-        width: 490px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        gap: 130px;
-        padding: 12px 20px;
-        background: ${color('gray', '100')};
-        border-radius: 7px;
-        border: 1px solid ${color('gray', '60')};
-
-        &:hover {
-            background: ${color('gray', '70')};
-            border: 1px solid ${color('gray', '0')};
-
-            span {
-                color: ${color('gray', '0')};
-                font-weight: 700;
-            }
-        }
-
-        ${media.tablet} {
-            height: 58px;
-        }
-        ${media.mobile} {
-            width: 345px;
-            height: 60px;
-            gap: 80px;
-        }
-    }
-    .bokjak {
-        width: 32px;
-        height: auto;
-        margin-left: -4px;
-
-        ${media.mobile} {
-            width: 27px;
-        }
+    ${media.tablet} {
+        height: 35px;
     }
 
-    .kakao {
+    ${media.mobile} {
+        height: 30px;
+    }
+
+    .kakao,
+    .google,
+    .apple {
         width: 30px;
         height: auto;
+        display: flex;
+        align-content: flex-end;
+    }
+
+    .kokoo,
+    .google {
+        ${media.tablet} {
+            width: 27px;
+        }
 
         ${media.mobile} {
             width: 25px;
-        }
-    }
-
-    .naver {
-        width: 25px;
-        height: auto;
-
-        ${media.mobile} {
-            width: 22px;
-        }
-    }
-
-    .apple {
-        width: 25px;
-        height: auto;
-
-        ${media.mobile} {
-            width: 22px;
-        }
-    }
-
-    .google {
-        width: 27px;
-        height: auto;
-
-        ${media.mobile} {
-            width: 24px;
         }
     }
 
@@ -169,17 +118,16 @@ export const LoginButtons = styled.div`
 
 export const LoginNotice = styled.span`
     display: block;
-    color: ${color('gray', '40')};
+    color: ${color('gray', '30')};
     font-size: ${font('detail', 'md')};
-    margin-top: 30px;
+    margin: 20px 0 14px;
     text-align: center;
+    padding: 15px;
 
     ${media.mobile} {
         font-size: ${font('detail', 'sm')};
     }
 `;
-
-// BokjakLogin 시작
 
 export const BokjakLoginContent = styled.div`
     h1 {
@@ -190,13 +138,24 @@ export const BokjakLoginContent = styled.div`
         height: 60px;
         display: flex;
         align-items: center;
-        margin-bottom: 24px;
         padding: 12px 20px;
         background: ${color('gray', '100')};
         border-radius: 7px;
         border: 1px solid ${color('gray', '60')};
         font-size: ${font('body', 'md')};
         color: ${color('gray', '0')};
+
+        ${media.tablet} {
+            height: 58px;
+        }
+        ${media.mobile} {
+            width: 345px;
+            height: 60px;
+            gap: 80px;
+        }
+    }
+    p {
+        margin-bottom: 24px;
     }
     span {
         display: flex;
@@ -204,16 +163,53 @@ export const BokjakLoginContent = styled.div`
         font-size: ${font('body', 'xsm')};
         margin-bottom: 10px;
     }
+
     .loginbutton {
         font-size: ${font('body', 'sm')};
     }
-    a {
-        span {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 10px;
-            color: ${color('gray', '0')};
-            font-size: ${font('body', 'sm')};
+
+    .loginbutton {
+        ${media.tablet} {
+            height: 48px;
+        }
+        ${media.mobile} {
+            width: 345px;
+            height: 43px;
+        }
+    }
+`;
+
+export const LinkContainer = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+
+    span {
+        color: ${color('gray', '40')};
+        font-size: ${font('detail', 'md')};
+
+        ${media.mobile} {
+            font-size: ${font('detail', 'sm')};
+        }
+    }
+`;
+
+// join page 시작
+
+export const JoinWrap = styled.div`
+    p:nth-of-type(3) {
+        margin-bottom: 5px;
+    }
+`;
+
+export const JoinActions = styled.div`
+    .share {
+        margin-top: 20px;
+
+        ${media.mobile} {
+            width: 345px;
         }
     }
 `;
