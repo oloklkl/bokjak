@@ -50,7 +50,7 @@ const Join = () => {
             <LoginContent>
                 <BokjakLoginContent>
                     <LoginHeader>
-                        <h1>bokjak 로그인</h1>
+                        <h1>Bokjak 회원가입</h1>
                     </LoginHeader>
                     <JoinWrap>
                         <form>

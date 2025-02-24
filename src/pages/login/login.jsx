@@ -66,7 +66,7 @@ const Login = () => {
             <LoginContent>
                 <BokjakLoginContent>
                     <LoginHeader>
-                        <h1>bokjak 로그인</h1>
+                        <h1>Bokjak 로그인</h1>
                     </LoginHeader>
                     <form onSubmit={onSubmit}>
                         <p>

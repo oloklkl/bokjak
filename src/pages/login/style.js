@@ -123,7 +123,6 @@ export const LoginNotice = styled.span`
     margin: 20px 0 14px;
     text-align: center;
     padding: 15px;
-    border-top: 1px solid ${color('gray', '70')};
 
     ${media.mobile} {
         font-size: ${font('detail', 'sm')};
