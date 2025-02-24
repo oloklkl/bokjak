@@ -29,7 +29,7 @@ export const SearchBar = styled.div`
             border: none;
             background: ${color('gray', '90')};
             border-bottom: 2px solid ${color('gray', '0')};
-            font-size: 28px;
+            font-size: ${font('title', 'exlg')};
         }
 
         ${media.tablet} {
@@ -59,7 +59,7 @@ export const SearchBar = styled.div`
 
 export const Nav = styled.nav`
     h2 {
-        font-size: ${font('title', 'xlg')};
+        font-size: ${font('title', 'exlg')};
         font-weight: 700;
         margin-bottom: 24px;
 
@@ -71,6 +71,18 @@ export const Nav = styled.nav`
     ${media.mobile} {
         display: none;
     }
+
+    P {
+        margin-bottom: 50px;
+        color: ${color('gray', '30')};
+
+        ${media.desktop} {
+            font-size: ${font('title', 'lg')};
+        }
+        ${media.tablet} {
+            font-size: ${font('body', 'md')};
+        }
+    }
 `;
 
 export const RecentKeywords = styled.div`
@@ -78,18 +90,86 @@ export const RecentKeywords = styled.div`
     flex-wrap: wrap;
     gap: 20px;
     justify-content: flex-start;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
 `;
 
-export const Section = styled.div`
+/* 검색 결과 시작*/
+export const SearchResults = styled.div`
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+
     h2 {
         font-weight: 700;
         margin-bottom: 24px;
+        font-size: ${font('title', 'exlg')};
 
-        ${media.desktop} {
+        ${media.tablet} {
             font-size: ${font('title', 'xlg')};
         }
+        ${media.mobile} {
+            font-size: ${font('title', 'md')};
+        }
+    }
+`;
+
+export const SearchResultsContainer = styled.div`
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    padding: 40px 0 40px;
+    gap: 40px;
+
+    ${media.tablet} {
+        padding: 30px 0 30px;
+    }
+    ${media.mobile} {
+        gap: 20px;
+        padding: 20px 0 20px;
+    }
+
+    p {
+        font-size: ${font('title', 'lg')};
+        color: ${color('gray', '30')};
+
         ${media.tablet} {
+            font-size: ${font('body', 'md')};
+        }
+        ${media.mobile} {
+            font-size: ${font('body', 'sm')};
+        }
+    }
+`;
+
+export const SearchResultList = styled.div`
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    position: relative;
+
+    li {
+        display: block;
+        width: 100%;
+        max-width: 250px;
+        margin-bottom: 16px;
+        padding: 0 16px;
+    }
+`;
+
+/* 검색 결과 끝*/
+
+/* 인기 검색어 시작*/
+export const Section = styled.div`
+    h2 {
+        font-size: ${font('title', 'exlg')};
+        font-weight: 700;
+        margin-bottom: 24px;
+
+        ${media.tablet} {
+            font-size: ${font('title', 'xlg')};
+        }
+        ${media.mobile} {
             font-size: ${font('title', 'md')};
         }
     }
@@ -101,6 +181,19 @@ export const PopularListContainer = styled.div`
 
     ${media.mobile} {
         flex-direction: column;
+    }
+
+    h2 {
+        font-weight: 700;
+        margin-bottom: 24px;
+        font-size: ${font('title', 'exlg')};
+
+        ${media.desktop} {
+            font-size: ${font('title', 'xlg')};
+        }
+        ${media.tablet} {
+            font-size: ${font('title', 'md')};
+        }
     }
 `;
 
@@ -149,3 +242,4 @@ export const PopularList = styled.ol`
         text-align: center;
     }
 `;
+/* 인기 검색어 끝*/

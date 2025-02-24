@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Layout from './common/Layout';
 import {
     About,
-    BokjakLogin,
     FilmoPage,
     Join,
     Login,
@@ -52,32 +51,31 @@ const App = () => {
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
                 <Routes location={previousLocation || location}>
-                    <Route path="/" element={<Layout />}>
+                    <Route path='/' element={<Layout />}>
                         <Route index element={<Main />} />
-                        <Route path="/notification" element={<Notification />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/membership" element={<Membership />} />
-                        <Route path="/subpage/*" element={<SubPage />} />
-                        <Route path="/filmo">
-                            <Route path=":id" element={<FilmoPage />} />
+                        <Route path='/notification' element={<Notification />} />
+                        <Route path='/about' element={<About />} />
+                        <Route path='/membership' element={<Membership />} />
+                        <Route path='/subpage/*' element={<SubPage />} />
+                        <Route path='/filmo'>
+                            <Route path=':id' element={<FilmoPage />} />
                         </Route>
-                        <Route path="/mypage" element={<MyPage />} />
+                        <Route path='/mypage' element={<MyPage />} />
                     </Route>
                     <Route element={<SubLayout />}>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/login/bokjaklogin" element={<BokjakLogin />} />
-                        <Route path="/login/join" element={<Join />} />
-                        <Route path="/video" element={<Video />} />
+                        <Route path='/login' element={<Login />} />
+                        <Route path='/login/join' element={<Join />} />
+                        <Route path='/video' element={<Video />} />
                     </Route>
                     <Route element={<SearchLayout />}>
-                        <Route path="/search" element={<Search />} />
+                        <Route path='/search' element={<Search />} />
                     </Route>
-                    <Route path="/oauth/kakao/callback" element={<KakaoAuthCallback />} />
-                    <Route path="*" element={<NotFiles />} />
+                    <Route path='/oauth/kakao/callback' element={<KakaoAuthCallback />} />
+                    <Route path='*' element={<NotFiles />} />
                 </Routes>
                 {previousLocation && (
                     <Routes>
-                        <Route path="/:type/:id" element={<Detail />} />
+                        <Route path='/:type/:id' element={<Detail />} />
                     </Routes>
                 )}
             </ThemeProvider>
