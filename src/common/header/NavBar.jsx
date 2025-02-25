@@ -14,41 +14,41 @@ import { CategoryDropdown, CategoryTitleWrap, CloseButton, NavCenter, NavRight, 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategory, toggleCategory } from '../../store/modules/categorySlice';
 import { setActiveLink } from '../../store/modules/navSlice';
+
 const NavBar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const activeLink = useSelector((state) => state.navR.activeLink);
     const { authed } = useSelector((state) => state.authR);
-    const handleNavClick = (link) => {
-        dispatch(setActiveLink(link));
-    };
+
     const { categories, isOpen } = useSelector((state) => state.categoryR);
+
     const handleToggle = (e) => {
         e.preventDefault();
         dispatch(toggleCategory());
     };
+
     const handleCategorySelect = (category) => {
         dispatch(selectCategory(category));
-        const categoryType = ['예능', '다큐멘터리', '한국 TV 프로그램', '외국 TV 프로그램'].includes(category)
-            ? 'series'
-            : 'movie';
+        const categoryType = ['예능', '공포'].includes(category) ? 'series' : 'movie';
         navigate(`/subpage/${categoryType}?category=${category}`);
         dispatch(toggleCategory());
     };
+
     return (
-        <NavWrap className="nav">
-            <NavCenter className="nav-center">
+        <NavWrap className='nav'>
+            <NavCenter className='nav-center'>
                 <li>
                     <NavLink
                         to={'/about'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => handleNavClick('/about')}
+                        onClick={() => dispatch(setActiveLink('/about'))}
                     >
                         About
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="#" className={({ isActive }) => (isActive ? 'active' : '')} onClick={handleToggle}>
+                    <NavLink to='#' className={({ isActive }) => (isActive ? 'active' : '')} onClick={handleToggle}>
                         <CategoryTitleWrap>
                             카테고리
                             {isOpen ? <CaretUp size={24} /> : <CaretDown size={24} />}
@@ -64,10 +64,10 @@ const NavBar = () => {
                                 </li>
                             ))}
                             <CloseButton
-                                className="close-btn"
+                                className='close-btn'
                                 icon={<X size={24} />}
-                                text="Close"
-                                aria-label="카테고리 닫기"
+                                text='Close'
+                                aria-label='카테고리 닫기'
                                 onClick={handleToggle}
                             />
                         </CategoryDropdown>
@@ -77,7 +77,7 @@ const NavBar = () => {
                     <NavLink
                         to={'/subpage/movie'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => handleNavClick('/subpage/movie')}
+                        onClick={() => dispatch(setActiveLink('/subpage/movie'))}
                     >
                         영화
                     </NavLink>
@@ -86,38 +86,38 @@ const NavBar = () => {
                     <NavLink
                         to={'/subpage/series'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => handleNavClick('/subpage/series')}
+                        onClick={() => dispatch(setActiveLink('/subpage/series'))}
                     >
                         시리즈
                     </NavLink>
                 </li>
             </NavCenter>
-            <NavRight className="nav-right">
+            <NavRight className='nav-right'>
                 <li>
                     <NavLink
                         to={'/search'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => handleNavClick('search')}
+                        onClick={() => dispatch(setActiveLink('search'))}
                     >
-                        <IconButton className="gray40 none" icon={<MagnifyingGlass size={24} />} text="검색" />
+                        <IconButton className='gray40 none' icon={<MagnifyingGlass size={24} />} text='검색' />
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
                         to={'/notification'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => handleNavClick('notification')}
+                        onClick={() => dispatch(setActiveLink('notification'))}
                     >
                         <IconButton
-                            className="gray40 none"
+                            className='gray40 none'
                             icon={
                                 activeLink === 'notification' ? (
-                                    <BellSimpleRinging size={24} weight="fill" />
+                                    <BellSimpleRinging size={24} weight='fill' />
                                 ) : (
                                     <BellSimple size={24} />
                                 )
                             }
-                            text="알림"
+                            text='알림'
                         />
                     </NavLink>
                 </li>
@@ -125,11 +125,11 @@ const NavBar = () => {
                     <NavLink
                         to={authed ? '/mypage' : '/login'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => handleNavClick(authed ? 'mypage' : 'login')}
+                        onClick={() => dispatch(setActiveLink(authed ? 'mypage' : 'login'))}
                     >
                         <IconButton
-                            className="gray40 none"
-                            icon={authed ? <UserCheck size={24} weight="fill" /> : <User size={24} />}
+                            className='gray40 none'
+                            icon={authed ? <UserCheck size={24} weight='fill' /> : <User size={24} />}
                             text={authed ? 'My Page' : 'Login'}
                         />
                     </NavLink>
@@ -138,4 +138,5 @@ const NavBar = () => {
         </NavWrap>
     );
 };
+
 export default NavBar;
