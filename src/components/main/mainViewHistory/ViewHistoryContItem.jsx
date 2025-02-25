@@ -2,11 +2,16 @@ import { IconButton } from '../../../ui'
 import { Info, Play } from '@phosphor-icons/react'
 import { InfoCont, StateBar, ViewHistoryItemCont } from './style'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 const ViewHistoryContItem = ({ content, ...props }) => {
   const bgurl = `https://image.tmdb.org/t/p/original`
   const desc = content.overview
   const title = content.title
+  const totalTime = 120
+
+  const [remainingTime] = useState(Math.floor(Math.random() * 120) + 1)
+  const progress = ((totalTime - remainingTime) / totalTime) * 100
   return (
     <ViewHistoryItemCont {...props}>
       <div className="thumbnailCont">
@@ -21,7 +26,9 @@ const ViewHistoryContItem = ({ content, ...props }) => {
             />
           </Link>
         </div>
-        <StateBar></StateBar>
+        <StateBar>
+          <div className="progress" style={{ width: `${progress}%` }}></div>
+        </StateBar>
       </div>
       <InfoCont>
         <div className="textarea">

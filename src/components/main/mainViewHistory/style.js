@@ -133,19 +133,27 @@ export const ViewHistoryItemCont = styled.div`
 `
 
 export const StateBar = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: ${color('gray', '50')};
-  z-index: 1;
-  border-radius: 0 0 7px 7px;
-  ${media.mobile} {
-    height: 3px;
-    border-radius: 0 0 5px 5px;
-  }
-`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: ${color('gray', '50')};
+    z-index: 1;
+    border-radius: 0 0 7px 7px;
+    overflow: hidden;
+
+    .progress {
+        height: 100%;
+        background-color: ${color('primary', 'default')};
+        transition: width 0.3s ease-in-out;
+    }
+
+    ${media.mobile} {
+        height: 3px;
+        border-radius: 0 0 5px 5px;
+    }
+`;
 export const InfoCont = styled.div`
   width: 100%;
   display: none;
