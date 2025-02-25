@@ -50,6 +50,7 @@ export const detailSlice = createSlice({
         clearCurrentData: (state, action) => {
             state.currentContent = null;
             state.currentGenre = null;
+            state.moreLikeThisData = null;
         },
     },
     extraReducers: (builder) => {

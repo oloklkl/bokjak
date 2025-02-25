@@ -13,7 +13,7 @@ import { getContentByGenre, getContentDetail } from '../../store/modules/getThun
 import { Link, useParams } from 'react-router-dom';
 
 const MoreLikeThisList = () => {
-    const { moreLikeThisData } = useSelector((state) => state.detailR);
+    const { moreLikeThisData, currentGenre } = useSelector((state) => state.detailR);
     const { width } = useSelector((state) => state.windowR);
     const { type } = useParams();
     const dispatch = useDispatch();
@@ -22,6 +22,11 @@ const MoreLikeThisList = () => {
         dispatch(getContentDetail({ type, id }));
         dispatch(getContentByGenre({ type, genreId }));
     };
+
+    useEffect(() => {
+        const genreId = currentGenre.id;
+        dispatch(getContentByGenre({ type, genreId }));
+    }, [currentGenre]);
 
     if (!moreLikeThisData) return <div>Loading...</div>;
 
