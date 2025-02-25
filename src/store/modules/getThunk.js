@@ -59,6 +59,7 @@ export const getTvShows = createAsyncThunk('content/getTvShows', async () => {
         params: {
             api_key: API_KEY,
             language: 'ko-KR',
+            with_origin_country: 'KR',
         },
     });
     return res.data.results;
