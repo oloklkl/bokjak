@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     categories: [
+        '영화',
         '코미디',
+        '시리즈',
         '공포',
         '판타지',
         '무협',
@@ -19,8 +21,6 @@ const initialState = {
         '미스터리',
         '범죄',
         '애니메이션',
-        '한국 TV 프로그램',
-        '외국 TV 프로그램',
     ],
     isOpen: false,
     selectedCategory: null,
