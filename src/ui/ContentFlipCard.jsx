@@ -24,6 +24,7 @@ export const ContentFlipCardWrap = styled.div`
             height: 100%;
             padding: 40px 20px;
         }
+
         &.content-flip-card-tags {
             display: flex;
             flex-wrap: wrap;
@@ -104,6 +105,7 @@ const ContentFlipCard = ({ content }) => {
                             ? content.title
                             : content.name}
                     </p>
+
                     <div className="content-flip-card-tags">
                         <span>
                             {
@@ -112,6 +114,13 @@ const ContentFlipCard = ({ content }) => {
                                 )[0]
                             }
                         </span>
+                        {content.genre_names.map(
+                            (item, idx) => (
+                                <span key={idx}>
+                                    {item}
+                                </span>
+                            )
+                        )}
                     </div>
                     <p className="content-flip-card-desc">
                         {content.overview || ''}
