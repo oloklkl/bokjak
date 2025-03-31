@@ -277,6 +277,40 @@ export const DetailSectionWrap = styled.div`
             grid-template-columns: 1fr 1fr 1fr;
             gap: 14px;
         }
+
+        &.season-episode-list {
+            position: relative;
+        }
+
+        &.show-more-episodes {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 50%);
+
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 9999px;
+
+            svg {
+                color: ${color('gray', '90')};
+            }
+
+            &:hover {
+                background-color: ${color('gray', '50')};
+            }
+        }
+
+        &.show-more-episodes-line {
+            height: 1px;
+            background-color: ${color('gray', '70')};
+        }
     }
 
     h3 {
