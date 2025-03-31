@@ -24,7 +24,6 @@ import {
     getTvShows,
     getUpcoming,
 } from '../../../store/modules/getThunk';
-import soondate from '../../../assets/api/soonDate';
 
 const SoonContList = () => {
     const { movies, upcoming } = useSelector(
@@ -32,19 +31,6 @@ const SoonContList = () => {
     );
     const dispatch = useDispatch();
     const location = useLocation();
-
-    const soonContent = movies
-        .filter((content) => content.logoImage)
-        .slice(0, 6)
-        .map((content, index) => {
-            const soonDateTime = soondate[index]?.soon_date;
-            const age = soondate[index]?.age_rating;
-            return {
-                ...content,
-                soon_date: soonDateTime,
-                age_rating: age,
-            };
-        });
 
     useEffect(() => {
         dispatch(getUpcoming());
