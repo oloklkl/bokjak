@@ -172,19 +172,35 @@ export const getContentByGenre = createAsyncThunk(
                 params: {
                     api_key: API_KEY,
                     language: 'ko-KR',
-                    with_genres: genreId,
+                    with_genres: Array.isArray(genreId)
+                        ? genreId.join(',')
+                        : genreId, // 여러 개일 경우, 쉼표로 연결
                 },
             }
         );
 
+        // genreId가 배열이면 포함된 장르가 하나라도 있는지 확인
+        const filteredContent =
+            contentRes.data.results.filter(
+                (content) =>
+                    Array.isArray(genreId)
+                        ? content.genre_ids.some((id) =>
+                              genreId.includes(id)
+                          ) // genreId 배열에 하나라도 포함되면 유지
+                        : content.genre_ids.includes(
+                              genreId
+                          ) // 단일 ID일 경우
+            );
+
         // 콘텐츠에 장르 이름 추가
-        const contentWithGenres =
-            contentRes.data.results.map((content) => ({
+        const contentWithGenres = filteredContent.map(
+            (content) => ({
                 ...content,
                 genre_names: content.genre_ids.map(
                     (id) => genreMap[id] || '알 수 없음'
                 ),
-            }));
+            })
+        );
 
         return contentWithGenres;
     }
