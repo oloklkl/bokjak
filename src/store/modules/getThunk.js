@@ -105,6 +105,61 @@ export const getTrending = createAsyncThunk(
     }
 );
 
+// 공개예정작 정보 가져오기기
+export const getUpcoming = createAsyncThunk(
+    'content/getUpcoming',
+    async () => {
+        // 1. 개봉 예정 영화 목록 가져오기
+        const res = await axios.get(
+            `${BASE_URL}/movie/upcoming`,
+            {
+                params: {
+                    api_key: API_KEY,
+                    language: 'ko-KR',
+                },
+            }
+        );
+
+        const movies = res.data.results;
+
+        // 2. 각 영화의 로고 이미지 가져오기
+        const moviesWithLogos = await Promise.all(
+            movies.map(async (movie) => {
+                try {
+                    const imageRes = await axios.get(
+                        `${BASE_URL}/movie/${movie.id}/images`,
+                        {
+                            params: {
+                                api_key: API_KEY,
+                                language: 'ko',
+                            },
+                        }
+                    );
+
+                    // logos 배열에서 첫 번째 로고 이미지 선택
+                    const logoImage = imageRes.data
+                        .logos?.[0]?.file_path
+                        ? `https://image.tmdb.org/t/p/original${imageRes.data.logos[0].file_path}`
+                        : null;
+
+                    return {
+                        ...movie,
+                        logoImage, // 로고 이미지 추가
+                    };
+                } catch (error) {
+                    console.error(
+                        `로고 이미지를 불러오는 데 실패함: ${movie.id}`,
+                        error
+                    );
+                    return { ...movie, logoImage: null }; // 오류 발생 시 기본값 설정
+                }
+            })
+        );
+
+        return moviesWithLogos;
+    }
+);
+
 // 콘텐츠 상세 정보 가져오기
 export const getContentDetail = createAsyncThunk(
     'detail/getContentDetail',
