@@ -162,6 +162,11 @@ export const InfoCont = styled.div`
     h2 {
         font-size: ${font('body', 'lg')};
         font-weight: bold;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+
         ${media.tablet} {
             font-size: ${font('body', 'md')};
         }
