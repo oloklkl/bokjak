@@ -5,10 +5,22 @@ import BookMarkLabel from '../../../ui/BookMarkLabel';
 import { BokjakDetailCont, BokjakModalCont } from './style';
 import genres from '../../../assets/api/genreData';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { authActions } from '../../../store/modules/authSlice';
 
 const BokjakModal = ({ content, closeModal }) => {
     const [isTimeToEnter, setIsTimeToEnter] =
         useState(false);
+    const dispatch = useDispatch();
+    const { authed, user } = useSelector(
+        (state) => state.authR
+    );
+
+    const isBokjakAlarm =
+        authed &&
+        user?.bokjakAlarm?.some(
+            (item) => item.id === content.id
+        );
 
     const bgurl = `https://image.tmdb.org/t/p/original`;
     const title = content.title;
@@ -64,11 +76,7 @@ const BokjakModal = ({ content, closeModal }) => {
 
     return (
         <BokjakModalCont>
-            <Dimmed
-                zindex={11}
-                onClick={closeModal}
-                className="dimmed-active"
-            >
+            <Dimmed zindex={11} className="dimmed-active">
                 <BokjakDetailCont>
                     <div className="detailTop">
                         <div className="titleTxt">
@@ -118,9 +126,22 @@ const BokjakModal = ({ content, closeModal }) => {
                             height="42px"
                         />
                         <BarButton
+                            onClick={() =>
+                                dispatch(
+                                    authActions.setBokjakAlarm(
+                                        content
+                                    )
+                                )
+                            }
                             className="modalBtn"
                             icon={
-                                !isTimeToEnter && (
+                                !isTimeToEnter &&
+                                isBokjakAlarm ? (
+                                    <BellSimple
+                                        size={24}
+                                        weight="fill"
+                                    />
+                                ) : (
                                     <BellSimple size={24} />
                                 )
                             }
