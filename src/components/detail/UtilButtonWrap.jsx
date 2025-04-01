@@ -30,23 +30,26 @@ const UtilButtonWrap = () => {
     const { authed, user } = useSelector(
         (state) => state.authR
     );
+    const { currentContent } = useSelector(
+        (state) => state.detailR
+    );
 
     const isLiked =
         authed &&
         user?.likedContent?.some(
-            (content) => content.id === id
+            (content) => content.id === currentContent.id
         );
     const isBookmarked =
         authed &&
         user?.bookmarkedContent?.some(
-            (content) => content.id === id
+            (content) => content.id === currentContent.id
         );
 
     const onLikeBtnClick = () => {
         if (!authed) {
             navigate('/login');
         } else {
-            dispatch(authActions.setLiked({ type, id }));
+            dispatch(authActions.setLiked(currentContent));
         }
     };
     const onBookmarkBtnClick = () => {
@@ -54,7 +57,7 @@ const UtilButtonWrap = () => {
             navigate('/login');
         } else {
             dispatch(
-                authActions.setBookmarked({ type, id })
+                authActions.setBookmarked(currentContent)
             );
         }
     };
