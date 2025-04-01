@@ -11,9 +11,9 @@ import { MyPageWrap } from './style';
 const MyPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { movies, tvShows } = useSelector((state) => state.contentR);
-
-    const combinedContents = [...movies, ...tvShows].slice(0, 10);
+    const { user } = useSelector((state) => state.authR);
+    const likedContents = user.likedContent;
+    const bookmarkedContents = user.bookmarkedContent;
 
     const handleLogout = () => {
         dispatch(authActions.logout());
@@ -22,13 +22,26 @@ const MyPage = () => {
 
     return (
         <MyPageWrap>
-            <div className='inner'>
+            <div className="inner">
                 <ProfileSection />
 
                 <MyPageViewHistoryCont />
-                <SubThumbnailCont title='관심 콘텐츠' contents={combinedContents} />
+                <SubThumbnailCont
+                    title="관심 콘텐츠"
+                    contents={bookmarkedContents}
+                />
+                <SubThumbnailCont
+                    title="평가한 콘텐츠"
+                    contents={likedContents}
+                />
 
-                <BarButton className='share' text='로그아웃' width='500px' height='50px' onClick={handleLogout} />
+                <BarButton
+                    className="share"
+                    text="로그아웃"
+                    width="500px"
+                    height="50px"
+                    onClick={handleLogout}
+                />
             </div>
             <BottomNavigation />
         </MyPageWrap>
