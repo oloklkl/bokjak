@@ -11,6 +11,7 @@ import { media } from '../styled/media';
 import genres from '../assets/api/genreData';
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions } from '../store/modules/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const HoverItemWrap = styled.div`
     ${media.tablet} {
@@ -137,6 +138,7 @@ const ThumbnailCardHover = ({ content }) => {
         window.location.href = `/detail/${content.id}`; // 예시로 id를 URL에 포함시킴
     };
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { user, authed } = useSelector(
         (state) => state.authR
     );
@@ -198,13 +200,18 @@ const ThumbnailCardHover = ({ content }) => {
                             height="42px"
                         />
                         <IconButton
-                            onClick={() =>
-                                dispatch(
-                                    authActions.setBookmarked(
-                                        content
-                                    )
-                                )
-                            }
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (authed) {
+                                    dispatch(
+                                        authActions.setBookmarked(
+                                            content
+                                        )
+                                    );
+                                } else {
+                                    navigate('/login');
+                                }
+                            }}
                             icon={
                                 isBookmarked ? (
                                     <BookmarkSimple
@@ -220,13 +227,18 @@ const ThumbnailCardHover = ({ content }) => {
                             text="BookmarkSimple"
                         />
                         <IconButton
-                            onClick={() =>
-                                dispatch(
-                                    authActions.setLiked(
-                                        content
-                                    )
-                                )
-                            }
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (authed) {
+                                    dispatch(
+                                        authActions.setLiked(
+                                            content
+                                        )
+                                    );
+                                } else {
+                                    navigate('/login');
+                                }
+                            }}
                             icon={
                                 isLiked ? (
                                     <Heart

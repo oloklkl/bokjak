@@ -7,11 +7,13 @@ import genres from '../../../assets/api/genreData';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions } from '../../../store/modules/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 const BokjakModal = ({ content, closeModal }) => {
     const [isTimeToEnter, setIsTimeToEnter] =
         useState(false);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { authed, user } = useSelector(
         (state) => state.authR
     );
@@ -126,13 +128,18 @@ const BokjakModal = ({ content, closeModal }) => {
                             height="42px"
                         />
                         <BarButton
-                            onClick={() =>
-                                dispatch(
-                                    authActions.setBokjakAlarm(
-                                        content
-                                    )
-                                )
-                            }
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (authed) {
+                                    dispatch(
+                                        authActions.setBokjakAlarm(
+                                            content
+                                        )
+                                    );
+                                } else {
+                                    navigate('/login');
+                                }
+                            }}
                             className="modalBtn"
                             icon={
                                 !isTimeToEnter &&
