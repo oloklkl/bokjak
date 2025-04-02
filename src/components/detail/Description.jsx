@@ -57,7 +57,7 @@ const Description = () => {
                         <span>
                             {type === 'movie'
                                 ? `${currentContent.runtime}분`
-                                : `${currentContent.seasons[0].episode_count}개 에피소드`}
+                                : `${currentContent.seasons[0]?.episode_count}개 에피소드`}
                         </span>
                     </div>
                     <p>{currentContent.overview}</p>
