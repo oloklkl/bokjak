@@ -12,7 +12,7 @@ export const Section = styled.section`
     display: flex;
     justify-content: space-between;
     padding: 36px 30px;
-    width: 100vw;
+    width: 100%;
     height: 150px;
     background: ${color('gray', '70')};
 
