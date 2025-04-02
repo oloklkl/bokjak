@@ -14,6 +14,8 @@ import {
     UpcomingUpIconWrap,
 } from './style';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../../store/modules/authSlice';
 
 const genres = {
     28: '액션',
@@ -38,12 +40,10 @@ const genres = {
 };
 
 const UpcomingNotificationItem = ({ content }) => {
-    const [isVisible, setIsVisible] = useState(true);
-
-    if (!isVisible) return null;
+    const dispatch = useDispatch();
 
     const handleRemove = () => {
-        setIsVisible(false);
+        dispatch(authActions.setSoonAlarm(content));
     };
 
     const genreNames =
@@ -53,10 +53,15 @@ const UpcomingNotificationItem = ({ content }) => {
             .join(' · ') || '장르 없음';
 
     const releaseMonth = content.release_date
-        ? `${parseInt(content.release_date.split('-')[1], 10)}월`
+        ? `${parseInt(
+              content.release_date.split('-')[1],
+              10
+          )}월`
         : '월 정보 없음';
 
-    const releaseYear = content.release_date ? content.release_date.split('-')[0] : '연도 없음';
+    const releaseYear = content.release_date
+        ? content.release_date.split('-')[0]
+        : '연도 없음';
 
     const getAgeLabel = (content) => {
         if (content.adult) return '19+';
@@ -74,8 +79,13 @@ const UpcomingNotificationItem = ({ content }) => {
                     <HeaderTitle>
                         <h2>{releaseMonth}</h2>
                     </HeaderTitle>
-                    <UpcomingUpIconWrap onClick={handleRemove}>
-                        <BellSimpleRinging size={24} weight='fill' />
+                    <UpcomingUpIconWrap
+                        onClick={handleRemove}
+                    >
+                        <BellSimpleRinging
+                            size={24}
+                            weight="fill"
+                        />
                     </UpcomingUpIconWrap>
                 </UpcomingHeaderWrap>
                 <FlexWrap>
@@ -86,7 +96,10 @@ const UpcomingNotificationItem = ({ content }) => {
                                     ? `https://image.tmdb.org/t/p/w500${content.poster_path}`
                                     : 'https://via.placeholder.com/300x430'
                             }
-                            alt={content.title || '영화 포스터'}
+                            alt={
+                                content.title ||
+                                '영화 포스터'
+                            }
                         />
                     </UpcomingImageWrap>
                     <UpcomingInfoWrap>
@@ -94,16 +107,30 @@ const UpcomingNotificationItem = ({ content }) => {
                             <h3>{content.title}</h3>
                             <AgeLabel text={ageLabel} />
                         </UpcomingActionWrap>
-                        <span>{content.release_date ? content.release_date.split('-')[0] : '연도 없음'}</span>
+                        <span>
+                            {content.release_date
+                                ? content.release_date.split(
+                                      '-'
+                                  )[0]
+                                : '연도 없음'}
+                        </span>
                         <em>·</em>
                         <span>{genreNames}</span>
                     </UpcomingInfoWrap>
                 </FlexWrap>
                 <UpcomingDescription>
-                    <p>{content.overview || '상세 내용 없음'}</p>
+                    <p>
+                        {content.overview ||
+                            '상세 내용 없음'}
+                    </p>
                 </UpcomingDescription>
-                <UpcomingDownIconWrap onClick={handleRemove}>
-                    <BellSimpleRinging size={24} weight='fill' />
+                <UpcomingDownIconWrap
+                    onClick={handleRemove}
+                >
+                    <BellSimpleRinging
+                        size={24}
+                        weight="fill"
+                    />
                 </UpcomingDownIconWrap>
             </UpcomingContentWrap>
         </UpcomingNotificationItemWrap>
