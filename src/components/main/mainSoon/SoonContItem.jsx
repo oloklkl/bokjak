@@ -12,8 +12,22 @@ import {
 } from './style';
 import genres from '../../../assets/api/genreData';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { authActions } from '../../../store/modules/authSlice';
 
 const SoonContItem = ({ content, ...props }) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { authed, user } = useSelector(
+        (state) => state.authR
+    );
+    const isSoonAlarm =
+        authed &&
+        user?.soonAlarm?.some(
+            (item) => item.id === content.id
+        );
+
     const bgurl = `https://image.tmdb.org/t/p/original`;
     const logoUrl = content.logoImage
         ? `https://image.tmdb.org/t/p/original${content.logoImage}`
@@ -45,8 +59,13 @@ const SoonContItem = ({ content, ...props }) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleBellClick = () => {
-        setIsModalOpen(true);
+    const handleBellClick = (e) => {
+        e.preventDefault();
+        if (authed) {
+            dispatch(authActions.setSoonAlarm(content));
+        } else {
+            navigate('/login');
+        }
     };
 
     const closeModal = () => {
@@ -104,7 +123,16 @@ const SoonContItem = ({ content, ...props }) => {
                             <IconButton
                                 className="soonIconTop"
                                 icon={
-                                    <BellSimple size={24} />
+                                    isSoonAlarm ? (
+                                        <BellSimple
+                                            size={24}
+                                            weight="fill"
+                                        />
+                                    ) : (
+                                        <BellSimple
+                                            size={24}
+                                        />
+                                    )
                                 }
                                 text="BellSimple"
                                 onClick={handleBellClick}
@@ -129,7 +157,16 @@ const SoonContItem = ({ content, ...props }) => {
                             />
                             <IconButton
                                 icon={
-                                    <BellSimple size={24} />
+                                    isSoonAlarm ? (
+                                        <BellSimple
+                                            size={24}
+                                            weight="fill"
+                                        />
+                                    ) : (
+                                        <BellSimple
+                                            size={24}
+                                        />
+                                    )
                                 }
                                 text="BellSimple"
                                 onClick={handleBellClick}

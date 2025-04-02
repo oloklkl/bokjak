@@ -79,7 +79,7 @@ export const BokjakHeader = styled.div`
             }
         }
         .msgBox {
-            width: 100%;
+            width: 70%;
             height: auto;
             background: ${color('gray', '70')};
             box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
@@ -88,7 +88,7 @@ export const BokjakHeader = styled.div`
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -140%);
+            transform: translate(-50%, 40%);
             z-index: 10;
             opacity: 0;
             pointer-events: none;

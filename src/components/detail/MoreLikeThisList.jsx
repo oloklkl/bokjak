@@ -9,11 +9,16 @@ import { FreeMode } from 'swiper/modules';
 import ContentFlipCard from '../../ui/ContentFlipCard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContentByGenre, getContentDetail } from '../../store/modules/getThunk';
+import {
+    getContentByGenre,
+    getContentDetail,
+} from '../../store/modules/getThunk';
 import { Link, useParams } from 'react-router-dom';
 
 const MoreLikeThisList = () => {
-    const { moreLikeThisData, currentGenre } = useSelector((state) => state.detailR);
+    const { moreLikeThisData, currentGenre } = useSelector(
+        (state) => state.detailR
+    );
     const { width } = useSelector((state) => state.windowR);
     const { type } = useParams();
     const dispatch = useDispatch();
@@ -24,11 +29,14 @@ const MoreLikeThisList = () => {
     };
 
     useEffect(() => {
-        const genreId = currentGenre.id;
+        const genreId = currentGenre.map(
+            (genre) => genre.id
+        );
         dispatch(getContentByGenre({ type, genreId }));
     }, [currentGenre]);
 
-    if (!moreLikeThisData) return <div>Loading...</div>;
+    if (!moreLikeThisData || moreLikeThisData.length <= 0)
+        return <div>Loading...</div>;
 
     return (
         <DetailSectionWrap>
@@ -45,7 +53,10 @@ const MoreLikeThisList = () => {
                         modules={[FreeMode]}
                         className="moreLikeThisSwiper"
                         breakpoints={{
-                            860: { slidesPerView: 3.2, spaceBetween: 24 },
+                            860: {
+                                slidesPerView: 3.2,
+                                spaceBetween: 24,
+                            },
                         }}
                     >
                         {moreLikeThisData.map((content) => (
@@ -53,13 +64,18 @@ const MoreLikeThisList = () => {
                                 <Link
                                     to={`/${type}/${content.id}`}
                                     state={{
-                                        previousLocation: location,
+                                        previousLocation:
+                                            location,
                                     }}
                                 >
                                     <ContentFlipCard
                                         content={content}
                                         onClick={() => {
-                                            showDetailModal(type, content.id, content.genre_ids);
+                                            showDetailModal(
+                                                type,
+                                                content.id,
+                                                content.genre_ids
+                                            );
                                         }}
                                     />
                                 </Link>
@@ -80,7 +96,11 @@ const MoreLikeThisList = () => {
                             <ContentFlipCard
                                 content={content}
                                 onClick={() => {
-                                    showDetailModal(type, content.id, content.genre_ids);
+                                    showDetailModal(
+                                        type,
+                                        content.id,
+                                        content.genre_ids
+                                    );
                                 }}
                             />
                         </Link>

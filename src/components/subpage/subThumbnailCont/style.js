@@ -9,13 +9,13 @@ export const ThumbnailSection = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 80px 0 40px;
+    padding: 80px 30px 40px;
     ${media.tablet} {
-        padding: 60px 0 30px;
+        padding: 60px 30px 30px;
     }
     ${media.mobile} {
         gap: 20px;
-        padding: 40px 0 20px;
+        padding: 40px 20px 20px;
     }
 `;
 
