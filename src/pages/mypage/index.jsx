@@ -22,13 +22,14 @@ const MyPage = () => {
 
     return (
         <MyPageWrap>
-            <div className="inner">
+            <div>
                 <ProfileSection />
 
                 <MyPageViewHistoryCont />
                 <SubThumbnailCont
                     title="관심 콘텐츠"
                     contents={bookmarkedContents}
+                    className="inner"
                 />
                 <SubThumbnailCont
                     title="평가한 콘텐츠"

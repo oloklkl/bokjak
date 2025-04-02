@@ -4,14 +4,14 @@ import { media } from '../../styled/media';
 
 export const Section = styled.section`
     position: relative;
-    left: 50%;
-    right: 50%;
+    // left: 50%;
+    // right: 50%;
     margin-top: 20px;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    // margin-left: -50vw;
+    // margin-right: -50vw;
     display: flex;
     justify-content: space-between;
-    padding: 36px 200px;
+    padding: 36px 30px;
     width: 100vw;
     height: 150px;
     background: ${color('gray', '70')};

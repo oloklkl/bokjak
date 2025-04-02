@@ -9,12 +9,12 @@ export const ViewHistorySection = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 40px 0 80px;
+    padding: 40px 30px 80px;
     ${media.tablet} {
-        padding: 30px 0 60px;
+        padding: 30px 30px 60px;
     }
     ${media.mobile} {
-        padding: 20px 0 40px;
+        padding: 20px 20px 40px;
     }
 `;
 
