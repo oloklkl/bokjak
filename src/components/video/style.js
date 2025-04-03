@@ -24,9 +24,44 @@ export const VideoPlayerWrap = styled.div`
         width: 100vw;
         height: 100%;
     }
-
+    .pointer {
+        cursor: pointer;
+    }
     iframe {
         pointer-events: none;
+    }
+
+    div.video-play-bar {
+        /* color: ${color('primary', 'default')}; */
+    }
+
+    input[type='range'] {
+        margin-bottom: 30px;
+
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 6px;
+        background: ${color('gray', '30')};
+        border-radius: 3px;
+        outline: none;
+
+        &::-webkit-slider-runnable-track {
+            background: ${color('primary', 'default')};
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: ${color('primary', 'default')};
+            border-radius: 50%;
+            cursor: pointer;
+            margin-top: -5px;
+        }
     }
 
     div {
@@ -36,7 +71,7 @@ export const VideoPlayerWrap = styled.div`
         }
 
         &.video-util-wrap {
-            pointer-events: none;
+            /* pointer-events: none; */
 
             display: flex;
             flex-direction: column;
@@ -53,7 +88,9 @@ export const VideoPlayerWrap = styled.div`
                 height: 30px;
             }
         }
+
         &.video-controls-wrap {
+            /* pointer-events: none; */
             display: flex;
             justify-content: space-between;
         }

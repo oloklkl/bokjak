@@ -4,6 +4,7 @@ import {
     CaretRight,
     ChatCenteredDots,
     Gear,
+    Pause,
     Play,
     SkipForward,
     SpeakerSimpleHigh,
@@ -12,7 +13,7 @@ import { VideoPlayerWrap } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { videoActions } from '../../store/modules/videoSlice';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 
 const optionList = [
@@ -56,6 +57,11 @@ const VideoPlayer = () => {
     const dispatch = useDispatch();
     const [selectedOptionId, setSelectedOptionId] =
         useState(null);
+    const [isPlaying, setIsPlaying] = useState(true);
+
+    const handlePlaying = () => {
+        setIsPlaying(!isPlaying);
+    };
 
     const exitVideo = () => {
         navigate(-1);
@@ -159,43 +165,80 @@ const VideoPlayer = () => {
                         )}
                     </div>
                 </div>
-                <div className="video-controls-wrap">
-                    <div className="video-controls video-controls-left">
-                        {width > 600 && (
-                            <>
-                                <img
-                                    src="https://raw.githubusercontent.com/lse-7660/bokjak-image/b21d3ce5129ec91bdaa968b80212b483b21de0ed/images/icon/rewind.svg"
-                                    alt="되감기"
-                                />
-                                <Play
-                                    weight="fill"
-                                    size={30}
-                                />
-                                <img
-                                    src="https://raw.githubusercontent.com/lse-7660/bokjak-image/b21d3ce5129ec91bdaa968b80212b483b21de0ed/images/icon/fastfoword.svg"
-                                    alt=""
-                                />
-                                <SpeakerSimpleHigh
-                                    size={30}
-                                />
-                            </>
-                        )}
-
-                        <span className="video-play-time">
-                            19:23 / 37:36
-                        </span>
+                <div>
+                    <div className="video-play-bar">
+                        <input
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="any"
+                            value={played}
+                        ></input>
                     </div>
-                    <div className="video-controls video-controls-right">
-                        <SkipForward size={30} />
-                        <CardsThree size={30} />
-                        <ChatCenteredDots
-                            size={30}
-                            onClick={() =>
-                                dispatch(
-                                    videoActions.showChatWindow()
-                                )
-                            }
-                        />
+                    <div className="video-controls-wrap">
+                        <div className="video-controls video-controls-left">
+                            {width > 600 && (
+                                <>
+                                    <img
+                                        src="https://raw.githubusercontent.com/lse-7660/bokjak-image/b21d3ce5129ec91bdaa968b80212b483b21de0ed/images/icon/rewind.svg"
+                                        alt="되감기"
+                                        className="pointer"
+                                    />
+                                    {isPlaying ? (
+                                        <Pause
+                                            weight="fill"
+                                            size={30}
+                                            className="pointer"
+                                            onClick={
+                                                handlePlaying
+                                            }
+                                        />
+                                    ) : (
+                                        <Play
+                                            weight="fill"
+                                            size={30}
+                                            className="pointer"
+                                            onClick={
+                                                handlePlaying
+                                            }
+                                        />
+                                    )}
+
+                                    <img
+                                        src="https://raw.githubusercontent.com/lse-7660/bokjak-image/b21d3ce5129ec91bdaa968b80212b483b21de0ed/images/icon/fastfoword.svg"
+                                        alt="빨리감기"
+                                        className="pointer"
+                                    />
+                                    <SpeakerSimpleHigh
+                                        size={30}
+                                        className="pointer"
+                                    />
+                                </>
+                            )}
+
+                            <span className="video-play-time">
+                                19:23 / 37:36
+                            </span>
+                        </div>
+                        <div className="video-controls video-controls-right">
+                            <SkipForward
+                                size={30}
+                                className="pointer"
+                            />
+                            <CardsThree
+                                size={30}
+                                className="pointer"
+                            />
+                            <ChatCenteredDots
+                                size={30}
+                                onClick={() =>
+                                    dispatch(
+                                        videoActions.showChatWindow()
+                                    )
+                                }
+                                className="pointer"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -206,25 +249,19 @@ const VideoPlayer = () => {
                             ? `https://www.youtube.com/watch?v=${currentContent.videos.results[0].key}`
                             : `https://www.youtube.com/watch?v=5-oH6keT1iM}`
                     }
-                    playing={true}
+                    playing={isPlaying}
                     muted={true}
                     controls={false}
+                    onProgress={handleProgress}
+                    config={{
+                        youtube: {
+                            playerVars: { playsinline: 1 },
+                        },
+                    }}
                     width="100%"
                     height="100%"
                 />
             </div>
-            {/* <iframe
-                width="100%"
-                height="100%"
-                src={
-                    currentContent.videos.results[0]
-                        ? `http://www.youtube.com/embed/${currentContent.videos.results[0].key}?autoplay=1&mute=1&controls=0&enablejsapi=1&playlist=${currentContent.videos.results[0].key}`
-                        : 'http://www.youtube.com/embed/5-oH6keT1iM?autoplay=1&mute=1&controls=0&enablejsapi=1&playlist=5-oH6keT1iM'
-                }
-                // frameborder="0"
-                allow="autoplay"
-                allowfullscreen
-            ></iframe> */}
         </VideoPlayerWrap>
     );
 };
