@@ -9,7 +9,7 @@ import {
     SkipForward,
     SpeakerSimpleHigh,
 } from '@phosphor-icons/react';
-import { VideoPlayerWrap } from './style';
+import { ProgressBar, VideoPlayerWrap } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { videoActions } from '../../store/modules/videoSlice';
 import { useNavigate } from 'react-router-dom';
@@ -57,11 +57,100 @@ const VideoPlayer = () => {
     const dispatch = useDispatch();
     const [selectedOptionId, setSelectedOptionId] =
         useState(null);
-    const [isPlaying, setIsPlaying] = useState(true);
 
+    /* 영상 재생 버튼 */
+    const [isPlaying, setIsPlaying] = useState(true);
     const handlePlaying = () => {
         setIsPlaying(!isPlaying);
     };
+
+    /*영상 재생 바 */
+    const [played, setPlayed] = useState(0);
+    const playerRef = useRef(null);
+    const progressRef = useRef(played);
+
+    useEffect(() => {
+        const updateProgress = () => {
+            if (playerRef.current) {
+                const newPlayed =
+                    playerRef.current.getCurrentTime() /
+                    playerRef.current.getDuration();
+                if (!isNaN(newPlayed)) {
+                    progressRef.current = newPlayed;
+                    setPlayed(newPlayed);
+                }
+            }
+            requestAnimationFrame(updateProgress);
+        };
+        updateProgress();
+        return () => cancelAnimationFrame(updateProgress);
+    }, []);
+
+    const handleSeek = (e) => {
+        const newPlayed = parseFloat(e.target.value);
+        setPlayed(newPlayed);
+        playerRef.current.seekTo(newPlayed, 'fraction');
+    };
+    /*-----------------------------------------------------------*/
+
+    /* 영상 재생 시간 */
+    const [duration, setDuration] = useState(0); // 전체 길이
+    const [playedSeconds, setPlayedSeconds] = useState(0); // 현재 재생 시간
+
+    useEffect(() => {
+        const updateProgress = () => {
+            if (playerRef.current) {
+                const currentTime =
+                    playerRef.current.getCurrentTime();
+                const totalDuration =
+                    playerRef.current.getDuration();
+                if (
+                    !isNaN(currentTime) &&
+                    !isNaN(totalDuration)
+                ) {
+                    setPlayedSeconds(currentTime);
+                    setDuration(totalDuration);
+                    setPlayed(currentTime / totalDuration);
+                }
+            }
+            requestAnimationFrame(updateProgress);
+        };
+        updateProgress();
+        return () => cancelAnimationFrame(updateProgress);
+    }, []);
+
+    const formatTime = (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    };
+    /*-----------------------------------------------------------*/
+
+    /* 되감기, 빨리 감기 */
+    const handleRewind = () => {
+        if (playerRef.current) {
+            const currentTime =
+                playerRef.current.getCurrentTime();
+            playerRef.current.seekTo(
+                Math.max(currentTime - 10, 0),
+                'seconds'
+            );
+        }
+    };
+
+    const handleFastForward = () => {
+        if (playerRef.current) {
+            const currentTime =
+                playerRef.current.getCurrentTime();
+            const totalDuration =
+                playerRef.current.getDuration();
+            playerRef.current.seekTo(
+                Math.min(currentTime + 10, totalDuration),
+                'seconds'
+            );
+        }
+    };
+    /*-----------------------------------------------------------*/
 
     const exitVideo = () => {
         navigate(-1);
@@ -166,15 +255,21 @@ const VideoPlayer = () => {
                     </div>
                 </div>
                 <div>
-                    <div className="video-play-bar">
+                    <ProgressBar className="video-play-bar">
                         <input
                             type="range"
                             min="0"
                             max="1"
                             step="any"
                             value={played}
+                            onChange={handleSeek}
+                            style={{
+                                '--progress': `${
+                                    played * 100
+                                }%`,
+                            }}
                         ></input>
-                    </div>
+                    </ProgressBar>
                     <div className="video-controls-wrap">
                         <div className="video-controls video-controls-left">
                             {width > 600 && (
@@ -183,6 +278,9 @@ const VideoPlayer = () => {
                                         src="https://raw.githubusercontent.com/lse-7660/bokjak-image/b21d3ce5129ec91bdaa968b80212b483b21de0ed/images/icon/rewind.svg"
                                         alt="되감기"
                                         className="pointer"
+                                        onClick={
+                                            handleRewind
+                                        }
                                     />
                                     {isPlaying ? (
                                         <Pause
@@ -208,6 +306,9 @@ const VideoPlayer = () => {
                                         src="https://raw.githubusercontent.com/lse-7660/bokjak-image/b21d3ce5129ec91bdaa968b80212b483b21de0ed/images/icon/fastfoword.svg"
                                         alt="빨리감기"
                                         className="pointer"
+                                        onClick={
+                                            handleFastForward
+                                        }
                                     />
                                     <SpeakerSimpleHigh
                                         size={30}
@@ -217,7 +318,8 @@ const VideoPlayer = () => {
                             )}
 
                             <span className="video-play-time">
-                                19:23 / 37:36
+                                {formatTime(playedSeconds)}{' '}
+                                / {formatTime(duration)}
                             </span>
                         </div>
                         <div className="video-controls video-controls-right">
@@ -244,20 +346,15 @@ const VideoPlayer = () => {
             </div>
             <div className="video-player">
                 <ReactPlayer
+                    ref={playerRef}
                     url={
                         currentContent.videos.results[0]
                             ? `https://www.youtube.com/watch?v=${currentContent.videos.results[0].key}`
-                            : `https://www.youtube.com/watch?v=5-oH6keT1iM}`
+                            : `https://www.youtube.com/watch?v=5-oH6keT1iM`
                     }
                     playing={isPlaying}
                     muted={true}
                     controls={false}
-                    onProgress={handleProgress}
-                    config={{
-                        youtube: {
-                            playerVars: { playsinline: 1 },
-                        },
-                    }}
                     width="100%"
                     height="100%"
                 />

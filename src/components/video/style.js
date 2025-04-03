@@ -14,6 +14,32 @@ export const VideoWrapCom = styled.div`
     }
 `;
 
+export const ProgressBar = styled.div`
+    input[type='range'] {
+        margin-bottom: 30px;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 6px;
+
+        border-radius: 3px;
+        outline: none;
+        background: linear-gradient(
+            to right,
+            ${color('primary', 'default')} var(--progress),
+            ${color('gray', '30')} 0
+        );
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: ${color('primary', 'default')};
+            border-radius: 50%;
+        }
+    }
+`;
+
 export const VideoPlayerWrap = styled.div`
     position: relative;
     width: 100%;
@@ -33,35 +59,6 @@ export const VideoPlayerWrap = styled.div`
 
     div.video-play-bar {
         /* color: ${color('primary', 'default')}; */
-    }
-
-    input[type='range'] {
-        margin-bottom: 30px;
-
-        -webkit-appearance: none;
-        appearance: none;
-        width: 100%;
-        height: 6px;
-        background: ${color('gray', '30')};
-        border-radius: 3px;
-        outline: none;
-
-        &::-webkit-slider-runnable-track {
-            background: ${color('primary', 'default')};
-            height: 6px;
-            border-radius: 3px;
-        }
-
-        &::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            background: ${color('primary', 'default')};
-            border-radius: 50%;
-            cursor: pointer;
-            margin-top: -5px;
-        }
     }
 
     div {
