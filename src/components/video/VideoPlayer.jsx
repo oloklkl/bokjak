@@ -4,15 +4,17 @@ import {
     CaretRight,
     ChatCenteredDots,
     Gear,
+    Pause,
     Play,
     SkipForward,
     SpeakerSimpleHigh,
+    SpeakerSimpleX,
 } from '@phosphor-icons/react';
-import { VideoPlayerWrap } from './style';
+import { ProgressBar, VideoPlayerWrap } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { videoActions } from '../../store/modules/videoSlice';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 
 const optionList = [
@@ -56,6 +58,109 @@ const VideoPlayer = () => {
     const dispatch = useDispatch();
     const [selectedOptionId, setSelectedOptionId] =
         useState(null);
+
+    /* 영상 재생 버튼 */
+    const [isPlaying, setIsPlaying] = useState(true);
+    const handlePlaying = () => {
+        setIsPlaying(!isPlaying);
+    };
+
+    /*영상 재생 바 */
+    const [played, setPlayed] = useState(0);
+    const playerRef = useRef(null);
+    const progressRef = useRef(played);
+
+    useEffect(() => {
+        const updateProgress = () => {
+            if (playerRef.current) {
+                const newPlayed =
+                    playerRef.current.getCurrentTime() /
+                    playerRef.current.getDuration();
+                if (!isNaN(newPlayed)) {
+                    progressRef.current = newPlayed;
+                    setPlayed(newPlayed);
+                }
+            }
+            requestAnimationFrame(updateProgress);
+        };
+        updateProgress();
+        return () => cancelAnimationFrame(updateProgress);
+    }, []);
+
+    const handleSeek = (e) => {
+        const newPlayed = parseFloat(e.target.value);
+        setPlayed(newPlayed);
+        playerRef.current.seekTo(newPlayed, 'fraction');
+    };
+    /*-----------------------------------------------------------*/
+
+    /* 영상 재생 시간 */
+    const [duration, setDuration] = useState(0); // 전체 길이
+    const [playedSeconds, setPlayedSeconds] = useState(0); // 현재 재생 시간
+
+    useEffect(() => {
+        const updateProgress = () => {
+            if (playerRef.current) {
+                const currentTime =
+                    playerRef.current.getCurrentTime();
+                const totalDuration =
+                    playerRef.current.getDuration();
+                if (
+                    !isNaN(currentTime) &&
+                    !isNaN(totalDuration)
+                ) {
+                    setPlayedSeconds(currentTime);
+                    setDuration(totalDuration);
+                    setPlayed(currentTime / totalDuration);
+                }
+            }
+            requestAnimationFrame(updateProgress);
+        };
+        updateProgress();
+        return () => cancelAnimationFrame(updateProgress);
+    }, []);
+
+    const formatTime = (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    };
+    /*-----------------------------------------------------------*/
+
+    /* 되감기, 빨리 감기 */
+    const handleRewind = () => {
+        if (playerRef.current) {
+            const currentTime =
+                playerRef.current.getCurrentTime();
+            playerRef.current.seekTo(
+                Math.max(currentTime - 10, 0),
+                'seconds'
+            );
+        }
+    };
+
+    const handleFastForward = () => {
+        if (playerRef.current) {
+            const currentTime =
+                playerRef.current.getCurrentTime();
+            const totalDuration =
+                playerRef.current.getDuration();
+            playerRef.current.seekTo(
+                Math.min(currentTime + 10, totalDuration),
+                'seconds'
+            );
+        }
+    };
+    /*-----------------------------------------------------------*/
+
+    /* 영상 볼륨 조절 */
+    const [isVolume, setIsVolume] = useState(false);
+    const [volume, setVolume] = useState(0.2);
+
+    const handleVolumeChange = (e) => {
+        setVolume(parseFloat(e.target.value));
+    };
+    /*-----------------------------------------------------------*/
 
     const exitVideo = () => {
         navigate(-1);
@@ -159,72 +264,154 @@ const VideoPlayer = () => {
                         )}
                     </div>
                 </div>
-                <div className="video-controls-wrap">
-                    <div className="video-controls video-controls-left">
-                        {width > 600 && (
-                            <>
-                                <img
-                                    src="https://raw.githubusercontent.com/lse-7660/bokjak-image/b21d3ce5129ec91bdaa968b80212b483b21de0ed/images/icon/rewind.svg"
-                                    alt="되감기"
-                                />
-                                <Play
-                                    weight="fill"
-                                    size={30}
-                                />
-                                <img
-                                    src="https://raw.githubusercontent.com/lse-7660/bokjak-image/b21d3ce5129ec91bdaa968b80212b483b21de0ed/images/icon/fastfoword.svg"
-                                    alt=""
-                                />
-                                <SpeakerSimpleHigh
-                                    size={30}
-                                />
-                            </>
-                        )}
+                <div>
+                    <ProgressBar className="video-play-bar">
+                        <input
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="any"
+                            value={played}
+                            onChange={handleSeek}
+                            style={{
+                                '--progress': `${
+                                    played * 100
+                                }%`,
+                            }}
+                        ></input>
+                    </ProgressBar>
+                    <div className="video-controls-wrap">
+                        <div className="video-controls video-controls-left">
+                            {width > 600 && (
+                                <>
+                                    <img
+                                        src="https://raw.githubusercontent.com/lse-7660/bokjak-image/b21d3ce5129ec91bdaa968b80212b483b21de0ed/images/icon/rewind.svg"
+                                        alt="되감기"
+                                        className="pointer"
+                                        onClick={
+                                            handleRewind
+                                        }
+                                    />
+                                    {isPlaying ? (
+                                        <Pause
+                                            weight="fill"
+                                            size={30}
+                                            className="pointer"
+                                            onClick={
+                                                handlePlaying
+                                            }
+                                        />
+                                    ) : (
+                                        <Play
+                                            weight="fill"
+                                            size={30}
+                                            className="pointer"
+                                            onClick={
+                                                handlePlaying
+                                            }
+                                        />
+                                    )}
 
-                        <span className="video-play-time">
-                            19:23 / 37:36
-                        </span>
-                    </div>
-                    <div className="video-controls video-controls-right">
-                        <SkipForward size={30} />
-                        <CardsThree size={30} />
-                        <ChatCenteredDots
-                            size={30}
-                            onClick={() =>
-                                dispatch(
-                                    videoActions.showChatWindow()
-                                )
-                            }
-                        />
+                                    <img
+                                        src="https://raw.githubusercontent.com/lse-7660/bokjak-image/b21d3ce5129ec91bdaa968b80212b483b21de0ed/images/icon/fastfoword.svg"
+                                        alt="빨리감기"
+                                        className="pointer"
+                                        onClick={
+                                            handleFastForward
+                                        }
+                                    />
+                                    <div
+                                        className="video-volume-control"
+                                        onMouseEnter={() =>
+                                            setIsVolume(
+                                                true
+                                            )
+                                        }
+                                        onMouseLeave={() =>
+                                            setIsVolume(
+                                                false
+                                            )
+                                        }
+                                    >
+                                        {volume > 0 ? (
+                                            <SpeakerSimpleHigh
+                                                size={30}
+                                                className="pointer"
+                                            />
+                                        ) : (
+                                            <SpeakerSimpleX
+                                                size={30}
+                                                className="pointer"
+                                            />
+                                        )}
+
+                                        {isVolume && (
+                                            <input
+                                                type="range"
+                                                min="0"
+                                                max="1"
+                                                step="0.01"
+                                                value={
+                                                    volume
+                                                }
+                                                onChange={
+                                                    handleVolumeChange
+                                                }
+                                                className="volume-slider"
+                                                style={{
+                                                    '--volume': `${
+                                                        volume *
+                                                        100
+                                                    }%`,
+                                                }}
+                                            />
+                                        )}
+                                    </div>
+                                </>
+                            )}
+
+                            <span className="video-play-time">
+                                {formatTime(playedSeconds)}{' '}
+                                / {formatTime(duration)}
+                            </span>
+                        </div>
+                        <div className="video-controls video-controls-right">
+                            <SkipForward
+                                size={30}
+                                className="pointer"
+                            />
+                            <CardsThree
+                                size={30}
+                                className="pointer"
+                            />
+                            <ChatCenteredDots
+                                size={30}
+                                onClick={() =>
+                                    dispatch(
+                                        videoActions.showChatWindow()
+                                    )
+                                }
+                                className="pointer"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
             <div className="video-player">
                 <ReactPlayer
+                    ref={playerRef}
                     url={
                         currentContent.videos.results[0]
                             ? `https://www.youtube.com/watch?v=${currentContent.videos.results[0].key}`
-                            : `https://www.youtube.com/watch?v=5-oH6keT1iM}`
+                            : `https://www.youtube.com/watch?v=5-oH6keT1iM`
                     }
-                    playing={true}
-                    muted={true}
+                    playing={isPlaying}
                     controls={false}
+                    volume={volume}
                     width="100%"
                     height="100%"
                 />
             </div>
-            {/* <iframe
-                width="100%"
-                height="100%"
-                src={
-                    currentContent.videos.results[0]
-                        ? `http://www.youtube.com/embed/${currentContent.videos.results[0].key}?autoplay=1&mute=1&controls=0&enablejsapi=1&playlist=${currentContent.videos.results[0].key}`
-                        : 'http://www.youtube.com/embed/5-oH6keT1iM?autoplay=1&mute=1&controls=0&enablejsapi=1&playlist=5-oH6keT1iM'
-                }
-                // frameborder="0"
-                allow="autoplay"
-                allowfullscreen
-            ></iframe> */}
         </VideoPlayerWrap>
     );
 };

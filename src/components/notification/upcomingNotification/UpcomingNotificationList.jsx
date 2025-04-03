@@ -58,10 +58,12 @@ const UpcomingNotificationList = () => {
                         </UpcomingNotificationItem>
                     ))
             ) : (
-                <p>
-                    공개 예정작! 알림 설정하고 가장 먼저
-                    만나보세요!
-                </p>
+                <div className="noAlarmWrap">
+                    <p>
+                        공개 예정작 알림 설정하고 가장 먼저
+                        만나보세요!
+                    </p>
+                </div>
             )}
         </UpcomingNotificationListWrap>
     );
