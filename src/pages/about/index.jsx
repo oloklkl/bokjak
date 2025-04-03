@@ -10,12 +10,14 @@ const About = () => {
   return (
     <>
       <AboutWrap>
-        <AboutDisplay />
-        <AboutMemberShip />
-        <AboutHotContents />
-        <AboutWhyBokjak />
-        <AboutUpdateContents />
-        <AboutFaq />
+        <div className="inner">
+          <AboutDisplay />
+          <AboutMemberShip />
+          <AboutHotContents />
+          <AboutWhyBokjak />
+          <AboutUpdateContents />
+          <AboutFaq />
+        </div>
       </AboutWrap>
     </>
   )
