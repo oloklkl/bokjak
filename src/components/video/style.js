@@ -57,10 +57,6 @@ export const VideoPlayerWrap = styled.div`
         pointer-events: none;
     }
 
-    div.video-play-bar {
-        /* color: ${color('primary', 'default')}; */
-    }
-
     div {
         &.video-player {
             width: 100%;
@@ -144,6 +140,34 @@ export const VideoPlayerWrap = styled.div`
                             }
                         }
                     }
+                }
+            }
+        }
+
+        &.video-volume-control {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            input {
+                width: 60px;
+                -webkit-appearance: none;
+                appearance: none;
+                height: 4px;
+
+                border-radius: 3px;
+                outline: none;
+                background: linear-gradient(
+                    to right,
+                    ${color('gray', '0')} var(--volume),
+                    ${color('gray', '70')} 0
+                );
+
+                &::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    width: 12px;
+                    height: 12px;
+                    background: ${color('gray', '0')};
+                    border-radius: 50%;
                 }
             }
         }

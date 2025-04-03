@@ -8,6 +8,7 @@ import {
     Play,
     SkipForward,
     SpeakerSimpleHigh,
+    SpeakerSimpleX,
 } from '@phosphor-icons/react';
 import { ProgressBar, VideoPlayerWrap } from './style';
 import { useDispatch, useSelector } from 'react-redux';
@@ -149,6 +150,15 @@ const VideoPlayer = () => {
                 'seconds'
             );
         }
+    };
+    /*-----------------------------------------------------------*/
+
+    /* 영상 볼륨 조절 */
+    const [isVolume, setIsVolume] = useState(false);
+    const [volume, setVolume] = useState(0.2);
+
+    const handleVolumeChange = (e) => {
+        setVolume(parseFloat(e.target.value));
     };
     /*-----------------------------------------------------------*/
 
@@ -310,10 +320,53 @@ const VideoPlayer = () => {
                                             handleFastForward
                                         }
                                     />
-                                    <SpeakerSimpleHigh
-                                        size={30}
-                                        className="pointer"
-                                    />
+                                    <div
+                                        className="video-volume-control"
+                                        onMouseEnter={() =>
+                                            setIsVolume(
+                                                true
+                                            )
+                                        }
+                                        onMouseLeave={() =>
+                                            setIsVolume(
+                                                false
+                                            )
+                                        }
+                                    >
+                                        {volume > 0 ? (
+                                            <SpeakerSimpleHigh
+                                                size={30}
+                                                className="pointer"
+                                            />
+                                        ) : (
+                                            <SpeakerSimpleX
+                                                size={30}
+                                                className="pointer"
+                                            />
+                                        )}
+
+                                        {isVolume && (
+                                            <input
+                                                type="range"
+                                                min="0"
+                                                max="1"
+                                                step="0.01"
+                                                value={
+                                                    volume
+                                                }
+                                                onChange={
+                                                    handleVolumeChange
+                                                }
+                                                className="volume-slider"
+                                                style={{
+                                                    '--volume': `${
+                                                        volume *
+                                                        100
+                                                    }%`,
+                                                }}
+                                            />
+                                        )}
+                                    </div>
                                 </>
                             )}
 
@@ -353,8 +406,8 @@ const VideoPlayer = () => {
                             : `https://www.youtube.com/watch?v=5-oH6keT1iM`
                     }
                     playing={isPlaying}
-                    muted={true}
                     controls={false}
+                    volume={volume}
                     width="100%"
                     height="100%"
                 />
