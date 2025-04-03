@@ -156,6 +156,22 @@ export const GroupNotificationListWrap = styled.div`
     ${media.mobile} {
         gap: 20px;
     }
+
+    div {
+        &.noAlarmWrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 140px;
+
+            border-radius: 10px;
+            border: 1px solid ${color('gray', '80')};
+
+            color: ${color('gray', '60')};
+            text-align: center;
+        }
+    }
 `;
 
 export const GroupNotificationHeader = styled.div`
@@ -168,10 +184,12 @@ export const HeaderContent = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-align: center;
-    gap: 1400px;
+    // text-align: center;
+    width: 100%;
+
     h2 {
         font-size: ${font('title', 'exlg')};
+        font-weight: bold;
         width: 200px;
 
         ${media.tablet} {

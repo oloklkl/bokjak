@@ -81,9 +81,9 @@ const GroupNotificationList = () => {
                     <h3>more</h3>
                 </HeaderContent>
             </GroupNotificationHeader>
-            <GroupNotificationSlider>
-                {userBokjakAlarmData &&
-                userBokjakAlarmData.length > 0 ? (
+            {userBokjakAlarmData &&
+            userBokjakAlarmData.length > 0 ? (
+                <GroupNotificationSlider>
                     <Swiper
                         className="swiper"
                         ref={swiperRef}
@@ -136,32 +136,30 @@ const GroupNotificationList = () => {
                             )
                         )}
                     </Swiper>
-                ) : (
-                    <p>함께 모이면 더 즐거워요!</p>
-                )}
 
-                {userBokjakAlarmData &&
-                    userBokjakAlarmData.length > 0 && (
-                        <NavigationButton>
-                            <IconButton
-                                onClick={goPrev}
-                                className="b30"
-                                icon={
-                                    <CaretLeft size={24} />
-                                }
-                                text="caretLeft"
-                            />
-                            <IconButton
-                                onClick={goNext}
-                                className="b30"
-                                icon={
-                                    <CaretRight size={24} />
-                                }
-                                text="caretRight"
-                            />
-                        </NavigationButton>
-                    )}
-            </GroupNotificationSlider>
+                    <NavigationButton>
+                        <IconButton
+                            onClick={goPrev}
+                            className="b30"
+                            icon={<CaretLeft size={24} />}
+                            text="caretLeft"
+                        />
+                        <IconButton
+                            onClick={goNext}
+                            className="b30"
+                            icon={<CaretRight size={24} />}
+                            text="caretRight"
+                        />
+                    </NavigationButton>
+                </GroupNotificationSlider>
+            ) : (
+                <div className="noAlarmWrap">
+                    <p>
+                        복작 알림을 설정하고 즐거움을 함께
+                        나눠보세요!
+                    </p>
+                </div>
+            )}
         </GroupNotificationListWrap>
     );
 };

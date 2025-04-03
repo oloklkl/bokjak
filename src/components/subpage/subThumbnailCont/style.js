@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { media } from '../../../styled/media';
-import { font } from '../../../styled/theme';
+import { color, font } from '../../../styled/theme';
 
 //cont
 export const ThumbnailSection = styled.div`
@@ -16,6 +16,22 @@ export const ThumbnailSection = styled.div`
     ${media.mobile} {
         gap: 20px;
         padding: 40px 20px 20px;
+    }
+
+    div {
+        &.noContentWrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 140px;
+
+            border-radius: 10px;
+            border: 1px solid ${color('gray', '80')};
+
+            color: ${color('gray', '60')};
+            text-align: center;
+        }
     }
 `;
 
