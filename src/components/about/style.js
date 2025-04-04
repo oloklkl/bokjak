@@ -6,6 +6,7 @@ export const DisplayWrap = styled.div`
   padding: 50px 0 100px 0;
   width: 100%;
   height: 110vh;
+  margin-bottom: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -16,16 +17,20 @@ export const DisplayWrap = styled.div`
     flex: 1;
     gap: 40px;
     &__headTit {
+      display: flex;
+      flex-direction: column;
       position: relative;
       h2 {
         font-weight: bold;
         font-size: ${font('display', 'md')};
       }
       .bokjak-eyes {
+        position: relative;
         &__icon {
           position: absolute;
-          top: 74%;
-          left: 46%;
+          bottom: 50%;
+          left: 50%;
+          transform: translate(-160%, -129%);
           img {
             width: 53px;
             height: 53px;
@@ -47,7 +52,7 @@ export const DisplayWrap = styled.div`
     }
   }
   .aboutVideo-wrap {
-    width: 50%;
+    width: 47%;
     position: relative;
     .video-cont {
       background-color: ${color('gray', '70')};
@@ -55,7 +60,6 @@ export const DisplayWrap = styled.div`
       height: 400px;
       border-radius: 10px;
       transition: all 0.5s ease-in-out;
-      /* position: relative; */
 
       video {
         width: 100%;
@@ -63,6 +67,7 @@ export const DisplayWrap = styled.div`
         object-fit: cover;
       }
     }
+
     .msBtn {
       position: absolute;
       left: -21.5%;
@@ -79,34 +84,54 @@ export const DisplayWrap = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      &:hover {
+        background: black;
+        transition: all 0.5s ease-in-out;
+      }
+
       .ms-title {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        text-align: left;
         gap: 10px;
         transform: rotate(90deg);
+        span {
+          font-weight: bold;
+          font-size: ${font('heading', 'xs')};
+        }
       }
       .ms-goto {
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 6px;
+
+        gap: 10px;
         &__icon {
           font-weight: bold;
           &:hover {
             background-color: transparent;
-            scale: 0.8;
           }
           svg {
-            width: 100px;
-            height: 100px;
+            width: 100%;
+            height: 100%;
           }
         }
         span {
-          font-weight: bold;
-          font-size: ${font('label', 'xsm')};
+          font-weight: extraBold;
+          font-size: ${font('detail', 'sm')};
         }
       }
     }
   }
+`
+
+export const pinScroll = styled.div`
+  height: 100vh;
+`
+export const AboutMemberShipWrap = styled.div`
+  margin-top: 290vh;
+  padding: 100px 0;
 `

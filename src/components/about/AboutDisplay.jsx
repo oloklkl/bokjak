@@ -13,40 +13,54 @@ function AboutDisplay() {
   const msBtnRef = useRef(null)
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
-      gsap.set(videoRef.current, { transformOrigin: 'right center' })
+    let ctx
 
-      gsap.to(videoRef.current, {
-        scaleX: 1.75,
-        scaleY: 1.4,
-        y: '30%',
-        duration: 2,
-        scrollTrigger: {
+    const initGsap = () => {
+      ctx = gsap.context(() => {
+        gsap.set(videoRef.current, { transformOrigin: 'right center' })
+
+        gsap.to(videoRef.current, {
+          scaleX: 1.75,
+          scaleY: 1.4,
+          yPercent: 40,
+          duration: 1.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: videoRef.current,
+            start: 'top top',
+            end: '+=100%',
+            scrub: 2,
+          },
+        })
+
+        ScrollTrigger.create({
           trigger: videoRef.current,
           start: 'top top',
-          end: 'bottom top',
-          scrub: 2,
+          end: '+=300%',
           pin: true,
-          pinSpacing: false,
-        },
+          pinSpacing: true,
+        })
+
+        gsap.set(msBtnRef.current, { opacity: -40 })
+
+        gsap.to(msBtnRef.current, {
+          x: 0,
+          opacity: 13,
+          duration: 3,
+          scrollTrigger: {
+            trigger: videoRef.current,
+            start: 'top bottom',
+            end: '+=300%',
+            scrub: 3,
+          },
+        })
       })
+    }
 
-      gsap.set(msBtnRef.current, { opacity: -30 })
+    const mediaQuery = window.matchMedia('(min-width: 1024px)') // 데스크톱 여부 확인
+    if (mediaQuery.matches) initGsap()
 
-      gsap.to(msBtnRef.current, {
-        x: 0,
-        opacity: 13,
-        duration: 1,
-        scrollTrigger: {
-          trigger: videoRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1,
-        },
-      })
-    })
-
-    return () => ctx.revert()
+    return () => ctx?.revert() // Cleanup
   }, [])
 
   return (
@@ -82,6 +96,7 @@ function AboutDisplay() {
           <div className="video-cont">
             <video src="" alt="" />
           </div>
+
           <Link href="#">
             <div className="msBtn" ref={msBtnRef}>
               <div className="ms-title">
@@ -91,7 +106,7 @@ function AboutDisplay() {
               <div className="ms-goto">
                 <IconButton
                   className="ms-goto__icon none"
-                  icon={<ArrowUpRight size={24} />}
+                  icon={<ArrowUpRight size={32} />}
                   text="ArrowUpRight"
                 />
                 <span>자세히 보기</span>
@@ -100,6 +115,7 @@ function AboutDisplay() {
           </Link>
         </div>
       </DisplayWrap>
+      <pinScroll></pinScroll>
     </>
   )
 }
