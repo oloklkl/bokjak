@@ -1,9 +1,9 @@
-import AboutDisplay from '../about/AboutDisplay/AboutDisplay'
+import AboutDisplay from './aboutDisplay/AboutDisplay'
 import AboutFaq from './AboutFaq'
 import AboutHotContents from './AboutHotContents'
 import AboutMemberShip from './AboutMemberShip'
 import AboutUpdateContents from './AboutUpdateContents'
-import AboutWhyBokjak from './AboutWhyBokjak'
+import AboutWhyBokjak from './aboutWhyBokjak/AboutWhyBokjak'
 
 function AboutPage() {
   return (

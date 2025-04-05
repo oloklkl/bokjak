@@ -5,7 +5,7 @@ import { color, font } from '../../styled/theme'
 export const AboutMemberShipWrap = styled.div`
   position: relative;
   margin-top: 300vh;
-  padding: 100px 0;
+  padding: 200px 0;
   ${media.tablet} {
     margin-top: 0;
     padding: 100px 0;
@@ -236,6 +236,12 @@ export const AboutHotContentsWrap = styled.div`
   padding: 200px 0;
   width: 100%;
   height: 100%;
+  ${media.tablet} {
+    padding: 100px 0;
+  }
+  ${media.mobile} {
+    padding: 60px 0;
+  }
   .aboutHotContents-cont {
     padding: 50px 0;
     display: flex;
