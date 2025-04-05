@@ -61,7 +61,7 @@ function AboutMemberShip() {
             className="icon ghost"
           />
         </div>
-        <div className="AboutMemberShip-cont">
+        <div className="aboutMemberShip-cont">
           <div className="text-area">
             <h1>WE ARE BOKJAK</h1>
             <p className="subtitle">

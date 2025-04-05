@@ -50,7 +50,7 @@ export const AboutMemberShipWrap = styled.div`
       height: 200px;
     }
   }
-  .AboutMemberShip-cont {
+  .aboutMemberShip-cont {
     padding: 50px 0;
     width: 100%;
     height: 100%;
@@ -62,6 +62,9 @@ export const AboutMemberShipWrap = styled.div`
     ${media.tablet} {
       padding: 30px 0;
       gap: 60px;
+    }
+    ${media.mobile} {
+      padding: 20px 0;
     }
   }
   .text-area {
@@ -225,6 +228,106 @@ export const AboutMemberShipWrap = styled.div`
       width: 250px;
       height: 42px;
       font-size: ${font('detail', 'md')};
+    }
+  }
+`
+
+export const AboutHotContentsWrap = styled.div`
+  padding: 200px 0;
+  width: 100%;
+  height: 100%;
+  .aboutHotContents-cont {
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    ${media.tablet} {
+      padding: 40px 0;
+      gap: 80px;
+    }
+    ${media.mobile} {
+      padding: 30px 0;
+      gap: 60px;
+    }
+  }
+  h2 {
+    font-size: ${font('display', 'md')};
+    font-weight: bold;
+    color: ${color('gray', 0)};
+    text-align: center;
+    ${media.tablet} {
+      font-size: ${font('display', 'sm')};
+    }
+    ${media.mobile} {
+      font-size: ${font('title', 'exlg')};
+    }
+  }
+  .trending-swiper {
+    .swiper-slide {
+      transition: transform 0.3s ease, filter 0.3s ease;
+      transform: scale(0.8);
+      z-index: 1;
+      transform-origin: center center;
+    }
+
+    .swiper-slide-prev,
+    .swiper-slide-next {
+      z-index: 2;
+    }
+
+    .swiper-slide-active {
+      transform: scale(1);
+      z-index: 3;
+    }
+    .swiper-slide-active .overlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  .content-card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    background: ${color('gray', 40)};
+    width: 100%;
+    min-width: 800px;
+    height: 100%;
+    min-height: 460px;
+    border-radius: 12px;
+    ${media.tablet} {
+      min-width: 440px;
+      min-height: 300px;
+    }
+    ${media.mobile} {
+      min-width: 260px;
+      min-height: 330px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      min-width: 800px;
+      height: 100%;
+      min-height: 460px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.4);
+      ${media.tablet} {
+        min-width: 440px;
+        min-height: 300px;
+      }
+      ${media.mobile} {
+        min-width: 260px;
+        min-height: 330px;
+      }
     }
   }
 `
