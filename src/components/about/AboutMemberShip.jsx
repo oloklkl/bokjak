@@ -1,20 +1,75 @@
+import { Link } from 'react-router-dom'
+import { BarButton } from '../../ui'
 import { AboutMemberShipWrap } from './style'
+import gsap from 'gsap'
+import { useRef, useEffect } from 'react'
 
 function AboutMemberShip() {
+  const starRef = useRef(null)
+  const ghostRef = useRef(null)
+
+  useEffect(() => {
+    gsap.to(starRef.current, {
+      rotation: 360,
+      repeat: -1,
+      duration: 10,
+      ease: 'linear',
+    })
+    gsap.fromTo(
+      ghostRef.current,
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: 'bounce.out',
+        scrollTrigger: {
+          trigger: ghostRef.current,
+          start: 'top 100%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    )
+  }, [])
+
   return (
     <>
       <AboutMemberShipWrap>
+        <div className="icon-floating">
+          <img
+            ref={starRef}
+            src="/images/star.png"
+            alt="star"
+            className="icon star"
+          />
+          <img
+            // ref={ghostRef}
+            src="/images/ghost.png"
+            alt="ghost"
+            className="icon flower"
+          />
+          <img
+            // ref={ghostRef}
+            src="/images/ghost.png"
+            alt="ghost"
+            className="icon flower-sm"
+          />
+          <img
+            ref={ghostRef}
+            src="/images/ghost.png"
+            alt="ghost"
+            className="icon ghost"
+          />
+        </div>
         <div className="AboutMemberShip-cont">
           <div className="text-area">
-            <h1>
-              WE ARE <span className="highlight">BOKJAK</span>
-            </h1>
+            <h1>WE ARE BOKJAK</h1>
             <p className="subtitle">
               단순한 감상을 넘어 모두와 함께 소통하는 복작
             </p>
             <p className="desc">
-              <span className="highlight">BOKJAK</span>은 단순한 콘텐츠 제공을
-              넘어 그치지 않습니다.
+              &apos; <span className="highlight">BOKJAK</span> &apos;은 단순한
+              콘텐츠 제공을 넘어 그치지 않습니다.
               <br />
               개인 맞춤형 추천, 실시간 동시 감상 및 채팅 기능 그리고 다양하고
               깊이 있는 라이브러리까지!
@@ -25,18 +80,31 @@ function AboutMemberShip() {
           <div className="stats">
             <div className="stat">
               <h3>1,200편 이상의 영화</h3>
-              <p>소니 픽쳐스, 유니버설 픽쳐스 독점 제공</p>
+              <p>
+                스릴 넘치는 블록버스터와 <br className="m-only" /> 독점작 포함
+              </p>
             </div>
+            <div className="line"></div>
             <div className="stat">
-              <h3>20,000편 이상의 에피소드</h3>
-              <p>넷플, 쿠팡, 티빙 등 다양한 라인업</p>
+              <h3>
+                20,000편 이상의 <br className="t-only" /> 에피소드
+              </h3>
+              <p>액션, 코미디, 드라마 등 다양한 장르</p>
             </div>
+            <div className="line"></div>
             <div className="stat">
               <h3>신규 및 단독 콘텐츠</h3>
-              <p>북작 오리지널 콘텐츠 독점 공개</p>
+              <p>매주 업로드 되는 최신 콘텐츠</p>
             </div>
           </div>
-          <button className="join-button">멤버십 가입하기</button>
+          <Link to="/about/faq">
+            <BarButton
+              className="memberShip-goto"
+              text="멤버십 구독하기"
+              width="300px"
+              height="60px"
+            />
+          </Link>
         </div>
       </AboutMemberShipWrap>
     </>

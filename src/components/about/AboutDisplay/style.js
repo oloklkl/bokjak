@@ -27,7 +27,7 @@ export const DisplayWrap = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
-    gap: 50px;
+    gap: 60px;
     height: 500px;
     ${media.tablet} {
       height: 400px;
@@ -43,7 +43,7 @@ export const DisplayWrap = styled.div`
       position: relative;
       h2 {
         font-weight: bold;
-        font-size: ${font('display', 'lg')};
+        font-size: ${font('display', 'md')};
         ${media.tablet} {
           font-size: ${font('display', 'sm')};
         }
@@ -55,8 +55,8 @@ export const DisplayWrap = styled.div`
         position: relative;
         &__icon {
           position: absolute;
-          top: -70px;
-          left: 290px;
+          top: -60px;
+          left: 220px;
           ${media.tablet} {
             top: -50px;
             left: 175px;
@@ -66,8 +66,8 @@ export const DisplayWrap = styled.div`
             left: 135px;
           }
           img {
-            width: 64px;
-            height: 64px;
+            width: 53px;
+            height: 53px;
             ${media.tablet} {
               width: 40px;
               height: 40px;
@@ -82,7 +82,7 @@ export const DisplayWrap = styled.div`
     }
     p {
       font-weight: bold;
-      font-size: ${font('heading', 'sm')};
+      font-size: ${font('heading', 'xs')};
       ${media.tablet} {
         font-size: ${font('title', 'lg')};
       }
