@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { DisplayWrap } from './style'
-import { BarButton, IconButton } from '../../ui'
 import { ArrowUpRight } from '@phosphor-icons/react'
 import gsap from 'gsap'
 import { useEffect, useRef } from 'react'
 import { ScrollTrigger } from 'gsap/all'
+import { BarButton, IconButton } from '../../../ui'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -22,7 +22,7 @@ function AboutDisplay() {
         gsap.to(videoRef.current, {
           scaleX: 1.75,
           scaleY: 1.4,
-          yPercent: 40,
+          yPercent: 33,
           duration: 1.5,
           ease: 'power2.out',
           scrollTrigger: {
@@ -45,19 +45,19 @@ function AboutDisplay() {
 
         gsap.to(msBtnRef.current, {
           x: 0,
-          opacity: 13,
+          opacity: 1,
           duration: 3,
           scrollTrigger: {
             trigger: videoRef.current,
             start: 'top bottom',
-            end: '+=300%',
+            end: '+=200%',
             scrub: 3,
           },
         })
       })
     }
 
-    const mediaQuery = window.matchMedia('(min-width: 1024px)') // 데스크톱 여부 확인
+    const mediaQuery = window.matchMedia('(min-width: 1024px)')
     if (mediaQuery.matches) initGsap()
 
     return () => ctx?.revert() // Cleanup

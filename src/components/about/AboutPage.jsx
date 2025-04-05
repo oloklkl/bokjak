@@ -1,4 +1,4 @@
-import AboutDisplay from './AboutDisplay'
+import AboutDisplay from '../about/AboutDisplay/AboutDisplay'
 import AboutFaq from './AboutFaq'
 import AboutHotContents from './AboutHotContents'
 import AboutMemberShip from './AboutMemberShip'
