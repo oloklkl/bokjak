@@ -5,16 +5,9 @@ import gsap from 'gsap'
 import { useRef, useEffect } from 'react'
 
 function AboutMemberShip() {
-  const starRef = useRef(null)
   const ghostRef = useRef(null)
 
   useEffect(() => {
-    gsap.to(starRef.current, {
-      rotation: 360,
-      repeat: -1,
-      duration: 10,
-      ease: 'linear',
-    })
     gsap.fromTo(
       ghostRef.current,
       { y: 100, opacity: 0 },
@@ -37,29 +30,27 @@ function AboutMemberShip() {
       <AboutMemberShipWrap className="aboutMemberShipWrap">
         <div className="icon-floating">
           <img
-            ref={starRef}
-            src="/images/star.png"
+            src="https://github.com/lse-7660/bokjak-image/blob/main/images/about/star.png?raw=true"
             alt="star"
             className="icon star"
           />
           <img
-            // ref={ghostRef}
-            src="/images/ghost.png"
+            src="https://github.com/lse-7660/bokjak-image/blob/main/images/about/flower.png?raw=true"
             alt="ghost"
             className="icon flower"
           />
           <img
-            // ref={ghostRef}
-            src="/images/ghost.png"
+            src="https://github.com/lse-7660/bokjak-image/blob/main/images/about/flower-sm.png?raw=true"
             alt="ghost"
             className="icon flower-sm"
           />
           <img
             ref={ghostRef}
-            src="/images/ghost.png"
+            src="https://github.com/lse-7660/bokjak-image/blob/main/images/about/ghost.png?raw=true"
             alt="ghost"
             className="icon ghost"
           />
+          <span className="icon ghost-text">우리 같이 복작하자!</span>
         </div>
         <div className="aboutMemberShip-cont">
           <div className="text-area">

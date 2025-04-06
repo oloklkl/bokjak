@@ -67,11 +67,12 @@ export const AboutWhyBokjakWrap = styled.div`
       align-items: center;
       gap: 80px;
       width: 100%;
-      height: 380px;
+      height: 400px;
+
       &.reverse {
         flex-direction: row-reverse;
         ${media.tablet} {
-          flex-direction: column;
+          flex-direction: column-reverse;
         }
       }
       ${media.tablet} {
@@ -86,6 +87,10 @@ export const AboutWhyBokjakWrap = styled.div`
         flex: 1;
         width: 100%;
         height: 100%;
+        &.card-border {
+          border: 1px solid ${color('gray', 70)};
+          border-radius: 12px;
+        }
         ${media.tablet} {
           flex: none;
           width: 100%;
@@ -94,9 +99,12 @@ export const AboutWhyBokjakWrap = styled.div`
         }
         img {
           width: 100%;
+          max-width: 650px;
           height: 100%;
           object-fit: cover;
           border-radius: 12px;
+          object-position: center;
+
           ${media.tablet} {
             max-width: 100%;
             object-fit: contain;

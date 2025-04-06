@@ -11,8 +11,13 @@ function AboutWhyBokjakMobile() {
         </h2>
         <div className="cardBox-cont">
           {cardData.map((card) => (
-            <div className="cardBox" key={card.id}>
-              <div className="cardBox-img">
+            <div
+              className={`cardBox ${
+                card.id === 1 || card.id === 3 ? 'reverse' : ''
+              }`}
+              key={card.id}>
+              <div
+                className={`cardBox-img ${card.id !== 1 ? 'card-border' : ''}`}>
                 <img src={card.img} alt={card.alt} />
               </div>
               <div className="cardBox-text">

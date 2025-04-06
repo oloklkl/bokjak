@@ -1,18 +1,18 @@
 const hotContentList = [
   {
     id: 1,
-    title: '퀴즈의 블랙홀',
-    img: '/images/quiz.png',
+    title: '위키드',
+    img: 'https://github.com/lse-7660/bokjak-image/blob/main/images/about/hotCont1.png?raw=true',
   },
   {
     id: 2,
-    title: '위키드',
-    img: 'https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true',
+    title: '말할 수 없는 비밀',
+    img: 'https://github.com/lse-7660/bokjak-image/blob/main/images/about/hotCont2.png?raw=true',
   },
   {
     id: 3,
-    title: '위키드',
-    img: '/images/wicked.png',
+    title: '유퀴즈',
+    img: 'https://github.com/lse-7660/bokjak-image/blob/main/images/about/hotCont3.png?raw=true',
   },
   {
     id: 4,

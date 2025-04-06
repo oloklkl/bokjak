@@ -5,7 +5,7 @@ import { color, font } from '../../styled/theme'
 export const AboutMemberShipWrap = styled.div`
   position: relative;
   margin-top: 300vh;
-  padding: 200px 0;
+  padding: 300px 0;
   ${media.tablet} {
     margin-top: 0;
     padding: 100px 0;
@@ -19,35 +19,82 @@ export const AboutMemberShipWrap = styled.div`
       display: none;
     }
     .icon {
-      background: #fff;
+      @keyframes shake {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        20% {
+          transform: translate(-2px, 2px) rotate(-2deg);
+        }
+        40% {
+          transform: translate(2px, -2px) rotate(2deg);
+        }
+        60% {
+          transform: translate(-2px, 2px) rotate(-2deg);
+        }
+        80% {
+          transform: translate(2px, -2px) rotate(2deg);
+        }
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+      }
     }
     .star {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 300px;
-      height: 300px;
+      top: 120px;
+      left: -300px;
+      width: 500px;
+      height: 500px;
     }
     .flower {
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 300px;
-      height: 300px;
+      top: 270px;
+      right: -300px;
+      width: 390px;
+      height: 370px;
     }
     .flower-sm {
       position: absolute;
-      bottom: 30px;
-      left: 0;
-      width: 100px;
-      height: 100px;
+      bottom: 200px;
+      left: -100px;
+      width: 210px;
+      height: 200px;
     }
     .ghost {
       position: absolute;
-      bottom: 0;
+      bottom: 230px;
       right: 0;
       width: 200px;
-      height: 200px;
+      height: 150px;
+      transition: transform 0.2s ease;
+      ${media.tablet} {
+        transition: none;
+      }
+    }
+    .ghost:hover {
+      animation: shake 0.5s ease-in-out;
+      ${media.tablet} {
+        animation: none;
+      }
+    }
+    .ghost-text {
+      position: absolute;
+      bottom: 370px;
+      right: 50px;
+      transform: translateY(-50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      font-weight: bold;
+      color: ${color('gray', 40)};
+      font-size: ${font('body', 'md')};
+      background: rgba(0, 0, 0, 0.6);
+      padding: 6px 10px;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    .ghost:hover + .ghost-text {
+      opacity: 1;
     }
   }
   .aboutMemberShip-cont {
@@ -452,6 +499,7 @@ export const AboutUpdateContentsWrap = styled.div`
         width: 100%;
         height: 100%;
         border-radius: 16px;
+        object-position: center center;
       }
       .text-area {
         position: absolute;
@@ -465,16 +513,17 @@ export const AboutUpdateContentsWrap = styled.div`
         gap: 10px;
         width: 100%;
         height: 100%;
-        padding: 20px;
+        padding: 30px;
+        ${media.mobile} {
+          gap: 6px;
+        }
         h3 {
           font-size: ${font('heading', 'xs')};
           font-weight: bold;
           color: ${color('gray', 0)};
-          /* ${media.tablet} {
-            font-size: ${font('body', 'md')};
-          } */
+
           ${media.mobile} {
-            font-size: ${font('body', 'md')};
+            font-size: ${font('body', 'lg')};
           }
         }
         p {
@@ -491,7 +540,7 @@ export const AboutUpdateContentsWrap = styled.div`
             font-size: ${font('detail', 'sm')};
           } */
           ${media.mobile} {
-            font-size: ${font('detail', 'sm')};
+            font-size: ${font('detail', 'md')};
           }
         }
       }

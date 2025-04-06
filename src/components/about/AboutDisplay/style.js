@@ -153,7 +153,10 @@ export const DisplayWrap = styled.div`
       left: -21.5%;
       width: 17%;
       height: 500px;
-      background: linear-gradient(#a100ff, #ff00ff);
+      background-image: url('https://raw.githubusercontent.com/lse-7660/bokjak-image/main/images/about/membership.png');
+      background-size: cover;
+      background-position: center;
+      /* background: linear-gradient(#a100ff, #ff00ff); */
       color: white;
       font-weight: bold;
       border-radius: 10px;
@@ -163,11 +166,11 @@ export const DisplayWrap = styled.div`
       flex-direction: column;
       justify-content: space-between;
       &:hover {
-        background: black;
         transition: all 0.5s ease-in-out;
+        background-image: url('https://raw.githubusercontent.com/lse-7660/bokjak-image/main/images/about/membership-hover.png');
         ${media.tablet} {
           &:hover {
-            background: linear-gradient(#a100ff, #ff00ff);
+            background-image: url('https://raw.githubusercontent.com/lse-7660/bokjak-image/main/images/about/membership.png');
             transition: none;
           }
         }
