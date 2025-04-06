@@ -520,7 +520,7 @@ export const AboutUpdateContentsWrap = styled.div`
 `
 
 export const AboutFaqWrap = styled.div`
-  padding: 200px 0;
+  padding: 200px 0 0 0;
   width: 100%;
   height: 100%;
   ${media.tablet} {
@@ -570,6 +570,90 @@ export const AboutFaqWrap = styled.div`
     }
     ${media.mobile} {
       font-size: ${font('heading', 'xs')};
+    }
+  }
+  .faqBox-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    ${media.tablet} {
+      gap: 16px;
+    }
+    ${media.mobile} {
+      gap: 10px;
+    }
+
+    .fqpItem {
+      width: 100%;
+      background-color: ${color('gray', 80)};
+      border-radius: 7px;
+      .fqpItem__icon {
+        .dropDown {
+          background: transparent;
+          svg {
+            width: 32px;
+            height: 32px;
+            ${media.mobile} {
+              width: 28px;
+              height: 28px;
+            }
+          }
+        }
+      }
+
+      &__question {
+        padding: 20px 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+        font-size: ${font('title', 'md')};
+        background-color: ${color('gray', 80)};
+        cursor: pointer;
+        border-radius: 7px;
+        ${media.tablet} {
+          padding: 20px;
+          font-size: ${font('body', 'md')};
+        }
+        ${media.mobile} {
+          gap: 20px;
+          font-size: ${font('body', 'sm')};
+        }
+
+        &.active {
+          border-radius: 7px 7px 0px 0px;
+          background-color: ${color('primary', 70)};
+        }
+      }
+      &__answer {
+        font-weight: lighter;
+        font-size: ${font('body', 'md')};
+        background-color: ${color('gray', 80)};
+        color: ${color('gray', 30)};
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+        line-height: 1.5;
+        padding: 0 30px;
+        ${media.tablet} {
+          font-size: ${font('body', 'sm')};
+          padding: 0 20px;
+        }
+        ${media.mobile} {
+          font-size: ${font('body', 'xsm')};
+        }
+        &.show {
+          width: 100%;
+          background-color: ${color('gray', 70)};
+          max-height: 500px;
+          padding: 30px;
+          border-radius: 0px 0px 7px 7px;
+          ${media.tablet} {
+            padding: 20px;
+          }
+        }
+      }
     }
   }
 `

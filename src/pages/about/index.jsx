@@ -4,7 +4,7 @@ import { AboutWrap } from './style'
 const About = () => {
   return (
     <>
-      <AboutWrap>
+      <AboutWrap className="aboutWrap">
         <AboutPage />
       </AboutWrap>
     </>

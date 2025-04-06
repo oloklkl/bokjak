@@ -1,5 +1,5 @@
 import React from 'react'
-import cardData from '../../../assets/api/aboutCardData'
+import cardData from '../../../assets/api/about/aboutCardData'
 import { AboutWhyBokjakWrap } from './style'
 
 function AboutWhyBokjakMobile() {
