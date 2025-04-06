@@ -46,7 +46,7 @@ function AboutDisplayMobile() {
             <div className="ms-goto">
               <IconButton
                 className="ms-goto__icon none"
-                icon={<ArrowUpRight size={32} />}
+                icon={<ArrowUpRight size={32} weight="bold" />}
                 text="ArrowUpRight"
               />
               <span>자세히 보기</span>
