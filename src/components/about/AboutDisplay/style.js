@@ -132,6 +132,7 @@ export const DisplayWrap = styled.div`
       height: 500px;
       border-radius: 10px;
       transition: all 0.5s ease-in-out;
+
       ${media.tablet} {
         width: 100%;
         height: 400px;
@@ -141,9 +142,11 @@ export const DisplayWrap = styled.div`
         height: 300px;
       }
       video {
+        border-radius: 10px;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center center;
       }
     }
 

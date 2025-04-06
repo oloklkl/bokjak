@@ -46,6 +46,12 @@ export const AboutMemberShipWrap = styled.div`
       left: -300px;
       width: 500px;
       height: 500px;
+      ${media.tablet} {
+        top: 60px;
+        left: -160px;
+        width: 270px;
+        height: 270px;
+      }
     }
     .flower {
       position: absolute;
@@ -53,6 +59,12 @@ export const AboutMemberShipWrap = styled.div`
       right: -300px;
       width: 390px;
       height: 370px;
+      ${media.tablet} {
+        top: 250px;
+        right: -140px;
+        width: 200px;
+        height: 200px;
+      }
     }
     .flower-sm {
       position: absolute;
@@ -60,6 +72,12 @@ export const AboutMemberShipWrap = styled.div`
       left: -100px;
       width: 210px;
       height: 200px;
+      ${media.tablet} {
+        bottom: 80px;
+        left: -90px;
+        width: 140px;
+        height: 140px;
+      }
     }
     .ghost {
       position: absolute;
@@ -70,6 +88,9 @@ export const AboutMemberShipWrap = styled.div`
       transition: transform 0.2s ease;
       ${media.tablet} {
         transition: none;
+        bottom: 80px;
+        width: 110px;
+        height: 80px;
       }
     }
     .ghost:hover {
@@ -95,6 +116,9 @@ export const AboutMemberShipWrap = styled.div`
     }
     .ghost:hover + .ghost-text {
       opacity: 1;
+      ${media.tablet} {
+        opacity: 0;
+      }
     }
   }
   .aboutMemberShip-cont {
@@ -374,8 +398,9 @@ export const AboutHotContentsWrap = styled.div`
       border-radius: 12px;
       background: rgba(0, 0, 0, 0.4);
       ${media.tablet} {
-        min-width: 440px;
+        max-width: 440px;
         min-height: 300px;
+        overflow: hidden;
       }
       ${media.mobile} {
         min-width: 260px;

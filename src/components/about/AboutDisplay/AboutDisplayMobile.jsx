@@ -34,7 +34,13 @@ function AboutDisplayMobile() {
       </div>
       <div className="aboutVideo-wrap">
         <div className="video-cont">
-          <video src="" alt="" />
+          <video
+            src="/public/about-video.mp4"
+            autoPlay
+            muted
+            loop
+            alt="video"
+          />
         </div>
 
         <Link href="#">

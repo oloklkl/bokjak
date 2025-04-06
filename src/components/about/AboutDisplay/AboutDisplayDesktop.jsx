@@ -94,7 +94,13 @@ function AboutDisplay() {
         </div>
         <div className="aboutVideo-wrap" ref={videoRef}>
           <div className="video-cont">
-            <video src="" alt="" />
+            <video
+              src="/public/about-video.mp4"
+              autoPlay
+              muted
+              loop
+              alt="video"
+            />
           </div>
 
           <Link href="#">
