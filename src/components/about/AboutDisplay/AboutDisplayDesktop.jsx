@@ -65,7 +65,7 @@ function AboutDisplay() {
 
   return (
     <>
-      <DisplayWrap>
+      <DisplayWrap className="aboutDisplayWrap">
         <div className="text-area">
           <div className="text-area__headTit">
             <h2>

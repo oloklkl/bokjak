@@ -30,7 +30,7 @@ function AboutHotContents() {
 
   return (
     <>
-      <AboutHotContentsWrap>
+      <AboutHotContentsWrap className="aboutHotContentsWrap">
         <div className="aboutHotContents-cont">
           <h2>요즘 뜨는 콘텐츠</h2>
           <Swiper

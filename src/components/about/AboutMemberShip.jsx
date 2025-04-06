@@ -34,7 +34,7 @@ function AboutMemberShip() {
 
   return (
     <>
-      <AboutMemberShipWrap>
+      <AboutMemberShipWrap className="aboutMemberShipWrap">
         <div className="icon-floating">
           <img
             ref={starRef}

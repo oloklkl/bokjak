@@ -5,7 +5,7 @@ import { ArrowUpRight } from '@phosphor-icons/react'
 
 function AboutDisplayMobile() {
   return (
-    <DisplayWrap>
+    <DisplayWrap className="aboutDisplayWrap">
       <div className="text-area">
         <div className="text-area__headTit">
           <h2>
