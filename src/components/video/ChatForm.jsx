@@ -10,9 +10,10 @@ import {
 } from '@phosphor-icons/react';
 
 const ChatForm = () => {
+    const { user } = useSelector((state) => state.authR);
     const dispatch = useDispatch();
     const [text, setText] = useState({
-        username: 'user1',
+        username: user.username,
         reply: '',
     });
     const { isEmojiOpen } = useSelector(
@@ -26,8 +27,9 @@ const ChatForm = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        const username = user.username;
         if (!text.reply.trim()) return;
-        dispatch(chatActions.addChat(text));
+        dispatch(chatActions.addChat(text, username));
         setText({ ...text, reply: '' });
     };
 
