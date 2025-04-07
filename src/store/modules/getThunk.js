@@ -89,11 +89,17 @@ export const getTvShows = createAsyncThunk(
     }
 );
 
+//trending
 export const getTrending = createAsyncThunk(
     'content/getTrending',
-    async () => {
+    async (type = 'all') => {
+        const validTypes = ['movie', 'tv', 'all'];
+        const trendingType = validTypes.includes(type)
+            ? type
+            : 'all';
+
         const res = await axios.get(
-            `${BASE_URL}/trending/all/week`,
+            `${BASE_URL}/trending/${trendingType}/week`,
             {
                 params: {
                     api_key: API_KEY,
@@ -101,11 +107,141 @@ export const getTrending = createAsyncThunk(
                 },
             }
         );
+
         return res.data.results;
     }
 );
 
-// 공개예정작 정보 가져오기기
+//nowplaying(movie) on the air(tv)
+export const getNowPlaying = createAsyncThunk(
+    'content/getNowPlayingOrOnAir',
+    async (type = 'movie') => {
+        const validTypes = ['movie', 'tv'];
+        const contentType = validTypes.includes(type)
+            ? type
+            : 'movie';
+
+        // movie면 now_playing, tv면 on_the_air
+        const endpoint =
+            contentType === 'movie'
+                ? `${BASE_URL}/movie/now_playing`
+                : `${BASE_URL}/tv/on_the_air`;
+
+        const res = await axios.get(endpoint, {
+            params: {
+                api_key: API_KEY,
+                language: 'ko-KR',
+                region: 'KR',
+            },
+        });
+
+        return res.data.results;
+    }
+);
+
+//Vote순 데이터
+export const getHighRated = createAsyncThunk(
+    'content/getHighRated',
+    async (type = 'movie') => {
+        const validTypes = ['movie', 'tv'];
+        const contentType = validTypes.includes(type)
+            ? type
+            : 'movie';
+
+        const res = await axios.get(
+            `${BASE_URL}/discover/${contentType}`,
+            {
+                params: {
+                    api_key: API_KEY,
+                    language: 'ko-KR',
+                    sort_by: 'vote_average.desc',
+                    'vote_count.gte': 100, //적은 평가 수 제외
+                    page: 1,
+                },
+            }
+        );
+
+        return res.data.results;
+    }
+);
+
+//top rated
+export const getTopRated = createAsyncThunk(
+    'content/getTopRated',
+    async (type = 'movie') => {
+        const validTypes = ['movie', 'tv'];
+        const contentType = validTypes.includes(type)
+            ? type
+            : 'movie';
+
+        const res = await axios.get(
+            `${BASE_URL}/${contentType}/top_rated`,
+            {
+                params: {
+                    api_key: API_KEY,
+                    language: 'ko-KR',
+                    page: 1,
+                    region: 'KR',
+                },
+            }
+        );
+
+        return res.data.results;
+    }
+);
+
+//popular 데이터
+export const getPopular = createAsyncThunk(
+    'content/getPopular',
+    async (type = 'movie') => {
+        const validTypes = ['movie', 'tv'];
+        const contentType = validTypes.includes(type)
+            ? type
+            : 'movie';
+
+        const res = await axios.get(
+            `${BASE_URL}/${contentType}/popular`,
+            {
+                params: {
+                    api_key: API_KEY,
+                    language: 'ko-KR',
+                    page: 1,
+                    region: 'KR',
+                },
+            }
+        );
+
+        return res.data.results;
+    }
+);
+
+//추천작
+export const getRecommended = createAsyncThunk(
+    'content/getRecommended',
+    async (type = 'movie') => {
+        const validTypes = ['movie', 'tv'];
+        const contentType = validTypes.includes(type)
+            ? type
+            : 'movie';
+
+        const res = await axios.get(
+            `${BASE_URL}/discover/${contentType}`,
+            {
+                params: {
+                    api_key: API_KEY,
+                    language: 'ko-KR',
+                    sort_by: 'vote_average.desc',
+                    'vote_count.gte': 300, // 최소 투표 수 설정
+                    page: 1,
+                },
+            }
+        );
+
+        return res.data.results;
+    }
+);
+
+// 공개예정작 정보 가져오기
 export const getUpcoming = createAsyncThunk(
     'content/getUpcoming',
     async () => {
