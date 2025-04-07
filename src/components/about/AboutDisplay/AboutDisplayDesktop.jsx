@@ -95,7 +95,7 @@ function AboutDisplay() {
         <div className="aboutVideo-wrap" ref={videoRef}>
           <div className="video-cont">
             <video
-              src="/public/about-video.mp4"
+              src="https://github.com/lse-7660/bokjak-image/blob/main/images/aboutVideo/about-video.mp4?raw=true"
               autoPlay
               muted
               loop
