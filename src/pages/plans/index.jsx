@@ -15,6 +15,11 @@ const Plans = () => {
     };
 
     const handleClick = () => {
+        if (!selectedPlan) {
+            alert('결제 주기를 선택해주세요.'); // 경고 메시지 출력
+            return;
+        }
+
         if (authed) {
             navigate('/'); // 로그인 상태: 홈으로 이동
         } else {
@@ -66,6 +71,7 @@ const Plans = () => {
                                 width='800px'
                                 height='60px'
                                 onClick={handleClick}
+                                disabled={!selectedPlan}
                             />
                         </fieldset>
                     </form>
