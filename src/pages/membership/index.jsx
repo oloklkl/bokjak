@@ -9,18 +9,172 @@ import {
     MembershipContent,
     DeviceSupportWrap,
     DeviceSupportItem,
+    MembershipHeader,
+    LogoRows,
+    RowRight,
+    RowLeft,
 } from './style';
 import { X } from '@phosphor-icons/react';
+import { Link } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
 
 const Membership = () => {
     const [hoveredPlan, setHoveredPlan] = useState(null);
-    const [isHovered, setIsHovered] = useState(false);
+    // const [isHovered, setIsHovered] = useState(false);
+    // const { movies, tvShows } = useSelector((state) => state.contentR);
+
+    // // 로고용 이미지 섞기 + 중복 반복용
+    // const getLogos = (list, count = 6) => {
+    //     const logos = list
+    //         .filter((item) => item.backdrop_path) // 이미지 있는 것만
+    //         .sort(() => 0.5 - Math.random()) // 랜덤 섞기
+    //         .slice(0, count); // 개수 자르기
+
+    //     // 반복용 배열
+    //     return [...logos, ...logos];
+    // };
+
+    // const movieLogos = getLogos(movies);
+    // const tvLogos = getLogos(tvShows);
 
     return (
         <MembershipContainer>
-            <h2>
-                지금 복작을 구독하고, <span>매주 새로운 콘텐츠를 경험하세요!</span>
-            </h2>
+            <MembershipHeader>
+                <h2>
+                    지금 복작을 구독하고, <span>매주 새로운 콘텐츠를 경험하세요!</span>
+                </h2>
+            </MembershipHeader>
+
+            <LogoRows>
+                <RowRight>
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/membership/pc-logo.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                </RowRight>
+
+                <RowLeft>
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/membership/pc-logo.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                </RowLeft>
+
+                <RowRight>
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/membership/pc-logo.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                </RowRight>
+            </LogoRows>
 
             <div className='inner'>
                 <MembershipContent>
@@ -69,10 +223,10 @@ const Membership = () => {
                                         <img
                                             src={
                                                 hoveredPlan === 'premium'
-                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-hor.png?raw=true'
-                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-hor.png?raw=true'
+                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-hdr.png?raw=true'
+                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-hdr.png?raw=true'
                                             }
-                                            alt='HDT-img'
+                                            alt='HDR-img'
                                         />
                                     </li>
                                     <li>HDR 10+지원</li>
@@ -124,10 +278,10 @@ const Membership = () => {
                                         <img
                                             src={
                                                 hoveredPlan === 'standard'
-                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-hor.png?raw=true'
-                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-hor.png?raw=true'
+                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-hdr.png?raw=true'
+                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-hdr.png?raw=true'
                                             }
-                                            alt='HDT-img'
+                                            alt='HDR-img'
                                         />
                                     </li>
                                     <li>HDR 10+지원</li>
@@ -231,7 +385,9 @@ const Membership = () => {
                             </DeviceSupportItem>
                         </DeviceSupportWrap>
 
-                        <BarButton className='select' text='premium 선택하기' width='300px' height='60px' />
+                        <Link to='/plans'>
+                            <BarButton className='select' text='premium 선택하기' width='300px' height='60px' />
+                        </Link>
                     </MembershipWrap>
                 </MembershipContent>
 
