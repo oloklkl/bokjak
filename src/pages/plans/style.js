@@ -181,5 +181,11 @@ export const PlansFormBox = styled.div`
             transition: all 0.3s ease-in-out;
             background: linear-gradient(90deg, #b401cf, #4f01b6);
         }
+
+        &:disabled {
+            background: ${color('gray', '50')};
+            cursor: not-allowed; /* 비활성화 상태 */
+            opacity: 0.6; /* 시각적 비활성화 효과 */
+        }
     }
 `;
