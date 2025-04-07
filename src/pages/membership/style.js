@@ -29,6 +29,62 @@ export const MembershipContainer = styled.div`
     }
 `;
 
+export const LogoRows = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+`;
+
+export const RowRight = styled.div`
+    display: flex;
+    gap: 24px;
+
+    img {
+        border-radius: 7px;
+        height: 200px;
+
+        ${media.tablet} {
+            height: 100px;
+        }
+
+        ${media.mobile} {
+            height: 65px;
+        }
+    }
+`;
+
+export const RowLeft = styled.div`
+    display: flex;
+    gap: 24px;
+
+    img {
+        border-radius: 7px;
+        height: 200px;
+
+        ${media.tablet} {
+            height: 100px;
+        }
+
+        ${media.mobile} {
+            height: 65px;
+        }
+    }
+`;
+
+export const MembershipHeader = styled.div`
+    h2 {
+        margin-top: 200px;
+
+        ${media.tablet} {
+            margin-top: 150px;
+        }
+
+        ${media.mobile} {
+            margin-top: 120px;
+        }
+    }
+`;
+
 export const MembershipContent = styled.div`
     width: 100%;
     display: flex;
@@ -50,6 +106,9 @@ export const MembershipWrap = styled.div`
     ${media.mobile} {
         width: 348px;
     }
+    h2 {
+        margin-top: 200px;
+    }
 
     .select {
         ${media.desktop} {
@@ -68,6 +127,11 @@ export const MembershipWrap = styled.div`
         ${media.mobile} {
             font-size: ${font('label', 'sm')};
             height: 42px;
+        }
+
+        &:hover {
+            transition: all 0.3s ease-in-out;
+            background: linear-gradient(90deg, #b401cf, #4f01b6);
         }
     }
 `;
@@ -210,7 +274,7 @@ export const Plan = styled.div`
     &.basic {
         &:hover {
             border: 2px solid ${color('primary', 'default')};
-            border-image: linear-gradient(90deg, #dd33ff, #8000ff) 1;
+            /* border-image: linear-gradient(90deg, #dd33ff, #8000ff) 1; */
         }
     }
 `;
