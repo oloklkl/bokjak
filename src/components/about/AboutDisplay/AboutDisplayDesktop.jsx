@@ -82,7 +82,7 @@ function AboutDisplay() {
             </div>
           </div>
           <p>
-            <span className="highlight">월 5,500원</span>으로 복작의 모든
+            <span className="highlight">월 7,900원</span>으로 복작의 모든
             콘텐츠를 즐겨보세요!
           </p>
           <BarButton
@@ -103,7 +103,7 @@ function AboutDisplay() {
             />
           </div>
 
-          <Link href="#">
+          <Link href="/membership" to="/membership">
             <div className="msBtn" ref={msBtnRef}>
               <div className="ms-title">
                 <span>BOKJAK</span>

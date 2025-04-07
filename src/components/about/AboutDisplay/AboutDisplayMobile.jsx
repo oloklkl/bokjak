@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { BarButton, IconButton } from '../../../ui'
-import { DisplayWrap } from './style'
 import { ArrowUpRight } from '@phosphor-icons/react'
+import { DisplayWrap } from './style'
 
 function AboutDisplayMobile() {
   return (
@@ -22,7 +22,7 @@ function AboutDisplayMobile() {
           </div>
         </div>
         <p>
-          <span className="highlight">월 5,500원</span>으로 복작의 모든 콘텐츠를
+          <span className="highlight">월 7,900원</span>으로 복작의 모든 콘텐츠를
           즐겨보세요!
         </p>
         <BarButton
@@ -43,7 +43,7 @@ function AboutDisplayMobile() {
           />
         </div>
 
-        <Link href="#">
+        <Link href="/membership" to="/membership">
           <div className="msBtn">
             <div className="ms-title">
               <span>BOKJAK</span>

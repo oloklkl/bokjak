@@ -97,6 +97,11 @@ export const DisplayWrap = styled.div`
       background-color: ${color('gray', '70')};
       font-size: ${font('body', 'lg')};
       font-weight: bold;
+      &:hover {
+        transition: all 0.2s ease-in-out;
+        background-color: ${color('primary', '70')};
+        color: white;
+      }
       ${media.tablet} {
         width: 100%;
         height: 60px;

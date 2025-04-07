@@ -6,11 +6,15 @@ import { useRef, useEffect } from 'react'
 
 function AboutMemberShip() {
   const ghostRef = useRef(null)
+  const starRef = useRef(null)
+  const flowerRef = useRef(null)
+  const flowerSmRef = useRef(null)
 
   useEffect(() => {
+    // 스크롤 트리거 애니메이션
     gsap.fromTo(
       ghostRef.current,
-      { y: 100, opacity: 0 },
+      { y: 20, opacity: 0 },
       {
         y: 0,
         opacity: 1,
@@ -23,6 +27,22 @@ function AboutMemberShip() {
         },
       }
     )
+
+    const floatIcon = (target, delay = 0) => {
+      gsap.to(target, {
+        y: -10,
+        duration: 2,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
+        delay,
+      })
+    }
+
+    floatIcon(starRef.current, 0)
+    floatIcon(flowerRef.current, 0.2)
+    floatIcon(flowerSmRef.current, 0.4)
+    floatIcon(ghostRef.current, 0.6)
   }, [])
 
   return (
@@ -30,16 +50,19 @@ function AboutMemberShip() {
       <AboutMemberShipWrap className="aboutMemberShipWrap">
         <div className="icon-floating">
           <img
+            ref={starRef}
             src="https://github.com/lse-7660/bokjak-image/blob/main/images/about/star.png?raw=true"
             alt="star"
             className="icon star"
           />
           <img
+            ref={flowerRef}
             src="https://github.com/lse-7660/bokjak-image/blob/main/images/about/flower.png?raw=true"
             alt="ghost"
             className="icon flower"
           />
           <img
+            ref={flowerSmRef}
             src="https://github.com/lse-7660/bokjak-image/blob/main/images/about/flower-sm.png?raw=true"
             alt="ghost"
             className="icon flower-sm"
@@ -88,7 +111,7 @@ function AboutMemberShip() {
               <p>매주 업로드 되는 최신 콘텐츠</p>
             </div>
           </div>
-          <Link to="/about/faq">
+          <Link href="/membership" to="/membership">
             <BarButton
               className="memberShip-goto"
               text="멤버십 구독하기"

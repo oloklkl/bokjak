@@ -290,6 +290,11 @@ export const AboutMemberShipWrap = styled.div`
     border-radius: 7px;
     padding: 20px;
     font-size: ${font('body', 'lg')};
+    &:hover {
+      transition: all 0.3s ease-in-out;
+      background: linear-gradient(90deg, #b401cf, #4f01b6);
+      color: white;
+    }
     ${media.tablet} {
       width: 270px;
       height: 55px;
