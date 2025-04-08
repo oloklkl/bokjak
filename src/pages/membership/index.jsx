@@ -1,293 +1,421 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 import { BarButton } from '../../ui';
+import {
+    MembershipContainer,
+    Plans,
+    Plan,
+    MembershipInfo,
+    MembershipWrap,
+    MembershipContent,
+    DeviceSupportWrap,
+    DeviceSupportItem,
+    MembershipHeader,
+    LogoRows,
+    RowRight,
+    RowLeft,
+} from './style';
+import { X } from '@phosphor-icons/react';
+import { Link } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
 
-export default function SubscriptionPlans() {
-  const [showMembership, setShowMembership] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState(null);
+const Membership = () => {
+    const [hoveredPlan, setHoveredPlan] = useState(null);
+    // const [isHovered, setIsHovered] = useState(false);
+    // const { movies, tvShows } = useSelector((state) => state.contentR);
 
-  if (showMembership) {
-    return <Membership />;
-  }
+    // // 로고용 이미지 섞기 + 중복 반복용
+    // const getLogos = (list, count = 6) => {
+    //     const logos = list
+    //         .filter((item) => item.backdrop_path) // 이미지 있는 것만
+    //         .sort(() => 0.5 - Math.random()) // 랜덤 섞기
+    //         .slice(0, count); // 개수 자르기
 
-  const handlePlanClick = (plan) => {
-    setSelectedPlan(selectedPlan === plan ? null : plan);
-  };
+    //     // 반복용 배열
+    //     return [...logos, ...logos];
+    // };
 
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
-        padding: '20px',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: '20px',
-          maxWidth: '1200px',
-          width: '100%',
-          marginBottom: '40px',
-        }}
-      >
-        {/* 프리미엄 플랜 */}
-        <div
-          onClick={() => handlePlanClick('프리미엄')}
-          style={{
-            flex: '1',
-            border: `2.5px solid ${selectedPlan === '프리미엄' ? '#8000FF' : '#fff'}`,
-            padding: '20px',
-            borderRadius: '10px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-            backgroundColor: selectedPlan === '프리미엄' ? '#1d1d1d' : '#111',
-            cursor: 'pointer',
-          }}
-        >
-          <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>프리미엄</h2>
-          <p style={{ fontSize: '25px', fontWeight: 'bold', marginBottom: '10px' }}>
-            월 15,000원
-            <br />연 150,000원
-          </p>
-          <p style={{ marginBottom: '10px' }}>최대 16% 할인된 가격</p>
-          <p style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '5px' }}>최대 Dolley Atmos 오디오</p>
-          <p style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '5px' }}>최대 4K Full HD UHD & HDR</p>
-          <p style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '5px' }}>광고없는 스트리밍</p>
-          <p style={{ fontSize: '14px' }}>비디오 저장가능</p>
-        </div>
+    // const movieLogos = getLogos(movies);
+    // const tvLogos = getLogos(tvShows);
 
-        {/* 베이직 플랜 */}
-        <div
-          onClick={() => handlePlanClick('베이직')}
-          style={{
-            flex: '1',
-            border: `2.5px solid ${selectedPlan === '베이직' ? '#8000FF' : '#fff'}`,
-            padding: '20px',
-            borderRadius: '10px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-            backgroundColor: selectedPlan === '베이직' ? '#1d1d1d' : '#111',
-            cursor: 'pointer',
-          }}
-        >
-          <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>베이직</h2>
-          <p style={{ fontSize: '25px', fontWeight: 'bold', marginBottom: '10px' }}>
-            월 9,900원
-            <br />연 99,000원
-          </p>
-          <p style={{ marginBottom: '10px' }}>최대 16% 할인된 가격</p>
-          <p style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '5px' }}>최대 5.1 사운드</p>
-          <p style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '5px' }}>최대 1080P Full HD</p>
-          <p style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '5px' }}>광고없는 스트리밍</p>
-          <p style={{ fontSize: '14px' }}>비디오 저장가능</p>
-        </div>
-      </div>
+    return (
+        <MembershipContainer>
+            <MembershipHeader>
+                <h2>
+                    지금 복작을 구독하고, <span>매주 새로운 콘텐츠를 경험하세요!</span>
+                </h2>
+            </MembershipHeader>
 
-      {/* 지원 기기 */}
-      <div
-        style={{
-          backgroundColor: '#1d1d1d',
-          color: '#fff',
-          padding: '20px',
-          borderRadius: '10px',
-          textAlign: 'center',
-          width: '100%',
-          maxWidth: '1200px',
-          marginBottom: '15px',
-        }}
-      >
-        <p style={{ fontSize: '18px', marginBottom: '10px' }}>지원 기기</p>
-        <p style={{ fontSize: '16px' }}>모바일, 태블릿, PC, TV 지원</p>
-      </div>
+            <LogoRows>
+                <RowRight>
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/membership/pc-logo.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                </RowRight>
 
-      {/* 구독 버튼 */}
-      <BarButton
-        text="결제 주기 선택"
-        width="50%"
-        height="45px"
-        style={{
-          marginTop: '20px',
-        }}
-        onClick={() => setShowMembership(true)}
-      />
-    </div>
-  );
-}
+                <RowLeft>
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/membership/pc-logo.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                </RowLeft>
 
-function Membership() {
-  const [activeDiv, setActiveDiv] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [isBasicChecked, setIsBasicChecked] = useState(false);
-  const [isPremiumChecked, setIsPremiumChecked] = useState(false);
+                <RowRight>
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/membership/pc-logo.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                    <img
+                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
+                        alt=''
+                    />
+                </RowRight>
+            </LogoRows>
 
-  const handleDivClick = (div) => {
-    if (div === 'basic') {
-      setIsBasicChecked(!isBasicChecked);
-      if (activeDiv === 'basic') {
-        setActiveDiv(null); // Deselect if already selected
-      } else {
-        setActiveDiv('basic');
-      }
-    } else if (div === 'premium') {
-      setIsPremiumChecked(!isPremiumChecked);
-      if (activeDiv === 'premium') {
-        setActiveDiv(null); // Deselect if already selected
-      } else {
-        setActiveDiv('premium');
-      }
-    }
-  };
+            <div className='inner'>
+                <MembershipContent>
+                    <MembershipWrap>
+                        <h2>원하는 구독권을 선택해주세요!</h2>
+                        <Plans>
+                            <Plan
+                                className='premium'
+                                onMouseEnter={() => setHoveredPlan('premium')}
+                                onMouseLeave={() => setHoveredPlan(null)}
+                            >
+                                <h3>Premium</h3>
+                                <ul>
+                                    <li>
+                                        <img
+                                            src={
+                                                hoveredPlan === 'premium'
+                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-movie.png?raw=true'
+                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-movie.png?raw=true'
+                                            }
+                                            alt='movie-img'
+                                        />
+                                    </li>
+                                    <li>VOD 12만편 이상</li>
+                                    <li>
+                                        <p>
+                                            <span>최대</span>4<span>대</span>
+                                        </p>
+                                    </li>
+                                    <li>최대 4대 동시 감상</li>
+                                    <li>
+                                        <p>
+                                            4K&nbsp;
+                                            <img
+                                                src={
+                                                    hoveredPlan === 'premium'
+                                                        ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-ultra.png?raw=true'
+                                                        : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-ultra.png?raw=true'
+                                                }
+                                                alt='UltraHD-img'
+                                            />
+                                        </p>
+                                    </li>
+                                    <li>Ultra HD 4K 지원</li>
+                                    <li>
+                                        <img
+                                            src={
+                                                hoveredPlan === 'premium'
+                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-hdr.png?raw=true'
+                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-hdr.png?raw=true'
+                                            }
+                                            alt='HDR-img'
+                                        />
+                                    </li>
+                                    <li>HDR 10+지원</li>
+                                    <li>
+                                        <p>
+                                            300<span>개</span>
+                                        </p>
+                                    </li>
+                                    <li>비디오 300개 저장</li>
+                                </ul>
+                            </Plan>
 
-  const handleButtonClick = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
-  const getCheckboxColor = (div) => (activeDiv === div ? '#8000FF' : '#ccc');
+                            <Plan
+                                className='standard'
+                                onMouseEnter={() => setHoveredPlan('standard')}
+                                onMouseLeave={() => setHoveredPlan(null)}
+                            >
+                                <h3>Standard</h3>
+                                <ul>
+                                    <li>
+                                        <img
+                                            src={
+                                                hoveredPlan === 'standard'
+                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-movie.png?raw=true'
+                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-movie.png?raw=true'
+                                            }
+                                            alt='movie-img'
+                                        />
+                                    </li>
+                                    <li>VOD 12만편 이상</li>
+                                    <li>
+                                        <p>
+                                            <span>최대</span>2<span>대</span>
+                                        </p>
+                                    </li>
+                                    <li>최대 2대 동시 감상</li>
+                                    <li>
+                                        <img
+                                            src={
+                                                hoveredPlan === 'standard'
+                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-full.png?raw=true'
+                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-full.png?raw=true'
+                                            }
+                                            alt='fullHD-img'
+                                        />
+                                    </li>
+                                    <li>FHD 지원</li>
+                                    <li>
+                                        <img
+                                            src={
+                                                hoveredPlan === 'standard'
+                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-hdr.png?raw=true'
+                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-hdr.png?raw=true'
+                                            }
+                                            alt='HDR-img'
+                                        />
+                                    </li>
+                                    <li>HDR 10+지원</li>
+                                    <li>
+                                        <p>
+                                            200<span>개</span>
+                                        </p>
+                                    </li>
+                                    <li>비디오 200개 저장</li>
+                                </ul>
+                            </Plan>
 
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        padding: '100px 0px 105px',
-        maxWidth: '40%',
-        height: 'auto',
-        margin: '0 auto',
-      }}
-    >
-      <h1
-        style={{
-          marginTop: '50px',
-          color: '#fff',
-          fontSize: '32px',
-          fontWeight: 'bold',
-          textAlign: 'left',
-          marginBottom: '10px',
-        }}
-      >
-        멤버십을 <br />
-        선택해 주세요
-      </h1>
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '20px',
-            border: activeDiv === 'basic' ? '2.5px solid #8000FF' : '2.5px solid white',
-            borderRadius: '5px',
-            marginBottom: '30px',
-            cursor: 'pointer',
-          }}
-          onClick={() => handleDivClick('basic')}
-        >
-          <span>
-            <FontAwesomeIcon
-              icon={isBasicChecked ? faCheckSquare : faSquare}
-              style={{ marginRight: '10px', color: getCheckboxColor('basic') }}
-            />
-            1개월
-          </span>
-          <span>9,900원</span>
-        </div>
+                            <Plan
+                                className='basic'
+                                onMouseEnter={() => setHoveredPlan('basic')}
+                                onMouseLeave={() => setHoveredPlan(null)}
+                            >
+                                <h3>Basic</h3>
+                                <ul>
+                                    <li>
+                                        <img
+                                            src={
+                                                hoveredPlan === 'basic'
+                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-movie.png?raw=true'
+                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-movie.png?raw=true'
+                                            }
+                                            alt='movie-img'
+                                        />
+                                    </li>
+                                    <li>VOD 12만편 이상</li>
+                                    <li>
+                                        <p>
+                                            <span>오직</span>1<span>대</span>
+                                        </p>
+                                    </li>
+                                    <li>오직 1대 감상</li>
+                                    <li>
+                                        <img
+                                            src={
+                                                hoveredPlan === 'basic'
+                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-hd.png?raw=true'
+                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-hd.png?raw=true'
+                                            }
+                                            alt='hd-img'
+                                        />
+                                    </li>
+                                    <li>HD 지원</li>
+                                    <li>
+                                        <X size={32} className='x' />
+                                    </li>
+                                    <li>HDR 10+미지원</li>
+                                    <li>
+                                        <p>
+                                            100<span>개</span>
+                                        </p>
+                                    </li>
+                                    <li>비디오 100개 저장</li>
+                                </ul>
+                            </Plan>
+                        </Plans>
 
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '20px',
-            border: activeDiv === 'premium' ? '2.5px solid #8000FF' : '2.5px solid white',
-            borderRadius: '5px',
-            cursor: 'pointer',
-          }}
-          onClick={() => handleDivClick('premium')}
-        >
-          <span>
-            <FontAwesomeIcon
-              icon={isPremiumChecked ? faCheckSquare : faSquare}
-              style={{ marginRight: '10px', color: getCheckboxColor('premium') }}
-            />
-            12개월
-          </span>
-          <span>15,000원</span>
-        </div>
-      </div>
-      <BarButton
-        text="결제 멤버십 선택"
-        width="100%"
-        height="45px"
-        style={{
-          marginTop: '20px',
-        }}
-        onClick={handleButtonClick} // 버튼 클릭 시 모달 표시
-      />
-      {/*모달창*/}
-      {showModal && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.50)', // 배경 투명도 설정
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          onClick={handleCloseModal}
-        >
-          <div
-            style={{
-              backgroundColor: '#1D1D1D', // 다크 모드 스타일
-              color: 'white',
-              padding: '20px',
-              borderRadius: '10px',
-              textAlign: 'center',
-              width: '350px',
-              position: 'relative',
-            }}
-            onClick={(e) => e.stopPropagation()} // 모달 내부 클릭 시 닫히지 않도록 설정
-          >
-            <span
-              style={{
-                position: 'absolute',
-                top: '10px',
-                right: '15px',
-                fontSize: '20px',
-                cursor: 'pointer',
-                color: '#ccc',
-              }}
-              onClick={handleCloseModal}
-            >
-              &times;
-            </span>
-            <p style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>알림</p>
-            <p style={{ color: '#C6C6C6', marginBottom: '20px' }}>계정을 만들고 구독을 완료해 보세요!</p>
-            <BarButton
-              style={{
-                backgroundColor: '#8000FF',
-                color: 'white',
-                padding: '12px',
-                borderRadius: '5px',
-                width: '100%',
-                fontWeight: 'bold',
-                border: 'none',
-                cursor: 'pointer',
-              }}
-              onClick={() => (window.location.href = '/login')}
-            >
-              네, 좋아요!
-            </BarButton>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+                        <DeviceSupportWrap>
+                            {/* Premium or Standard */}
+                            <DeviceSupportItem
+                                className={`premium-standard ${
+                                    hoveredPlan === 'premium' || hoveredPlan === 'standard' ? 'hover' : ''
+                                }`}
+                            >
+                                <h3>지원기기</h3>
+                                <ul>
+                                    <li>
+                                        <img
+                                            src={
+                                                hoveredPlan === 'premium' || hoveredPlan === 'standard'
+                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-devices1-2.png?raw=true'
+                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-devices1.png?raw=true'
+                                            }
+                                            alt='디바이스'
+                                        />
+                                    </li>
+                                    <li>모바일, 태블릿, PC, TV 지원</li>
+                                </ul>
+                            </DeviceSupportItem>
+
+                            {/* Basic */}
+                            <DeviceSupportItem className={`basic ${hoveredPlan === 'basic' ? 'hover' : ''}`}>
+                                <h3>지원기기</h3>
+                                <ul>
+                                    <li>
+                                        <img
+                                            src={
+                                                hoveredPlan === 'basic'
+                                                    ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-devices2-2.png?raw=true'
+                                                    : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-devices2.png?raw=true'
+                                            }
+                                            alt='디바이스'
+                                        />
+                                    </li>
+                                    <li>모바일, 태블릿, PC 지원</li>
+                                </ul>
+                            </DeviceSupportItem>
+                        </DeviceSupportWrap>
+
+                        <Link to='/plans'>
+                            <BarButton className='select' text='premium 선택하기' width='300px' height='60px' />
+                        </Link>
+                    </MembershipWrap>
+                </MembershipContent>
+
+                <MembershipInfo>
+                    <h3>구독 안내</h3>
+                    <p>결제 금액에는 VAT가 포함되어 있어요.</p>
+                    <p>정기결제는 이용 기간이 끝나기 24시간 이내에 자동으로 결제돼요.</p>
+                    <p>
+                        정기결제는 언제든지 자동 결제를 해지할 수 있어요. 이 경우 다음 결제 예정일부터 결제가 진행되지
+                        않아요.
+                    </p>
+                    <p>
+                        구매 후 7일 이상 지나거나 서비스 이용 내역이 있는 경우 구독을 즉시 취소하려면 복작 고객센터에
+                        문의해 주세요. 이경우 복작 이용약관 제 15조 2항에 따라 회사에 적용하는 소정의 기준율을 적용하여
+                        이용대금을 차감하고 환불받을 수 있어요.
+                    </p>
+                    <p>저작권자의 요청에 따라 일부 콘텐츠의 동시 재생이 제한될 수 있어요.</p>
+                    <p>해외 서비스 대상 국가에서는 다운로드를 제공하지 않습니다.</p>
+                    <p>해외 서비스 대상 국가 : 싱가폴, 인도네시아, 말레이시아, 필리핀, 베트남, 라오스, 태국</p>
+                    <p>해외 서비스 대상 국가가 아닌 국가에서는 서비스 이용이 불가합니다.</p>
+                    <p>
+                        프리미엄 이용권은 동시에 4명, 스텐다드 이용권은 2명이 동시에 시청할 수 있습니다. 베이직 이용권은
+                        1명만 시청할 수 있습니다.
+                    </p>
+                </MembershipInfo>
+            </div>
+        </MembershipContainer>
+    );
+};
+
+export default Membership;
