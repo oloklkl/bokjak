@@ -5,19 +5,22 @@ export const RollingBannerWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 24px;
+    overflow: hidden;
+    width: 100%;
 `;
 
 export const RowRight = styled.div`
     display: flex;
+    flex-wrap: nowrap;
     gap: 24px;
     animation: scrollRight 40s linear infinite;
 
     @keyframes scrollRight {
         0% {
-            transform: translateX(0%);
+            transform: translateX(-50%);
         }
         100% {
-            transform: translateX(100%);
+            transform: translateX(00%);
         }
     }
 
@@ -26,7 +29,9 @@ export const RowRight = styled.div`
         height: 200px;
         width: auto;
         object-fit: cover;
-        aspect-ratio: 3 / 2; // 가로 긴 비율 유지하려면 이거도 추가 가능
+        aspect-ratio: 16 / 9;
+        /* object-fit: cover;
+        aspect-ratio: 3 / 2; // 가로 긴 비율 유지하려면 이거도 추가 가능 */
 
         ${media.tablet} {
             height: 100px;
@@ -48,7 +53,7 @@ export const RowLeft = styled.div`
             transform: translateX(0%);
         }
         100% {
-            transform: translateX(-100%);
+            transform: translateX(-50%);
         }
     }
 
@@ -57,7 +62,9 @@ export const RowLeft = styled.div`
         height: 200px;
         width: auto;
         object-fit: cover;
-        aspect-ratio: 3 / 2; // 가로 긴 비율 유지하려면 이거도 추가 가능
+        aspect-ratio: 16 / 9;
+        /* object-fit: cover; */
+        /* aspect-ratio: 3 / 2; // 가로 긴 비율 유지하려면 이거도 추가 가능 */
 
         ${media.tablet} {
             height: 100px;
