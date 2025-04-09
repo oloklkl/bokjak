@@ -123,7 +123,7 @@ export const PlansFormBox = styled.div`
                     font-size: ${font('title', 'lg')};
                 }
                 ${media.mobile} {
-                    font-size: ${font('title', 'md')};
+                    font-size: ${font('body', 'md')};
                 }
 
                 .badge {
@@ -133,6 +133,10 @@ export const PlansFormBox = styled.div`
                     border-radius: 5px;
                     padding: 3px 5px;
                     margin-left: 5px;
+
+                    ${media.mobile} {
+                        font-size: ${font('body', 'xsm')};
+                    }
                 }
             }
 
@@ -144,7 +148,7 @@ export const PlansFormBox = styled.div`
                     font-size: ${font('title', 'lg')};
                 }
                 ${media.mobile} {
-                    font-size: ${font('title', 'md')};
+                    font-size: ${font('body', 'md')};
                 }
             }
 
@@ -156,6 +160,10 @@ export const PlansFormBox = styled.div`
             small {
                 font-size: ${font('body', 'sm')};
                 color: ${color('gray', '40')};
+
+                ${media.mobile} {
+                    font-size: ${font('body', 'xsm')};
+                }
             }
         }
     }
