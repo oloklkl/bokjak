@@ -254,7 +254,7 @@ export const DeviceSupportWrap = styled.div`
         width: 100%;
         height: auto;
         gap: 16px;
-        margin-top: 20px;
+        margin-top: 16px;
     }
 `;
 
