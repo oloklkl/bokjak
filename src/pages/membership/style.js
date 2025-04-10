@@ -97,7 +97,7 @@ export const MembershipWrap = styled.div`
 export const Plans = styled.div`
     display: flex;
     justify-content: center;
-    gap: 2.4rem;
+    gap: 24px;
 
     ${media.tablet} {
         width: auto;
@@ -105,7 +105,7 @@ export const Plans = styled.div`
 
     ${media.mobile} {
         width: 348px;
-        gap: 1.6rem;
+        gap: 20px;
     }
 `;
 
@@ -245,8 +245,8 @@ export const DeviceSupportWrap = styled.div`
     width: 1000px;
     display: flex;
     justify-content: center;
-    gap: 2.4rem;
-    margin-top: 2.4rem;
+    gap: 24px;
+    margin-top: 24px;
 
     ${media.tablet} {
         width: 708px;
@@ -254,7 +254,8 @@ export const DeviceSupportWrap = styled.div`
 
     ${media.mobile} {
         width: 348px;
-        margin-top: 1.6rem;
+        gap: 20px;
+        margin-top: 20px;
     }
 `;
 
