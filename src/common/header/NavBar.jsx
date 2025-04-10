@@ -75,7 +75,7 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to={'/subpage/movie'}
+                        to={'/subpage?category=영화'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
                         onClick={() => dispatch(setActiveLink('/subpage/movie'))}
                     >
@@ -84,7 +84,7 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to={'/subpage/series'}
+                        to={'/subpage?category=시리즈'}
                         className={({ isActive }) => (isActive ? 'active' : '')}
                         onClick={() => dispatch(setActiveLink('/subpage/series'))}
                     >
