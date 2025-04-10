@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BarButton } from '../../ui';
 import {
     MembershipContainer,
@@ -10,32 +10,58 @@ import {
     DeviceSupportWrap,
     DeviceSupportItem,
     MembershipHeader,
-    LogoRows,
-    RowRight,
-    RowLeft,
 } from './style';
 import { X } from '@phosphor-icons/react';
-import { Link } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import RollingBanner from '../../components/membership/rollingBanner/RollingBanner';
+import { getMovies, getTvShows } from '../../store/modules/getThunk';
 
 const Membership = () => {
     const [hoveredPlan, setHoveredPlan] = useState(null);
-    // const [isHovered, setIsHovered] = useState(false);
-    // const { movies, tvShows } = useSelector((state) => state.contentR);
+    const [isHovered, setIsHovered] = useState(null);
+    const navigate = useNavigate();
+    const [selectedPlan, setSelectedPlan] = useState(''); // 모바일/태블릿 선택 상태
+    const [isMobile, setIsMobile] = useState(false);
+    const dispatch = useDispatch();
+    const { movies, tvShows } = useSelector((state) => state.contentR);
+    const [isLoaded, setIsLoaded] = useState(false);
 
-    // // 로고용 이미지 섞기 + 중복 반복용
-    // const getLogos = (list, count = 6) => {
-    //     const logos = list
-    //         .filter((item) => item.backdrop_path) // 이미지 있는 것만
-    //         .sort(() => 0.5 - Math.random()) // 랜덤 섞기
-    //         .slice(0, count); // 개수 자르기
+    useEffect(() => {
+        const fetchContent = async () => {
+            await dispatch(getMovies());
+            await dispatch(getTvShows());
+            setIsLoaded(true);
+        };
 
-    //     // 반복용 배열
-    //     return [...logos, ...logos];
-    // };
+        fetchContent();
+    }, [dispatch]);
 
-    // const movieLogos = getLogos(movies);
-    // const tvLogos = getLogos(tvShows);
+    // 화면 크기 감지
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.matchMedia('(max-width: 1024px)').matches);
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const handlePlanSelect = (plan) => {
+        if (isMobile) {
+            setSelectedPlan(plan); // 모바일/태블릿에서 선택 상태 업데이트
+        } else {
+            navigate(`/plans/${plan}`); // PC에서는 바로 이동
+        }
+    };
+
+    const handleBarButtonClick = () => {
+        if (selectedPlan) {
+            navigate(`/plans/${selectedPlan}`); // BarButton 클릭 시 이동
+        } else {
+            alert('구독권을 선택해주세요.');
+        }
+    };
 
     return (
         <MembershipContainer>
@@ -45,136 +71,11 @@ const Membership = () => {
                 </h2>
             </MembershipHeader>
 
-            <LogoRows>
-                <RowRight>
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/membership/pc-logo.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                </RowRight>
-
-                <RowLeft>
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/membership/pc-logo.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                </RowLeft>
-
-                <RowRight>
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/membership/pc-logo.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                    <img
-                        src='https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true'
-                        alt=''
-                    />
-                </RowRight>
-            </LogoRows>
+            {isLoaded && movies.length > 0 && tvShows.length > 0 ? (
+                <RollingBanner movies={movies} tvShows={tvShows} />
+            ) : (
+                <p>데이터 로딩 중...</p>
+            )}
 
             <div className='inner'>
                 <MembershipContent>
@@ -182,16 +83,24 @@ const Membership = () => {
                         <h2>원하는 구독권을 선택해주세요!</h2>
                         <Plans>
                             <Plan
-                                className='premium'
+                                className={`premium ${hoveredPlan === 'premium' ? 'hover' : ''} ${
+                                    selectedPlan === 'premium' ? 'selected' : ''
+                                }`}
                                 onMouseEnter={() => setHoveredPlan('premium')}
                                 onMouseLeave={() => setHoveredPlan(null)}
+                                onClick={() => {
+                                    setSelectedPlan('premium');
+                                    if (!isMobile) {
+                                        navigate(`/plans/premium`);
+                                    }
+                                }}
                             >
                                 <h3>Premium</h3>
                                 <ul>
                                     <li>
                                         <img
                                             src={
-                                                hoveredPlan === 'premium'
+                                                hoveredPlan === 'premium' || selectedPlan === 'premium'
                                                     ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-movie.png?raw=true'
                                                     : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-movie.png?raw=true'
                                             }
@@ -210,7 +119,7 @@ const Membership = () => {
                                             4K&nbsp;
                                             <img
                                                 src={
-                                                    hoveredPlan === 'premium'
+                                                    hoveredPlan === 'premium' || selectedPlan === 'premium'
                                                         ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-ultra.png?raw=true'
                                                         : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-ultra.png?raw=true'
                                                 }
@@ -218,18 +127,22 @@ const Membership = () => {
                                             />
                                         </p>
                                     </li>
-                                    <li>Ultra HD 4K 지원</li>
+                                    <li>
+                                        Ultra HD 4K 지원<p className='subtext'>실감나는 화질</p>
+                                    </li>
                                     <li>
                                         <img
                                             src={
-                                                hoveredPlan === 'premium'
+                                                hoveredPlan === 'premium' || selectedPlan === 'premium'
                                                     ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-hdr.png?raw=true'
                                                     : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-hdr.png?raw=true'
                                             }
                                             alt='HDR-img'
                                         />
                                     </li>
-                                    <li>HDR 10+지원</li>
+                                    <li>
+                                        HDR 10+지원<p className='subtext'>더 입체감있는 색상</p>
+                                    </li>
                                     <li>
                                         <p>
                                             300<span>개</span>
@@ -240,16 +153,24 @@ const Membership = () => {
                             </Plan>
 
                             <Plan
-                                className='standard'
+                                className={`standard ${hoveredPlan === 'standard' ? 'hover' : ''} ${
+                                    selectedPlan === 'standard' ? 'selected' : ''
+                                }`}
                                 onMouseEnter={() => setHoveredPlan('standard')}
                                 onMouseLeave={() => setHoveredPlan(null)}
+                                onClick={() => {
+                                    setSelectedPlan('standard');
+                                    if (!isMobile) {
+                                        navigate(`/plans/standard`);
+                                    }
+                                }}
                             >
                                 <h3>Standard</h3>
                                 <ul>
                                     <li>
                                         <img
                                             src={
-                                                hoveredPlan === 'standard'
+                                                hoveredPlan === 'standard' || selectedPlan === 'standard'
                                                     ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-movie.png?raw=true'
                                                     : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-movie.png?raw=true'
                                             }
@@ -266,25 +187,29 @@ const Membership = () => {
                                     <li>
                                         <img
                                             src={
-                                                hoveredPlan === 'standard'
+                                                hoveredPlan === 'standard' || selectedPlan === 'standard'
                                                     ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-full.png?raw=true'
                                                     : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-full.png?raw=true'
                                             }
                                             alt='fullHD-img'
                                         />
                                     </li>
-                                    <li>FHD 지원</li>
+                                    <li>
+                                        FHD 지원<p className='subtext'>선명한 화질</p>
+                                    </li>
                                     <li>
                                         <img
                                             src={
-                                                hoveredPlan === 'standard'
+                                                hoveredPlan === 'standard' || selectedPlan === 'standard'
                                                     ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-hdr.png?raw=true'
                                                     : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-hdr.png?raw=true'
                                             }
                                             alt='HDR-img'
                                         />
                                     </li>
-                                    <li>HDR 10+지원</li>
+                                    <li>
+                                        HDR 10+지원<p className='subtext'>더 입체감있는 색상</p>
+                                    </li>
                                     <li>
                                         <p>
                                             200<span>개</span>
@@ -295,16 +220,24 @@ const Membership = () => {
                             </Plan>
 
                             <Plan
-                                className='basic'
+                                className={`basic ${hoveredPlan === 'basic' ? 'hover' : ''} ${
+                                    selectedPlan === 'basic' ? 'selected' : ''
+                                }`}
                                 onMouseEnter={() => setHoveredPlan('basic')}
                                 onMouseLeave={() => setHoveredPlan(null)}
+                                onClick={() => {
+                                    setSelectedPlan('basic');
+                                    if (!isMobile) {
+                                        navigate(`/plans/basic`);
+                                    }
+                                }}
                             >
                                 <h3>Basic</h3>
                                 <ul>
                                     <li>
                                         <img
                                             src={
-                                                hoveredPlan === 'basic'
+                                                hoveredPlan === 'basic' || selectedPlan === 'basic'
                                                     ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-movie.png?raw=true'
                                                     : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-movie.png?raw=true'
                                             }
@@ -321,7 +254,7 @@ const Membership = () => {
                                     <li>
                                         <img
                                             src={
-                                                hoveredPlan === 'basic'
+                                                hoveredPlan === 'basic' || selectedPlan === 'basic'
                                                     ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-hd.png?raw=true'
                                                     : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-hd.png?raw=true'
                                             }
@@ -332,7 +265,9 @@ const Membership = () => {
                                     <li>
                                         <X size={32} className='x' />
                                     </li>
-                                    <li>HDR 10+미지원</li>
+                                    <li>
+                                        HDR 10+미지원<p className='subtext'>안정적인 색상</p>
+                                    </li>
                                     <li>
                                         <p>
                                             100<span>개</span>
@@ -346,16 +281,22 @@ const Membership = () => {
                         <DeviceSupportWrap>
                             {/* Premium or Standard */}
                             <DeviceSupportItem
-                                className={`premium-standard ${
-                                    hoveredPlan === 'premium' || hoveredPlan === 'standard' ? 'hover' : ''
-                                }`}
+                                isActive={
+                                    hoveredPlan === 'premium' ||
+                                    hoveredPlan === 'standard' ||
+                                    selectedPlan === 'premium' ||
+                                    selectedPlan === 'standard'
+                                }
                             >
                                 <h3>지원기기</h3>
                                 <ul>
                                     <li>
                                         <img
                                             src={
-                                                hoveredPlan === 'premium' || hoveredPlan === 'standard'
+                                                hoveredPlan === 'premium' ||
+                                                hoveredPlan === 'standard' ||
+                                                selectedPlan === 'premium' ||
+                                                selectedPlan === 'standard'
                                                     ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-devices1-2.png?raw=true'
                                                     : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-devices1.png?raw=true'
                                             }
@@ -367,13 +308,13 @@ const Membership = () => {
                             </DeviceSupportItem>
 
                             {/* Basic */}
-                            <DeviceSupportItem className={`basic ${hoveredPlan === 'basic' ? 'hover' : ''}`}>
+                            <DeviceSupportItem isActive={hoveredPlan === 'basic' || selectedPlan === 'basic'}>
                                 <h3>지원기기</h3>
                                 <ul>
                                     <li>
                                         <img
                                             src={
-                                                hoveredPlan === 'basic'
+                                                hoveredPlan === 'basic' || selectedPlan === 'basic'
                                                     ? 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/hover-devices2-2.png?raw=true'
                                                     : 'https://github.com/lse-7660/bokjak-image/blob/main/images/membership/default-devices2.png?raw=true'
                                             }
@@ -385,9 +326,19 @@ const Membership = () => {
                             </DeviceSupportItem>
                         </DeviceSupportWrap>
 
-                        <Link to='/plans'>
-                            <BarButton className='select' text='premium 선택하기' width='300px' height='60px' />
-                        </Link>
+                        <BarButton
+                            className='select'
+                            text={selectedPlan ? `${selectedPlan} 선택하기` : '구독권을 선택해주세요.'}
+                            width='300px'
+                            height='60px'
+                            onClick={() => {
+                                if (selectedPlan) {
+                                    navigate(`/plans/${selectedPlan}`);
+                                } else {
+                                    alert('구독권을 선택해주세요.');
+                                }
+                            }}
+                        />
                     </MembershipWrap>
                 </MembershipContent>
 

@@ -29,48 +29,6 @@ export const MembershipContainer = styled.div`
     }
 `;
 
-export const LogoRows = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-`;
-
-export const RowRight = styled.div`
-    display: flex;
-    gap: 24px;
-
-    img {
-        border-radius: 7px;
-        height: 200px;
-
-        ${media.tablet} {
-            height: 100px;
-        }
-
-        ${media.mobile} {
-            height: 65px;
-        }
-    }
-`;
-
-export const RowLeft = styled.div`
-    display: flex;
-    gap: 24px;
-
-    img {
-        border-radius: 7px;
-        height: 200px;
-
-        ${media.tablet} {
-            height: 100px;
-        }
-
-        ${media.mobile} {
-            height: 65px;
-        }
-    }
-`;
-
 export const MembershipHeader = styled.div`
     h2 {
         margin-top: 200px;
@@ -167,17 +125,10 @@ export const Plan = styled.div`
         padding: 3.5rem 0 1rem;
     }
 
-    &:hover {
+    &:hover,
+    &.selected {
         li {
             color: ${color('gray', '0')};
-
-            .default-img {
-                opacity: 0;
-            }
-
-            .hover-img {
-                opacity: 1;
-            }
         }
 
         h3 {
@@ -195,6 +146,16 @@ export const Plan = styled.div`
 
         .x {
             color: ${color('primary', 'default')};
+        }
+    }
+
+    &.premium,
+    &.standard,
+    &.basic {
+        &:hover,
+        &.selected {
+            border: 2px solid ${color('primary', 'default')};
+            /* border-image: linear-gradient(90deg, #dd33ff, #8000ff) 1; */
         }
     }
 
@@ -238,6 +199,16 @@ export const Plan = styled.div`
                 margin-bottom: 2rem;
                 font-size: ${font('body', 'xsm')};
             }
+
+            .subtext {
+                font-size: ${font('body', 'xsm')};
+                color: ${color('gray', '50')};
+
+                ${media.mobile} {
+                    font-size: ${font('label', 'xsm')};
+                    display: block;
+                }
+            }
         }
 
         li:nth-child(2),
@@ -268,15 +239,6 @@ export const Plan = styled.div`
             }
         }
     }
-
-    &.premium,
-    &.standard,
-    &.basic {
-        &:hover {
-            border: 2px solid ${color('primary', 'default')};
-            /* border-image: linear-gradient(90deg, #dd33ff, #8000ff) 1; */
-        }
-    }
 `;
 
 export const DeviceSupportWrap = styled.div`
@@ -301,16 +263,14 @@ export const DeviceSupportItem = styled.div`
     border-radius: 10px;
     background-color: ${color('gray', '80')};
     padding: 1rem;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
+    border: ${({ isActive }) => (isActive ? '2px solid transparent' : '2px solid transparent')};
+    border-image: ${({ isActive }) => (isActive ? 'linear-gradient(90deg, #dd33ff, #8000ff)' : 'none')};
+    border-image-slice: 2;
 
-    &.hover {
-        border: 2px solid ${color('primary', 'default')};
-        border-image: linear-gradient(90deg, #dd33ff, #8000ff) 1;
-
-        h3,
-        li {
-            color: ${color('gray', '0')};
-        }
+    h3,
+    li {
+        color: ${({ isActive }) => (isActive ? color('gray', '0') : color('gray', '30'))};
     }
 
     ${media.mobile} {
@@ -349,7 +309,6 @@ export const DeviceSupportItem = styled.div`
 
         li {
             font-size: ${font('body', 'sm')};
-            color: ${color('gray', '30')};
 
             ${media.mobile} {
                 font-size: ${font('body', 'xsm')};
