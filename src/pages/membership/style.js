@@ -104,7 +104,7 @@ export const Plans = styled.div`
 
     ${media.mobile} {
         width: 100%;
-        gap: 20px;
+        gap: 16px;
     }
 `;
 
@@ -253,7 +253,7 @@ export const DeviceSupportWrap = styled.div`
     ${media.mobile} {
         width: 100%;
         height: auto;
-        gap: 20px;
+        gap: 16px;
         margin-top: 20px;
     }
 `;
