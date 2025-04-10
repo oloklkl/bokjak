@@ -294,7 +294,7 @@ export const DeviceSupportItem = styled.div`
         }
 
         ${media.mobile} {
-            width: 40%;
+            width: 55%;
             padding: 5px 10px;
             font-size: ${font('body', 'xsm')};
         }
