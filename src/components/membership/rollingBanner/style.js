@@ -15,6 +15,14 @@ export const RowRight = styled.div`
     gap: 24px;
     animation: scrollRight 40s linear infinite;
 
+    ${media.tablet} {
+        gap: 18px;
+    }
+
+    ${media.mobile} {
+        gap: 12px;
+    }
+
     @keyframes scrollRight {
         0% {
             transform: translateX(-50%);
@@ -47,6 +55,14 @@ export const RowLeft = styled.div`
     display: flex;
     gap: 24px;
     animation: scrollLeft 40s linear infinite;
+
+    ${media.tablet} {
+        gap: 18px;
+    }
+
+    ${media.mobile} {
+        gap: 12px;
+    }
 
     @keyframes scrollLeft {
         0% {

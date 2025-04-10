@@ -3,7 +3,6 @@ import { color, font } from '../../styled/theme';
 import { media } from '../../styled/media';
 
 export const MembershipContainer = styled.div`
-    padding: 2rem;
     color: ${color('gray', '0')};
     width: 100%;
 
@@ -62,7 +61,7 @@ export const MembershipWrap = styled.div`
     }
 
     ${media.mobile} {
-        width: 348px;
+        width: 100%;
     }
     h2 {
         margin-top: 200px;
@@ -104,7 +103,7 @@ export const Plans = styled.div`
     }
 
     ${media.mobile} {
-        width: 348px;
+        width: 100%;
         gap: 20px;
     }
 `;
@@ -114,7 +113,7 @@ export const Plan = styled.div`
     justify-content: center;
     position: relative;
     width: 100%;
-    padding: 5rem 0 2rem;
+    padding: 5.5rem 0 2rem;
     border-radius: 10px;
     background-color: ${color('gray', '80')};
     transition: 0.3s;
@@ -122,7 +121,7 @@ export const Plan = styled.div`
     border: 2px solid transparent;
 
     ${media.mobile} {
-        padding: 3.5rem 0 1rem;
+        padding: 3rem 10px 1rem;
     }
 
     &:hover,
@@ -195,8 +194,7 @@ export const Plan = styled.div`
             }
 
             ${media.mobile} {
-                padding: 0 0.5rem;
-                margin-bottom: 2rem;
+                margin-bottom: 2.5rem;
                 font-size: ${font('body', 'xsm')};
             }
 
@@ -253,7 +251,8 @@ export const DeviceSupportWrap = styled.div`
     }
 
     ${media.mobile} {
-        width: 348px;
+        width: 100%;
+        height: auto;
         gap: 20px;
         margin-top: 20px;
     }
@@ -295,7 +294,7 @@ export const DeviceSupportItem = styled.div`
         }
 
         ${media.mobile} {
-            width: 60%;
+            width: 40%;
             padding: 5px 10px;
             font-size: ${font('body', 'xsm')};
         }
