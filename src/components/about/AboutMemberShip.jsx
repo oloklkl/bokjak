@@ -30,7 +30,7 @@ function AboutMemberShip() {
 
     const floatIcon = (target, delay = 0) => {
       gsap.to(target, {
-        y: -10,
+        y: -5,
         duration: 2,
         ease: 'sine.inOut',
         repeat: -1,
