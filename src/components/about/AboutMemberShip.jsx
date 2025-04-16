@@ -111,7 +111,7 @@ function AboutMemberShip() {
               <p>매주 업로드 되는 최신 콘텐츠</p>
             </div>
           </div>
-          <Link href="/membership" to="/membership">
+          <Link to="/membership">
             <BarButton
               className="memberShip-goto"
               text="멤버십 구독하기"

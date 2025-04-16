@@ -104,7 +104,7 @@ function AboutDisplay() {
             />
           </div>
 
-          <Link href="/membership" to="/membership">
+          <Link to="/membership">
             <div className="msBtn" ref={msBtnRef}>
               <div className="ms-title">
                 <span>BOKJAK</span>
