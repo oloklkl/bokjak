@@ -21,8 +21,8 @@ function AboutDisplay() {
 
         gsap.to(videoRef.current, {
           scaleX: 1.75,
-          scaleY: 1.4,
-          yPercent: 33,
+          scaleY: 1.6,
+          yPercent: 38,
           duration: 1.5,
           ease: 'power2.out',
           scrollTrigger: {
@@ -100,10 +100,11 @@ function AboutDisplay() {
               muted
               loop
               alt="video"
+              style={{ objectFit: 'cover', width: '100%', height: '100%' }}
             />
           </div>
 
-          <Link href="/membership" to="/membership">
+          <Link to="/membership">
             <div className="msBtn" ref={msBtnRef}>
               <div className="ms-title">
                 <span>BOKJAK</span>

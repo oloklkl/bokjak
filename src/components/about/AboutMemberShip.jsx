@@ -30,7 +30,7 @@ function AboutMemberShip() {
 
     const floatIcon = (target, delay = 0) => {
       gsap.to(target, {
-        y: -10,
+        y: -5,
         duration: 2,
         ease: 'sine.inOut',
         repeat: -1,
@@ -111,7 +111,7 @@ function AboutMemberShip() {
               <p>매주 업로드 되는 최신 콘텐츠</p>
             </div>
           </div>
-          <Link href="/membership" to="/membership">
+          <Link to="/membership">
             <BarButton
               className="memberShip-goto"
               text="멤버십 구독하기"

@@ -56,14 +56,15 @@ export const DisplayWrap = styled.div`
         &__icon {
           position: absolute;
           top: -60px;
-          left: 220px;
+          left: 210px;
+          pointer-events: none;
           ${media.tablet} {
             top: -50px;
-            left: 175px;
+            left: 160px;
           }
           ${media.mobile} {
             top: -41px;
-            left: 135px;
+            left: 130px;
           }
           img {
             width: 53px;
