@@ -5,10 +5,12 @@ import gsap from 'gsap'
 import { useEffect, useRef } from 'react'
 import { ScrollTrigger } from 'gsap/all'
 import { BarButton, IconButton } from '../../../ui'
+import { useSelector } from 'react-redux'
 
 gsap.registerPlugin(ScrollTrigger)
 
 function AboutDisplay() {
+  const { authed } = useSelector((state) => state.authR)
   const videoRef = useRef(null)
   const msBtnRef = useRef(null)
 
@@ -85,12 +87,14 @@ function AboutDisplay() {
             <span className="highlight">월 7,900원</span>으로 복작의 모든
             콘텐츠를 즐겨보세요!
           </p>
-          <BarButton
-            className="login-goto"
-            text="로그인 하러가기"
-            width="300px"
-            height="60px"
-          />
+          <Link to={authed ? '/membership' : '/login'}>
+            <BarButton
+              className="login-goto"
+              text={authed ? '멤버십 보러가기' : '로그인 하러가기'}
+              width="300px"
+              height="60px"
+            />
+          </Link>
         </div>
         <div className="aboutVideo-wrap" ref={videoRef}>
           <div className="video-cont">

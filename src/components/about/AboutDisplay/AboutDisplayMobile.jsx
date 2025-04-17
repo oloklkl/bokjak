@@ -2,8 +2,11 @@ import { Link } from 'react-router-dom'
 import { BarButton, IconButton } from '../../../ui'
 import { ArrowUpRight } from '@phosphor-icons/react'
 import { DisplayWrap } from './style'
+import { useSelector } from 'react-redux'
 
 function AboutDisplayMobile() {
+  const { authed } = useSelector((state) => state.authR)
+
   return (
     <DisplayWrap className="aboutDisplayWrap">
       <div className="text-area">
@@ -25,12 +28,14 @@ function AboutDisplayMobile() {
           <span className="highlight">월 7,900원</span>으로 복작의 모든 콘텐츠를
           즐겨보세요!
         </p>
-        <BarButton
-          className="login-goto"
-          text="로그인 하러가기"
-          width="300px"
-          height="60px"
-        />
+        <Link to={authed ? '/membership' : '/login'}>
+          <BarButton
+            className="login-goto"
+            text={authed ? '멤버십 보러가기' : '로그인 하러가기'}
+            width="300px"
+            height="60px"
+          />
+        </Link>
       </div>
       <div className="aboutVideo-wrap">
         <div className="video-cont">
