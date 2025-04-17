@@ -1,16 +1,58 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getMovies, getTrending, getTvShows } from './getThunk';
+import {
+    getHighRated,
+    getMovies,
+    getNowPlaying,
+    getPopular,
+    getRecommended,
+    getTopRated,
+    getTrending,
+    getTvShows,
+    getUpcoming,
+} from './getThunk';
 
 const initialState = {
     movies: [],
     tvShows: [],
     trending: [],
+    nowPlaying: [],
+    highRated: [],
+    topRated: [],
+    popular: [],
+    recommended: [],
+    upcoming: [],
     loading: {
         movies: false,
         tvShows: false,
         trending: false,
+        upcoming: false,
+        nowPlaying: false,
+        highRated: false,
+        topRated: false,
+        popular: false,
+        recommended: false,
     },
     error: null,
+};
+
+const handleAsyncCases = (
+    builder,
+    thunk,
+    key,
+    transform = (data) => data
+) => {
+    builder
+        .addCase(thunk.pending, (state) => {
+            state.loading[key] = true;
+        })
+        .addCase(thunk.fulfilled, (state, action) => {
+            state[key] = transform(action.payload);
+            state.loading[key] = false;
+        })
+        .addCase(thunk.rejected, (state, action) => {
+            state.loading[key] = false;
+            state.error = action.error.message;
+        });
 };
 
 const contentSlice = createSlice({
@@ -18,40 +60,32 @@ const contentSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder
-            .addCase(getMovies.pending, (state) => {
-                state.loading.movies = true;
-            })
-            .addCase(getMovies.fulfilled, (state, action) => {
-                state.loading.movies = false;
-                state.movies = action.payload;
-            })
-            .addCase(getMovies.rejected, (state, action) => {
-                state.loading.movies = false;
-                state.error = action.error.message;
-            })
-            .addCase(getTvShows.pending, (state) => {
-                state.loading.tvShows = true;
-            })
-            .addCase(getTvShows.fulfilled, (state, action) => {
-                state.loading.tvShows = false;
-                state.tvShows = action.payload;
-            })
-            .addCase(getTvShows.rejected, (state, action) => {
-                state.loading.tvShows = false;
-                state.error = action.error.message;
-            })
-            .addCase(getTrending.pending, (state) => {
-                state.loading.trending = true;
-            })
-            .addCase(getTrending.fulfilled, (state, action) => {
-                state.loading.trending = false;
-                state.trending = action.payload;
-            })
-            .addCase(getTrending.rejected, (state, action) => {
-                state.loading.trending = false;
-                state.error = action.error.message;
-            });
+        handleAsyncCases(builder, getMovies, 'movies');
+        handleAsyncCases(builder, getTvShows, 'tvShows');
+        handleAsyncCases(builder, getTrending, 'trending');
+        handleAsyncCases(
+            builder,
+            getUpcoming,
+            'upcoming',
+            (data) => data.filter((item) => item.logoImage)
+        );
+        handleAsyncCases(
+            builder,
+            getNowPlaying,
+            'nowPlaying'
+        );
+        handleAsyncCases(
+            builder,
+            getHighRated,
+            'highRated'
+        );
+        handleAsyncCases(builder, getTopRated, 'topRated');
+        handleAsyncCases(builder, getPopular, 'popular');
+        handleAsyncCases(
+            builder,
+            getRecommended,
+            'recommended'
+        );
     },
 });
 

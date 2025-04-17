@@ -24,6 +24,7 @@ export const ContentFlipCardWrap = styled.div`
             height: 100%;
             padding: 40px 20px;
         }
+
         &.content-flip-card-tags {
             display: flex;
             flex-wrap: wrap;
@@ -90,20 +91,40 @@ const ContentFlipCard = ({ content }) => {
         >
             {!isShow && (
                 <div className="content-flip-card-preview">
-                    <img src={`${bgurl}${content.poster_path}`} alt="" />
+                    <img
+                        src={`${bgurl}${content.poster_path}`}
+                        alt=""
+                    />
                 </div>
             )}
 
             {isShow && (
                 <div className="content-flip-card-wrap">
-                    <p className="content-flip-card-title">{content.title}</p>
+                    <p className="content-flip-card-title">
+                        {content.title
+                            ? content.title
+                            : content.name}
+                    </p>
+
                     <div className="content-flip-card-tags">
-                        <span>{content.release_date.split('-')[0]}</span>
-                        {/* <span>액션</span>
-                        <span>범죄</span>
-                        <span>스릴러</span> */}
+                        <span>
+                            {
+                                content.release_date?.split(
+                                    '-'
+                                )[0]
+                            }
+                        </span>
+                        {content.genre_names
+                            .slice(0, 3)
+                            .map((item, idx) => (
+                                <span key={idx}>
+                                    {item}
+                                </span>
+                            ))}
                     </div>
-                    <p className="content-flip-card-desc">{content.overview || ''}</p>
+                    <p className="content-flip-card-desc">
+                        {content.overview || ''}
+                    </p>
                 </div>
             )}
         </ContentFlipCardWrap>

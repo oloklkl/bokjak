@@ -24,6 +24,8 @@ import KakaoAuthCallback from './components/login/KakaoAuthCallback';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { windowActions } from './store/modules/windowSlice';
+import Plans from './pages/plans';
+import ScrollToTop from './components/common/ScrollToTop';
 
 const WindowListener = () => {
     const dispatch = useDispatch();
@@ -50,6 +52,7 @@ const App = () => {
             <WindowListener />
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
+                <ScrollToTop />
                 <Routes location={previousLocation || location}>
                     <Route path='/' element={<Layout />}>
                         <Route index element={<Main />} />
@@ -65,6 +68,8 @@ const App = () => {
                     <Route element={<SubLayout />}>
                         <Route path='/login' element={<Login />} />
                         <Route path='/login/join' element={<Join />} />
+                        <Route path='/plans' element={<Plans />} />
+                        <Route path='/plans/:type' element={<Plans />} />
                         <Route path='/video' element={<Video />} />
                     </Route>
                     <Route element={<SearchLayout />}>

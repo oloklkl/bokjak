@@ -1,6 +1,13 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import {
+    Link,
+    useNavigate,
+    useParams,
+} from 'react-router-dom';
 import { BarButton, IconButton } from '../../ui';
-import { BookmarkSimple, Heart } from '@phosphor-icons/react';
+import {
+    BookmarkSimple,
+    Heart,
+} from '@phosphor-icons/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { detailActions } from '../../store/modules/detailSlice';
 import styled from 'styled-components';
@@ -20,23 +27,38 @@ const UtilButtonWrap = () => {
     const navigate = useNavigate();
     const { type, id } = useParams();
     const { width } = useSelector((state) => state.windowR);
-    const { authed, user } = useSelector((state) => state.authR);
+    const { authed, user } = useSelector(
+        (state) => state.authR
+    );
+    const { currentContent } = useSelector(
+        (state) => state.detailR
+    );
 
-    const isLiked = authed && user?.likedContent?.some((content) => content.id === id);
-    const isBookmarked = authed && user?.bookmarkedContent?.some((content) => content.id === id);
+    const isLiked =
+        authed &&
+        user?.likedContent?.some(
+            (content) => content.id === currentContent.id
+        );
+    const isBookmarked =
+        authed &&
+        user?.bookmarkedContent?.some(
+            (content) => content.id === currentContent.id
+        );
 
     const onLikeBtnClick = () => {
         if (!authed) {
             navigate('/login');
         } else {
-            dispatch(authActions.setLiked({ type, id }));
+            dispatch(authActions.setLiked(currentContent));
         }
     };
     const onBookmarkBtnClick = () => {
         if (!authed) {
             navigate('/login');
         } else {
-            dispatch(authActions.setBookmarked({ type, id }));
+            dispatch(
+                authActions.setBookmarked(currentContent)
+            );
         }
     };
 
@@ -47,25 +69,45 @@ const UtilButtonWrap = () => {
     return (
         <UtilButtonWrapStyle className="detailpreview-util-wrap">
             {width > 600 && (
-                <BarButton text="재생하기" width="240px" height="42px">
-                    <Link to={authed ? '/video' : '/login'} />
+                <BarButton
+                    text="재생하기"
+                    width="240px"
+                    height="42px"
+                >
+                    <Link
+                        to={authed ? '/video' : '/login'}
+                    />
                 </BarButton>
             )}
 
             <IconButton
                 onClick={onLikeBtnClick}
                 className=""
-                icon={isLiked ? <Heart weight="fill" /> : <Heart />}
+                icon={
+                    isLiked ? (
+                        <Heart weight="fill" />
+                    ) : (
+                        <Heart />
+                    )
+                }
                 text="좋아요"
             />
             <IconButton
                 onClick={onBookmarkBtnClick}
                 className=""
-                icon={isBookmarked ? <BookmarkSimple weight="fill" /> : <BookmarkSimple />}
+                icon={
+                    isBookmarked ? (
+                        <BookmarkSimple weight="fill" />
+                    ) : (
+                        <BookmarkSimple />
+                    )
+                }
                 text="북마크"
             />
             <IconButton
-                onClick={() => dispatch(detailActions.openUrlModal())}
+                onClick={() =>
+                    dispatch(detailActions.openUrlModal())
+                }
                 className=""
                 icon="https://raw.githubusercontent.com/lse-7660/bokjak-image/f7683cb4e88d31d422118d70c20dcdccb0ad102e/images/icon/bokjak-icon.svg"
                 text="모여보기"

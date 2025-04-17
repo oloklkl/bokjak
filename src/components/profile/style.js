@@ -2,19 +2,18 @@ import styled from 'styled-components';
 import { color, font } from '../../styled/theme';
 import { media } from '../../styled/media';
 
+export const ProfileWrap = styled.section`
+    background: ${color('gray', '70')};
+`;
+
 export const Section = styled.section`
     position: relative;
-    left: 50%;
-    right: 50%;
     margin-top: 20px;
-    margin-left: -50vw;
-    margin-right: -50vw;
     display: flex;
     justify-content: space-between;
-    padding: 36px 200px;
-    width: 100vw;
+    padding: 36px 30px;
+    width: 100%;
     height: 150px;
-    background: ${color('gray', '70')};
 
     ${media.tablet} {
         padding: 30px 30px;

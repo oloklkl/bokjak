@@ -14,6 +14,32 @@ export const VideoWrapCom = styled.div`
     }
 `;
 
+export const ProgressBar = styled.div`
+    input[type='range'] {
+        margin-bottom: 30px;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 6px;
+
+        border-radius: 3px;
+        outline: none;
+        background: linear-gradient(
+            to right,
+            ${color('primary', 'default')} var(--progress),
+            ${color('gray', '30')} 0
+        );
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: ${color('primary', 'default')};
+            border-radius: 50%;
+        }
+    }
+`;
+
 export const VideoPlayerWrap = styled.div`
     position: relative;
     width: 100%;
@@ -24,7 +50,9 @@ export const VideoPlayerWrap = styled.div`
         width: 100vw;
         height: 100%;
     }
-
+    .pointer {
+        cursor: pointer;
+    }
     iframe {
         pointer-events: none;
     }
@@ -36,7 +64,7 @@ export const VideoPlayerWrap = styled.div`
         }
 
         &.video-util-wrap {
-            pointer-events: none;
+            /* pointer-events: none; */
 
             display: flex;
             flex-direction: column;
@@ -53,7 +81,9 @@ export const VideoPlayerWrap = styled.div`
                 height: 30px;
             }
         }
+
         &.video-controls-wrap {
+            /* pointer-events: none; */
             display: flex;
             justify-content: space-between;
         }
@@ -110,6 +140,34 @@ export const VideoPlayerWrap = styled.div`
                             }
                         }
                     }
+                }
+            }
+        }
+
+        &.video-volume-control {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            input {
+                width: 60px;
+                -webkit-appearance: none;
+                appearance: none;
+                height: 4px;
+
+                border-radius: 3px;
+                outline: none;
+                background: linear-gradient(
+                    to right,
+                    ${color('gray', '0')} var(--volume),
+                    ${color('gray', '70')} 0
+                );
+
+                &::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    width: 12px;
+                    height: 12px;
+                    background: ${color('gray', '0')};
+                    border-radius: 50%;
                 }
             }
         }

@@ -4,7 +4,24 @@ import { media } from '../../../styled/media';
 
 export const UpcomingNotificationWrap = styled.div``;
 
-export const UpcomingNotificationListWrap = styled.div``;
+export const UpcomingNotificationListWrap = styled.div`
+    div {
+        &.noAlarmWrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: ${color('gray', '80')}; */
+            width: 100%;
+            height: 140px;
+
+            border-radius: 10px;
+            border: 1px solid ${color('gray', '80')};
+
+            color: ${color('gray', '60')};
+            text-align: center;
+        }
+    }
+`;
 
 export const UpcomingNotificationItemWrap = styled.div`
     width: 100%;

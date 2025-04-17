@@ -11,9 +11,9 @@ import { MyPageWrap } from './style';
 const MyPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { movies, tvShows } = useSelector((state) => state.contentR);
-
-    const combinedContents = [...movies, ...tvShows].slice(0, 10);
+    const { user } = useSelector((state) => state.authR);
+    const likedContents = user.likedContent;
+    const bookmarkedContents = user.bookmarkedContent;
 
     const handleLogout = () => {
         dispatch(authActions.logout());
@@ -22,11 +22,21 @@ const MyPage = () => {
 
     return (
         <MyPageWrap>
-            <div className='inner'>
+            <div>
                 <ProfileSection />
-
-                <MyPageViewHistoryCont />
-                <SubThumbnailCont title='관심 콘텐츠' contents={combinedContents} />
+                <div className='inner'>
+                    <MyPageViewHistoryCont />
+                    <SubThumbnailCont
+                        title='관심 콘텐츠'
+                        contents={bookmarkedContents}
+                        noContentText='북마크 아이콘을 눌러 관심 콘텐츠를 설정해 보세요'
+                    />
+                    <SubThumbnailCont
+                        title='평가한 콘텐츠'
+                        contents={likedContents}
+                        noContentText='하트 아이콘을 눌러 콘텐츠를 평가해 보세요'
+                    />
+                </div>
 
                 <BarButton className='share' text='로그아웃' width='500px' height='50px' onClick={handleLogout} />
             </div>
