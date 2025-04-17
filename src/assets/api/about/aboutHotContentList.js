@@ -2,7 +2,7 @@ const hotContentList = [
   {
     id: 1,
     title: '위키드',
-    img: 'https://github.com/lse-7660/bokjak-image/blob/main/images/about/hotCont1.png?raw=true',
+    img: 'https://github.com/lse-7660/bokjak-image/blob/main/images/about/hotCont1.jpg?raw=true',
   },
   {
     id: 2,
@@ -16,8 +16,8 @@ const hotContentList = [
   },
   {
     id: 4,
-    title: '위키드',
-    img: 'https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true',
+    title: '오징어게임2',
+    img: 'https://github.com/lse-7660/bokjak-image/blob/main/images/about/hotCont4.png?raw=true',
   },
 ]
 

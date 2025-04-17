@@ -27,13 +27,13 @@ const updateContentList = [
     id: 5,
     title: '미키17',
     desc: '미키는 자신의 존재 이유를 알지 못한 채, 얼어붙은 행성 니플헤임으로 파견된다. 소모품 대원으로서 죽음을 반복하며 살아가던 중, 뜻밖의 복제체 미키 18이 등장하며 시스템에 균열을 일으킨다. 두 미키는 점차 정체성과 생존을 둘러싼 혼란에 빠지고, 그 과정에서 미키는 자신이 진짜 누구인지를 마주하게 된다.',
-    img: 'https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true',
+    img: 'https://raw.githubusercontent.com/lse-7660/bokjak-image/f7ff2efa0d9dce49d7e847ff62492f337960b773/images/about/updateCont4.jpg',
   },
   {
     id: 6,
     title: '마인크래프트',
     desc: '네 명의 이방인은 어느 날 갑자기 포털을 통해 낯선 큐브 세계, 오버월드로 빨려 들어간다. 그곳에서 상상력과 창의력이 생존의 열쇠임을 깨닫고, 신비로운 장인 스티브의 도움을 받아 현실로 돌아가기 위한 여정을 떠난다. 좀비, 스켈레톤, 네더의 어둠 속에서 각자의 가치를 발견하며 진정한 용기를 얻고 성장해 나간다.',
-    img: 'https://github.com/lse-7660/bokjak-image/blob/main/images/main/intro/introSlide1.png?raw=true',
+    img: 'https://raw.githubusercontent.com/lse-7660/bokjak-image/f7ff2efa0d9dce49d7e847ff62492f337960b773/images/about/updateCont6.png',
   },
 ]
 export default updateContentList
