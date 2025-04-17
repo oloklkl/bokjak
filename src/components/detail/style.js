@@ -371,6 +371,7 @@ export const DetailSectionWrap = styled.div`
     ul {
         &.season-dropdown-list {
             position: absolute;
+            z-index: 200;
             top: 54px;
             left: 0;
             width: 160px;
