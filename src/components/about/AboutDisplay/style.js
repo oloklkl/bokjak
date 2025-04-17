@@ -250,6 +250,7 @@ export const DisplayWrap = styled.div`
           gap: 6px;
         }
         &__icon {
+          aspect-ratio: 1 / 1;
           font-weight: bold;
           &:hover {
             background-color: transparent;
