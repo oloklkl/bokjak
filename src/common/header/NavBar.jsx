@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation, Link } from 'react-router-dom';
 import { IconButton } from '../../ui';
 import {
     BellSimple,
@@ -18,9 +18,9 @@ import { setActiveLink } from '../../store/modules/navSlice';
 const NavBar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
     const activeLink = useSelector((state) => state.navR.activeLink);
     const { authed } = useSelector((state) => state.authR);
-
     const { categories, isOpen } = useSelector((state) => state.categoryR);
 
     const handleToggle = (e) => {
@@ -35,20 +35,35 @@ const NavBar = () => {
         dispatch(toggleCategory());
     };
 
+    // 현재 URL의 'category' 파라미터를 추출하는 함수
+    const getCategoryFromUrl = () => {
+        const searchParams = new URLSearchParams(location.search);
+        return searchParams.get('category');
+    };
+
+    // 현재 URL과 카테고리에 따라 active 여부를 반환하는 함수
+    const isActiveCategory = (targetCategory) => {
+        const currentCategory = getCategoryFromUrl();
+        const currentPath = location.pathname;
+
+        const isValidPath = currentPath === '/subpage' || currentPath === '/subpage/movie';
+        return isValidPath && currentCategory === targetCategory;
+    };
+
     return (
         <NavWrap className='nav'>
             <NavCenter className='nav-center'>
                 <li>
                     <NavLink
-                        to={'/about'}
-                        className={({ isActive }) => (isActive ? 'active' : '')}
+                        to='/about'
+                        className={location.pathname === '/about' ? 'active' : ''}
                         onClick={() => dispatch(setActiveLink('/about'))}
                     >
                         About
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='#' className={({ isActive }) => (isActive ? 'active' : '')} onClick={handleToggle}>
+                    <NavLink to='#' className={isOpen ? 'active' : ''} onClick={handleToggle}>
                         <CategoryTitleWrap>
                             카테고리
                             {isOpen ? <CaretUp size={24} /> : <CaretDown size={24} />}
@@ -74,29 +89,21 @@ const NavBar = () => {
                     )}
                 </li>
                 <li>
-                    <NavLink
-                        to={'/subpage?category=영화'}
-                        className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => dispatch(setActiveLink('/subpage/movie'))}
-                    >
+                    <Link to='/subpage?category=영화' className={isActiveCategory('영화') ? 'active' : ''}>
                         영화
-                    </NavLink>
+                    </Link>
                 </li>
                 <li>
-                    <NavLink
-                        to={'/subpage?category=시리즈'}
-                        className={({ isActive }) => (isActive ? 'active' : '')}
-                        onClick={() => dispatch(setActiveLink('/subpage/series'))}
-                    >
+                    <Link to='/subpage?category=시리즈' className={isActiveCategory('시리즈') ? 'active' : ''}>
                         시리즈
-                    </NavLink>
+                    </Link>
                 </li>
             </NavCenter>
             <NavRight className='nav-right'>
                 <li>
                     <NavLink
-                        to={'/search'}
-                        className={({ isActive }) => (isActive ? 'active' : '')}
+                        to='/search'
+                        className={location.pathname === '/search' ? 'active' : ''}
                         onClick={() => dispatch(setActiveLink('search'))}
                     >
                         <IconButton className='gray40 none' icon={<MagnifyingGlass size={24} />} text='검색' />
@@ -104,8 +111,8 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to={'/notification'}
-                        className={({ isActive }) => (isActive ? 'active' : '')}
+                        to='/notification'
+                        className={location.pathname === '/notification' ? 'active' : ''}
                         onClick={() => dispatch(setActiveLink('notification'))}
                     >
                         <IconButton
@@ -124,7 +131,7 @@ const NavBar = () => {
                 <li>
                     <NavLink
                         to={authed ? '/mypage' : '/login'}
-                        className={({ isActive }) => (isActive ? 'active' : '')}
+                        className={location.pathname === (authed ? '/mypage' : '/login') ? 'active' : ''}
                         onClick={() => dispatch(setActiveLink(authed ? 'mypage' : 'login'))}
                     >
                         <IconButton
