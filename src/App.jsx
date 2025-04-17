@@ -26,6 +26,7 @@ import { useEffect } from 'react';
 import { windowActions } from './store/modules/windowSlice';
 import Plans from './pages/plans';
 import ScrollToTop from './components/common/ScrollToTop';
+import { Helmet } from 'react-helmet';
 
 const WindowListener = () => {
     const dispatch = useDispatch();
@@ -49,6 +50,36 @@ const App = () => {
     const previousLocation = location.state?.previousLocation;
     return (
         <>
+            <Helmet>
+                <meta charset='UTF-8' />
+                <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+                <title>Bokjak</title>
+
+                {/* <!-- 기본 설명 --> */}
+                <meta
+                    name='description'
+                    content='복작 OTT 팀 프로젝트 사이트입니다. 트렌디하고 감각적인 영상 콘텐츠 플랫폼이에요.'
+                />
+
+                {/* <!-- Open Graph --> */}
+                <meta property='og:type' content='website' />
+                <meta property='og:title' content='조성주 • BOKJAK-OTT' />
+                <meta property='og:description' content='복작 팀 프로젝트' />
+                <meta
+                    property='og:image'
+                    content='https://github.com/oloklkl/bokjak-image/blob/main/images/meta/bokjak-meta.png?raw=true'
+                />
+                <meta property='og:url' content='https://bokjak-project.netlify.app/' />
+
+                {/* <!-- Twitter Card --> */}
+                <meta name='twitter:card' content='summary_large_image' />
+                <meta name='twitter:title' content='조성주 • BOKJAK-OTT' />
+                <meta name='twitter:description' content='복작 팀 프로젝트' />
+                <meta
+                    name='twitter:image'
+                    content='https://github.com/oloklkl/bokjak-image/blob/main/images/meta/bokjak-meta.png?raw=true'
+                />
+            </Helmet>
             <WindowListener />
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
