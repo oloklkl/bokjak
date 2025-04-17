@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { IconButton } from '../../ui';
 import { BellSimple, BellSimpleRinging, House, MagnifyingGlass, User } from '@phosphor-icons/react';
 import { BottomNavList } from './style';
@@ -8,6 +8,7 @@ import { setActiveLink } from '../../store/modules/navSlice';
 const BottomNavigation = () => {
     const dispatch = useDispatch();
     const activeLink = useSelector((state) => state.navR.activeLink);
+    const { authed } = useSelector((state) => state.authR); // 로그인 상태 가져오기
 
     const handleNavClick = (link) => {
         dispatch(setActiveLink(link));
@@ -61,16 +62,16 @@ const BottomNavigation = () => {
             </li>
             <li>
                 <NavLink
-                    to={'/mypage'}
+                    to={authed ? '/mypage' : '/login'} // 로그인 상태에 따라 페이지 이동
                     className={({ isActive }) => (isActive ? 'active' : '')}
-                    onClick={() => handleNavClick('mypage')}
+                    onClick={() => handleNavClick(authed ? 'mypage' : 'login')} // 로그인 상태에 따라 active link 설정
                 >
                     <IconButton
                         className='gray40 none'
                         icon={activeLink === 'mypage' ? <User size={24} weight='fill' /> : <User size={24} />}
-                        text='MY'
+                        text={authed ? 'MY' : '로그인'}
                     />
-                    MY
+                    {authed ? 'MY' : '로그인'}
                 </NavLink>
             </li>
         </BottomNavList>
