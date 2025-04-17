@@ -1,7 +1,14 @@
 .swiper-slide:nth-child(1) .cardHover,
-.swiper-slide:nth-child(6) .cardHover {
+.swiper-slide:nth-child(6) .cardHover,
+.swiper-slide:nth-child(11) .cardHover,
+.swiper-slide:nth-child(16) .cardHover,
+.swiper-slide:nth-child(21) .cardHover {
   transform: translate(-28.2%, -50%) scale(1);
 }
-/* .swiper-slide:nth-child(5) .cardHover {
-  transform: translate(20%, -50%) scale(1);
-} */
+.swiper-slide:nth-child(5) .cardHover,
+.swiper-slide:nth-child(10) .cardHover,
+.swiper-slide:nth-child(15) .cardHover,
+.swiper-slide:nth-child(20) .cardHover,
+.swiper-slide:nth-child(25) .cardHover {
+  transform: translate(-71.4%, -50%) scale(1);
+}
