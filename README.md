@@ -87,7 +87,21 @@ OTT 콘텐츠 큐레이션 웹사이트
 
 ### 📑 디렉토리 구조
 
-``` bokjak/ ├── public/ ├── src/ │ ├── api/ │ ├── assets/ │ ├── components/ │ ├── pages/ │ ├── redux/ │ ├── styles/ │ ├── App.jsx │ └── main.jsx ├── package.json └── vite.config.js ```
+```
+bokjak/
+├── public/
+├── src/
+│   ├── api/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── redux/
+│   ├── styles/
+│   ├── App.jsx
+│   └── main.jsx
+├── package.json
+└── vite.config.js
+```
 
 ---
 
