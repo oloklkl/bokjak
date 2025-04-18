@@ -18,6 +18,7 @@ OTT 콘텐츠 큐레이션 웹사이트
 - **React Router**
 - **TMDB API**
 - **GSAP (애니메이션)**
+- **Netlify (배포)**
 
 ---
 
@@ -48,6 +49,23 @@ OTT 콘텐츠 큐레이션 웹사이트
 | **이승은** | 상세페이지, API 연결, 필모그래피, 비디오 페이지, 종합적으로 오류+스타일+데이터 수정 |
 | **조성주** | 헤더, 푸터, 로그인, 회원가입, 마이페이지, 알림페이지, 서브페이지, 멤버십 페이지,plans 페이지 |
 
+---
+
+### **2. Open graph**
+
+![bokjak](https://github.com/user-attachments/assets/7ebf3c3b-e956-4b3b-926d-2f2ba8e692ef)
+
+- meta tags를 통해 Facebook, twitter, linkedin, discord, kakao talk 등 링크를 전달 했을 때 링크에 대한 정보를 볼 수 있도록 구현
+  
+```html
+<!-- index.html -->
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="조성주 • BOKJAK" />
+<meta property="og:description" content="복작 팀 프로젝트" />
+<meta property="og:image" content="https://bokjak-project.netlify.app/meta/bokjak-meta.jpg" />
+<meta property="og:url" content="https://bokjak-project.netlify.app/" />
+```
 ---
 
 ## 🗂️ 주요 기능
