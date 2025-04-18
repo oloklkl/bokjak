@@ -72,20 +72,24 @@ OTT 콘텐츠 큐레이션 웹사이트
 
 ## 📂 프로젝트 구조
 
-- **bokjak/** : 프로젝트 루트 디렉토리
-  - **public/** : 정적 파일 (favicon, 이미지 등)
-  - **src/** : 소스 코드 디렉토리
-    - **api/** : TMDB API 호출 함수 파일
-    - **assets/** : 이미지, 폰트 등 정적 리소스
-    - **components/** : 페이지에서 공통으로 사용하는 컴포넌트
-    - **pages/** : 각 페이지별 컴포넌트 (메인, 디테일, 검색, 로그인 등)
-    - **redux/** : 상태 관리를 위한 Redux slice, store 파일
-    - **styles/** : 전역 스타일 및 스타일 관련 파일
-    - **App.jsx** : 전체 페이지 라우터 및 전역 레이아웃 정의 파일
-    - **main.jsx** : React 애플리케이션 엔트리 파일
-  - **package.json** : 프로젝트 의존성 및 스크립트 설정 파일
-  - **vite.config.js** : Vite 설정 파일
+- **public/** : 정적 파일 (favicon, 이미지 등)
+- **src/**
+  - **api/** : TMDB API 호출 함수 파일
+  - **assets/** : 이미지, 폰트 등 정적 리소스
+  - **components/** : 페이지에서 공통으로 사용하는 컴포넌트
+  - **pages/** : 각 페이지별 컴포넌트 (메인, 디테일, 검색, 로그인 등)
+  - **redux/** : 상태 관리를 위한 Redux slice, store 파일
+  - **styles/** : 전역 스타일 및 스타일 관련 파일
+  - **App.jsx** : 전체 페이지 라우터 및 전역 레이아웃 정의 파일
+  - **main.jsx** : React 애플리케이션 엔트리 파일
+- **package.json** : 프로젝트 의존성 및 스크립트 설정 파일
+- **vite.config.js** : Vite 설정 파일
 
+### 📑 디렉토리 구조
+
+bokjak/ ├── public/ ├── src/ │ ├── api/ │ ├── assets/ │ ├── components/ │ ├── pages/ │ ├── redux/ │ ├── styles/ │ ├── App.jsx │ └── main.jsx ├── package.json └── vite.config.js
+
+---
 
 ## 📣 슬로건  
 **"연결된 순간, 즐거움은 배가 된다"**
@@ -97,3 +101,4 @@ OTT 콘텐츠 큐레이션 웹사이트
 - 폰트 사이즈: KRDS 기준
 - 프라이머리 컬러: 차분한 **보라색**
 - 그레이스케일 및 컬러 값 변수로 관리
+
