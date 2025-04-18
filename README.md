@@ -51,7 +51,7 @@ OTT 콘텐츠 큐레이션 웹사이트
 
 ---
 
-## Open graph
+## 💌 Open Graph
 
 ![bokjak](https://github.com/user-attachments/assets/7ebf3c3b-e956-4b3b-926d-2f2ba8e692ef)
 
