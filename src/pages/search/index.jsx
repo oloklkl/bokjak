@@ -70,7 +70,7 @@ const Search = () => {
                     <div className='input-container'>
                         <input
                             type='text'
-                            placeholder='제목, 장르, 배우로 검색해보세요.'
+                            placeholder='제목으로 검색해보세요.'
                             value={searchQuery}
                             onChange={handleSearch}
                             onKeyDown={handleKeyDown}
