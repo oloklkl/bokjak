@@ -10,7 +10,6 @@ export const ThumbnailSection = styled.div`
     justify-content: center;
     align-items: flex-start;
     padding: 80px 0 40px;
-    overflow: hidden;
 
     ${media.tablet} {
         padding: 60px 0 30px;
